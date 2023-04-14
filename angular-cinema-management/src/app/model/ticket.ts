@@ -3,7 +3,7 @@ import {Showtime} from "./showtime";
 import {ChairRoom} from "./chair-room";
 
 export interface Ticket {
-  id: number;
+  id: string;
   customer: Customer;
   showtime: Showtime;
   chairRoom: ChairRoom;

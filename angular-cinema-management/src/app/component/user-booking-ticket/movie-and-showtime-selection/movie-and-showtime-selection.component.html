@@ -1,1 +1,84 @@
-<p>movie-and-showtime-selection works!</p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<div class="container">
+  <div class="row">
+    <div class="panel-heading">
+      <H4 class="panel-title">CHỌN PHIM </H4>
+    </div>
+    <hr>
+    <ul class="list-group">
+      <li *ngFor="let item of movies" class="ng-scope" >
+        <a (click)="getShowtimeMovie(item.id)" class="list-group-item movie active">
+          <div class="showtimes-row">
+            <img [src]="item.image" alt=""/>
+            <div class="title-movie">
+              <p class="upper-text ng-binding">{{item.name}}</p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="row choose-movie ">
+    <div class="panel-heading">
+      <H4 class="panel-title">CHỌN SUẤT CHIẾU </H4>
+    </div>
+    <div class="row show-time-date-movie-start">
+      <div class="col-3 date-movie-start">
+        <div class="time-date-movie">
+          <p class="time-film">Thứ 2</p>
+          <p class="day-film">27</p>
+          <p class="time-film">Tháng 3</p>
+        </div>
+      </div>
+      <div class="col-9 list-movie-start">
+        <button href="" class="show-time-list">13:00</button>
+        <button href="" class="show-time-list">15:00</button>
+        <button href="" class="show-time-list">17:00</button>
+        <button href="" class="show-time-list">19:00</button>
+        <button href="" class="show-time-list">21:00</button>
+        <button href="" class="show-time-list">23:00</button>
+      </div>
+      <hr class="hr-show-time-date-movie-start">
+    </div>
+    <div class="row show-time-date-movie-start">
+      <div class="col-3 date-movie-start">
+        <div class="time-date-movie">
+          <p class="time-film">Thứ 3</p>
+          <p class="day-film">28</p>
+          <p class="time-film">Tháng 3</p>
+        </div>
+      </div>
+      <div class="col-9 list-movie-start">
+        <button href="" class="show-time-list">11:00</button>
+        <button href="" class="show-time-list">13:00</button>
+        <button href="" class="show-time-list">15:30</button>
+        <button href="" class="show-time-list">17:45</button>
+        <button href="" class="show-time-list">20:10</button>
+        <button href="" class="show-time-list">22:50</button>
+      </div>
+      <hr class="hr-show-time-date-movie-start">
+    </div>
+    <div class="row show-time-date-movie-start">
+      <div class="col-3 date-movie-start">
+        <div class="time-date-movie">
+          <p class="time-film">Thứ 4</p>
+          <p class="day-film">29</p>
+          <p class="time-film">Tháng 3</p>
+        </div>
+      </div>
+      <div class="col-9 list-movie-start">
+        <button href="" class="show-time-list">10:00</button>
+        <button href="" class="show-time-list">11:50</button>
+        <button href="" class="show-time-list">14:00</button>
+        <button href="" class="show-time-list">18:00</button>
+        <button href="" class="show-time-list">20:00</button>
+        <button href="" class="show-time-list">22:00</button>
+      </div>
+      <hr class="hr-show-time-date-movie-start">
+    </div>
+  </div>
+  <div class="submit-ticker">
+    <button type="submit" class="submit-ticker-moive">CHỌN GHẾ</button>
+  </div>
+</div>

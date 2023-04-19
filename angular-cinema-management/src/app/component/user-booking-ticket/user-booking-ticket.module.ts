@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { UserBookingTicketRoutingModule } from './user-booking-ticket-routing.module';
+
 import {MovieAndShowtimeSelectionComponent} from "./movie-and-showtime-selection/movie-and-showtime-selection.component";
 import {ChairSelectionComponent} from "./chair-selection/chair-selection.component";
 import {BookingTicketConfirmationComponent} from "./booking-ticket-confirmation/booking-ticket-confirmation.component";
 import {BookingTicketDetailComponent} from "./booking-ticket-detail/booking-ticket-detail.component";
+import {HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
+import {UserBookingTicketRoutingModule} from "./user-booking-ticket-routing.module";
+
 
 
 @NgModule({

@@ -7,7 +7,7 @@
     </div>
     <hr>
     <ul class="list-group">
-      <li *ngFor="let item of movies" class="ng-scope" >
+      <li *ngFor="let item of movies" class="ng-scope">
         <a (click)="getShowtimeMovie(item.id)" class="list-group-item movie active">
           <div class="showtimes-row">
             <img [src]="item.image" alt=""/>
@@ -41,41 +41,8 @@
       </div>
       <hr class="hr-show-time-date-movie-start">
     </div>
-    <div class="row show-time-date-movie-start">
-      <div class="col-3 date-movie-start">
-        <div class="time-date-movie">
-          <p class="time-film">Thứ 3</p>
-          <p class="day-film">28</p>
-          <p class="time-film">Tháng 3</p>
-        </div>
-      </div>
-      <div class="col-9 list-movie-start">
-        <button href="" class="show-time-list">11:00</button>
-        <button href="" class="show-time-list">13:00</button>
-        <button href="" class="show-time-list">15:30</button>
-        <button href="" class="show-time-list">17:45</button>
-        <button href="" class="show-time-list">20:10</button>
-        <button href="" class="show-time-list">22:50</button>
-      </div>
-      <hr class="hr-show-time-date-movie-start">
-    </div>
-    <div class="row show-time-date-movie-start">
-      <div class="col-3 date-movie-start">
-        <div class="time-date-movie">
-          <p class="time-film">Thứ 4</p>
-          <p class="day-film">29</p>
-          <p class="time-film">Tháng 3</p>
-        </div>
-      </div>
-      <div class="col-9 list-movie-start">
-        <button href="" class="show-time-list">10:00</button>
-        <button href="" class="show-time-list">11:50</button>
-        <button href="" class="show-time-list">14:00</button>
-        <button href="" class="show-time-list">18:00</button>
-        <button href="" class="show-time-list">20:00</button>
-        <button href="" class="show-time-list">22:00</button>
-      </div>
-      <hr class="hr-show-time-date-movie-start">
+    <div *ngIf="showTimesByIdMovie == null">
+      <p>Chưa có suất chiếu</p>
     </div>
   </div>
   <div class="submit-ticker">

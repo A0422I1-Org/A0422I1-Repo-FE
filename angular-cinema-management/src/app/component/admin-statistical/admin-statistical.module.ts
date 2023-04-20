@@ -15,6 +15,9 @@ import {AdminStatisticalShowtimeComponent} from "./admin-statistical-showtime/ad
     AdminStatisticalMovieTypeComponent,
     AdminStatisticalShowtimeComponent
   ],
+  exports: [
+    AdminStatisticalMovieComponent
+  ],
   imports: [
     CommonModule,
     AdminStatisticalRoutingModule

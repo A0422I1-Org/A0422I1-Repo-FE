@@ -1,1 +1,259 @@
-<p>admin-statistical-movie works!</p>
+<!--Mọi người search từ khóa Header, Sidebar, Main để đến phần cần chỉnh sửa nha-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thống Kê Phim</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../../../assets/statistical-movie-and-customer/css/chart.css">
+  <link rel="stylesheet" href="../../../../assets/statistical-movie-and-customer/css/[A0422I1]_Prototype_DuHC.css">
+  <link rel="stylesheet" href="../../../../assets/statistical-movie-and-customer/css/score.css">
+  <link rel="stylesheet" href="../../../../assets/statistical-movie-and-customer/css/rank_img.css">
+  <link rel="stylesheet" href="../../../../assets/statistical-movie-and-customer/css/admin.css">
+
+</head>
+<body>
+
+<div class="container py-2">
+  <!--    Header      -->
+  <div class="row align-items-center">
+    <div class="col-3">
+      <img src="..\assets\statistical-movie-and-customer\image\logo_movie-removebg-preview.png" alt="" class="img-fluid"
+           style="width: auto">
+    </div>
+    <div class="col-9">
+      <div class="dropdown float-end px-4">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="..\assets\statistical-movie-and-customer\image\avatar.png" alt="" width="32" height="32"
+               class="rounded-circle me-2">
+          <strong style="color: #F26b38">DuHC</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
+          <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <!--    End header-->
+
+  <!--    Sidebar      -->
+  <div class="row">
+    <div class="col-lg-3">
+      <nav class="navbar navbar-expand-lg navbar-light" style="padding: 0px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="card mb-4 " style="width: 100%">
+            <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">
+              <div class="d-block justify-content-center">
+                <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link link-primary" aria-current="page">
+                      <img src="..\assets\statistical-movie-and-customer\image\ban-ve.jpg" height="20" width="20"/>
+                      Bán vé
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-ban-ve.png" height="20"
+                           width="20"/>
+                      Quản lý đặt vé
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-nhan-vien.png" height="20"
+                           width="20"/>
+                      Quản lý nhân viên
+                    </a>
+                  </li>
+                  <li>
+                    <a href="member_list.html" class="nav-link link-primary ">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-thanh-vien-.png" height="20"
+                           width="20"/>
+                      Quản lý thành viên
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-phim.png" height="20"
+                           width="20"/>
+                      Quản lý phim
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-khuyen-mai.png" height="20"
+                           width="20"/>
+                      Quản lý khuyến mãi
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="..\assets\statistical-movie-and-customer\image\quan-ly-rap-chieu.png" height="20"
+                           width="20"/>
+                      Quản lý phòng chiếu
+                    </a>
+                  </li>
+                  <li>
+                    <a class="nav-link link-primary " data-bs-toggle="collapse"
+                       href="#collapseExample" role="button"
+                       aria-expanded="false" aria-controls="collapseExample">
+                      <img src="..\assets\statistical-movie-and-customer\image\thong-ke.png" height="20" width="20"/>
+                      &ensp;Thống kê
+                    </a>
+                  </li>
+                  <div class="collapse" id="collapseExample">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a [routerLink]="['/statistic/movie']"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê phim</a>
+                      </li>
+                      <li><a [routerLink]="['/statistic/member']"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê thành viên</a>
+                      </li>
+                      <li><a href="category_statistic.html"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê thể loại phim </a>
+                      </li>
+                      <li><a href="showtime_statistic.html"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kế suất chiếu</a>
+                      </li>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--  end sidebar-->
+
+    <!-- Thống kê-->
+    <div class="col-lg-9">
+      <div class="col">
+        <div class="card">
+          <div class="bg-light card card-header p-3 mb-4 text-uppercase display fw-bold ">
+            <div class="row align-items-center">
+              <div class="col-8">Thống Kê Phim</div>
+              <div class="col-4 d-flex ">
+                <input #nameMovie type="search" class="form-control bg-light my-1" placeholder="Tìm kiếm..."
+                       aria-label="Search">
+                <button class="btn my-1 mx-1" style="background-color: #F26b38; color: white"
+                        (click)="searchMovieByName(nameMovie.value)">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin: 1px">
+            <div class="col-6">
+            </div>
+            <div class="col-6" style="text-align: end" ng-click="doSome()">
+              <button class="btn " style="background-color:#F26B38 "
+                      (click)="callJSChart()" id="onoff"
+                      value="On"><i class="bi bi-bar-chart-line-fill but"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive table-bordered rounded shadow">
+              <table class="table  text-center">
+                <thead style="background-color: #F26B38; color: #fff;">
+                <tr>
+                  <th>#</th>
+                  <th>Tên Phim</th>
+                  <th>
+                    Tổng tiền(đ)
+                  </th>
+                  <th>Số lượng vé bán được <button class="btn" style="background-color:#F26B38; padding: unset"
+                                                   (click)="getMovieStatisticListAcs()"><img
+                    src="..\assets\statistical-movie-and-customer\image\icon-sort-9.jpg" width="15px" height="15">
+                  </button></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of movieStatisticList ; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>{{item.name}}</td>
+                  <td class="colSpan">
+                    <div class="animated-progress progress-orange">
+                      <span data-progress="100" >{{item.totalTicket}}</span>
+                    </div>
+                    <div class="animated-progress progress-black">
+                      <span data-progress="100" >{{item.totalMoney}}</span>
+                    </div>
+                    <div class="num">{{item.totalMoney}}</div>
+                  </td>
+                  <td >
+                    <div class="num">{{item.totalTicket}}</div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <!--       end thống kê-->
+
+              <div class="d-flex justify-content-center m-md-auto">
+                <nav
+                  aria-label="Page navigation example justify-content-center "
+                >
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a
+                        class="page-link "
+                        href="#"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item ">
+                      <a class="page-link " href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link " href="#">2</a>
+                    </li>
+                    <li class="page-item ">
+                      <a class="page-link " href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a
+                        class="page-link "
+                        href="#"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

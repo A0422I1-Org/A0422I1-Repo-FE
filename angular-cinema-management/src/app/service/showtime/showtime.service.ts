@@ -16,4 +16,7 @@ export class ShowtimeService {
   getShowtimeByIdMovie(id: number): Observable<Showtime[]> {
     return this.httpClient.get<Showtime[]>(this.API_URL_GET_SHOWTIME + id);
   }
+  // getShowTimeByDateAndByIdMovie(date: string,id:number): Observable<Showtime[]>{
+  //   return this.httpClient.get<Showtime[]>(this.API_URL_GET_SHOWTIME + date + id);
+  // }
 }

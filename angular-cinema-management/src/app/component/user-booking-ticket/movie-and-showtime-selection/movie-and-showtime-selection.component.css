@@ -1,5 +1,5 @@
 
-a.list-group-item.movie.active {
+a.list-group-item.movie {
   background: white;
   color: black;
   border: none;
@@ -7,13 +7,14 @@ a.list-group-item.movie.active {
   margin-right: 0;
   padding:0;
 }
+
 li.ng-scope{
   height: 44px;
 }
-.list-group-item.movie.active{
+.list-group-item.movie{
   height: 44px;
 }
-a.list-group-item.movie.active:hover{
+a.list-group-item.movie:hover{
   background: #F1F1F1;
 }
 h4.panel-title{
@@ -78,7 +79,7 @@ ul.list-group{
   margin: 0;
 }
 div.col-3.date-movie-start{
-  width: 85px;
+  width: 100px;
 }
 button.show-time-list{
   font-size: 18px;
@@ -90,11 +91,16 @@ button.show-time-list{
   background-color: white;
 
 }
-button.show-time-list:active{
-  background-color: #F26B38;
-  color: white;
-  border: 2px solid  #F5F5F5;
+/*button.show-time-list:active{*/
+/*  background-color: #F26B38;*/
+/*  color: white;*/
+/*  border: 2px solid  #F5F5F5;*/
 
+/*}*/
+button.show-time-list.selected {
+    background-color: #F26B38;
+    color: white;
+    border: 2px solid  #F5F5F5;
 }
 div.row.show-time-date-movie-start{
   margin-top:1%;
@@ -129,4 +135,16 @@ hr.hr-show-time-date-movie-start{
 }
 a.list-group-item:hover{
   cursor:pointer;
+}
+.notification-showtime-movie{
+  font-size: 16px;
+  text-align: center;
+  margin:25px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #b0acac;
+}
+a.list-group-item.movie.active{
+  color:  #F26B38;
+  background: #F1F1F1;
 }

@@ -7,8 +7,8 @@
     </div>
     <hr>
     <ul class="list-group">
-      <li *ngFor="let item of movies" class="ng-scope">
-        <a (click)="getShowtimeMovie(item.id)" class="list-group-item movie active">
+      <li *ngFor="let item of movies;" class="ng-scope" (click)="getShowtimeMovie(item.id)">
+        <a class="list-group-item movie" [ngClass]="{'active': item.id === selectedMovieId}">
           <div class="showtimes-row">
             <img [src]="item.image" alt=""/>
             <div class="title-movie">
@@ -23,29 +23,35 @@
     <div class="panel-heading">
       <H4 class="panel-title">CHỌN SUẤT CHIẾU </H4>
     </div>
-    <div class="row show-time-date-movie-start">
-      <div class="col-3 date-movie-start">
-        <div class="time-date-movie">
-          <p class="time-film">Thứ 2</p>
-          <p class="day-film">27</p>
-          <p class="time-film">Tháng 3</p>
+    <div *ngIf="!showTimesByIdMovie||showTimesByIdMovie.length === 0  ; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+      <p class="notification-showtime-movie">Vui lòng chọn suất</p>
+    </ng-template>
+    <ng-template #elseBlock>
+      <div *ngFor="let showtime  of showTimeByDate">
+        <div class="row show-time-date-movie-start">
+          <div class="col-3 date-movie-start">
+            <div class="time-date-movie">
+              <p class="time-film">{{showtime.date |  date:'EEEE':'':'vi-VN'}}</p>
+              <p class="day-film">{{showtime.date |  date:'dd' }}</p>
+              <p class="time-film">{{showtime.date |  date:'MMMM':'':'vi-VN'}}</p>
+            </div>
+          </div>
+          <div class="col-9 list-movie-start">
+            <ng-container *ngFor="let time of showtime.times">
+                <button class="show-time-list"
+                        [ngClass]="{'selected': selectedTimeOfShowTime == time.startTime && selectedShowTimeDate== time.date}"
+                        (click)="selectTime(time.startTime,time.date,time.soldOut,time.id)">
+                  {{time.startTime}}
+                </button>
+            </ng-container>
+          </div>
+          <hr class="hr-show-time-date-movie-start">
         </div>
       </div>
-      <div class="col-9 list-movie-start">
-        <button href="" class="show-time-list">13:00</button>
-        <button href="" class="show-time-list">15:00</button>
-        <button href="" class="show-time-list">17:00</button>
-        <button href="" class="show-time-list">19:00</button>
-        <button href="" class="show-time-list">21:00</button>
-        <button href="" class="show-time-list">23:00</button>
-      </div>
-      <hr class="hr-show-time-date-movie-start">
-    </div>
-    <div *ngIf="showTimesByIdMovie == null">
-      <p>Chưa có suất chiếu</p>
-    </div>
+    </ng-template>
   </div>
   <div class="submit-ticker">
-    <button type="submit" class="submit-ticker-moive">CHỌN GHẾ</button>
+    <button type="submit" class="submit-ticker-moive" (click)="submitSelectMovieAndShowTime()">CHỌN GHẾ</button>
   </div>
 </div>

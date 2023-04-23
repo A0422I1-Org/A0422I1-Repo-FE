@@ -21,7 +21,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "locale/vi.js",
+                "input": "node_modules/@angular/common/locales/",
+                "output": "/assets/locale/"
+              }
             ],
             "styles": [
               "src/styles.css"

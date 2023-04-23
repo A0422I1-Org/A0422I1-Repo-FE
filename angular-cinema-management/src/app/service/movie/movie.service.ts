@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class MovieService {
-  private API_URL_GET_ALL_MOVIE = "http://localhost:8080/api/cinema/movie/list-movie"
+  private API_URL_GET_ALL_MOVIE = "http://localhost:8080/api/cinema/movie/list-movie-by-start-date"
 
   constructor(private httpClient: HttpClient) {
   }

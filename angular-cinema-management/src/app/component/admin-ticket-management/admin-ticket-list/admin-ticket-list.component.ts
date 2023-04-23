@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {TicketService} from "../../../service/ticket/ticket.service";
 import {Ticket} from "../../../model/ticket";
+import {FormControl, FormGroup} from "@angular/forms";
+import {TicketDTO} from "../dto/ticket-dto";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-admin-ticket-list',
@@ -9,26 +13,44 @@ import {Ticket} from "../../../model/ticket";
 })
 export class AdminTicketListComponent implements OnInit {
   tickets:Ticket[]=[];
+  ticket:TicketDTO={
+    id:'',
+    customerId:'',
+    fullName:'',
+    cardId:'',
+    phoneNumber:'',
+    nameMovie:'',
+    screen:'',
+    startDate:'',
+    startTime:'',
+    nameChair:'',
+    price:0,
+    email:'',
+    image:''
+  };
   indexPagination = 0;
   totalPages = 0;
   totalElements = 0;
-  nameSearch = '';
-  constructor(private ticketService:TicketService) { }
+  formSearch: FormGroup;
+  constructor(private ticketService:TicketService,
+              private activatedRoute:ActivatedRoute,
+              private router:Router) {
+    this.formSearch = new FormGroup({
+    name: new FormControl("")
+  });}
 
   ngOnInit(): void {
-    this.getAllTicket(this.nameSearch,this.indexPagination)
+
+    this.getAllTicket(this.indexPagination)
   }
-  getAllTicket(nameSearch:string,page:number){
-    this.ticketService.getAllTicket(nameSearch,page).subscribe( next =>{
-      console.log(next);
+  getAllTicket(page){
+    this.ticketService.getAllTicket(this.formSearch.value.name,page).subscribe( next =>{
+      console.log(this.formSearch.value.name);
       this.tickets = next.content;
-      console.log(this.tickets);
+      console.log(next);
       this.indexPagination= next.number;
-      console.log(this.indexPagination);
       this.totalPages = next.totalPages;
-      console.log(this.totalPages);
       this.totalElements = next.totalElements;
-      console.log(this.totalElements);
     },error=>{
 
     },()=>{
@@ -37,9 +59,7 @@ export class AdminTicketListComponent implements OnInit {
   }
   getPageChoice(page) {
     if (this.validPage(page)) {
-      this.getAllTicket(this.nameSearch, page);
-
-      // this.getAll(this.areaSearch,this.stageSearch,this.statusSearch,this.typeSearch,page);
+      this.getAllTicket(page);
     }
   }
   validPage(page: number) {
@@ -53,5 +73,32 @@ export class AdminTicketListComponent implements OnInit {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
     }
     return true;
+  }
+
+  getId(id: string) {
+    if(id!=null){
+      this.ticketService.getTicket(id).subscribe(next=>{
+        this.ticket=next;
+        console.log(this.ticket)
+      })
+    }
+  }
+
+  delete(id: string) {
+    this.ticketService.deleteTicketById(id).subscribe(next=>{
+      console.log(next)
+      if (this.tickets.length === 0) {
+        this.indexPagination -= 1;
+      }
+      document.getElementById("deleteModal").click();
+    },error => {
+
+    },()=>{
+      this.ngOnInit();
+    })
+  }
+
+  nextPage(id:string) {
+  this.router.navigate(['ticket_management/bookingConfirmation',id]);
   }
 }

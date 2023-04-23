@@ -5,6 +5,8 @@ import { AdminEmployeeManagementRoutingModule } from './admin-employee-managemen
 import {AdminEmployeeListComponent} from "./admin-employee-list/admin-employee-list.component";
 import {AdminEmployeeCreateComponent} from "./admin-employee-create/admin-employee-create.component";
 import {AdminEmployeeEditComponent} from "./admin-employee-edit/admin-employee-edit.component";
+import {ToastrService} from "ngx-toastr";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,9 +15,13 @@ import {AdminEmployeeEditComponent} from "./admin-employee-edit/admin-employee-e
     AdminEmployeeCreateComponent,
     AdminEmployeeEditComponent,
   ],
+  exports: [
+    AdminEmployeeListComponent
+  ],
   imports: [
     CommonModule,
-    AdminEmployeeManagementRoutingModule
+    AdminEmployeeManagementRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminEmployeeManagementModule { }

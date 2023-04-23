@@ -9,6 +9,8 @@ import {HeaderComponent} from './component/header/header.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule, ToastrService} from "ngx-toastr";
+import {AdminEmployeeManagementModule} from "./component/admin-employee-management/admin-employee-management.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +25,13 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AdminEmployeeManagementModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 2000,
+        positionClass: 'toast-top-right'
+      }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]

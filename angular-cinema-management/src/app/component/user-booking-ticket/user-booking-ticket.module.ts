@@ -6,6 +6,7 @@ import {MovieAndShowtimeSelectionComponent} from "./movie-and-showtime-selection
 import {ChairSelectionComponent} from "./chair-selection/chair-selection.component";
 import {BookingTicketConfirmationComponent} from "./booking-ticket-confirmation/booking-ticket-confirmation.component";
 import {BookingTicketDetailComponent} from "./booking-ticket-detail/booking-ticket-detail.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,9 +16,10 @@ import {BookingTicketDetailComponent} from "./booking-ticket-detail/booking-tick
     BookingTicketConfirmationComponent,
     BookingTicketDetailComponent,
   ],
-  imports: [
-    CommonModule,
-    UserBookingTicketRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        UserBookingTicketRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class UserBookingTicketModule { }

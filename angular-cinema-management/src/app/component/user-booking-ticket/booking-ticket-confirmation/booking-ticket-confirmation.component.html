@@ -1,1 +1,98 @@
-<p>booking-ticket-confirmation works!</p>
+<div class="row m-0">
+  <div class="col-2"></div>
+  <div class="col-8 shadow shadow-lg p-4 rounded-3 my-3">
+    <div class="row">
+      <div class="col-lg-3 text-center mb-3">
+        <img src="./assets/img/dai-chien-giua-cac-vi-sao.jpg" alt="" class="w-100">
+      </div>
+      <div class="col-lg-9 table-responsive">
+        <div class="col">
+          <div class="title">
+            <h2 *ngIf="ticketDefault" class="d-block mb-2 text-uppercase">{{ticketDefault.showTime.movie.name}}</h2>
+            <hr>
+          </div>
+          <div class="detail__ticket px-3">
+            <table class="table">
+              <tbody>
+<!--              <tr>-->
+<!--                <th scope="row">BookDatetime :</th>-->
+<!--                <td class="d-block" *ngFor="let ticket of tickets">{{ticket.book_datetime}}</td>-->
+<!--              </tr>-->
+              <tr>
+                <th scope="row">Rạp :</th>
+                <td *ngIf="ticketDefault" class="d-block">{{ticketDefault.chairRoom.room.name}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Màn hình :</th>
+                <td *ngIf="ticketDefault" class="d-block">{{ticketDefault.chairRoom.room.screen}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Suất chiếu :</th>
+                <td *ngIf="ticketDefault" class="d-block">
+                  <span style="display: inline-block; border-right: 1px solid black; padding-right: 10px; margin-right: 10px;">{{ticketDefault.showTime.startTime}}</span>{{ticketDefault.showTime.date|date}}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Ghế :</th>
+                <td><span *ngFor="let ticket of tickets">{{ticket.chairRoom.chair.name}} </span></td>
+              </tr>
+              <tr>
+                <th scope="row">Giá :</th>
+                <td>
+                  <table>
+                    <tr class="mb-2" *ngFor="let ticket of tickets">
+                      <td class="pe-3">{{ticket.chairRoom.chair.name}} :</td>
+                      <td>40.000 VND</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" style="vertical-align: middle;">Tổng cộng :</th>
+                <td style="color: #F26B38; font-size: 22px; font-weight: 500;">{{totalMoney}} VND</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="title pt-2">
+            <span style="font-size: 20px;" class="d-block mb-2">Kiểm tra thông tin đặt vé</span>
+            <hr>
+          </div>
+          <div class="check__detail__ticket px-3">
+            <table class="table" *ngIf="customer">
+              <tbody>
+              <tr>
+                <th scope="row">Họ tên :</th>
+                <td>{{customer.fullName}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email :</th>
+                <td>{{customer.email}}</td>
+              </tr>
+              <tr>
+                <th scope="row">CMND :</th>
+                <td>{{customer.cardId}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Số điện thoại :</th>
+                <td>{{customer.phoneNumber}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btn-active py-3 d-flex">
+            <button class="btn__common bg-danger me-2 d-flex align-items-center">
+              <i class="bi bi-box-arrow-left me-2"></i>
+              QUAY LẠI
+            </button>
+            <button (click)="showDetailAndPaymentPage()" class="btn__common d-flex align-items-center">
+              <i class="bi bi-ticket-detailed me-2"></i>
+              XÁC NHẬN ĐẶT VÉ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div>

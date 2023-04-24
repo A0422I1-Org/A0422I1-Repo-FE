@@ -1,0 +1,136 @@
+<div class="row m-0" *ngIf="movie">
+  <div class="col-2"></div>
+  <div class="col-8 shadow shadow-lg p-4 rounded-3 my-3">
+    <div class="row">
+      <div class="col-lg-3 text-center mb-3">
+        <div CLASS="movie_image">
+          <span class="movie_rating">{{movie.rating}}</span>
+          <img
+            [src]="movie.image" alt="" class="w-100">
+        </div>
+      </div>
+      <div class="col-lg-9 table-responsive">
+        <div class="col">
+          <div class="title">
+            <h2 class="d-block mb-2">{{movie.name}}</h2>
+            <hr>
+          </div>
+          <div>
+            <form action="">
+              <button class="rating_desc btn__common d-flex align-items-center">
+                ĐÁNH GIÁ
+              </button>
+
+              <fieldset>
+                <section>
+                  <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5"/>
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4"/>
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3"/>
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2"/>
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1"/>
+                    <label for="star1" title="text">1 star</label>
+                  </div>
+                </section>
+              </fieldset>
+            </form>
+          </div>
+          <div class="detail__ticket px-3">
+            <table class="table">
+              <tbody>
+              <tr>
+                <th scope="row">Khởi chiếu:</th>
+                <td>Từ {{movie.startDay | date:'dd/MM/yyyy'}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Loại phim:</th>
+                <td>
+                  <span
+                    *ngFor="let item of movie.movieTypes; let i = index; let lastItem= last"><span>{{item.name}}{{lastItem ? '' : ', '}} </span></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Diễn Viên:</th>
+                <td>
+                  <span
+                    *ngFor="let item of movie.actors; let i = index; let lastItem= last"><span>{{item.name}}{{lastItem ? '' : ', '}} </span></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Đạo Diễn:</th>
+                <td>
+                  <span
+                    *ngFor="let item of movie.directors; let i = index; let lastItem= last"><span>{{item.name}}{{lastItem ? '' : ', '}} </span></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Thời lượng:</th>
+                <td>{{movie.timeAmount}} phút</td>
+              </tr>
+              <tr>
+                <th scope="row">Ngôn ngữ:</th>
+                <td>{{movie.language}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Hãng:</th>
+                <td>
+                  <span
+                    *ngFor="let item of movie.movieStudios; let i = index; let lastItem= last"><span>{{item.name}}{{lastItem ? '' : ', '}} </span></span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btn-active py-3 d-flex">
+            <button class="btn__common d-flex align-items-center me-2">
+              ĐẶT VÉ
+            </button>
+
+            <button type="button" class="btn__trailer d-flex align-items-center"
+                    data-bs-toggle="modal"
+                    data-bs-target="#myModal"
+                    (click)="sendLinkTrailer(movie.trailer)">
+              TRAILER
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+    <div>
+      <h3 class="flex-fill">NỘI DUNG PHIM</h3>
+    </div>
+    <div id="content">
+      <p class="m_4">{{movie.description}}
+      </p>
+    </div>
+  </div>
+</div>
+<div class="col-2"></div>
+<div class="bs-example">
+  <!-- Modal HTML -->
+  <div id="myModal" class="modal fade" (click)="closeModal()">
+    <div class="modal-dialog modal-dialog-centered" style="left: -10%">
+      <div class="modal-content">
+        <div class="modal-body" style="padding: 0">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe id="trailerVideo" width="180%" height="500"
+                    [src]="trustedUrl"
+                    title="YouTube video player" frameborder="10"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

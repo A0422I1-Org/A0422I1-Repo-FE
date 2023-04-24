@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { UserViewMovieRoutingModule } from './user-view-movie-routing.module';
 import {UserMoiveListComponent} from "./user-moive-list/user-moive-list.component";
-import {UserMoiveDetailComponent} from "./user-moive-detail/user-moive-detail.component";
+import {UserMovieDetailComponent} from "./user-movie-detail/user-movie-detail.component";
 
 
 @NgModule({
-  declarations: [
-    UserMoiveListComponent,
-    UserMoiveDetailComponent,
-  ],
-  imports: [
-    CommonModule,
-    UserViewMovieRoutingModule
-  ]
+    declarations: [
+        UserMoiveListComponent,
+        UserMovieDetailComponent,
+    ],
+    exports: [
+        UserMovieDetailComponent
+    ],
+    imports: [
+        CommonModule,
+        UserViewMovieRoutingModule
+    ]
 })
 export class UserViewMovieModule { }

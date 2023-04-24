@@ -1,0 +1,66 @@
+.card a:hover,
+.card a:active {
+  color: #f26b38;
+}
+
+.pagination .page-link{
+  background-color: aliceblue;
+  color: black;
+  border-color: white;
+}
+
+.page-item button {
+  border: none;
+  height: 90%;
+}
+
+
+
+.pagination .page-link.active {
+  background-color: #f26b38;
+  color: aliceblue;
+}
+
+.breadcrumb-item a:hover {
+  color: #f26b38;
+}
+
+section .card a:not(:hover) {
+  color: rgb(0, 0, 0);
+}
+
+
+button {
+  color: black;
+}
+
+.button-focus {
+  background-color: #f26b38;;
+}
+
+
+.card .mb-4 {
+  font-weight: 500
+}
+
+.text-decoration-none {
+  color: rgb(0, 0, 0);
+}
+
+
+html,
+body {
+
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  color: #43464b;
+  margin: 0 auto;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 17px;
+}
+
+

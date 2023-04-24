@@ -84,6 +84,7 @@ export class AdminEmployeeListComponent implements OnInit {
 
   validPage(page: number) {
     if (page >= this.totalPages || page < 0) {
+      this.statusService.error(`Trang chỉ nên trong khoảng từ 1 đến ${this.totalPages}.`);
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
       return false;
     }

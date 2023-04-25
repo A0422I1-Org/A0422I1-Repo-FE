@@ -11,15 +11,14 @@ export class MovieService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getMovieStatisticList(): Observable<MovieStatisti[]> {
-    return this.httpClient.get<MovieStatisti[]>('http://localhost:8080'+'/statistic/movie-statistic-list')
+  getMovieStatisticListPaging(page: number, nameMovie: string, statusSort: string): Observable<GetReponse> {
+    return this.httpClient.get<GetReponse>('http://localhost:8080' + '/api/admin/movie-statistic-list?page=' + page + '&nameMovie=' + nameMovie+ '&statusSort=' + statusSort)
   }
+}
 
-  getMovieStatisticListAcs(): Observable<MovieStatisti[]> {
-    return this.httpClient.get<MovieStatisti[]>('http://localhost:8080'+'/statistic/movie-list-acs')
-  }
-
-  searchMovieStatisticListByName(nameMovie: string ): Observable<MovieStatisti[]> {
-    return this.httpClient.get<MovieStatisti[]>('http://localhost:8080'+'/statistic/search-movie-List?nameMovie='+nameMovie)
-  }
+interface GetReponse {
+  content: MovieStatisti[]
+  totalPages: number;
+  number: number;
+  totalElements: number;
 }

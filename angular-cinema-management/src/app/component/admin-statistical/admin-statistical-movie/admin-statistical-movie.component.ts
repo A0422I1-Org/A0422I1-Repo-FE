@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../../service/movie/movie.service";
-import {callJSFun} from "../../../../assets/statistical-movie-and-customer/js/chart.js";
-import {Movie} from "../../../model/movie";
 import {MovieStatisti} from "../../../model/MovieStatisti";
-import {Observable} from "rxjs";
+
+
 
 @Component({
   selector: 'app-admin-statistical-movie',
@@ -11,43 +10,65 @@ import {Observable} from "rxjs";
   styleUrls: ['./admin-statistical-movie.component.css'],
 })
 export class AdminStatisticalMovieComponent implements OnInit {
+
   movieStatisticList: MovieStatisti[] = [];
-  checkSort = false;
+  indexPagination = 0;
+  totalPages = 0;
+  totalElements = 0;
+  statusSort = "desc"
 
   constructor(private movieService: MovieService) {
   }
 
   ngOnInit(): void {
-    this.getMovieStatisticList()
+    this.getMovieStatisticListPaging(this.indexPagination, "", this.statusSort);
+
   }
 
-  getMovieStatisticList() {
-    this.movieService.getMovieStatisticList().subscribe(list => {
-      this.movieStatisticList = list;
+  getMovieStatisticListPaging(page: number, movieName: string, statusSort: string) {
+    this.movieService.getMovieStatisticListPaging(page, movieName, statusSort).subscribe(list => {
+      this.movieStatisticList = list.content;
+      this.indexPagination = list.number;
+      this.totalPages = list.totalPages;
+      this.totalElements = list.totalElements;
     })
   }
 
-  callJSChart() {
-    callJSFun();
-  }
+  sortMovieByTicket(page: number, movieName: string, statusSort: string) {
 
-  getMovieStatisticListAcs() {
-    if (this.checkSort === true) {
-      this.checkSort = false;
-      this.getMovieStatisticList();
-      return;
-    } else if (this.checkSort === false) {
-      this.movieService.getMovieStatisticListAcs().subscribe(list => {
-        this.movieStatisticList = list;
-        this.checkSort = true;
-        return
-      })
+    if (movieName != "" && statusSort == 'desc') {
+      this.statusSort = 'acs'
+      return this.getMovieStatisticListPaging(page, movieName, this.statusSort);
+    } else if (movieName != "" && statusSort == 'acs') {
+      this.statusSort = 'desc'
+      return this.getMovieStatisticListPaging(page, movieName, this.statusSort);
+    }
+
+    if (statusSort == 'desc') {
+      this.statusSort = 'acs'
+      return this.getMovieStatisticListPaging(page, movieName, this.statusSort);
+    } else if (statusSort == 'acs') {
+      this.statusSort = 'desc'
+      return this.getMovieStatisticListPaging(page, movieName, this.statusSort);
     }
   }
 
-  searchMovieByName(nameMovie: string) {
-    this.movieService.searchMovieStatisticListByName(nameMovie).subscribe(list => {
-      this.movieStatisticList = list;
-    })
+  getPageChoice(page, movieName: string) {
+    if (this.validPage(page)) {
+      this.getMovieStatisticListPaging(page, movieName, "");
+    }
   }
+
+  validPage(page: number) {
+    if (page >= this.totalPages || page < 0) {
+      (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      return false;
+    }
+    if (isNaN(Number(page))) {
+      (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+    }
+    return true;
+  }
+
+
 }

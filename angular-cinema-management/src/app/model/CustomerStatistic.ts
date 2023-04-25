@@ -4,5 +4,8 @@ export interface CustomerStatistic {
   point ?: number
   ticket ?: number
   money ?:number
-
+  email ?: string
+  phone ?: string
+  address ?: string
+  idCard ?: string
 }

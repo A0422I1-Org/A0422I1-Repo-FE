@@ -58,7 +58,7 @@ export class UserPointHistoryComponent implements OnInit {
   getPointList(page: number) {
     const startDate = (this.searchForm.controls.startDate.value)
     const endDate = (this.searchForm.controls.endDate.value)
-    if (startDate !== '' || endDate !== '') {
+    if (this.searchForm.valid) {
       this.pointService.getAllPointByCustomerDateBetween(startDate, endDate, page, this.size).subscribe(value => {
         this.pointList = value.content
         this.indexPagination = value.number;

@@ -45,9 +45,6 @@ export class AdminEmployeeListComponent implements OnInit {
 
   findAllWithCondition(name: string, positionId: number, page: number) {
     this.employeeService.findAllByNameAndPositionId(name, positionId, page).subscribe(value => {
-      if (value.content.length === 0) {
-        this.statusService.error("Không tìm thấy nhân viên nào theo kết quả tìm kiếm.");
-      }
       this.employees = value.content;
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
@@ -70,9 +67,14 @@ export class AdminEmployeeListComponent implements OnInit {
     this.employeeService.deleteById(id).subscribe(value => {
       document.getElementById('deleteModal').click();
       this.statusService.success('Đã xóa thành công!!!', 'Thông báo');
-      this.ngOnInit();
       this.employeeDeleteDTO={};
+      if(this.employees.length===1)
+        this.findAllWithCondition(this.formSearch.value.name,this.formSearch.value.positionId,this.pageNumber-1);
+      else
+        this.findAllWithCondition(this.formSearch.value.name,this.formSearch.value.positionId,this.pageNumber);
     });
+
+
   }
 
 

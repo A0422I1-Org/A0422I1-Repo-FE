@@ -8,7 +8,7 @@ import {EmployeeDeleteDTO} from "../../dto/employee/employee-delete-dto";
   providedIn: 'root'
 })
 export class EmployeeService {
-  url = 'http://localhost:8080/employee';
+  url = 'http://localhost:8080/api/admin/employee';
 
   constructor(private http: HttpClient) { }
 

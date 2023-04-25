@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class CustomerService {
   httpOptions: any
-  private API_URL = "http://localhost:8080/api/customer/"
+  private API_URL = "http://localhost:8080/api/user/"
 
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
@@ -21,7 +21,7 @@ export class CustomerService {
   }
 
   getAllTicketByCustomer(page: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'customer-ticket/' + page, this.httpOptions)
+    return this.httpClient.get<any>(this.API_URL + 'user-ticket/' + page, this.httpOptions)
 
   }
 }

@@ -5,10 +5,10 @@ import {ChairRoom} from "./chair-room";
 export interface Ticket {
   id: string;
   customer: Customer;
-  showTime: Showtime;
+  showtime: Showtime;
   chairRoom: ChairRoom;
   price: number;
   status: boolean;
-  book_datetime: string;
+  bookDateTime: string;
   isDelete: boolean;
 }

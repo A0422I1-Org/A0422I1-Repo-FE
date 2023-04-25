@@ -2,14 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-const API_URL = "http://localhost:8080/api/customer"
 
 @Injectable({
   providedIn: 'root'
 })
 export class PointService {
   httpOptions: any;
-  private API_URL = 'http://localhost:8080/api/customer/';
+  private API_URL = 'http://localhost:8080/api/user/';
 
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
@@ -22,17 +21,17 @@ export class PointService {
   }
 
   getAllPointByCustomer(page: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'customer-point/' + page, this.httpOptions)
+    return this.httpClient.get<any>(this.API_URL + 'user-point/' + page, this.httpOptions)
   }
 
   getAllPointByCustomerDateBetween(startDate: string, endDate: string, page: number, size: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'customer-search-point?startDate=' + startDate + '&endDate=' + endDate
+    return this.httpClient.get<any>(this.API_URL + 'user-search-point?startDate=' + startDate + '&endDate=' + endDate
       + '&page=' + page + '&size=' + size, this.httpOptions);
   }
 
 
   getSumPointByCustomer(): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'customer-sum-point', this.httpOptions);
+    return this.httpClient.get<any>(this.API_URL + 'user-sum-point', this.httpOptions);
   }
 
 }

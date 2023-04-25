@@ -3,6 +3,7 @@ import {MovieService} from "../../../service/movie/movie.service";
 import {Movie} from "../../../model/movie";
 import {Showtime} from "../../../model/showtime";
 import {ShowtimeService} from "../../../service/showtime/showtime.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-and-showtime-selection',
@@ -16,11 +17,12 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   showTimeByDate: Showtime[] = [];
   selectedMovieId: number;
   selectedTimeOfShowTime: any;
-  selectedShowTimeDate: any;
   getSoldOut: any;
-  getIdShowTimeSelect:any;
+  getIdShowTimeSelect: any;
 
-  constructor(private movieService: MovieService, private showtimeService: ShowtimeService) {
+  constructor(private movieService: MovieService, private showtimeService: ShowtimeService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   // reset lại event ngClass khi thay đổi chọn phim
   resetShowTimesEventSelectMovie() {
     this.selectedTimeOfShowTime = null;
-    this.selectedShowTimeDate = null;
+    this.getIdShowTimeSelect = null;
   }
 
   // lấy suất chiếu của từng ngày khác nhau
@@ -81,9 +83,8 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   }
 
   // lấy dữ liệu để so sánh điều kiện ngClass khi chọn suất chiếu
-  selectTime(time: any, date: any, sholdOut: number,idShowTime:number) {
+  selectTime(time: any, sholdOut: number, idShowTime: number) {
     this.selectedTimeOfShowTime = time;
-    this.selectedShowTimeDate = date;
     this.getSoldOut = sholdOut;
     this.getIdShowTimeSelect = idShowTime;
   }
@@ -99,10 +100,11 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
       // check select movie
       if (this.selectedMovieId) {
         // check select showtime
-        if (this.selectedTimeOfShowTime && this.selectedShowTimeDate) {
+        if (this.selectedTimeOfShowTime && this.getIdShowTimeSelect) {
           //check sold out
           if (this.checkSoldOut(this.getSoldOut)) {
-            console.log("oke");
+            // this.router.navigate(['/select-seat', this.getIdShowTimeSelect]);
+            this.router.navigate(['/booking/select-seat' , this.getIdShowTimeSelect]);
           } else {
             alert("Đã hết ghế ngồi");
           }

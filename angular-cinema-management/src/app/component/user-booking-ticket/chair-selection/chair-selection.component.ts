@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ShowtimeService} from "../../../service/showtime/showtime.service";
+import {ActivatedRoute} from "@angular/router";
+import {Showtime} from "../../../model/showtime";
 
 @Component({
   selector: 'app-chair-selection',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChairSelectionComponent implements OnInit {
 
-  constructor() { }
+  showTime:Showtime;
+
+  constructor(private showtimeService: ShowtimeService, private activatedRoute: ActivatedRoute,) {
+    this.getShowTimeById();
+  }
 
   ngOnInit(): void {
   }
 
+  getShowTimeById() {
+    this.activatedRoute.paramMap.subscribe(next => {
+      const id = next.get('id');
+      if (id != null) {
+        this.showtimeService.getShowtimeById(parseInt(id)).subscribe(next => {
+          console.log(next);
+          this.showTime = next;
+        })
+      }
+    })
+  }
 }

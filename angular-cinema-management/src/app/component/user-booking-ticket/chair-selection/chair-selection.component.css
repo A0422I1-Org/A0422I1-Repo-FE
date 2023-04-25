@@ -1,0 +1,248 @@
+html, body {
+  font-family: "Roboto", sans-serif;
+}
+
+.seat-booking-movie {
+  background-color: #F26B38;
+  border: 2px solid #F26B38;
+}
+
+.cinema-movie {
+  margin: 5px;
+  background-color: white;
+}
+
+img.col-12.img-screens {
+  margin: 2% 0 0 0;
+}
+
+p.screens-name {
+  text-align: center;
+  font-size: 15px;
+}
+
+h4.title-choose-seat-h4 {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top:5px;
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .seat-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .row-header {
+    width: 6.25%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .seat {
+    width: 6.25%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px 3px 10px 10px;
+    font-size: 14px;
+  }
+
+  .seat-row {
+    width: 6.25%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+}
+
+@media (min-width: 1201px) {
+  .seat-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .row-header {
+    width: 7%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .seat {
+    width: 7%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px 3px 10px 10px;
+    font-size: 14px;
+  }
+
+  .seat-row {
+    width: 7%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+
+.seat:active {
+  background-color: #bada55;
+  color: white;
+  border-color: #bada55;
+}
+
+.seat-cinema {
+  text-align: center;
+  font-size: 14px;
+}
+
+.seat-cinema span:before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.seat-cinema span.seat-cinema-selected:before {
+  background-color: #bada55;
+  border-radius: 1px 1px 4px 4px;
+
+}
+
+.seat-cinema span.seat-cinema-unavailable:before {
+  background-color: red;
+  border-radius: 1px 1px 4px 4px;
+
+}
+
+.seat-cinema span.seat-cinema-normal:before {
+  border: 1px solid black;
+  border-radius: 1px 1px 4px 4px;
+}
+
+.seat-cinema > span {
+  margin-right: 3%;
+  margin-bottom: 3%;
+}
+
+.unavailable {
+  background-color: red;
+  pointer-events: none;
+}
+
+.container {
+  margin-top: 40px;
+}
+
+.ticket-feature article img {
+  width: 80%;
+  height: auto;
+  padding-top: 15px;
+}
+
+.document-tiker-movie {
+  background-color: #F1F1F1;
+  padding: 0 10px;
+}
+
+.upper-text {
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.upper-text.vn {
+  color: #a0a3a7;
+}
+
+.dotted-line {
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+hr {
+  margin: 0 4px 0 0;
+}
+
+.sum-money-ticker {
+  color: #F26B38;
+  font-size: 25px;
+}
+
+.ticket-button {
+  text-align: center;
+}
+
+.primary-arrow-right {
+  text-decoration: none;
+  margin: 10px 0;
+  background-color: #F26B38;
+  border: none;
+  color: white;
+}
+.primary-arrow-right:hover{
+  color: white;
+  background-color: #877D7A;
+  /*box-shadow: 0 0 0 0.25rem rgb(242, 107, 56);*/
+}
+/*.btn:focus {*/
+/*    outline: 0;*/
+/*    box-shadow: 0 0 0 0.25rem rgb(242, 107, 56);*/
+/*}*/
+.seat.are-choosing{
+  background-color: #bada55;
+  color: white;
+  border-color: #bada55;
+}
+div.col-md-12{
+  padding-right: 0;
+}

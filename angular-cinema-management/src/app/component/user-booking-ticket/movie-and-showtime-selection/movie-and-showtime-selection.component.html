@@ -40,8 +40,8 @@
           <div class="col-9 list-movie-start">
             <ng-container *ngFor="let time of showtime.times">
                 <button class="show-time-list"
-                        [ngClass]="{'selected': selectedTimeOfShowTime == time.startTime && selectedShowTimeDate== time.date}"
-                        (click)="selectTime(time.startTime,time.date,time.soldOut,time.id)">
+                        [ngClass]="{'selected': selectedTimeOfShowTime == time.startTime && getIdShowTimeSelect== time.id}"
+                        (click)="selectTime(time.startTime,time.soldOut,time.id)">
                   {{time.startTime}}
                 </button>
             </ng-container>

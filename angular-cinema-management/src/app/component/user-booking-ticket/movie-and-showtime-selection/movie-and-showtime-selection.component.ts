@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../../../service/movie/movie.service";
-import {Movie} from "../../../model/movie";
-import {Showtime} from "../../../model/showtime";
-import {ShowtimeService} from "../../../service/showtime/showtime.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { MovieService } from "../../../service/movie/movie.service";
+import { Movie } from "../../../model/movie";
+import { Showtime } from "../../../model/showtime";
+import { ShowtimeService } from "../../../service/showtime/showtime.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-movie-and-showtime-selection',
@@ -21,8 +21,8 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   getIdShowTimeSelect: any;
 
   constructor(private movieService: MovieService, private showtimeService: ShowtimeService,
-              private route: ActivatedRoute,
-              private router: Router) {
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,20 +31,22 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
 
   getAllMovie() {
     this.movieService.getAllMovie().subscribe(next => {
-        this.movies = next;
-      },
+      console.log(next);
+      this.movies = next;
+    },
       error => {
       },
       () => {
       })
   }
 
+
   getShowtimeMovie(id: number) {
     this.showtimeService.getShowtimeByIdMovie(id).subscribe(next => {
-        this.showTimesByIdMovie = next;
-        this.showTimeByDate = this.groupShowtimesByDate(this.showTimesByIdMovie);
-        console.log(this.showTimeByDate);
-      },
+      this.showTimesByIdMovie = next;
+      this.showTimeByDate = this.groupShowtimesByDate(this.showTimesByIdMovie);
+      console.log(this.showTimeByDate);
+    },
       error => {
       },
       () => {
@@ -77,11 +79,10 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
           return 0;
         }
       });
-      groupedShowtimes.push({date, times});
+      groupedShowtimes.push({ date, times });
     });
     return groupedShowtimes;
   }
-
   // lấy dữ liệu để so sánh điều kiện ngClass khi chọn suất chiếu
   selectTime(time: any, sholdOut: number, idShowTime: number) {
     this.selectedTimeOfShowTime = time;
@@ -95,6 +96,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
     } else return true;
   }
 
+
   submitSelectMovieAndShowTime() {
     if (true) {
       // check select movie
@@ -104,7 +106,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
           //check sold out
           if (this.checkSoldOut(this.getSoldOut)) {
             // this.router.navigate(['/select-seat', this.getIdShowTimeSelect]);
-            this.router.navigate(['/booking/select-seat' , this.getIdShowTimeSelect]);
+            this.router.navigate(['/booking/select-seat', this.getIdShowTimeSelect]);
           } else {
             alert("Đã hết ghế ngồi");
           }

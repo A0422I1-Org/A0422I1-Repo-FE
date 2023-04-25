@@ -179,9 +179,10 @@ h4.title-choose-seat-h4 {
 }
 
 .ticket-feature article img {
-  width: 80%;
+  width: 90%;
   height: auto;
   padding-top: 15px;
+  margin-right: 10px;
 }
 
 .document-tiker-movie {

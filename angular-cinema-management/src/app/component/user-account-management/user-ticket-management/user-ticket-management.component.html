@@ -141,7 +141,7 @@
                     <tr *ngFor="let t of ticketList index as i">
                       <td class="text-left">{{i + 1 + indexPagination * 5}}</td>
                       <td>{{t.showtime.movie.name}}</td>
-                      <td>{{t.bookDateTime   | date: 'dd-MM-yyyy'}}</td>
+                      <td>{{t.bookDateTime   | date: 'dd/MM/yyyy'}}</td>
                       <td>{{t.price  | currency : 'VND'}}</td>
                       <td *ngIf="t.status == false else  elseBlock " class="text-danger">ĐỢI NHẬN VÉ</td>
                       <ng-template #elseBlock>

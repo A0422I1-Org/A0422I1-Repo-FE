@@ -11,6 +11,9 @@ import {UserPromotionDetailComponent} from "./user-promotion-detail/user-promoti
     UserPromotionListComponent,
     UserPromotionDetailComponent,
   ],
+  exports: [
+    UserPromotionListComponent
+  ],
   imports: [
     CommonModule,
     UserViewPromotionRoutingModule

@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {UserViewPromotionModule} from "src/app/component/user-view-promotion/user-view-promotion.module";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -23,6 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    UserViewPromotionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import {Ticket} from "../../../model/ticket";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TicketDTO} from "../dto/ticket-dto";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -23,10 +24,13 @@ export class AdminTicketListComponent implements OnInit {
     screen:'',
     startDate:'',
     startTime:'',
+    endTime:'',
     nameChair:'',
+    room:'',
     price:0,
     email:'',
-    image:''
+    image:'',
+    bookDateTime:''
   };
   indexPagination = 0;
   totalPages = 0;
@@ -34,7 +38,8 @@ export class AdminTicketListComponent implements OnInit {
   formSearch: FormGroup;
   constructor(private ticketService:TicketService,
               private activatedRoute:ActivatedRoute,
-              private router:Router) {
+              private router:Router,
+              private toastrService:ToastrService) {
     this.formSearch = new FormGroup({
     name: new FormControl("")
   });}
@@ -45,9 +50,12 @@ export class AdminTicketListComponent implements OnInit {
   }
   getAllTicket(page){
     this.ticketService.getAllTicket(this.formSearch.value.name,page).subscribe( next =>{
-      console.log(this.formSearch.value.name);
       this.tickets = next.content;
+      if (next.content.length === 0) {
+        this.toastrService.error("Không tìm thấy ticket nào theo kết quả tìm kiếm.");
+      }
       console.log(next);
+      console.log(this.tickets);
       this.indexPagination= next.number;
       this.totalPages = next.totalPages;
       this.totalElements = next.totalElements;
@@ -64,8 +72,7 @@ export class AdminTicketListComponent implements OnInit {
   }
   validPage(page: number) {
     if (page >= this.totalPages || page < 0) {
-      // this.message="Trang chỉ nên trong khoảng từ 1 đến " + this.totalPages+".";
-      // document.getElementById("button-notification").click();
+      this.toastrService.error(`Trang chỉ nên trong khoảng từ 1 đến ${this.totalPages}.`);
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
       return false;
     }
@@ -86,19 +93,22 @@ export class AdminTicketListComponent implements OnInit {
 
   delete(id: string) {
     this.ticketService.deleteTicketById(id).subscribe(next=>{
-      console.log(next)
-      if (this.tickets.length === 0) {
-        this.indexPagination -= 1;
-      }
       document.getElementById("deleteModal").click();
+      this.toastrService.success('Xóa hợp ticket thành công.', 'Thông báo');
+      if (this.tickets.length === 1) {
+       this.getAllTicket(this.indexPagination-1)
+
+      }
+      else {
+        this.getAllTicket(this.indexPagination)
+      }
     },error => {
 
     },()=>{
-      this.ngOnInit();
     })
   }
 
   nextPage(id:string) {
-  this.router.navigate(['ticket_management/bookingConfirmation',id]);
+  this.router.navigate(['ticket_management/detailTicket',id]);
   }
 }

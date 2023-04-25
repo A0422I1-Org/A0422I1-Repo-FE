@@ -24,13 +24,7 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AdminTicketManagementRoutingModule,
-    ToastrModule.forRoot((
-      {
-        positionClass: 'toast-top-right',
-        timeOut:3000
-      }
-    ))
+    AdminTicketManagementRoutingModule
   ]
 })
 export class AdminTicketManagementModule { }

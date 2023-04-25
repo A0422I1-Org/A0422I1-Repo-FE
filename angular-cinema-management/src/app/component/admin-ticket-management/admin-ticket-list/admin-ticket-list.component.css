@@ -13,6 +13,13 @@ svg.edit, .page-link {
 .center_number{
   text-align: left;
 }
+.bg-subs{
+  color: #fff;
+  background-color: #F26b38;
+}
+.fa-solid.fa-square-check {
+  color: #F26b38;
+}
 .search-button{
   background-color: #F26b38;
 }

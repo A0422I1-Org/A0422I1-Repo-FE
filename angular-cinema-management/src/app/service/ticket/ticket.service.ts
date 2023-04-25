@@ -8,7 +8,7 @@ import {TicketDTO} from "../../component/admin-ticket-management/dto/ticket-dto"
   providedIn: 'root'
 })
 export class TicketService {
-  private API_URL_GET_ALL_TICKET ="http://localhost:8080/api";
+  private API_URL_GET_ALL_TICKET ="http://localhost:8080/api/admin";
   constructor(private httpClient:HttpClient) { }
   getAllTicket(nameSearch:string,page:number):Observable<GetResponse>{
     return this.httpClient.get<GetResponse>(`${this.API_URL_GET_ALL_TICKET}?nameSearch=${nameSearch}&page=${page}`);

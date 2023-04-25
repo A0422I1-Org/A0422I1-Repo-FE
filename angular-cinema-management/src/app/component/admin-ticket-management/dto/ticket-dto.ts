@@ -8,8 +8,12 @@ export interface TicketDTO {
   screen:string;
   startDate:string;
   startTime:string;
+  endTime:string,
   nameChair:string;
+  room:string,
   price:number;
   email:string;
   image:string;
+  bookDateTime: string;
+
 }

@@ -5,6 +5,10 @@ import {UserMovieDetailComponent} from "./component/user-view-movie/user-movie-d
 
 const routes: Routes = [
   {
+    path: "booking",
+    loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
+  },
+  {
     path: "movie",
     loadChildren: () => import('./component/user-view-movie/user-view-movie.module').then(module => module.UserViewMovieModule)
   }

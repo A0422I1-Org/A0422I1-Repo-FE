@@ -15,9 +15,9 @@ export class UserMovieDetailComponent implements OnInit {
 
   movie: MovieDetailDto | undefined;
   trustedUrl: SafeResourceUrl;
+  bookingButton: boolean | undefined;
 
-  username: String;
-
+  username = 1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,6 +40,7 @@ export class UserMovieDetailComponent implements OnInit {
       },
     )
     ;
+    this.bookingPermit();
   }
 
   sendLinkTrailer(trailer: string) {
@@ -62,4 +63,21 @@ export class UserMovieDetailComponent implements OnInit {
       this.router.navigateByUrl('/security/login');
     }
   }
+
+  private bookingPermit(): void {
+
+    // console.log("ádasdhkasjhdkashd");
+    // const date = new Date(this.movie.startDay);
+    // const today = new Date();
+    //
+    // const diffTime = Math.abs(date.getTime() - today.getTime());
+    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    //
+    // if (diffDays < 3) {
+    //   this.bookingButton = true;
+    // } else {
+    //   this.bookingButton = false;
+    // }
+  }
+
 }

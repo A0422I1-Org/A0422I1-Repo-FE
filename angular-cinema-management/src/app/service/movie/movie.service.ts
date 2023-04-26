@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {MovieDetailDto} from "../../dto/movie-detail-dto";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Movie} from "../../model/movie";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+  private API_URL_GET_ALL_MOVIE = "http://localhost:8080/api/public/movie/list-movie-by-date-show-time"
 
   private API_URL_MOVIE = "http://localhost:8080/api/public/movie";
 
@@ -15,5 +17,11 @@ export class MovieService {
 
   getMovieDetailByMovieId(idMovie: number): Observable<MovieDetailDto> {
     return this.httpClient.get<MovieDetailDto>(this.API_URL_MOVIE + "/detail/" + idMovie);
+  }
+
+  movies: Movie[] = [];
+
+  getAllMovie(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(this.API_URL_GET_ALL_MOVIE);
   }
 }

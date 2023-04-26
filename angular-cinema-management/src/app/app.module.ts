@@ -11,6 +11,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {UserViewMovieModule} from "./component/user-view-movie/user-view-movie.module";
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,1 +1,155 @@
-<p>chair-selection works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="seat-booking-movie">
+        <div class="title-choose-seat">
+          <h4 class="title-choose-seat-h4 ">Chọn ghế </h4>
+        </div>
+        <div class="cinema-movie">
+          <div class="main-choose-seat">
+            <div class="choose-seat">
+              <div class="screens">
+                <img class="col-12 img-screens"
+                  src="https://lh3.googleusercontent.com/uKtIoLLq8AdkyukCIRuCKNKZEqni97n5QYZag8omfGiHD0wC3rX6X1Za_2C7E9FuP83cKuomlViklBFT3LD-ppDNSUzUiNjugSp1vfwFyA" />
+                <p class="screens-name"> Màng hình </p>
+              </div>
+              <div class="choose-seat ">
+                <ul class="seat-list">
+                  <li class="row-header"></li>
+                  <li class="seat-row">1</li>
+                  <li class="seat-row">2</li>
+                  <li class="seat-row">3</li>
+                  <li class="seat-row">4</li>
+                  <li class="seat-row">5</li>
+                  <li class="seat-row">6</li>
+                  <li class="seat-row ">7</li>
+                  <li class="seat-row">8</li>
+                  <li class="seat-row">9</li>
+                  <li class="seat-row">10</li>
+                  <li class="seat-row">11</li>
+                  <li class="row-header">A</li>
+                  <li class="seat">A1</li>
+                  <li class="seat">A2</li>
+                  <li class="seat unavailable">A3</li>
+                  <li class="seat">A4</li>
+                  <li class="seat unavailable">A5</li>
+                  <li class="seat">A6</li>
+                  <li class="seat">A7</li>
+                  <li class="seat">A8</li>
+                  <li class="seat">A9</li>
+                  <li class="seat">A10</li>
+                  <li class="seat">A11</li>
+                  <li class="row-header">B</li>
+                  <li class="seat">B1</li>
+                  <li class="seat">B2</li>
+                  <li class="seat">B3</li>
+                  <li class="seat unavailable">B4</li>
+                  <li class="seat unavailable">B5</li>
+                  <li class="seat">B6</li>
+                  <li class="seat">B7</li>
+                  <li class="seat">B8</li>
+                  <li class="seat">B9</li>
+                  <li class="seat">B10</li>
+                  <li class="seat">B11</li>
+                  <li class="row-header">C</li>
+                  <li class="seat">C1</li>
+                  <li class="seat">C2</li>
+                  <li class="seat">C3</li>
+                  <li class="seat">C4</li>
+                  <li class="seat">C5</li>
+                  <li class="seat">C6</li>
+                  <li class="seat">C7</li>
+                  <li class="seat">C8</li>
+                  <li class="seat">C9</li>
+                  <li class="seat">C10</li>
+                  <li class="seat">C11</li>
+                  <li class="row-header">D</li>
+                  <li class="seat">D1</li>
+                  <li class="seat">D2</li>
+                  <li class="seat">D3</li>
+                  <li class="seat">D4</li>
+                  <li class="seat">D5</li>
+                  <li class="seat">D6</li>
+                  <li class="seat">D7</li>
+                  <li class="seat">D8</li>
+                  <li class="seat">D9</li>
+                  <li class="seat">D10</li>
+                  <li class="seat">D11</li>
+                  <li class="row-header">E</li>
+                  <li class="seat">E1</li>
+                  <li class="seat">E2</li>
+                  <li class="seat">E3</li>
+                  <li class="seat">E4</li>
+                  <li class="seat">E5</li>
+                  <li class="seat">E6</li>
+                  <li class="seat">E7</li>
+                  <li class="seat">E8</li>
+                  <li class="seat">E9</li>
+                  <li class="seat">E10</li>
+                  <li class="seat">E11</li>
+                  <li class="row-header">G</li>
+                  <li class="seat">G1</li>
+                  <li class="seat">G2</li>
+                  <li class="seat">G3</li>
+                  <li class="seat">G4</li>
+                  <li class="seat">G5</li>
+                  <li class="seat are-choosing">G6</li>
+                  <li class="seat are-choosing">G7</li>
+                  <li class="seat">G8</li>
+                  <li class="seat">G9</li>
+                  <li class="seat">G10</li>
+                  <li class="seat">G11</li>
+                </ul>
+              </div>
+              <div class="seat-cinema">
+                <span class="seat-cinema-selected">Ghế đang chọn</span>
+                <span class="seat-cinema-unavailable">Ghế đã bán</span>
+                <span class="seat-cinema-normal">Có thể chọn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="document-tiker-movie">
+        <section class="ticket-feature">
+          <article class="row">
+            <div class="col-md-12" style="text-align: center">
+              <img [src]="showTime.movie.image" />
+            </div>
+            <div class="col-md-12">
+              <div class="ticket-detail">
+                <p class="upper-text">{{showTime.movie.name}}</p>
+              </div>
+              <div class="ticket-info">
+                <div class="dotted-line">
+                  <b>Rạp: </b><span> {{room.name}} </span>
+                  <hr>
+                </div>
+                <div class="dotted-line">
+                  <b>Suất chiếu: </b><span> {{showTime.startTime}} | {{showTime.date | date:'EEEE':'':'vi-VN'}}
+                    {{showTime.date|date:'dd/MM/yyyy'}}</span>
+                  <hr>
+                </div>
+                <div class="dotted-line">
+                  <b>Ghế: &nbsp;</b> <span>G6,G7</span>
+                  <hr>
+                </div>
+                <div class="dotted-line">
+                  <b>Tổng: &nbsp;</b> <span class="sum-money-ticker">90.000 VND</span>
+                  <hr>
+                </div>
+              </div>
+              <div class="ticket-button">
+                <a class="primary-arrow-right left btn " href="" routerLink="/booking/select-movie-and-showtime">Quay
+                  Lại</a>
+                <a class="primary-arrow-right right btn " href="">Tiếp tục</a>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

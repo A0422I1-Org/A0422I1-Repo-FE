@@ -133,9 +133,12 @@
                       >
                       <div class="col-sm-9">
                         <input formControlName="startDate" type="date" placeholder="dd/MM/yyyy" class="form-control"/>
-                        <p class="text-warning divider my-2"
-                           *ngIf="searchForm.controls.startDate.hasError('checkDate')">
-                          Thời gian tìm kiếm không vượt quá thời gian hiện tại</p>
+                        <p class="text-danger divider my-2"
+                           *ngIf="searchForm.controls.startDate.hasError('required') && searchForm.controls.startDate.touched">
+                          Thời gian bắt đầu tìm kiếm không được để trống</p>
+                        <p class="text-danger divider my-2"
+                           *ngIf="searchForm.hasError('checkNowStartDate')">
+                          Thời gian bắt đầu tìm kiếm không vượt quá thời gian hiện tại</p>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -147,7 +150,11 @@
                       <div class="col-sm-9">
                         <input formControlName="endDate" type="date" placeholder="dd/MM/yyyy"
                                class="form-control"/>
-                        <p class="text-danger divider my-2" *ngIf="searchForm.hasError('checkDate')"> Thời gian tìm kiếm
+                        <p class="text-danger divider my-2"
+                           *ngIf="searchForm.controls.endDate.hasError('required') && searchForm.controls.endDate.touched">
+                          Thời gian kết thúc tìm kiếm không được để trống</p>
+                        <p class="text-danger divider my-2" *ngIf="searchForm.hasError('checkNowEndDate')"> Thời gian
+                          kết thúc tìm kiếm
                           không được vượt quá thời gian hiện tại</p>
                         <p class="text-warning divider my-2" *ngIf="searchForm.hasError('startDateLargerEndDate')">
                           (*Lưu
@@ -217,7 +224,7 @@
                       <tr *ngFor="let p of pointList index as i">
                         <td class="text-left">{{i + 1 + indexPagination * 5}}</td>
                         <td class="text-left">{{p.date | date: 'dd/MM/yyyy  HH:mm'}}</td>
-                        <td class="text-left">{{p.description}}</td>
+                        <td class="text-left">PHIM : {{p.description}}</td>
                         <td class="text-left">+ {{p.point}}</td>
                       </tr>
                       </tbody>

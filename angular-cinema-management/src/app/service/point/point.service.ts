@@ -21,17 +21,17 @@ export class PointService {
   }
 
   getAllPointByCustomer(page: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'user-point/' + page, this.httpOptions)
+    return this.httpClient.get<any>(this.API_URL + 'point/' + page, this.httpOptions)
   }
 
   getAllPointByCustomerDateBetween(startDate: string, endDate: string, page: number, size: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'user-search-point?startDate=' + startDate + '&endDate=' + endDate
+    return this.httpClient.get<any>(this.API_URL + 'search-point?startDate=' + startDate + '&endDate=' + endDate
       + '&page=' + page + '&size=' + size, this.httpOptions);
   }
 
 
   getSumPointByCustomer(): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'user-sum-point', this.httpOptions);
+    return this.httpClient.get<any>(this.API_URL + 'sum-point', this.httpOptions);
   }
 
 }

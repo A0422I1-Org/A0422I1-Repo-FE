@@ -34,7 +34,7 @@ export class UserPointHistoryComponent implements OnInit {
     this.searchForm = new FormGroup({
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
-    }, [this.checkEndDate, this.checkNowDate])
+    }, [this.checkEndDate, this.checkNowStartDate, this.checkNowEndDate])
   }
 
   ngOnInit(): void {
@@ -87,12 +87,20 @@ export class UserPointHistoryComponent implements OnInit {
     }
   }
 
-  checkNowDate(form: any) {
+  checkNowStartDate(form: any) {
     const nowDate = new Date().getTime()
     const startDate = new Date(form.controls.startDate.value).getTime()
+    if ((startDate > nowDate)) {
+      return {checkNowStartDate: true}
+    }
+  }
+
+
+  checkNowEndDate(form: any) {
+    const nowDate = new Date().getTime()
     const endDate = new Date(form.controls.endDate.value).getTime()
-    if ((startDate > nowDate || endDate > nowDate)) {
-      return {checkDate: true}
+    if (endDate > nowDate) {
+      return {checkNowEndDate: true}
     }
   }
 

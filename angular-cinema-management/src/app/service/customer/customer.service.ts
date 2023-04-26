@@ -21,7 +21,7 @@ export class CustomerService {
   }
 
   getAllTicketByCustomer(page: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + 'user-ticket/' + page, this.httpOptions)
+    return this.httpClient.get<any>(this.API_URL + 'ticket/' + page, this.httpOptions)
 
   }
 }

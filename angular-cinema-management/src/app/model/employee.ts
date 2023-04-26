@@ -1,7 +1,7 @@
 import {Position} from "./position";
 
 export interface Employee {
-  id: string;
+  id: number;
   fullName: string;
   image: string;
   gender: boolean;

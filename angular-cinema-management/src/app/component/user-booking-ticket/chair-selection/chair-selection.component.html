@@ -1,5 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <div class="container">
   <div class="row">
     <div class="col-lg-9">
@@ -11,8 +9,9 @@
           <div class="main-choose-seat">
             <div class="choose-seat">
               <div class="screens">
-                <!--                <img class="col-12 img-screens" src="images/screen.png" alt=""/>-->
-                <p class="screens-name">Màng hình </p>
+                <img class="col-12 img-screens"
+                  src="https://lh3.googleusercontent.com/uKtIoLLq8AdkyukCIRuCKNKZEqni97n5QYZag8omfGiHD0wC3rX6X1Za_2C7E9FuP83cKuomlViklBFT3LD-ppDNSUzUiNjugSp1vfwFyA" />
+                <p class="screens-name"> Màng hình </p>
               </div>
               <div class="choose-seat ">
                 <ul class="seat-list">
@@ -129,8 +128,8 @@
                   <hr>
                 </div>
                 <div class="dotted-line">
-                  <b>Suất chiếu: </b><span> {{showTime.startTime}} | {{showTime.date |  date:'EEEE':'':'vi-VN'}}
-                   {{showTime.date|date:'dd/MM/yyyy'}}</span>
+                  <b>Suất chiếu: </b><span> {{showTime.startTime}} | {{showTime.date | date:'EEEE':'':'vi-VN'}}
+                    {{showTime.date|date:'dd/MM/yyyy'}}</span>
                   <hr>
                 </div>
                 <div class="dotted-line">
@@ -143,10 +142,9 @@
                 </div>
               </div>
               <div class="ticket-button">
-                <a class="primary-arrow-right left btn "
-                   href="">Quay Lại</a>
-                <a class="primary-arrow-right right btn "
-                   href="">Tiếp tục</a>
+                <a class="primary-arrow-right left btn " href="" routerLink="/booking/select-movie-and-showtime">Quay
+                  Lại</a>
+                <a class="primary-arrow-right right btn " href="">Tiếp tục</a>
               </div>
             </div>
           </article>

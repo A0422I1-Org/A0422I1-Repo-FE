@@ -1,6 +1,3 @@
-html, body {
-  font-family: "Roboto", sans-serif;
-}
 
 .seat-booking-movie {
   background-color: #F26B38;
@@ -12,8 +9,7 @@ html, body {
   background-color: white;
 }
 
-img.col-12.img-screens {
-  margin: 2% 0 0 0;
+img.col-12.img-screens {  margin: 2% 0 0 0;
 }
 
 p.screens-name {
@@ -38,9 +34,9 @@ h4.title-choose-seat-h4 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .row-header {
+.row-header {
     width: 6.25%;
     height: 40px;
     line-height: 40px;
@@ -50,9 +46,9 @@ h4.title-choose-seat-h4 {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 14px;
-  }
+}
 
-  .seat {
+.seat {
     width: 6.25%;
     height: 40px;
     line-height: 40px;
@@ -64,9 +60,9 @@ h4.title-choose-seat-h4 {
     border: 1px solid black;
     border-radius: 3px 3px 10px 10px;
     font-size: 14px;
-  }
+}
 
-  .seat-row {
+.seat-row {
     width: 6.25%;
     height: 40px;
     line-height: 40px;
@@ -75,7 +71,7 @@ h4.title-choose-seat-h4 {
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: bold;
-  }
+}
 
 }
 
@@ -221,14 +217,16 @@ hr {
 
 .ticket-button {
   text-align: center;
+
 }
 
 .primary-arrow-right {
   text-decoration: none;
-  margin: 10px 0;
+  margin: 5px 5px;
   background-color: #F26B38;
   border: none;
   color: white;
+
 }
 .primary-arrow-right:hover{
   color: white;

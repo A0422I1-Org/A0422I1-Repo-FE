@@ -21,8 +21,9 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   getIdShowTimeSelect: any;
 
   constructor(private movieService: MovieService, private showtimeService: ShowtimeService,
-    private route: ActivatedRoute,
+    private activeRouter: ActivatedRoute,
     private router: Router) {
+    this.selectedMovieId = parseInt(this.activeRouter.snapshot.queryParamMap.get('idShowTime')); 
   }
 
   ngOnInit(): void {
@@ -105,8 +106,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
         if (this.selectedTimeOfShowTime && this.getIdShowTimeSelect) {
           //check sold out
           if (this.checkSoldOut(this.getSoldOut)) {
-            // this.router.navigate(['/select-seat', this.getIdShowTimeSelect]);
-            this.router.navigate(['/booking/select-seat', this.getIdShowTimeSelect]);
+            this.router.navigate(['/booking/select-seat'], { queryParams: { idShowTime: this.getIdShowTimeSelect } });
           } else {
             alert("Đã hết ghế ngồi");
           }
@@ -120,4 +120,6 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
       alert("Vui lòng đăng nhập");
     }
   }
+  
 }
+//npm i sweetalert2@9.15.0

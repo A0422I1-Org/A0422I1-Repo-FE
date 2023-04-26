@@ -1,9 +1,8 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <div class="container">
   <div class="row">
     <div class="panel-heading">
-      <H4 class="panel-title">CHỌN PHIM </H4>
+      <H4 class="panel-title">CHỌN PHIM</H4>
     </div>
     <hr>
     <ul class="list-group">
@@ -21,7 +20,7 @@
   </div>
   <div class="row choose-movie ">
     <div class="panel-heading">
-      <H4 class="panel-title">CHỌN SUẤT CHIẾU </H4>
+      <H4 class="panel-title">CHỌN SUẤT CHIẾU</H4>
     </div>
     <div *ngIf="!showTimesByIdMovie||showTimesByIdMovie.length === 0  ; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>

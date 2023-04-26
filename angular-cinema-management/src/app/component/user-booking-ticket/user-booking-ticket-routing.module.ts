@@ -7,7 +7,7 @@ import {ChairSelectionComponent} from "./chair-selection/chair-selection.compone
 const routes: Routes = [
 
   {
-    path:'select-seat/:id',component: ChairSelectionComponent
+    path:'select-seat',component: ChairSelectionComponent
   },
   {
     path:'select-movie-and-showtime' ,component: MovieAndShowtimeSelectionComponent

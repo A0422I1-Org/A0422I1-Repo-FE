@@ -26,12 +26,6 @@ import {AdminEmployeeManagementModule} from "./component/admin-employee-manageme
     HttpClientModule,
     BrowserAnimationsModule,
     AdminEmployeeManagementModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 2000,
-        positionClass: 'toast-top-right'
-      }
-    ),
   ],
   providers: [],
   bootstrap: [AppComponent]

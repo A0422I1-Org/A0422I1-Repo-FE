@@ -5,7 +5,7 @@ import { AdminEmployeeManagementRoutingModule } from './admin-employee-managemen
 import {AdminEmployeeListComponent} from "./admin-employee-list/admin-employee-list.component";
 import {AdminEmployeeCreateComponent} from "./admin-employee-create/admin-employee-create.component";
 import {AdminEmployeeEditComponent} from "./admin-employee-edit/admin-employee-edit.component";
-import {ToastrService} from "ngx-toastr";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 import {ReactiveFormsModule} from "@angular/forms";
 
 
@@ -22,6 +22,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     AdminEmployeeManagementRoutingModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 2000,
+        positionClass: 'toast-top-right'
+      }
+    ),
   ]
 })
 export class AdminEmployeeManagementModule { }

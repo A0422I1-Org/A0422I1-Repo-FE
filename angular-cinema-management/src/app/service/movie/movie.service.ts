@@ -8,7 +8,7 @@ import {MovieDetailDto} from "../../dto/movie-detail-dto";
 })
 export class MovieService {
 
-  private API_URL_MOVIE = "http://localhost:8080/api/movie";
+  private API_URL_MOVIE = "http://localhost:8080/api/public/movie";
 
   constructor(private  httpClient: HttpClient) {
   }

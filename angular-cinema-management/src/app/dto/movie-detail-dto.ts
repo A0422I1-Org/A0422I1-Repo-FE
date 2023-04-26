@@ -16,8 +16,8 @@ export interface MovieDetailDto {
   language: string;
   isDelete: boolean;
 
-  movieTypes: MovieType;
-  actors: Actor;
-  movieStudios: MovieStudio;
-  directors: Director;
+  movieTypes: String;
+  actors: String;
+  movieStudios: String;
+  directors: String;
 }

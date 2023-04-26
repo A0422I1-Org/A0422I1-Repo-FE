@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../../service/movie/movie.service";
 import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {MovieDetailDto} from "../../../dto/movie-detail-dto";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -18,10 +18,12 @@ export class UserMovieDetailComponent implements OnInit {
 
   username: String;
 
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router
   ) {
   }
 
@@ -43,11 +45,21 @@ export class UserMovieDetailComponent implements OnInit {
   sendLinkTrailer(trailer: string) {
     this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(trailer);
   }
+
   closeModal() {
     const videoElement = document.getElementById('trailerVideo') as HTMLIFrameElement;
     videoElement.src = videoElement.src; // not replay video
     videoElement.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     document.getElementById('myModal').style.display = 'none'; // close modal
     videoElement.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  }
+
+  booking() {
+    if (this.username) {
+      this.router.navigate(['/booking/select-movie-and-showtime'],
+        {queryParams: {movieId: this.movie.id}});
+    } else {
+      this.router.navigateByUrl('/security/login');
+    }
   }
 }

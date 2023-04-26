@@ -249,7 +249,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-3">
-            <img style="width: 100%" src="{{employeeDeleteDTO.image}}" >
+            <img class="image-delete" [src]="employeeDeleteDTO.image" >
           </div>
           <div class="col-9">
             <table class="table table-borderless">
@@ -285,7 +285,7 @@
                   Giới tính:
                 </td>
                 <td>
-                  <input class="form-control ml-2" disabled [value]="employeeDeleteDTO.gender? 'Nam': 'Nu'" >
+                  <input class="form-control ml-2" disabled [value]="employeeDeleteDTO.gender? 'Nam': 'Nữ'" >
                 </td>
               </tr>
 

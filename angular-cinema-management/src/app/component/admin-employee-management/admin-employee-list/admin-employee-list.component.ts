@@ -55,7 +55,6 @@ export class AdminEmployeeListComponent implements OnInit {
   findById(id: string) {
     this.employeeService.findById(id).subscribe(value => {
         this.employeeDeleteDTO = value;
-        console.log(this.employeeDeleteDTO);
       },
       error => {
         this.ngOnInit();

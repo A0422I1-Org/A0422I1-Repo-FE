@@ -9,6 +9,10 @@ import {HeaderComponent} from './component/header/header.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AdminMovieManagementModule} from "./component/admin-movie-management/admin-movie-management.module";
+import {ToastrModule} from "ngx-toastr";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -23,6 +27,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdminMovieManagementModule,
+    ToastrModule.forRoot(({
+      positionClass: 'toast-top-right',
+    })),
   ],
   providers: [],
   bootstrap: [AppComponent]

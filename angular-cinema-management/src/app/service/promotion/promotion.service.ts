@@ -19,5 +19,4 @@ export class PromotionService {
     findById(id: number): Observable<Promotion> {
     return this.httpClient.get<Promotion>(`${this.API_URL_PROMOTION}/${id}`);
   }
-
 }

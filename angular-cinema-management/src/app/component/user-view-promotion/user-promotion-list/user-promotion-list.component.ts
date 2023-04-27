@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {Promotion} from "src/app/model/promotion";
 import {PromotionService} from "src/app/service/promotion/promotion.service";
 
@@ -11,27 +10,11 @@ import {PromotionService} from "src/app/service/promotion/promotion.service";
 export class UserPromotionListComponent implements OnInit {
   promotions: Promotion [] = [];
 
-  constructor(private promotionService: PromotionService) { }
-
-  // getAllPromotion() {
-  //   this.promotionService.getAll().subscribe(next => {
-  //     console.log(next);
-  //     this.promotions = next;
-  //   }, error => {
-  //
-  //   }, () => {
-  //
-  //   });
-  // }
-  // ngOnInit(): void {
-  //   this.getAllPromotion()
-  // }
-
-
-  // hiển thị xem thêm
+  constructor(private promotionService: PromotionService) {
+  }
   showAll = false;
   isShowMoreVisible = true;
-  showNumber = 4;
+  showNumber = 3;
 
   getAllPromotion() {
     this.promotionService.getAll().subscribe(next => {
@@ -59,5 +42,4 @@ export class UserPromotionListComponent implements OnInit {
     this.showAll = true;
     this.isShowMoreVisible = false;
   }
-
 }

@@ -69,8 +69,9 @@ ul.list-group{
   text-align: center;
 }
 .time-date-movie p.time-film{
-  font-size: 16px;
+  font-size: 14px;
 }
+
 .time-date-movie p.day-film{
   font-weight: bold;
   font-size: 16px;
@@ -79,7 +80,7 @@ ul.list-group{
   margin: 0;
 }
 div.col-3.date-movie-start{
-  width: 100px;
+  width: 90px;
 }
 button.show-time-list{
   font-size: 18px;
@@ -91,12 +92,7 @@ button.show-time-list{
   background-color: white;
 
 }
-/*button.show-time-list:active{*/
-/*  background-color: #F26B38;*/
-/*  color: white;*/
-/*  border: 2px solid  #F5F5F5;*/
 
-/*}*/
 button.show-time-list.selected {
     background-color: #F26B38;
     color: white;
@@ -127,8 +123,8 @@ button.submit-ticker-moive:hover{
 .list-movie-start .show-time-list{
   font-size: 14px;
 }
-.time-date-movie .time-film{
-  font-size: 14px;
+p .time-film{
+  font-size: 12px;
 }
 hr.hr-show-time-date-movie-start{
   margin:1% 0;
@@ -147,4 +143,9 @@ a.list-group-item:hover{
 a.list-group-item.movie.active{
   color:  #F26B38;
   background: #F1F1F1;
+}
+@media (max-width: 443px){
+  div.time-date-movie{
+    margin: 15px 0 10px;
+  }
 }

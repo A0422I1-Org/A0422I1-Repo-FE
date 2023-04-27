@@ -13,7 +13,7 @@ export class RoomService {
 
   }
   room: Room;
-  getRoomByShowTime(idShowTime: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + idShowTime);
+  getRoomByShowTime(idShowTime: number): Observable<Room> {
+    return this.httpClient.get<Room>(this.API_URL + idShowTime);
   }
 }

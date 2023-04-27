@@ -23,9 +23,9 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   constructor(private movieService: MovieService, private showtimeService: ShowtimeService,
     private activeRouter: ActivatedRoute,
     private router: Router) {
-    this.selectedMovieId = parseInt(this.activeRouter.snapshot.queryParamMap.get('idShowTime')); 
+    this.selectedMovieId = parseInt(this.activeRouter.snapshot.queryParamMap.get('movieId')); 
+    this.getShowtimeMovie(this.selectedMovieId);
   }
-
   ngOnInit(): void {
     this.getAllMovie();
   }

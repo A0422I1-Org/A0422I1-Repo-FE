@@ -145,7 +145,7 @@
             <div class="row align-items-center">
               <div class="col-8">Thống Kê Thành viên</div>
               <div class="col-4 d-flex">
-                <input #nameCustomer type="search" class="form-control bg-light my-1" placeholder="Tìm kiếm..."
+                <input #nameCustomer type="search" class="form-control bg-light my-1" placeholder="Tìm kiếm tên thành viên..."
                        aria-label="Search">
                 <button class="btn my-1 mx-1" style="background-color: #F26b38; color: white"
                         (click)="getCustomerStatisticList(indexPagination, nameCustomer.value, statusSort)">
@@ -292,7 +292,7 @@
         <div class="col-6">
           <span>SCORE</span>
           <br>
-          <span>{{infoCustomer.point}}</span>
+          <span>{{infoCustomer.point | number: '1.0-9'}}</span>
         </div>
       </div>
       <div style="margin-top: 50px">

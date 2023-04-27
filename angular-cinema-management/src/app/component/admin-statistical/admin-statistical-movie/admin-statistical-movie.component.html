@@ -177,13 +177,14 @@
             <div class="col-6">
             </div>
             <div class="col-6" style="text-align: end" >
-              <button class="btn " style="background-color:#F26B38 ">
+              <button class="btn " style="background-color:#F26B38 " (click)="displayChart()">
                 <i class="bi bi-bar-chart-line-fill but"></i>
               </button>
             </div>
+            <div class="card-body">
+              <canvas class="my-4 w-100" [hidden]="statusChart" id="movieChart" width="500" height="150"></canvas>
+            </div>
           </div>
-
-
 
           <!--          end chart-->
 

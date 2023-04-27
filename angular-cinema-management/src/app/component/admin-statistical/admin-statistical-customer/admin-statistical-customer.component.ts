@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from "../../../service/customer/customer.service";
 import {CustomerStatistic} from "../../../model/CustomerStatistic";
-import {MovieStatisti} from "../../../model/MovieStatisti";
+
 
 @Component({
   selector: 'app-admin-statistical-customer',

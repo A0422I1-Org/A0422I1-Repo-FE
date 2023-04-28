@@ -20,12 +20,12 @@ import {NgxPaginationModule} from "ngx-pagination";
   exports: [
     AdminStatisticalMovieTypeComponent
   ],
-    imports: [
-        CommonModule,
-        AdminStatisticalRoutingModule,
-        FormsModule,
-        NgxPaginationModule
-    ]
+  imports: [
+    CommonModule,
+    AdminStatisticalRoutingModule,
+    FormsModule,
+    NgxPaginationModule
+  ]
 })
 export class AdminStatisticalModule {
 }

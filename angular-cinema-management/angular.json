@@ -36,7 +36,8 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/moment/min/moment.min.js",
               "node_modules/daterangepicker/daterangepicker.js",
-              "src/assets/js/category_statistic.js"
+              "src/assets/js/category_statistic.js",
+              "src/styles.css"
             ]
           },
           "configurations": {

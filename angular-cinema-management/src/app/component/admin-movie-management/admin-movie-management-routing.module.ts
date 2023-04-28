@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: 'movie', component: MovieComponent, children: [
       {path: '', component: AdminMovieListComponent},
-
     ]
   }
 ];

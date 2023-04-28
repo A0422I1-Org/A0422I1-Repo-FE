@@ -1,0 +1,34 @@
+.animated-progress {
+    width: 100%;
+    height: 18px;
+    border-radius: 5px;
+    margin-top: 2px;
+    border: 1px white;
+    overflow: hidden;
+    position: relative;
+    display: none;
+
+
+}
+
+.animated-progress span {
+    height: 100%;
+    display: block;
+    width: 0;
+    color: rgb(255, 251, 251);
+    line-height: 15px;
+    position: absolute;
+    text-align: end;
+    padding-right: 5px;
+}
+
+.progress-orange span {
+    background-color: #F26B38;
+}
+.progress-black span {
+    background-color: #362e2e;
+}
+
+.num {
+    display: block;
+}

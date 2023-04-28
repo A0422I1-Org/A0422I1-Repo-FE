@@ -7,6 +7,8 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {render} from "creditcardpayments/creditCardPayments";
 import {Room} from "../../../model/room";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {SecurityService} from "../../../service/security/security.service";
 
 @Component({
   selector: 'app-booking-ticket-confirmation',
@@ -21,7 +23,9 @@ export class BookingTicketConfirmationComponent implements OnInit {
   constructor(private ticketService: TicketService,
               private customerService: CustomerService,
               private toast: ToastrService,
-              private router: Router) { }
+              private router: Router,
+              private token: TokenStorageService,
+              private security: SecurityService) { }
 
   ngOnInit(): void {
     this.ticketService.findTicketsChoosed().subscribe(next => {
@@ -34,9 +38,14 @@ export class BookingTicketConfirmationComponent implements OnInit {
       console.log(this.ticketDefault)
     })
 
+    console.log("Token: "+this.token.getUser().token);
+
     this.customerService.findById('KH-002').subscribe(next => {
       this.customer = next;
     })
+
+    console.log(this.security.httpOptions)
+    // this.token.signOut();
   }
 
   showDetailAndPaymentPage() {

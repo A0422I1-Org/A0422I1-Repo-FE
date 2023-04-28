@@ -11,6 +11,6 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) { }
 
   findById(id: string): Observable<Customer> {
-    return this.httpClient.get<Customer>("http://localhost:8080/api/customer/" + id);
+    return this.httpClient.get<Customer>("http://localhost:8080/api/public/user/" + id);
   }
 }

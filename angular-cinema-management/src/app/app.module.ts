@@ -12,6 +12,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AdminStatisticalModule} from "./component/admin-statistical/admin-statistical.module";
 import {NgxPaginationModule} from "ngx-pagination";
 
+import {AdminMovieManagementModule} from "./component/admin-movie-management/admin-movie-management.module";
+import {ToastrModule} from "ngx-toastr";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,13 @@ import {NgxPaginationModule} from "ngx-pagination";
     HttpClientModule,
     BrowserAnimationsModule,
     AdminStatisticalModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdminMovieManagementModule,
+    ToastrModule.forRoot(({
+      positionClass: 'toast-top-right',
+    })),
   ],
   providers: [],
   bootstrap: [AppComponent]

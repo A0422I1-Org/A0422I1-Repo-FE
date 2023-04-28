@@ -61,7 +61,7 @@ export class UserTicketManagementComponent implements OnInit {
   validPage(page: number) {
     if (page >= this.totalPages || page < 0) {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
-      this.validatePage = "Số trang nhập vào phải nằm trong khoảng 1 đến " + this.totalPages;
+      this.validatePage = "Trang nhập vào phải nằm trong khoảng từ trang  1 đến trang " + this.totalPages;
       return false;
     }
     if (isNaN(Number(page))) {

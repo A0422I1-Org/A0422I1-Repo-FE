@@ -151,7 +151,7 @@
                     </tbody>
                   </table>
                   <div class="d-flex justify-content-center m-md-auto ">
-                    <div *ngIf="(totalElements> 0)">
+                    <div *ngIf="(totalElements> 0) else isEmpty">
                       <ul class="pagination justify-content-center">
                         <li>
                           <button class="page-link"
@@ -214,6 +214,11 @@
                       </ul>
                       <p class="text-danger divider my-2"> {{validatePage}}</p>
                     </div>
+                    <ng-template #isEmpty class="clearfix">
+                      <div style="font-size: 18px; margin-left: 73px" class="hint-text">Không tìm thấy kết quả phù
+                        hợp<b> </b>
+                      </div>
+                    </ng-template>
                   </div>
                 </div>
               </div>

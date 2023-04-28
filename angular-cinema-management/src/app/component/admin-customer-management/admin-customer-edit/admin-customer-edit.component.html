@@ -59,7 +59,7 @@
                 </a>
               </li>
               <li>
-                <a href="member_list.html" class="nav-link link-dark active">
+                <a href="/customer-management" class="nav-link link-dark active">
                   <img src="assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>
                   Quản lý thành viên
                 </a>
@@ -114,21 +114,23 @@
             </div>
             <div class="col-md-10">
               <form [formGroup]="formGroup" (ngSubmit)="submit()">
+                <p class="validate text-center" style="font-weight: bold; font-size: 17px" *ngIf="notValid">Các trường chưa hợp lệ. Vui lòng nhập lại</p>
 
-<!--                Username input-->
+                <!--                Username input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span for="username"><label for="username">Tài khoản&nbsp;&nbsp;</label></span>
                   </div>
                   <div class="col-md-9 inp">
                     <input readonly id="username" formControlName="username"
-                           aria-describedby="inputGroupPrepend2" class="form-control" type="text" placeholder="Tên đăng nhập">
+                           aria-describedby="inputGroupPrepend2" class="form-control" type="text"
+                           placeholder="Tên đăng nhập">
                     <span *ngIf="formGroup.controls.username.touched
                     && formGroup.controls.username.dirty" class="validate">Không được thay đổi Tên đăng nhập</span>
                   </div>
                 </div>
 
-<!--                Full name input-->
+                <!--                Full name input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit">&nbsp;*</span><span><label for="fullName">Họ và tên</label></span>
@@ -137,11 +139,17 @@
                     <input id="fullName" formControlName="fullName" aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="text" placeholder="Họ và tên">
                     <span *ngIf="formGroup.controls.fullName.hasError('required')
-                    && formGroup.controls.fullName.touched" class="validate">Họ và tên không được để trống</span>
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được để trống.&nbsp;</span>
+                    <span *ngIf="formGroup.hasError('fullNamePattern')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được chứa số và ký tự đặc biệt.&nbsp;</span>
+                    <span *ngIf="formGroup.controls.fullName.hasError('minlength')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá ngắn. Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
+                    <span *ngIf="formGroup.controls.fullName.hasError('maxlength')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá dài. Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
                   </div>
                 </div>
 
-<!--                Password input-->
+                <!--                Password input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit">&nbsp;*</span><span><label for="password">Mật khẩu</label></span>
@@ -150,94 +158,114 @@
                     <input id="password" formControlName="password"
                            aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="password" placeholder="Mật khẩu">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.password.hasError('required')
+                    && formGroup.controls.password.touched" class="validate">Mật khẩu không được để trống</span>
+                    <span *ngIf="formGroup.controls.password.hasError('pattern')
+                    && formGroup.controls.password.touched" class="validate">Mật khẩu phải chứa 8-50 ký tự,
+                    phải bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt</span>
                   </div>
                 </div>
 
-<!--                Birthday input-->
+
+                <!--                Birthday input-->
                 <div class="row">
                   <div class="col-md-3 txt">
-                    <span class="tit">&nbsp;*</span><span><label
-                    for="dateOfBirth">Ngày sinh</label></span>
+                    <span class="tit">&nbsp;*</span><span><label for="birthday">Ngày sinh</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <input id="dateOfBirth" value="1996-01-26"
+                    <input id="birthday" formControlName="birthday"
                            aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="date" placeholder="Ngày sinh">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.birthday.hasError('required')
+                    && formGroup.controls.birthday.touched" class="validate">Ngày sinh không được để trống</span>
+                    <span *ngIf="formGroup.controls.birthday.hasError('pattern')
+                    && formGroup.controls.birthday.touched" class="validate">Năm sinh phải lớn hơn 1900</span>
+                    <span *ngIf="formGroup.hasError('birthdayBteToday')
+                    && formGroup.controls.birthday.touched" class="validate">Ngày sinh không được lớn hơn ngày hiện tại</span>
                   </div>
                 </div>
 
-<!--                Gender input-->
+                <!--                Gender input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit">&nbsp;*</span><span><label>Giới tính</label></span>
                   </div>
                   <div class="col-md-9 inp">
                     <div class="col-md-9 inp">
-                      <input id="male" class="form-check-input" type="radio" checked name="gender"
-                             value="Nam"><label
-                      for="male">&nbsp;&nbsp;Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                      <input id="female" class="form-check-input" type="radio" name="gender" value="Nữ"><label
-                      for="female">&nbsp;&nbsp;Nữ</label>
+                      <input id="male" class="form-check-input" type="radio" name="gender"
+                            formControlName="gender" [value]="true"><label for="male">&nbsp;&nbsp;Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <input id="female" class="form-check-input" type="radio" name="gender" formControlName="gender"
+                             [value]="false" ><label for="female">&nbsp;&nbsp;Nữ</label>
                     </div>
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.gender.hasError('required')
+                    && formGroup.controls.gender.touched" class="validate">Vui lòng chọn giới tính</span>
                   </div>
                 </div>
 
-<!--                Email input-->
+                <!--                Email input-->
                 <div class="row">
                   <div class="col-md-3 txt">
-                    <span class="tit"></span><span><label
-                    for="email">Email&nbsp;&nbsp;</label></span>
+                    <span class="tit">&nbsp;*</span><span><label for="email">Email&nbsp;&nbsp;</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <input id="email" value="congdanh26@gmail.com"
+                    <input id="email" formControlName="email"
                            aria-describedby="inputGroupPrepend2"
                            class="form-control" type="text" placeholder="Email">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.email.hasError('required')
+                    && formGroup.controls.email.touched" class="validate">Email không được để trống</span>
+                    <span *ngIf="formGroup.controls.email.hasError('pattern')
+                    && formGroup.controls.email.touched" class="validate">Email chưa đúng định dạng</span>
                   </div>
                 </div>
 
-<!--                Card id input-->
+                <!--                Card id input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit">&nbsp;*</span><span><label
                     for="cardId">CMND/CCCD</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <input id="cardId" readonly value="049096001"
+                    <input id="cardId" readonly formControlName="cardId"
                            aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="text" placeholder="CMND/CCCD">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.cardId.dirty
+                    && formGroup.controls.cardId.touched" class="validate">Không được thay đổi CMND/CCCD</span>
                   </div>
                 </div>
 
-<!--                Phone number input-->
+                <!--                Phone number input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit">&nbsp;*</span><span><label
                     for="phone">Số điện thoại</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <input id="phone" value="0376300628"
+                    <input id="phone" formControlName="phoneNumber"
                            aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="text" placeholder="Số điện thoại">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.phoneNumber.hasError('required')
+                    && formGroup.controls.phoneNumber.touched" class="validate">Số điện thoại không được để trống</span>
+                    <span *ngIf="formGroup.controls.phoneNumber.hasError('pattern')
+                    && formGroup.controls.phoneNumber.touched" class="validate">Số điện thoại chưa đúng định dạng</span>
                   </div>
                 </div>
 
-<!--                Address input-->
+                <!--                Address input-->
                 <div class="row">
                   <div class="col-md-3 txt">
                     <span class="tit"></span><span><label
                     for="address">Địa chỉ&nbsp;&nbsp;</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <input id="address" value="Quảng Nam"
+                    <input id="address" formControlName="address"
                            aria-describedby="inputGroupPrepend2" required
                            class="form-control" type="text" placeholder="Địa chỉ">
-                    <span class="validate">!</span>
+                    <span *ngIf="formGroup.controls.address.hasError('required')
+                    && formGroup.controls.address.touched" class="validate">Địa chỉ không được để trống</span>
+                    <span *ngIf="formGroup.controls.address.hasError('minlength')
+                    && formGroup.controls.address.touched" class="validate">Địa chỉ quá ngắn. Yêu cầu nhập từ 3-50 ký tự</span>
+                    <span *ngIf="formGroup.controls.address.hasError('maxlength')
+                    && formGroup.controls.address.touched" class="validate">Địa chỉ quá dài. Yêu cầu nhập từ 3-50 ký tự</span>
                   </div>
                 </div>
 
@@ -250,7 +278,8 @@
                     <span>QUAY LẠI</span>
                   </button>
 
-                  <button class="btn" style="background-color: #F26B38; color: #fff" type="submit">
+                  <button class="btn" style="background-color: #F26B38; color: #fff" type="button"
+                          data-bs-toggle="modal" data-bs-target="#confirmModal">
                     <i class="bi bi-check2-square"></i>
                     <b class="text-uppercase">&nbsp;Lưu thay đổi</b>
                   </button>
@@ -267,7 +296,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Cancel Modal -->
 <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -279,10 +308,30 @@
         <p>Bạn có chắc chắn muốn hủy bỏ thay đổi không?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
         <a href="/customer-management">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Có</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Có</button>
         </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Xác nhận thay đổi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn lưu thay đổi không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="submit()">Lưu</button>
+
       </div>
     </div>
   </div>

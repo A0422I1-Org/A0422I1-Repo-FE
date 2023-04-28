@@ -1,4 +1,6 @@
-
+*{
+  font-family: 'Roboto';
+}
 a.list-group-item.movie {
   background: white;
   color: black;
@@ -21,6 +23,10 @@ h4.panel-title{
   text-align: center;
   font-size: 16px;
   margin:0;
+  height: 30px;
+}
+h4.panel-title > p{
+  margin-top: 10px;
 }
 h1, h2, h3, h4, h5, p {
   line-height: 1.5;
@@ -122,6 +128,7 @@ button.submit-ticker-moive:hover{
 }
 .list-movie-start .show-time-list{
   font-size: 14px;
+  padding: 0 10px;
 }
 p .time-film{
   font-size: 12px;
@@ -144,8 +151,16 @@ a.list-group-item.movie.active{
   color:  #F26B38;
   background: #F1F1F1;
 }
-@media (max-width: 443px){
+@media (max-width: 559px){
   div.time-date-movie{
     margin: 15px 0 10px;
   }
+  .list-movie-start{
+    margin-top: 9px;
+  }
 }
+@media (max-width: 376px){
+  .container {
+    width: 375px;
+  }
+} 

@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Showtime } from "../../../model/showtime";
 import { RoomService } from "src/app/service/room/room.service";
 import { Room } from "src/app/model/room";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-chair-selection",
@@ -19,6 +20,7 @@ export class ChairSelectionComponent implements OnInit {
   tickets: Ticket[] = [];
   selectedSeats: Ticket[] = [];
   priceTicket:number =0;
+  timeCount = 0;
 
   constructor(
     private showtimeService: ShowtimeService,
@@ -27,8 +29,15 @@ export class ChairSelectionComponent implements OnInit {
     private ticketService: TicketService
   ) {
     this.id = parseInt(
-      this.activatedRoute.snapshot.queryParamMap.get("idShowTime")
+      this.activatedRoute.snapshot.queryParamMap.get("showTimeId")
     );
+    const interval = setInterval(() => {
+      this.timeCount++;
+      if (this.timeCount > 300) {
+        clearInterval(interval);
+        window.location.href = 'url-redirect'; 
+      }
+    }, 1000);
   }
 
   ngOnInit(): void {
@@ -59,6 +68,7 @@ export class ChairSelectionComponent implements OnInit {
     this.showtimeService.getShowtimeById(idShowTime).subscribe(
       (next) => {
         this.showTime = next;
+        console.log(next);
       },
       (error) => {},
       () => {}
@@ -70,7 +80,6 @@ export class ChairSelectionComponent implements OnInit {
     }
     event.stopPropagation();
     const index = this.selectedSeats.indexOf(ticket);
-    console.log(index);
     if (index > -1) {
       this.selectedSeats.splice(index, 1); 
       this.priceTicket -= ticket.price;
@@ -85,7 +94,14 @@ export class ChairSelectionComponent implements OnInit {
   }
   onContinue(){
     if(this.selectedSeats == null|| this.selectedSeats.length == 0){
-      alert("Vui long chon ghe can dat")
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: "Vui lòng chọn ghế cần đặt",
+        showConfirmButton: true,
+        confirmButtonText:'OK',
+        showCloseButton: true,
+      })
     }
   }
 }

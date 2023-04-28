@@ -25,6 +25,10 @@
   margin-left: 0.5rem;
 }
 
+.pd-lx-0{
+  padding-left: 0px;
+}
+
 .image-delete{
   width: 100%;
 }

@@ -14,7 +14,8 @@ export class UserTicketManagementComponent implements OnInit {
   totalPages = 0;
   totalPoint: number;
   totalElements = 0;
-  errMessage: string
+  errMessage: string;
+  validatePage: string;
 
   constructor(private customerService: CustomerService, private pointService: PointService) {
 
@@ -36,6 +37,7 @@ export class UserTicketManagementComponent implements OnInit {
   }
 
   getAllTicketByCustomer(page: number) {
+    this.validatePage = ""
     this.customerService.getAllTicketByCustomer(page).subscribe(value => {
       this.ticketList = value.content;
       this.indexPagination = value.number;
@@ -59,11 +61,15 @@ export class UserTicketManagementComponent implements OnInit {
   validPage(page: number) {
     if (page >= this.totalPages || page < 0) {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      this.validatePage = "Số trang nhập vào phải nằm trong khoảng 1 đến " + this.totalPages;
       return false;
     }
     if (isNaN(Number(page))) {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      this.validatePage = "Số trang nhập vào không được chứ kí tự"
+      return false;
     }
+    this.validatePage = ""
     return true;
   }
 

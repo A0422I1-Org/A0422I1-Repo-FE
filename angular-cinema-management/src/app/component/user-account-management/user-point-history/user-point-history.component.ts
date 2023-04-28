@@ -19,6 +19,7 @@ export class UserPointHistoryComponent implements OnInit {
   errMessage: string;
   totalPoint: number;
   searchForm: FormGroup;
+  validatePage: string;
 
   getSumTotalPointByCustomer() {
     this.pointService.getSumPointByCustomer().subscribe(value => {
@@ -58,6 +59,7 @@ export class UserPointHistoryComponent implements OnInit {
   getPointList(page: number) {
     const startDate = (this.searchForm.controls.startDate.value)
     const endDate = (this.searchForm.controls.endDate.value)
+    this.validatePage = ""
     if (this.searchForm.valid) {
       this.pointService.getAllPointByCustomerDateBetween(startDate, endDate, page, this.size).subscribe(value => {
         this.pointList = value.content
@@ -113,11 +115,15 @@ export class UserPointHistoryComponent implements OnInit {
   validPage(page: number) {
     if (page >= this.totalPages || page < 0) {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      this.validatePage = "Số trang nhập vào phải nằm trong khoảng 1 đến " + this.totalPages;
       return false;
     }
     if (isNaN(Number(page))) {
       (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      this.validatePage = "Số trang nhập vào không được chứ kí tự"
+      return false;
     }
+    this.validatePage = ""
     return true;
   }
 

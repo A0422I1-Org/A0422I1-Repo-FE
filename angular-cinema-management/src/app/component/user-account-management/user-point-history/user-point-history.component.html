@@ -283,9 +283,11 @@
      <button class="page-link d-flex align-items-center" style=" height: 30px;"
              (click)="getPageChoice(element.value-1)">  &raquo; </button>
   </span>
+
                             </div>
                           </li>
                         </ul>
+                        <p class="text-danger divider my-2"> {{validatePage}}</p>
                       </div>
                       <ng-template #isEmpty class="clearfix">
                         <div style="font-size: 18px; margin-left: 73px" class="hint-text">Không tìm thấy kết quả phù hợp<b> </b>
@@ -293,6 +295,7 @@
                       </ng-template>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>

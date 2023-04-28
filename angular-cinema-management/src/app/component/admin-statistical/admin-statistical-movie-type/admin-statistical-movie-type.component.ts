@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CategoryStatistic} from "../../../model/category-statistic";
+import {MovieTypeService} from "../../../service/movie-type/movie-type.service";
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-admin-statistical-movie-type',
@@ -6,10 +9,108 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-statistical-movie-type.component.css']
 })
 export class AdminStatisticalMovieTypeComponent implements OnInit {
+  categoryStatisticList: CategoryStatistic[] = [];
+  categoryStatisticListNonGroup: CategoryStatistic[] = [];
 
-  constructor() { }
+  xValues: string[] = [];
+  yValues: number[] = [];
+  barColors: string[] = ["red", "green", "blue", "orange", "brown" , "yellow" , "silver", "pink", "purple" , "#F26c28"];
+
+  currentPage = 1;
+  isDetailSelected: boolean = false;
+  categoryChart: Chart;
+
+  constructor(private movieTypeService: MovieTypeService) {
+  }
 
   ngOnInit(): void {
+    this.getCategoryStatisticListDetail();
+    this.showListNonGroupBy();
+    this.createChart();
+  }
+
+  showDetailList(){
+    this.isDetailSelected = true;
+  }
+  hideDetailList(){
+    this.isDetailSelected = false;
+  }
+
+
+  createChart() {
+    if (this.categoryChart) {
+      this.categoryChart.destroy();
+    }
+    this.categoryChart = new Chart("categoryChart", {
+      type: "bar",
+      data: {
+        labels: this.xValues = this.categoryStatisticListNonGroup.map((item) => item.movieType),
+        datasets: [{
+          backgroundColor: this.barColors,
+          data: this.yValues = this.categoryStatisticListNonGroup.map((item) => item.totalTicketsSold),
+          label: ''
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+          }
+        },
+        scales: { //Title Configuration
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Số vé đã bán',
+              color: '#F26c38',
+              font: {
+                family: 'tahoma',
+                size: 20,
+                style: 'normal',
+                lineHeight: 1.0
+              },
+            }
+          }
+        }
+      }
+    });
+
+  }
+
+  showListNonGroupBy() {
+    this.movieTypeService.statisticCategoryMovieNonGroupBy().toPromise().then((apiList: CategoryStatistic[]) => {
+      const result = apiList.reduce((acc, curr) => {
+        const found = acc.find((item) => item.movieType === curr.movieType);
+        if (found) {
+          found.totalTicketsSold += curr.totalTicketsSold;
+          found.totalRevenue += curr.totalRevenue;
+        } else {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
+      this.categoryStatisticListNonGroup = result;
+      this.categoryStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue);
+      console.log("Mảng đã group by : ");
+      console.log(result);
+
+      // Gọi hàm createChart sau khi dữ liệu đã được lấy xong
+      this.createChart();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  getCategoryStatisticListDetail() {
+    this.movieTypeService.statisticCategoryMovie().subscribe(list => {
+      this.categoryStatisticList = list;
+      console.log("Mảng loại phim chi tiết : ");
+      console.log(this.categoryStatisticList);
+    })
   }
 
 }

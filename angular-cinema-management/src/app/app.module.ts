@@ -9,6 +9,8 @@ import {HeaderComponent} from './component/header/header.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AdminStatisticalModule} from "./component/admin-statistical/admin-statistical.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AdminStatisticalModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -107,19 +107,19 @@
         <div class="document-tiker-movie">
           <section class="ticket-feature">
             <article class="row">
-              <div class="col-md-12" style="text-align: center">
+              <div class="col-md-12" style="text-align: center" *ngIf="showTime">
                 <img [src]="showTime.movie.image" />
               </div>
               <div class="col-md-12">
-                <div class="ticket-detail">
-                  <p class="upper-text">{{ showTime.movie.name }}</p>
+                <div class="ticket-detail" >
+                  <p class="upper-text"  *ngIf="showTime">{{ showTime.movie.name }}</p>
                 </div>
                 <div class="ticket-info">
-                  <div class="dotted-line">
+                  <div class="dotted-line"  *ngIf="room">
                     <b>Rạp: </b><span> {{ room.name }} </span>
                     <hr />
                   </div>
-                  <div class="dotted-line">
+                  <div class="dotted-line"  *ngIf="showTime">
                     <b>Suất chiếu: </b
                     ><span>
                       {{ showTime.startTime }} |

@@ -25,6 +25,5 @@ export class TicketService {
   }
   changeList(list: any[]) {
     this.listSeatChoosing.next(list);
-    console.log(this.getListSeatChoosing);
   }
 }

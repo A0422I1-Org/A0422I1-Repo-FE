@@ -5,7 +5,7 @@ import { Showtime } from "../../../model/showtime";
 import { ShowtimeService } from "../../../service/showtime/showtime.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
-import { viewClassName } from "@angular/compiler";
+
 @Component({
   selector: "app-movie-and-showtime-selection",
   templateUrl: "./movie-and-showtime-selection.component.html",
@@ -40,7 +40,6 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
   getAllMovie() {
     this.movieService.getAllMovie().subscribe(
       (next) => {
-        console.log(next);
         this.movies = next;
       },
       (error) => {},
@@ -55,7 +54,9 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
         this.showTimeByDate = this.groupShowtimesByDate(
           this.showTimesByIdMovie
         );
-        console.log(this.showTimeByDate);
+        if (this.showTimeByDate.length > 5) {
+          this.showTimeByDate = this.showTimeByDate.slice(0, 5);
+        }
       },
       (error) => {},
       () => {
@@ -74,7 +75,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
 
   // lấy suất chiếu của từng ngày khác nhau
   groupShowtimesByDate(showtimes: any[]) {
-    const groupedShowtimes = [];
+    const groupedShowtimes =  [];
     const uniqueDates = showtimes
       .map((showtime) => showtime.date)
       .filter((date, index, self) => self.indexOf(date) === index);
@@ -121,7 +122,6 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
           }
         } else {
           this.changeAlertPosition('Vui lòng chọn suất chiếu');
-          // Swal.fire("Vui lòng chọn suất chiếu");
         }
       } else {
          this.changeAlertPosition('Vui lòng chọn phim');

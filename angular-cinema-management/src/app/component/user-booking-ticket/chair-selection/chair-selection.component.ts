@@ -41,7 +41,6 @@ export class ChairSelectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getId().subscribe((id) => {
-      console.log(id);
       this.id = id;
       if (id != null || id != "") {
         this.getShowTimeById(parseInt(id));
@@ -55,7 +54,6 @@ export class ChairSelectionComponent implements OnInit {
       map((params) => params.get("showTimeId"))
     );
   }
-
   getTicketByIdRoomAndIdShowTime(idRoom: number, idShowtime: number) {
     this.ticketService.getTicketByShowTimeAndRoom(idRoom, idShowtime).subscribe(
       (next) => {
@@ -107,7 +105,6 @@ export class ChairSelectionComponent implements OnInit {
       this.selectedSeats.push(ticket);
       this.priceTicket += ticket.price;
       this.isSelected(ticket);
-      console.log(this.selectedSeats);
     }
   }
   isSelected(ticket: any) {

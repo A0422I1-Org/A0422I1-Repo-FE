@@ -107,7 +107,7 @@ button.show-time-list.selected {
 div.row.show-time-date-movie-start{
   margin-top:1%;
 }
-button.submit-ticker-moive{
+button.submit-ticker-movie{
   background-color:  #F26B38;
   color: white;
   border-radius: 4px;
@@ -116,7 +116,7 @@ button.submit-ticker-moive{
   font-size: 14px;
   font-weight: 600;
 }
-button.submit-ticker-moive:hover{
+button.submit-ticker-movie:hover{
   color: white;
   background-color: #877D7A;
 }

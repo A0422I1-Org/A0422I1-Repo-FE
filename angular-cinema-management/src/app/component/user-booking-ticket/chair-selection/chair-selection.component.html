@@ -108,7 +108,7 @@
           <section class="ticket-feature">
             <article class="row">
               <div class="col-md-12" style="text-align: center" *ngIf="showTime">
-                <img [src]="showTime.movie.image" />
+                <img [src]="showTime.movie.image"  alt=""/>
               </div>
               <div class="col-md-12">
                 <div class="ticket-detail" >
@@ -134,7 +134,7 @@
                   </div>
                   <div class="dotted-line">
                     <b>Tổng: &nbsp;</b>
-                    <span class="sum-money-ticker"> {{priceTicket|currency: 'VND'}} </span>
+                    <span class="sum-money-ticker"> {{priceTicket|currency: 'VND'}}  </span>
                     <hr />
                   </div>
                 </div>

@@ -1,5 +1,5 @@
-*{
-  font-family: 'Roboto';
+* {
+  font-family: "Roboto";
 }
 .seat-booking-movie {
   background-color: #f26b38;
@@ -20,11 +20,11 @@ p.screens-name {
   text-align: center;
   font-size: 15px;
   border-bottom: 3px solid #969b9f;
-    width: 60%;
-    text-align: center;
-    font-size: 14px;
-    padding-bottom: 6px;
-    margin: 30px auto;
+  width: 60%;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom: 6px;
+  margin: 30px auto;
 }
 
 h4.title-choose-seat-h4 {
@@ -37,7 +37,7 @@ h4.title-choose-seat-h4 {
 h4.title-choose-seat-h4 {
   margin: 0;
 }
-h4.title-choose-seat-h4 > p{
+h4.title-choose-seat-h4 > p {
   padding: 0;
   height: 0;
   padding-top: 10px;
@@ -201,7 +201,6 @@ a.primary-arrow-right.left:hover {
   border: 2px solid var(--pj-black);
 }
 
-
 /* .seat_icon {
   height: 33px;
   width: 35px;
@@ -210,11 +209,10 @@ a.primary-arrow-right.left:hover {
   border-radius: 2px 2px 10px 10px;
   border: 1px solid black;
 } */
-.seat_icon:hover{
-  cursor: pointer
+.seat_icon:hover {
+  cursor: pointer;
 }
 .seat_icon {
-  
   height: 33px;
   width: 35px;
   margin: 5px 0;
@@ -222,24 +220,26 @@ a.primary-arrow-right.left:hover {
   position: relative;
   border-radius: 8px 8px 0px 0px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              #f5f5f5;
+  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px
+      20px repeat-y,
+    linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
+    #f5f5f5;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   transform: translateY(-2px);
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.3);
 }
-.seat_icon.active{
+.seat_icon.active {
   height: 33px;
   width: 35px;
   margin: 5px 0;
   position: relative;
   border-radius: 8px 8px 0px 0px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              red;
+  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px
+      20px repeat-y,
+    linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
+    red;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   transform: translateY(-2px);
@@ -247,19 +247,20 @@ a.primary-arrow-right.left:hover {
   border: none;
   color: #f5f5f5;
 }
-.seat_icon.active:hover{
-  cursor:not-allowed;
+.seat_icon.active:hover {
+  cursor: not-allowed;
 }
-.choosing_seat{
+.choosing_seat {
   height: 33px;
   width: 35px;
   margin: 5px 0;
   position: relative;
   border-radius: 8px 8px 0px 0px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
-              #bada55;
+  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px
+      20px repeat-y,
+    linear-gradient(45deg, #f5f5f5 25%, transparent 25%) -10px 0px / 20px 20px repeat-y,
+    #bada55;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   transform: translateY(-2px);

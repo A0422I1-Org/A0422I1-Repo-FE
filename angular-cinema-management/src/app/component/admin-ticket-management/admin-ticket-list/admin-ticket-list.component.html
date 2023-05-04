@@ -126,6 +126,8 @@
                     <i class="bi bi-search"></i>
                   </button>
                 </form>
+                <p style="color: red" *ngIf="formSearch.controls.name.hasError('maxlength')&& formSearch.controls.name.dirty">Không được nhập quá 20 ký tự</p>
+
               </div>
             </div>
 

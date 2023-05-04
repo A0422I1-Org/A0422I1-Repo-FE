@@ -59,10 +59,9 @@ export class AdminReceiveTicketDetailComponent implements OnInit {
   goBack() {
       this.router.navigate(['ticket_management/select_ticket_user']);
   }
-
-  confirmTicket(id:string) {
+  getDate(a):string{
     // Chuỗi ngày tháng trong định dạng ISO 8601
-    const isoDate = this.ticket.bookDateTime;
+    const isoDate = a;
 
     // Chuyển đổi sang đối tượng Date
     const date = new Date(isoDate);
@@ -74,31 +73,59 @@ export class AdminReceiveTicketDetailComponent implements OnInit {
 
     // Tạo chuỗi ngày tháng mới
     const newDate = day.toString().padStart(2, '0') + '-' + month.toString().padStart(2, '0') + '-' + year.toString();
-
+    return newDate;
+  }
+  confirmTicket(id:string) {
 
     // tạo một đối tượng jsPDF mới
     const pdf = new jsPDF('p', 'mm', 'a7');
-      pdf.setFontSize(8);
+    pdf.setFontSize(10);
     // tạo một đối tượng Object để xuất ra PDF
-    const myObject = {
-      NameMovie:this.ticket.nameMovie,
-      DATE:newDate,
-      StartTime:this.ticket.startTime+'-',
-      EndTime:this.ticket.endTime,
-      RoomNumer:this.ticket.room,
-      Chair:this.ticket.nameChair,
-      TicketPrice:this.ticket.price,
-      Total:this.ticket.price
-    };
+    // const myObject = {
+    //   NameMovie:this.ticket.nameMovie,
+    //   DATE:newDate,
+    //   StartTime:this.ticket.startTime+'-',
+    //   EndTime:this.ticket.endTime,
+    //   RoomNumer:this.ticket.room,
+    //   Chair:this.ticket.nameChair,
+    //   TicketPrice:this.ticket.price,
+    //   Total:this.ticket.price
+    // };
 
     // lặp qua các thuộc tính của Object và thêm chúng vào tài liệu PDF
-    let i = 0;
-    for (const prop in myObject) {
-      if (myObject.hasOwnProperty(prop)) {
-        pdf.text(`${prop}: ${myObject[prop]}`, 5, (i + 1) * 10);
-        i++;
-      }
-    }
+    // let i = 0;
+    // for (const prop in myObject) {
+    //   if (myObject.hasOwnProperty(prop)) {
+    //     pdf.text(`${prop}: ${myObject[prop]}`, 5, (i + 1) * 10);
+    //     i++;
+    //   }
+    // }
+
+    //lưu các giá trị vào file pdf
+
+    // Thiết lập kiểu phông chữ cho 2 dòng đầu tiên là đậm
+
+    pdf.setFont("helvetica", "bold");
+    pdf.text("THE VAO",30,15);
+    pdf.text("PHONG CHIEU PHIM ",21,20);
+    pdf.setFontSize(7);
+    pdf.text("AO4CINEMA DA NANG",5,30);
+    pdf.setFont("helvetica", "normal");
+    pdf.text("TANG 6 CODEGYM DA NANG ,254 NGUYEN",5,35);
+    pdf.text("VAN LINH Q .SON TRA,TP. DA NANG",5,40);
+    pdf.text("=======================================",5,45);
+    pdf.setFont("helvetica", "bold");
+    pdf.text(this.ticket.nameMovie, 5, 50);
+    pdf.setFont("helvetica", "normal");
+    pdf.text(this.getDate(this.ticket.bookDateTime)+"          "+`${this.ticket.startTime}`+'-'+`${this.ticket.endTime}`, 5, 55);
+    pdf.setFont("helvetica", "bold");
+    pdf.text(`${this.ticket.room}`+"       "+`${this.ticket.nameChair}`, 5, 60);
+    pdf.setFont("helvetica", "normal");
+    pdf.text("=======================================",5,65);
+    pdf.text("-Ticket price            "+`${this.ticket.price}`+"     VND",5,70);
+    pdf.text("----------------------------------------------------------------------",4,75);
+    pdf.setFont("helvetica", "bold");
+    pdf.text("                                               Total   VND  "+`${this.ticket.price}`,5,82);
 
     // lưu tệp PDF
     pdf.save('Mẫu PDF.pdf');

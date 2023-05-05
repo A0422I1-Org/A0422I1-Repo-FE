@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c6794a5-0056-4c6a-93da-0cd52b47f5f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/component/user-account-management/user-account-information/user-account-information.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/component/user-account-management/user-account-information/user-account-information.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/service/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/service/account/account.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/service/customer/customer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/service/customer/customer.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="4c6794a5-0056-4c6a-93da-0cd52b47f5f0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +84,7 @@
       <workItem from="1682506849009" duration="5332000" />
       <workItem from="1682652987982" duration="3407000" />
       <workItem from="1683028107752" duration="775000" />
-      <workItem from="1683283852067" duration="2333000" />
+      <workItem from="1683283852067" duration="3697000" />
     </task>
     <servers />
   </component>

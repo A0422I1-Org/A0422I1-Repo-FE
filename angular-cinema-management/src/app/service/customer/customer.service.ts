@@ -19,7 +19,7 @@ export class CustomerService {
     return this.httpClient.get<Customer>("http://localhost:8080/customer-management/update/" + id);
   }
 
-  updateCustomer(customer: Customer): Observable<Customer> {
-    return this.httpClient.put<Customer>("http://localhost:8080/customer-management/update", customer);
+  updateCustomer(customerDTO: Customer): Observable<Customer> {
+    return this.httpClient.put<Customer>("http://localhost:8080/customer-management/update", customerDTO);
   }
 }

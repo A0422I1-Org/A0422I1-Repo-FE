@@ -62,7 +62,7 @@
                 </a>
               </li>
               <li>
-                <a href="member_list.html" class="nav-link link-dark active">
+                <a href="/customer-management" class="nav-link link-dark active">
                   <img src="assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>
                   Quản lý thành viên
                 </a>
@@ -110,10 +110,10 @@
       <div class="card">
         <div class="bg-light d-flex card card-header p-3 mb-4 text-uppercase display fw-bold">
           <div class="row align-items-center">
-            <div class="col-7">Danh sách khách hàng thành viên</div>
-            <div class="col-5">
+            <div class="col-6">Danh sách khách hàng thành viên</div>
+            <div class="col-6">
               <form role="search" class="d-flex">
-                <input #search type="search" name="search" class="form-control bg-light my-1" placeholder="Tìm kiếm..."
+                <input #search type="search" name="search" class="form-control bg-light my-1" placeholder="Tìm kiếm theo tên, CMND, email hoặc SĐT..."
                        aria-label="Search">
                 <button class="btn my-1 mx-1" style="background-color: #F26b38; color: white"
                         (click)="getCustomer(search.value, 0)">
@@ -172,7 +172,7 @@
             <div class="d-flex justify-content-center m-md-auto fw-bold">
               <nav aria-label="Page navigation example justify-content-center">
                 <ul class="pagination">
-                  <li *ngIf="!first" class="page-item">
+                  <li [ngClass]="{'page-item disabled' : first}" class="page-item">
                     <a class="page-link" aria-label="Previous" (click)="getCustomer(search.value, activePage - 1)">
                       &laquo;
                     </a>
@@ -181,7 +181,7 @@
                     <a class="page-link" [ngClass]="{'page-item active': page == activePage}"
                        (click)="getCustomer(search.value, page)">{{page + 1}}</a>
                   </li>
-                  <li *ngIf="!last" class="page-item">
+                  <li [ngClass]="{'page-item disabled' : last}" class="page-item">
                     <a class="page-link" aria-label="Next" (click)="getCustomer(search.value, activePage + 1)">&raquo;</a>
                   </li>
                 </ul>

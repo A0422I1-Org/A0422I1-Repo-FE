@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4c6794a5-0056-4c6a-93da-0cd52b47f5f0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/component/user-account-management/user-account-information/user-account-information.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/component/user-account-management/user-account-information/user-account-information.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/service/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/service/account/account.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-cinema-management/src/app/service/customer/customer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-cinema-management/src/app/service/customer/customer.service.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2OQOCeRirfS1TdEtY3UOlfEOmFe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="D:\A0422I1-Project\A0422I1-Repo-FE\angular-cinema-management\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\A0422I1-Project\A0422I1-Repo-FE\angular-cinema-management\src\app\model" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4c6794a5-0056-4c6a-93da-0cd52b47f5f0" name="Default Changelist" comment="" />
+      <created>1681489212601</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681489212601</updated>
+      <workItem from="1681489213843" duration="955000" />
+      <workItem from="1681490230669" duration="27000" />
+      <workItem from="1681490299762" duration="5335000" />
+      <workItem from="1681528404627" duration="8503000" />
+      <workItem from="1681611555440" duration="7227000" />
+      <workItem from="1681729047814" duration="1244000" />
+      <workItem from="1681736600201" duration="6521000" />
+      <workItem from="1681783722852" duration="10195000" />
+      <workItem from="1681874738113" duration="21416000" />
+      <workItem from="1682067820562" duration="15858000" />
+      <workItem from="1682135255681" duration="1622000" />
+      <workItem from="1682333210286" duration="8771000" />
+      <workItem from="1682506849009" duration="5332000" />
+      <workItem from="1682652987982" duration="3407000" />
+      <workItem from="1683028107752" duration="775000" />
+      <workItem from="1683283852067" duration="2333000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="638" y="319" key="#TSLint" timestamp="1681489528958">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="638" y="319" key="#TSLint/0.0.1536.816@0.0.1536.816" timestamp="1681489528958" />
+    <state x="223" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1681490305094">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="223" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.816@0.0.1536.816" timestamp="1681490305094" />
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1681835576276">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1681835576276" />
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1681489692100">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1681489692100" />
+    <state width="1515" height="208" key="GridCell.Tab.0.center" timestamp="1681489692100">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1681489692100" />
+    <state width="1515" height="208" key="GridCell.Tab.0.left" timestamp="1681489692099">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1681489692099" />
+    <state width="1515" height="208" key="GridCell.Tab.0.right" timestamp="1681489692100">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1681489692100" />
+  </component>
+</project>

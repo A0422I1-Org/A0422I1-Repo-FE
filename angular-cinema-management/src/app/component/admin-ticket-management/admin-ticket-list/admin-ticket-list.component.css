@@ -64,3 +64,9 @@ svg.delete{
 th,td,a{
   font-size: 14px;
 }
+.page-link{
+  height: 35px;
+}
+#page-choice{
+  height: 35px;
+}

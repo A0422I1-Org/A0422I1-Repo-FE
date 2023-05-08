@@ -1,7 +1,7 @@
 //Show version to check library is active
-console.log("phiên bản Jquery là : " + jQuery.fn.jquery);
-console.log("Phiên bản Chart.js là: " + Chart.version);
-console.log("Phiên bản xlsx là: " + XLSX.version);
+console.log("Version Jquery: " + jQuery.fn.jquery
+          + "\nVersion Chart.js: " + Chart.version
+          + "\nVersion xlsx: " + XLSX.version);
 
 
 //Export Table

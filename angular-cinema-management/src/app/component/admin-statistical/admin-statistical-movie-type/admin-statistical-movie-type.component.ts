@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryStatistic} from "../../../model/category-statistic";
 import {MovieTypeService} from "../../../service/movie-type/movie-type.service";
 import Chart from 'chart.js/auto';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-admin-statistical-movie-type',
@@ -14,13 +15,14 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
 
   xValues: string[] = [];
   yValues: number[] = [];
-  barColors: string[] = ["red", "green", "blue", "orange", "brown" , "yellow" , "silver", "pink", "purple" , "#F26c28"];
+  barColors: string[] = ["red", "green", "blue", "orange", "brown", "yellow", "silver", "pink", "purple", "#F26c28"];
 
   currentPage = 1;
   isDetailSelected: boolean = false;
   categoryChart: Chart;
 
-  constructor(private movieTypeService: MovieTypeService) {
+  constructor(private movieTypeService: MovieTypeService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -29,15 +31,31 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
     this.createChart();
   }
 
-  showDetailList(){
+  showDetailList() {
     this.isDetailSelected = true;
+
+    if (this.categoryStatisticList.length == 0){
+      this.toastr.error('Bảng dữ liệu chi tiết hiển thị thất bại!');
+    }else {
+      this.toastr.success('Bảng dữ liệu chi tiết hiển thị thành công!');
+    }
   }
-  hideDetailList(){
+
+  hideDetailList() {
     this.isDetailSelected = false;
+
+    if (this.categoryStatisticListNonGroup.length == 0){
+      this.toastr.error('Bảng dữ liệu hiển thị thất bại!');
+    }else {
+      this.toastr.success('Bảng dữ liệu hiển thị thành công!');
+    }
+
   }
+
 
 
   createChart() {
+
     if (this.categoryChart) {
       this.categoryChart.destroy();
     }
@@ -78,7 +96,6 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
         }
       }
     });
-
   }
 
   showListNonGroupBy() {
@@ -95,11 +112,22 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
       }, []);
       this.categoryStatisticListNonGroup = result;
       this.categoryStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue);
-      console.log("Mảng đã group by : ");
-      console.log(result);
 
-      // Gọi hàm createChart sau khi dữ liệu đã được lấy xong
+
+      if (this.categoryStatisticListNonGroup.length == 0){
+        this.toastr.error('Bảng dữ liệu hiển thị thất bại!');
+      }else {
+        this.toastr.success('Bảng dữ liệu hiển thị thành công!');
+      }
+
+
+      // Gọi hàm createChart sau khi dữ liệu đã được lấy xong , nếu lấy dữ liệu thất bại thì hiển thị không thành công
       this.createChart();
+      if (this.xValues.length == 0 || this.yValues.length == 0) {
+        this.toastr.error('Biểu đồ hiển thị thất bại!');
+      } else {
+        this.toastr.success('Biểu đồ hiển thị thành công!');
+      }
     }).catch((error) => {
       console.log(error);
     });
@@ -108,8 +136,7 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
   getCategoryStatisticListDetail() {
     this.movieTypeService.statisticCategoryMovie().subscribe(list => {
       this.categoryStatisticList = list;
-      console.log("Mảng loại phim chi tiết : ");
-      console.log(this.categoryStatisticList);
+      this.categoryStatisticList = list.sort((a, b) => b.totalRevenue - a.totalRevenue);
     })
   }
 

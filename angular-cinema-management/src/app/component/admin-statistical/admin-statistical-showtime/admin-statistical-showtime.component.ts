@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ShowtimeStatistic} from "../../../model/showtime-statistic";
 import {ShowtimeService} from "../../../service/showtime/showtime.service";
 import Chart, {registerables} from 'chart.js/auto';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-admin-statistical-showtime',
@@ -19,7 +20,8 @@ export class AdminStatisticalShowtimeComponent implements OnInit {
   isDetailSelected: boolean = false;
   categoryChart: Chart;
 
-  constructor(private showtimeService: ShowtimeService) {
+  constructor(private showtimeService: ShowtimeService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -31,9 +33,22 @@ export class AdminStatisticalShowtimeComponent implements OnInit {
 
   showDetailList(){
     this.isDetailSelected = true;
+
+    if (this.showtimeStatisticList.length == 0){
+      this.toastr.error('Bảng dữ liệu chi tiết hiển thị thất bại!');
+    }else {
+      this.toastr.success('Bảng dữ liệu chi tiết hiển thị thành công!');
+    }
   }
   hideDetailList(){
     this.isDetailSelected = false;
+
+
+    if (this.showtimeStatisticListNonGroup.length == 0){
+      this.toastr.error('Bảng dữ liệu hiển thị thất bại!');
+    }else {
+      this.toastr.success('Bảng dữ liệu hiển thị thành công!');
+    }
   }
 
   createChart() {
@@ -96,11 +111,22 @@ export class AdminStatisticalShowtimeComponent implements OnInit {
       }, []);
       this.showtimeStatisticListNonGroup = result;
       this.showtimeStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue);
-      console.log("Mảng đã group by : ");
-      console.log(result);
+
+
+
+      if (this.showtimeStatisticListNonGroup.length == 0){
+        this.toastr.error('Bảng dữ liệu hiển thị thất bại!');
+      }else {
+        this.toastr.success('Bảng dữ liệu hiển thị thành công!');
+      }
+
       // Gọi hàm createChart sau khi dữ liệu đã được lấy xong
       this.createChart();
-
+      if (this.xValues.length == 0 || this.yValues.length == 0) {
+        this.toastr.error('Biểu đồ hiển thị thất bại!');
+      } else {
+        this.toastr.success('Biểu đồ hiển thị thành công!');
+      }
     }).catch((error) => {
       console.log(error);
     });
@@ -110,8 +136,7 @@ export class AdminStatisticalShowtimeComponent implements OnInit {
   getShowtimeStatisticDetailList() {
     this.showtimeService.statisticShowtimeMovie().subscribe(list => {
       this.showtimeStatisticList = list;
-      console.log("Mảng suất chiếu chi tiết : ");
-      console.log(this.showtimeStatisticList);
+
     })
   }
 

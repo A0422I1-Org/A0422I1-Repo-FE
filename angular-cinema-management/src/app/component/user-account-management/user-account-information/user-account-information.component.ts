@@ -38,7 +38,7 @@ export class UserAccountInformationComponent implements OnInit {
         id: new FormControl(customer.id, [Validators.required]),
         fullName: new FormControl(customer.fullName, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
         birthday: new FormControl(customer.birthday.slice(0,10), [Validators.required, checkDateOfBirth]),
-        gender: new FormControl(customer.gender.valueOf(), [Validators.required,]),
+        gender: new FormControl(customer.gender, [Validators.required,]),
         cardId: new FormControl(customer.cardId, [Validators.required, Validators.pattern("[0-9]{9}")]),
         email: new FormControl(customer.email, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
         address: new FormControl(customer.address, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),

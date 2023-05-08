@@ -233,11 +233,11 @@
                   <legend class="col-form-label col-sm-3 pt-0" style="text-align: right">Giới Tính<span style="color: red"> *</span></legend>
                   <div class="col-sm-4" style="text-align: left">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input"  type="radio" name="gender" id="inlineRadio1" value="true" formControlName="gender">
+                      <input class="form-check-input" value type="radio" name="gender" id="inlineRadio1" [value]="true" formControlName="gender">
                       <label class="form-check-label" for="inlineRadio1">Nam</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="false" formControlName="gender">
+                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" [value]="false" formControlName="gender">
                       <label class="form-check-label" for="inlineRadio2">Nữ</label>
                     </div>
                     <br>

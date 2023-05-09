@@ -2,7 +2,6 @@
 .card a:active {
   color: #f26b38;
 }
-
 .pagination .page-link{
   background-color: aliceblue;
   color: black;
@@ -14,7 +13,10 @@
   height: 90%;
 }
 
-
+.pagination .page-link:hover {
+  background-color: #f26b38;
+  color: aliceblue;
+}
 
 .pagination .page-link.active {
   background-color: #f26b38;
@@ -29,13 +31,8 @@ section .card a:not(:hover) {
   color: rgb(0, 0, 0);
 }
 
-
 button {
   color: black;
-}
-
-.button-focus {
-  background-color: #f26b38;;
 }
 
 
@@ -45,6 +42,11 @@ button {
 
 .text-decoration-none {
   color: rgb(0, 0, 0);
+}
+
+.section-link.active{
+  background-color: #f26b38;
+  color: aliceblue;
 }
 
 
@@ -62,5 +64,3 @@ body {
   flex-direction: column;
   font-size: 17px;
 }
-
-

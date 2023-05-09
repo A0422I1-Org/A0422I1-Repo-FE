@@ -123,6 +123,11 @@ export class UserPointHistoryComponent implements OnInit {
       this.validatePage = "Số trang nhập vào không được chứ kí tự"
       return false;
     }
+    if (!Number.isInteger(page)) {
+      (document.getElementById("input-page-choice") as HTMLInputElement).value = "";
+      this.validatePage = "Số trang nhập vào không chứa số thập phân"
+      return false;
+    }
     this.validatePage = ""
     return true;
   }

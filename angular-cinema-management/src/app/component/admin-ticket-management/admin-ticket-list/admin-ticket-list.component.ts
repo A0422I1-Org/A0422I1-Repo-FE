@@ -5,6 +5,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TicketDTO} from "../dto/ticket-dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {SecurityService} from "../../../service/security/security.service";
+import {OauthService} from "../../../service/google-login/oauth.service";
+import has = Reflect.has;
 
 
 @Component({
@@ -13,6 +16,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./admin-ticket-list.component.css']
 })
 export class AdminTicketListComponent implements OnInit {
+  isLoggedIn: boolean;
+  hasLoggedIn: boolean;
   tickets:Ticket[]=[];
   ticket:TicketDTO={
     id:'',
@@ -39,13 +44,21 @@ export class AdminTicketListComponent implements OnInit {
   constructor(private ticketService:TicketService,
               private activatedRoute:ActivatedRoute,
               private router:Router,
-              private toastrService:ToastrService) {
+              private toastrService:ToastrService,
+              private securityService: SecurityService,
+              private oauthService: OauthService,) {
     this.formSearch = new FormGroup({
     name: new FormControl("",[Validators.maxLength(20)])
-  });}
+
+  });
+    this.isLoggedIn = this.securityService.isLoggedIn;
+    this.hasLoggedIn = this.oauthService.  hasLoggedIn;
+    if (this.isLoggedIn === false || this.hasLoggedIn === false) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
-
     this.getAllTicket(this.indexPagination)
   }
   getAllTicket(page){

@@ -11,6 +11,7 @@ const routes: Routes = [
   {path:'verification',component: VerificationComponent},
   {path:'reset-password',component: ResetPasswordComponent},
   {path:'verify-reset-password',component: VerifyResetPasswordComponent},
+  {path:'**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -169,44 +169,6 @@
                   </tr>
                   </tbody>
                 </table>
-                <!--                Page-->
-<!--                <div class="d-flex justify-content-center m-md-auto">-->
-<!--                  <nav-->
-<!--                    aria-label="Page navigation example justify-content-center "-->
-<!--                  >-->
-<!--                    <ul class="pagination">-->
-<!--                      <li class="page-item">-->
-<!--                        <a-->
-<!--                          class="page-link "-->
-<!--                          href="#"-->
-<!--                          aria-label="Previous"-->
-<!--                        >-->
-<!--                          <span aria-hidden="true">&laquo;</span>-->
-<!--                        </a>-->
-<!--                      </li>-->
-<!--                      <li class="page-item">-->
-<!--                        <a class="page-link " href="#">1</a>-->
-<!--                      </li>-->
-<!--                      <li class="page-item">-->
-<!--                        <a class="page-link " href="#">2</a>-->
-<!--                      </li>-->
-<!--                      <li class="page-item ">-->
-<!--                        <a class="page-link " href="#">3</a>-->
-<!--                      </li>-->
-<!--                      <li class="page-item">-->
-<!--                        <a-->
-<!--                          class="page-link "-->
-<!--                          href="#"-->
-<!--                          aria-label="Next"-->
-<!--                        >-->
-<!--                          <span aria-hidden="true">&raquo;</span>-->
-<!--                        </a>-->
-<!--                      </li>-->
-<!--                    </ul>-->
-<!--                  </nav>-->
-<!--                </div>-->
-
-
 
                 <!--page-->
                 <div *ngIf="(totalElements> 0); else isEmpty">
@@ -255,11 +217,17 @@
                         <i class="fa-solid fa-forward-fast"></i> </a>
                     </li>
                     <li class="page-item">
-                      <span class="page-link">{{indexPagination + 1}} / {{totalPages}}</span>
+                      <span class="page-link">
+                        <div class="d-flex">
+                          <span class="flex-grow-1 text-right">{{indexPagination + 1}}</span>
+                          <span class="flex-shrink-1">/</span>
+                          <span class="flex-grow-1">{{totalPages}}</span>
+                        </div>
+                      </span>
                     </li>
                     <li class="page-item">
                       <div class="input-group rounded">
-                        <input id="input-page-choice" type="number" id="page-choice" class="form-control rounded" placeholder="chọn trong {{totalPages}} trang" #element
+                        <input id="input-page-choice" type="number"  class="form-control rounded page-choice" placeholder="chọn trong {{totalPages}} trang" #element
                                aria-label="Search" aria-describedby="search-addon"/>
                         <span class="input-group-text border-0 bg-subs" id="search-addon">
      <i class="fas fa-search "

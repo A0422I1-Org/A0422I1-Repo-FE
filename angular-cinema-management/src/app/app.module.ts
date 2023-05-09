@@ -14,6 +14,12 @@ import {ToastrModule} from "ngx-toastr";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SecurityModule} from "./component/security/security.module";
 
+//import-login-google
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+} from 'angularx-social-login';
+
 
 
 @NgModule({
@@ -36,9 +42,28 @@ import {SecurityModule} from "./component/security/security.module";
         positionClass: 'toast-top-right'
       }
     )
-
+    ,
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '631867203803-gfnbuj33563dmuorhmfm6cv2prqasulq.apps.googleusercontent.com'
+            )
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

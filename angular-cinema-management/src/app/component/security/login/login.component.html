@@ -1,29 +1,5 @@
-  <ul class="navbar-nav ml-auto" *ngIf="loggedIn">
-
-  <li class="nav-item disabled">
-    <a class="nav-link" >
-      {{userLogged.name}}
-    </a>
-  </li>
-  </ul>
-  <img *ngIf="loggedIn" src="{{userLogged.photoUrl}}" class="rounded-circle mr-3" style="width: 50px">
-  <button *ngIf="loggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="signOut()">
-    <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
-
-  <ul class="navbar-nav ml-auto" *ngIf="hasLoggedIn">
-
-  <li class="nav-item disabled">
-    <a class="nav-link" >
-      {{username}}
-    </a>
-  </li>
-  </ul>
-  <button *ngIf="hasLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logOut()">
-    <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
-
-
 <div class="background">
-  <div class="container"  *ngIf="!hasLoggedIn">
+  <div class="container" *ngIf="!loggedIn">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
@@ -31,16 +7,37 @@
             <h5 class="card-title text-isLoggedIncenter" style="color: #f26b38; padding: inherit"> ĐĂNG NHẬP</h5>
             <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
               <div class="form-label-group">
-                <!--<label for="inputEmail">Tên tài khoản:</label>-->
-                <input autofocus formControlName="username" type="text" id="inputEmail" class="form-control"
+                <!--<label for="inputUsername">Tên tài khoản:</label>-->
+                <input autofocus formControlName="username" type="text" id="inputUsername" class="form-control"
                        placeholder="Tên tài khoản">
+
+                <label class="form-label" for="inputUsername">
+                  <span style="color:red;"
+                      *ngIf="(formGroup.controls.username.touched) && formGroup.controls.username.hasError('required') ">Tên đăng nhập không được để trống!</span>
+                  <span style="color:red;"
+                      *ngIf="(formGroup.controls.username.touched) && formGroup.controls.username.hasError('minlength') ">Tên đăng nhập phải có ít nhất 4 ký tự! </span>
+                  <span style="color:red;"
+                      *ngIf="(formGroup.controls.username.touched) && formGroup.controls.username.hasError('maxlength') ">Tên đăng nhập không được nhiều hơn 55 ký tự! </span>
+                <span style="color:red;"
+                      *ngIf="(formGroup.controls.username.touched) && formGroup.controls.username.hasError('pattern') ">Tên đăng nhập không thể chứa ký tự đặc biệt! </span>
+                </label>
               </div>
 
               <div class="form-label-group">
                 <!--<label for="inputPassword">Mật khẩu:</label>-->
                 <input formControlName="password" type="password" id="inputPassword" class="form-control"
-                       placeholder="Mật khẩu"
-                       required>
+                       placeholder="Mật khẩu">
+
+                <label class="form-label" for="inputPassword">
+                  <span style="color:red;"
+                        *ngIf="(formGroup.controls.password.touched) && formGroup.controls.password.hasError('required') ">Mật khẩu không được để trống!</span>
+                  <span style="color:red;"
+                        *ngIf="(formGroup.controls.password.touched) && formGroup.controls.password.hasError('minlength') ">Mật khẩu phải có ít nhất 8 ký tự! </span>
+                  <span style="color:red;"
+                        *ngIf="(formGroup.controls.password.touched) && formGroup.controls.password.hasError('maxlength') ">Mật khẩu không được nhiều hơn 55 ký tự! </span>
+                  <span style="color:red;"
+                        *ngIf="(formGroup.controls.password.touched) && formGroup.controls.password.hasError('pattern') ">Mật khẩu không được chứa ký tự đặc biệt và cần có ít nhất 1 chữ cái viết hoa, một chữ cái viết thường và 1 chữ số! </span>
+                </label>
               </div>
               <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="remember_me">

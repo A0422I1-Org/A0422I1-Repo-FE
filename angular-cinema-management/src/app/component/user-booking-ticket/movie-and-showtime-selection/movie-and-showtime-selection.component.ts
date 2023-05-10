@@ -5,7 +5,7 @@ import { Showtime } from "../../../model/showtime";
 import { ShowtimeService } from "../../../service/showtime/showtime.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
-
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-movie-and-showtime-selection",
   templateUrl: "./movie-and-showtime-selection.component.html",
@@ -24,7 +24,8 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
     private movieService: MovieService,
     private showtimeService: ShowtimeService,
     private activeRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService:ToastrService
   ) {
     this.selectedMovieId = parseInt(
       this.activeRouter.snapshot.queryParamMap.get("movieId")
@@ -112,19 +113,19 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
       if (this.selectedMovieId) {
         // check select showtime
         if (this.selectedTimeOfShowTime && this.getIdShowTimeSelect) {
-          //check sold out
+          //check sold out and room
           if (this.checkSoldOut(this.getSoldOut)) {
             this.router.navigate(["/booking/select-seat"], {
               queryParams: { showTimeId: this.getIdShowTimeSelect },
             });
           } else {
-            this.changeAlertPosition('Suất chiếu hiện tại đã hết ghế !');
+            this.toastrService.warning('Suất chiếu hiện tại đã hết ghế !');
           }
         } else {
-          this.changeAlertPosition('Vui lòng chọn suất chiếu');
+          this.toastrService.warning('Vui lòng chọn suất chiếu');
         }
       } else {
-         this.changeAlertPosition('Vui lòng chọn phim');
+        this.toastrService.warning('Vui lòng chọn phim');
       }
     } else {
       alert("Vui lòng đăng nhập");

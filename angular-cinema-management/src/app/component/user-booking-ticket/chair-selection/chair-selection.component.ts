@@ -9,6 +9,7 @@ import { Room } from "src/app/model/room";
 import Swal from "sweetalert2";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-chair-selection",
@@ -28,7 +29,8 @@ export class ChairSelectionComponent implements OnInit {
     private showtimeService: ShowtimeService,
     private activatedRoute: ActivatedRoute,
     private roomService: RoomService,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private toastrService:ToastrService
   ) {
     const interval = setInterval(() => {
       this.timeCount++;
@@ -112,14 +114,7 @@ export class ChairSelectionComponent implements OnInit {
   }
   onContinue() {
     if (this.selectedSeats == null || this.selectedSeats.length == 0) {
-      Swal.fire({
-        position: "top",
-        icon: "warning",
-        title: "Vui lòng chọn ghế cần đặt",
-        showConfirmButton: true,
-        confirmButtonText: "OK",
-        showCloseButton: true,
-      });
+      this.toastrService.warning('Vui lòng chọn ghế cần đặt');
     } else {
       this.ticketService.changeList(this.selectedSeats);
     }

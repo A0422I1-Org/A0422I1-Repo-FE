@@ -9,7 +9,7 @@
     <div class="col-lg-9">
       <div class="seat-booking-movie">
         <div class="title-choose-seat">
-          <h4 class="title-choose-seat-h4"><p>Chọn ghế</p> </h4>
+          <h4 class="title-choose-seat-h4"><p>Chọn ghế</p></h4>
         </div>
         <div class="cinema-movie">
           <div class="main-choose-seat">
@@ -82,8 +82,11 @@
                       >
                         <div
                           class="seat_icon economy_seat d-flex justify-content-center align-items-center"
-                          [ngClass]="{ active: ticket.status ,'choosing_seat': isSelected(ticket)}"
-                          (click)="onSeatClick($event,ticket)"
+                          [ngClass]="{
+                            active: ticket.status,
+                            choosing_seat: isSelected(ticket)
+                          }"
+                          (click)="onSeatClick($event, ticket)"
                         >
                           {{ ticket.chairRoom.chair.name }}
                         </div>
@@ -107,19 +110,25 @@
         <div class="document-tiker-movie">
           <section class="ticket-feature">
             <article class="row">
-              <div class="col-md-12" style="text-align: center" *ngIf="showTime">
-                <img [src]="showTime.movie.image"  alt=""/>
+              <div
+                class="col-md-12"
+                style="text-align: center"
+                *ngIf="showTime"
+              >
+                <img [src]="showTime.movie.image" alt="" />
               </div>
               <div class="col-md-12">
-                <div class="ticket-detail" >
-                  <p class="upper-text"  *ngIf="showTime">{{ showTime.movie.name }}</p>
+                <div class="ticket-detail">
+                  <p class="upper-text" *ngIf="showTime">
+                    {{ showTime.movie.name }}
+                  </p>
                 </div>
                 <div class="ticket-info">
-                  <div class="dotted-line"  *ngIf="room">
+                  <div class="dotted-line" *ngIf="room">
                     <b>Rạp: </b><span> {{ room.name }} </span>
                     <hr />
                   </div>
-                  <div class="dotted-line"  *ngIf="showTime">
+                  <div class="dotted-line" *ngIf="showTime">
                     <b>Suất chiếu: </b
                     ><span>
                       {{ showTime.startTime }} |
@@ -129,12 +138,20 @@
                     <hr />
                   </div>
                   <div class="dotted-line">
-                    <b>Ghế: &nbsp;</b> <span *ngFor="let position of selectedSeats" > {{position.chairRoom.chair.name}} </span>
+                    <b>Ghế: &nbsp;</b>
+                    <span
+                      *ngFor="let position of selectedSeats; let last = last"
+                    >
+                      {{ position.chairRoom.chair.name }}
+                      <ng-container *ngIf="!last">,</ng-container>
+                    </span>
                     <hr />
                   </div>
                   <div class="dotted-line">
                     <b>Tổng: &nbsp;</b>
-                    <span class="sum-money-ticker"> {{priceTicket|currency: 'VND'}}  </span>
+                    <span class="sum-money-ticker">
+                      {{ priceTicket | currency : "VND" }}
+                    </span>
                     <hr />
                   </div>
                 </div>
@@ -145,7 +162,11 @@
                     routerLink="/booking/select-movie-and-showtime"
                     >Quay Lại</a
                   >
-                  <a class="primary-arrow-right right btn"  (click)="onContinue()" >Tiếp tục</a>
+                  <a
+                    class="primary-arrow-right right btn"
+                    (click)="onContinue()"
+                    >Tiếp tục</a
+                  >
                 </div>
               </div>
             </article>

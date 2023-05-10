@@ -48,6 +48,11 @@ export class AdminCustomerListComponent implements OnInit {
       for (let i = 0; i < this.totalPages; i++) {
         this.pageArray.push(i);
       }
+    }, error => {
+      console.log('error')
+      console.log(error)
+    }, () => {
+      console.log('a')
     });
   }
 }

@@ -5,6 +5,7 @@ import {TicketService} from "../../../service/ticket/ticket.service";
 import {CustomerService} from "../../../service/customer/customer.service";
 import {ToastrService} from "ngx-toastr";
 import {render} from "creditcardpayments/creditCardPayments";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -15,11 +16,12 @@ export class BookingTicketDetailComponent implements OnInit {
   tickets: Ticket[] = [];
   customer: Customer;
   totalMoney = 0;
-  vndMoney = '';
+  usdMoney = '';
   ticketDefault: Ticket;
   constructor(private ticketService: TicketService,
               private customerService: CustomerService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private token: TokenStorageService) {
 
   }
 
@@ -30,21 +32,21 @@ export class BookingTicketDetailComponent implements OnInit {
         this.totalMoney = this.totalMoney + 40000;
       }
       this.ticketDefault = this.tickets[0];
-      this.vndMoney = (this.totalMoney / 23000).toFixed();
-      console.log(this.vndMoney)
+      this.usdMoney = (this.totalMoney / 23000).toFixed();
+      console.log(this.usdMoney)
       render({
         id: "#myPaypalButtons",
         currency: "VND",
-        value: this.vndMoney,
+        value: this.usdMoney,
         onApprove: (details) => {
           this.confirmTicket();
-          this.toast.success("Đặt vé thành công !!!");
         }
       });
     })
 
-    this.customerService.findById('KH-002').subscribe(next => {
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
       this.customer = next;
+      console.log(next)
     })
   }
 
@@ -53,6 +55,7 @@ export class BookingTicketDetailComponent implements OnInit {
       console.log(ticket);
       this.ticketService.confirmTicket(ticket).subscribe(next => {
         console.log("OK");
+        this.toast.success("Đặt vé thành công !!!");
       });
     }
   }

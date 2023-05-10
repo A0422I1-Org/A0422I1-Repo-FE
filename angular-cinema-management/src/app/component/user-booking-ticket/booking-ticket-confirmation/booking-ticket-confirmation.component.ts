@@ -38,14 +38,11 @@ export class BookingTicketConfirmationComponent implements OnInit {
       console.log(this.ticketDefault)
     })
 
-    console.log("Token: "+this.token.getUser().token);
 
-    this.customerService.findById('KH-002').subscribe(next => {
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
       this.customer = next;
+      console.log(next)
     })
-
-    console.log(this.security.httpOptions)
-    // this.token.signOut();
   }
 
   showDetailAndPaymentPage() {

@@ -1,0 +1,72 @@
+  <ul class="navbar-nav ml-auto" *ngIf="hasLoggedIn">
+
+  <li class="nav-item disabled">
+    <a class="nav-link" >
+      {{userLogged.name}}
+    </a>
+  </li>
+  </ul>
+  <img *ngIf="hasLoggedIn" src="{{userLogged.photoUrl}}" class="rounded-circle mr-3" style="width: 50px">
+  <button *ngIf="hasLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="signOut()">
+    <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
+
+  <ul class="navbar-nav ml-auto" *ngIf="loggedIn">
+
+  <li class="nav-item disabled">
+    <a class="nav-link" >
+      {{username}}
+    </a>
+  </li>
+  </ul>
+  <button *ngIf="loggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logOut()">
+    <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
+
+
+<div class="background">
+  <div class="container"  *ngIf="!loggedIn">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-isLoggedIncenter" style="color: #f26b38; padding: inherit"> ĐĂNG NHẬP</h5>
+            <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+              <div class="form-label-group">
+                <!--<label for="inputEmail">Tên tài khoản:</label>-->
+                <input autofocus formControlName="username" type="text" id="inputEmail" class="form-control"
+                       placeholder="Tên tài khoản">
+              </div>
+
+              <div class="form-label-group">
+                <!--<label for="inputPassword">Mật khẩu:</label>-->
+                <input formControlName="password" type="password" id="inputPassword" class="form-control"
+                       placeholder="Mật khẩu"
+                       required>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="remember_me">
+                <label class="custom-control-label" for="customCheck1">&ensp;Ghi nhớ đăng nhập lần sau</label>
+              </div>
+
+              <button class="btn btn-lg text-uppercase btn-success" type="submit">Đăng nhập</button>
+
+              <button class="btn btn-outline-danger text-uppercase" type="button" (click)="signInWithGoogle()">
+                Đăng nhập với google
+                <img class="social-btn-icon" alt="Login with Google" src="https://hrcdn.net/fcore/assets/google-colored-20b8216731.svg">
+              </button>
+
+              <button class="btn btn-lg btn-secondary text-uppercase" style="margin-top: 20px" routerLink="" data-dismiss="modal" type="button">
+                Huỷ
+              </button>
+
+              <div style="margin-top: 20px">
+                <p><a href="" routerLink="/reset-password" data-dismiss="modal">Quên mật khẩu ?</a></p>
+                <span>Bạn chưa có tài khoản? Đăng ký <a  routerLink="/register">tại đây</a></span>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

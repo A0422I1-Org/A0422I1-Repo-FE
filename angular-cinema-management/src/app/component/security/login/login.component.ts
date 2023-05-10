@@ -41,9 +41,13 @@ export class LoginComponent implements OnInit {
               private oauthService: OauthService,) { }
 
   ngOnInit(): void {
-
+    /** Pham Trung Hieu
+     * Check tinh trang dang nhap, neu da dang nhap thi ve trang truoc do, chua se ve lai login
+     */
     if (this.tokenStorageService.isLogged()) {
       this.router.navigate(['/'])
+    } if (!this.tokenStorageService.isLogged()) {
+      this.router.navigate(['/login'])
     }
 
     this.formGroup = this.formBuild.group({

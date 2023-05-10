@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {MovieDetailDto} from "../../dto/movie-detail-dto";
+import {MovieDetailDTO} from "../../dto/movie-detail-dto";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Movie} from "../../model/movie";
 
@@ -15,8 +15,8 @@ export class MovieService {
   constructor(private  httpClient: HttpClient) {
   }
 
-  getMovieDetailByMovieId(idMovie: number): Observable<MovieDetailDto> {
-    return this.httpClient.get<MovieDetailDto>(this.API_URL_MOVIE + "/detail/" + idMovie);
+  getMovieDetailByMovieId(idMovie: number): Observable<MovieDetailDTO> {
+    return this.httpClient.get<MovieDetailDTO>(this.API_URL_MOVIE + "/detail/" + idMovie);
   }
 
   movies: Movie[] = [];

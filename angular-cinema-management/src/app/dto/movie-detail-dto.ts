@@ -1,20 +1,13 @@
-import {MovieType} from "../model/movie-type";
-import {Actor} from "../model/actor";
-import {MovieStudio} from "../model/movie-studio";
-import {Director} from "../model/director";
-
-export interface MovieDetailDto {
+export interface MovieDetailDTO {
   id: number;
   name: string;
   image: string;
   startDay: string;
   timeAmount: number;
   description: string;
-  status: boolean;
   trailer: string;
-  rating: number;
+  avgRating: number;
   language: string;
-  isDelete: boolean;
 
   movieTypes: String;
   actors: String;

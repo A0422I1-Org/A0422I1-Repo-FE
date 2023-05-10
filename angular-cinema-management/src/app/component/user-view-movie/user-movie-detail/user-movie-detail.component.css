@@ -123,3 +123,9 @@ th {
   margin: 0 auto;
   display: block;
 }
+
+@media (max-width: 500px){
+  div.row {
+    width: 500px;
+  }
+}

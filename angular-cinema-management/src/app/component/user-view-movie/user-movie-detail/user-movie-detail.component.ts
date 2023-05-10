@@ -20,7 +20,7 @@ export class UserMovieDetailComponent implements OnInit {
   trustedUrl: SafeResourceUrl;
   showBookingButton = false;
 
-  username = 'customer' ;
+  username = 'customer21' ;
 
   rfRating: FormGroup;
   messageForRating = '';
@@ -69,10 +69,10 @@ export class UserMovieDetailComponent implements OnInit {
 
   booking() {
     if (this.username == null || this.username == '') {
+      this.router.navigateByUrl('/security/login');
+    } else {
       this.router.navigate(['/booking/select-movie-and-showtime'],
         {queryParams: {movieId: this.movie.id}});
-    } else {
-      this.router.navigateByUrl('/security/login');
     }
   }
 
@@ -89,11 +89,11 @@ export class UserMovieDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.username == null || this.username == '') {
-      this.messageForRating = 'Bạn cần đăng nhập để thực hiện đánh giá phim \"' + this.movie.name + '\"';
-    }
     if (this.rfRating.value.rating == null || this.rfRating.value.rating == ''){
       this.messageForRating = "Bạn cần chọn sao để đánh giá";
+    }
+    else if (this.username == null || this.username == '') {
+      this.messageForRating = 'Bạn cần đăng nhập để thực hiện đánh giá phim \"' + this.movie.name + '\"';
     }
     else {
       this.ratingMovieService.save(this.rfRating.value).subscribe(

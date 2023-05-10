@@ -9,6 +9,9 @@ import {HeaderComponent} from './component/header/header.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ReactiveFormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
+import {UserAccountInformationComponent} from "./component/user-account-management/user-account-information/user-account-information.component";
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
+    UserAccountInformationComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+      ToastrModule.forRoot(),
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

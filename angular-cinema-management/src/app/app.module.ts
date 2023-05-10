@@ -12,6 +12,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AdminMovieManagementModule} from "./component/admin-movie-management/admin-movie-management.module";
 import {ToastrModule} from "ngx-toastr";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AdminEmployeeManagementModule} from "./component/admin-employee-management/admin-employee-management.module";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -33,6 +37,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ToastrModule.forRoot(({
       positionClass: 'toast-top-right',
     })),
+    AdminEmployeeManagementModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

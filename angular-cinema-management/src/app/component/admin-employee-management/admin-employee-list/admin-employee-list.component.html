@@ -1,1 +1,182 @@
-<p>admin-employee-list works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh sách nhân viên</title>
+</head>
+<body class="body">
+
+<div class="container py-2">
+  <div class="row align-items-center">
+    <div class="col-3">
+      <img src="logo_movie-removebg-preview.png" alt="" class="img-fluid"
+           style="width: auto ">
+    </div>
+    <div class="col-9">
+      <div class="dropdown float-end px-4">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="IMG_0378.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong style="color: #F26b38">TayPS</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
+          <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card mb-4">
+        <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="d-block justify-content-center">
+            <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link link-dark" aria-current="page">
+                  <img src="ban-ve.jpg" height="20" width="20"/>
+                  Bán vé
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="quan-ly-ban-ve.png" height="20" width="20"/>
+                  Quản lý đặt vé
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark active">
+                  <img src="quan-ly-nhan-vien.png" height="20" width="20"/>
+                  Quản lý nhân viên
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="quan-ly-thanh-vien.jpg" height="20" width="20"/>
+                  Quản lý thành viên
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="quan-ly-phim.png" height="20" width="20"/>
+                  Quản lý phim
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="quan-ly-khuyen-mai.png" height="20" width="20"/>
+                  Quản lý khuyến mãi
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="quan-ly-rap-chieu.png" height="20" width="20"/>
+                  Quản lý phòng chiếu
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="thong-ke.png" height="20" width="20"/>
+                  Thống kê
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--       Main        -->
+    <!--       Main        -->
+    <!--    <div class="col-lg-9">-->
+    <!--      <div class="row">-->
+    <!--        <div class="card">-->
+    <!--          <div class="row">-->
+    <!--            <div class="bg-light card card-header p-3 text-uppercase display fw-bold">-->
+    <!--              <div class="row align-items-center">-->
+    <!--                <div class="col-10">Danh sách thông tin nhân viên</div>-->
+    <!--                <div class="col-2">-->
+    <!--                  <button class="bg-sub btn">-->
+    <!--                    <i class="bi bi-person-plus-fill"></i>-->
+    <!--                  </button>-->
+    <!--                </div>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--          <div class="row">-->
+    <!--            <div class="mb-3 pd-lx-0">-->
+    <!--              <form [formGroup]="formSearch" (ngSubmit)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)" role="search" class="d-flex" >-->
+    <!--                <div class="col-5">-->
+    <!--                  <div class="input-group mb-3">-->
+    <!--                    <span class="input-group-text" id="inputGroup-sizing-default">Tên nhân viên</span>-->
+    <!--                    <input  class="form-control bg-light" type="search" placeholder="Nhập tên" aria-label="Search" name="name" formControlName="name">-->
+    <!--                  </div>-->
+    <!--                </div>-->
+    <!--                <div class="col-4">-->
+    <!--                  <div class="input-group mb-3">-->
+    <!--                    <span class="input-group-text">Vị trí</span>-->
+    <!--                    <select class="form-select" name="positionId" formControlName="positionId">-->
+    <!--                      <option value="" [ngValue]="-1" selected>Tất cả</option>-->
+    <!--                      <option *ngFor="let i of positions" [ngValue]="i.id">-->
+    <!--                        {{i.name}}-->
+    <!--                      </option>-->
+    <!--                    </select>-->
+    <!--                  </div>-->
+    <!--                </div>-->
+    <!--                <div class="col-3">-->
+    <!--                  <button type=submit class="btn bg-sub" >-->
+    <!--                    <i class="bi bi-search"></i>-->
+    <!--                  </button>-->
+    <!--                  <button (click)="refreshPage()" class="btn bg-sub mg-lx-2" >-->
+    <!--                    <i class="bi bi-arrow-clockwise"></i>-->
+    <!--                  </button>-->
+    <!--                </div>-->
+    <!--              </form>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <div class="row">
+      <div class="card-body">
+        <div class="table-responsive table-bordered rounded shadow">
+          <table class="table table-striped table-hover text-l">
+            <thead style="background-color: #F26B38; color: #fff;">
+            <tr>
+              <!--                    <th scope="col">Mã Nhân viên</th>-->
+              <th scope="col">Tên Nhân viên</th>
+              <th scope="col" class="text-center">Sửa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let employee of employees">
+              <td>{{employee.id}}</td>
+              <td>{{employee.fullName}}</td>
+              <td class="px-4">
+                <button type="button" class="btn">
+                  <!--                        <i class="bi bi-pencil-square bg-icon">-->
+                  <a href="employee-management/update/{{employee.id}}"> update</a>
+                  <!--                        </i>-->
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+</div>
+
+
+</body>
+</html>
+<!--<router-outlet></router-outlet>-->
+

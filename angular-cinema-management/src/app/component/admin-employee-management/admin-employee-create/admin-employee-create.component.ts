@@ -97,28 +97,10 @@ export class AdminEmployeeCreateComponent implements OnInit {
     console.log("bắt đầu")
     if (this.uploadedAvatar !== null) {
       const avatarName = this.getCurrentDateTime() + this.uploadedAvatar.name;
-      console.log("avatarname",avatarName)
       const fileRef = this.fireStorage.ref(avatarName);
-      console.log("file",fileRef)
-
-      // const task = this.fireStorage.upload(avatarName, fileRef);
-      //
-      // task.snapshotChanges().pipe(
-      //   finalize(() => {
-      //     fileRef.getDownloadURL().subscribe(url => {
-      //       this.downloadURL = url;
-      //       console.log(this.downloadURL);
-      //     });
-      //   })
-      // ).subscribe();
-
-
-
       this.fireStorage.upload(avatarName, this.uploadedAvatar).snapshotChanges().pipe(
         finalize(() => {
-          console.log("tới đây không")
           fileRef.getDownloadURL().subscribe(url => {
-            console.log("ở đây")
             this.employeeFormCreate.controls.image.setValue(url);
             console.log("url", url)
             this.employeeService.save(this.employeeFormCreate.value).subscribe(

@@ -236,8 +236,8 @@
                               <input formControlName="gender" class="form-check-input" type="radio" value="false">Nữ
                               <span style="color: red; font-size: 15px"
                                     *ngIf="employeeFormCreate.get('gender').hasError('required') && (employeeFormCreate.get('gender').dirty || employeeFormCreate.get('gender').touched)">
-            Giới tính không được để trống
-        </span>
+                                  Giới tính không được để trống
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -303,14 +303,13 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
+                              <button  style="width: 100px;float: right" type="submit" class="btn addedit" data-bs-dismiss="modal">Thêm</button>
+                            </div>
+                            <div class="col-md-6">
 <!--                              [disabled]="employeeFormCreate.invalid"-->
-                              <button  style="width: 100px" type="submit" class="btn addedit" data-bs-dismiss="modal">Thêm</button>
                               <button style="width: 100px; margin-left: 10px" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalThoat" >Quay lại</button>
                             </div>
-                            <div class="col-md-4"></div>
-
                           </div>
                         </div>
                       </div>

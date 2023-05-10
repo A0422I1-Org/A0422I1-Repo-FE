@@ -10,6 +10,7 @@ import {EmployeeEditDTO} from "../../../model/employeeEditDTO";
 import {ToastrService} from "ngx-toastr";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-admin-employee-edit',
@@ -22,7 +23,7 @@ export class AdminEmployeeEditComponent implements OnInit {
   id: string;
   isDelete: boolean;
   uploadedAvatar = null;
-  code: number;
+  oldAvatarLink = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
 
   formGroup: FormGroup = new FormGroup({
     image: new FormControl(),
@@ -59,7 +60,6 @@ export class AdminEmployeeEditComponent implements OnInit {
     this.positionService.getAllPosition().subscribe(
       value => {
         this.position = value;
-        // alert(value)
         console.log("a"+this.position)
       },error => {
         alert("lỗi");
@@ -70,10 +70,9 @@ export class AdminEmployeeEditComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getEmployeeById(this.id).subscribe(next => {
       this.employee = next;
-      console.log("truoc sua"+next);
-      // this.isDelete = next.isDelete;
-      // this.today = new Date();
-      // console.log(this.today)
+      console.log("truoc sua",next);
+      this.oldAvatarLink=next.image;
+      console.log("image",this.oldAvatarLink)
       this.formGroup = new FormGroup({
         id: new FormControl(next.id),
         image: new FormControl(next.image,[Validators.required]),
@@ -92,27 +91,50 @@ export class AdminEmployeeEditComponent implements OnInit {
     })
   };
 
-
+  resetFormEmployee() {
+    this.formGroup.reset();
+    this.oldAvatarLink;
+  }
 
   submit() {
-    this.employee = this.formGroup.value;
-    console.log("11111",this.employee);
-    console.log("1111id",this.employee.id);
-    console.log("aaaaaaaa");
-    // if (this.employeeFormCreate.valid){
-    this.employeeService.updateEmployee(this.employee).subscribe(
-      value => {
-        console.log(value);
-        console.log("update thành công")
-        // this.toastr.success("Đăng ký tài khoản thành công!", "Thông báo");
-      },
-      error => {
-        console.log("lỗi")
-      }
-    )
-    if (this.formGroup.valid) {
+    console.log("bắt đầu")
+    if (this.uploadedAvatar !== null) {
+      const avatarName = this.getCurrentDateTime() + this.uploadedAvatar.name;
+      const fileRef = this.firebase.ref(avatarName);
+      this.firebase.upload(avatarName, this.uploadedAvatar).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.formGroup.controls.image.setValue(url);
+            console.log("url", url)
+            this.employeeService.updateEmployee(this.formGroup.value).subscribe(
+              (data: EmployeeDTO) => {
+                this.resetFormEmployee();
+                this.toastr.success('Update employee successfully!', 'Success: ');
+              },
+              (error: HttpErrorResponse) => {
+                this.toastr.error('Update employee unsuccessfully!', 'Error: ');
+              }
+            );
+          });
+        })
+      ).subscribe();
+    } else {
+      console.log('OK');
+      // tslint:disable-next-line:max-line-length
+      this.formGroup.controls.image.setValue('https://firebasestorage.googleapis.com/v0/b/employee-a44f2.appspot.com/o/User_icon_2.svg.webp?alt=media&token=abf6785f-7548-4697-8775-a949a3081158');
+      this.employeeService.updateEmployee(this.formGroup.value).subscribe(
+        (data: EmployeeDTO) => {
+          this.resetFormEmployee();
+          this.toastr.success('Add employee successfully!', 'Success: ');
+        },
+        (error: HttpErrorResponse) => {
+          this.toastr.error('Add employee unsuccessfully!', 'Error: ');
+        }
+      );
+    }
 
-      // this.employee.isDelete = this.isDelete;
+
+    if (this.formGroup.valid) {
       this.employee.image = this.formGroup.controls.image.value;
       this.employee.fullName = this.formGroup.controls.fullName.value;
       this.employee.position = this.formGroup.controls.position.value;
@@ -125,95 +147,24 @@ export class AdminEmployeeEditComponent implements OnInit {
       this.employee.id = this.id;
       this.employee.username = this.formGroup.controls.userName.value;
       this.employee.password = this.formGroup.controls.password.value;
+      console.log("pass",this.employee.password)
 
-      console.log("sau sua",this.employee.position);
-      // this.notValid = false;
-      this.employee = this.formGroup.value;
-      console.log("sua", this.employee)
-      this.employeeService.updateEmployee(this.employee).subscribe(
-        value => {
-          console.log(value);
-          console.log("thêm thành công")
-          // this.toastr.success("Đăng ký tài khoản thành công!", "Thông báo");
-        },
-        error => {
-          console.log("lỗi")
-        }
-      )
-    }
-  }
-
-
-  // checkBirthdayBteToday(form: any) {
-  //   if (new Date(form.controls.birthday.value).getTime() > new Date().getTime()) {
-  //     return {birthdayBteToday: true};
-  //   }
-  // }
-  //
-  // checkFullName(form: any) {
-  //   let regex: string = "^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,}$";
-  //   let str: string = form.controls.fullName.value;
-  //
-  //   str = str.toLowerCase();
-  //   str = str.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, "a");
-  //   str = str.replace(/[èéẹẻẽêềếệểễ]/g, "e");
-  //   str = str.replace(/[ìíịỉĩ]/g, "i");
-  //   str = str.replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, "o");
-  //   str = str.replace(/[ùúụủũưừứựửữ]/g, "u");
-  //   str = str.replace(/[ỳýỵỷỹ]/g, "y");
-  //   str = str.replace(/đ/g, "d");
-  //   str = str.trim();
-  //
-  //   console.log(str);
-  //   if (!str.match(regex)) {
-  //     return {fullNamePattern: true};
-  //   }
-  // }
-  oldAvatarLink = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
-  type: string;
-  getAvatar(event: any) {
-    this.uploadedAvatar = event.target.files[0];
-    this.type = event.target.files[0].type;
-    if (this.type !== 'image/jpeg' && this.type !== 'image/png') {
-      this.toastr.error('The requested file format is incorrect!', 'Error: ');
-    } else {
-      if (this.uploadedAvatar) {
-        const reader = new FileReader();
-        reader.readAsDataURL(this.uploadedAvatar);
-        reader.onload = (e: any) => {
-          this.oldAvatarLink = e.target.result;
-        };
-      }
-      if (this.uploadedAvatar !== null) {
-        // Upload img & download url
-        const avatarName = this.getCurrentDateTime() + this.uploadedAvatar.name;
-        const fileRef = this.firebase.ref(avatarName);
-        this.firebase.upload(avatarName, this.uploadedAvatar).snapshotChanges().pipe(
-          finalize(() => {
-            fileRef.getDownloadURL().subscribe(url => {
-              // delete old img from firebase
-              if (this.employee.image !== null) {
-                this.firebase.storage.refFromURL(this.employee.image).delete();
-              }
-
-              // Update employee
-              // this.employeeService.updateEmployee(url, code).subscribe(
-              //   () => {
-              //     this.toastr.success('Upload avatar successfully!', 'Success: ');
-              //   },
-              //   (error) => {
-              //     this.toastr.error('Upload avatar unsuccessfully!', 'Error: ');
-              //     this.uploadedAvatar = null;
-              //   },
-              // );
-            });
-          })
-        ).subscribe();
-      }
     }
   }
 
   private getCurrentDateTime() {
     return new Date().getTime();
+  }
+
+  getAvatar(event: any) {
+    this.uploadedAvatar = event.target.files[0];
+    if (this.uploadedAvatar) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.uploadedAvatar);
+      reader.onload = (e: any) => {
+        this.oldAvatarLink = e.target.result;
+      };
+    }
+    console.log("file0",this.uploadedAvatar)
   }
 }

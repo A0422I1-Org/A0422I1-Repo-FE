@@ -33,6 +33,7 @@ import {AdminStatisticalRoutingModule} from "./component/admin-statistical/admin
     FormsModule,
     ReactiveFormsModule,
     AdminMovieManagementModule,
+    AdminStatisticalModule,
     AdminStatisticalRoutingModule,
     ToastrModule.forRoot(({
       positionClass: 'toast-top-right',

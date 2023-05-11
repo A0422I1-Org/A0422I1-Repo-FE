@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Params, Router} from "@angular/router";
 import {MovieService} from "../../../service/movie/movie.service";
 import {MovieListDTO} from "../dto/MovieListDTO";
 import {Observable, Subscription} from "rxjs";
+import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-user-moive-list',
-  templateUrl: './user-moive-list.component.html',
-  styleUrls: ['./user-moive-list.component.css']
+  selector: 'app-user-movie-list',
+  templateUrl: './user-movie-list.component.html',
+  styleUrls: ['./user-movie-list.component.css']
 })
-export class UserMoiveListComponent implements OnInit {
+export class UserMovieListComponent implements OnInit {
 
   movieList: MovieListDTO[];
 
@@ -18,6 +19,7 @@ export class UserMoiveListComponent implements OnInit {
 
   trustedUrl: SafeResourceUrl;
 
+  condition: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -54,5 +56,15 @@ export class UserMoiveListComponent implements OnInit {
     })
   }
 
+
+  movieDetail(id: number) {
+    this.router.navigateByUrl('/movie/detail/' + id);
+
+  }
+
+  booking(movieId: number) {
+    this.router.navigate(['/booking/select-movie-and-showtime'],
+      {queryParams: {movieId: movieId}});
+  }
 
 }

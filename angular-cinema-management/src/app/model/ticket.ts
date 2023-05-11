@@ -5,7 +5,7 @@ import {ChairRoom} from "./chair-room";
 export interface Ticket {
   id: string;
   customer: Customer;
-  showtime: Showtime;
+  showTime: Showtime;
   chairRoom: ChairRoom;
   price: number;
   status: boolean;

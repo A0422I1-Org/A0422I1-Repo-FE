@@ -59,7 +59,7 @@
     </div>
     <div class="col-4"></div>
     <div class="col-4 d-flex">
-      <input #nameMovie type="search" class="form-control bg-light my-1" placeholder="Tìm kiếm tên phim...">
+      <input #nameMovie type="search" class="form-control bg-light my-1" placeholder="Tìm kiếm tên phim..." (keydown.enter)="findByName(nameMovie.value)">
       <button class="btn my-1 mx-1" style="background-color: #F26b38; color: white" (click)="findByName(nameMovie.value)">
         <i class="bi bi-search"></i>
       </button>
@@ -68,7 +68,7 @@
   <div class="row g-3 me-2 my-4">
     <div class="col-sm-12 col-md-6 col-lg-3 card" *ngFor="let movie of movieList">
       <div class="hovereffect">
-          <img src="{{movie.image}}" class="card-img-top">
+          <img src="{{movie.image}}" class="card-img-top w-100" style="height: 90%">
           <div class="card-body">
             <h5 class="card-title text-uppercase">{{movie.name}}</h5>
             <div class="overlay">
@@ -79,9 +79,9 @@
               <h5>Thời lượng: {{movie.timeAmount}} phút</h5>
               <h5>Khởi chiếu: {{movie.startDay| date:"dd/MM/y"}}</h5>
               <br>
-              <a class="info" href="#">Chi tiết</a>
+              <a class="info" (click)="movieDetail(movie.id)" >Chi tiết</a>
               <br>
-              <a class="info" href="#">Đặt vé</a>
+              <a class="info" (click)="booking(movie.id)">Đặt vé</a>
             </div>
           </div>
         </div>

@@ -1,21 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { UserViewMovieRoutingModule } from './user-view-movie-routing.module';
-import {UserMoiveListComponent} from "./user-moive-list/user-moive-list.component";
-import {UserMoiveDetailComponent} from "./user-moive-detail/user-moive-detail.component";
-import {AppModule} from "../../app.module";
-
+import {UserViewMovieRoutingModule} from './user-view-movie-routing.module';
+import {UserMovieListComponent} from "./user-movie-list/user-movie-list.component";
+import {UserMovieDetailComponent} from "./user-movie-detail/user-movie-detail.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HeaderModule} from "../header/header.module";
+import {FooterModule} from "../footer/footer.module";
 
 @NgModule({
   declarations: [
-    UserMoiveListComponent,
-    UserMoiveDetailComponent,
+    UserMovieListComponent,
+    UserMovieDetailComponent,
   ],
-    imports: [
-        CommonModule,
-        UserViewMovieRoutingModule,
-        AppModule
-    ]
+  exports: [
+    UserMovieDetailComponent
+  ],
+  imports: [
+    CommonModule,
+    UserViewMovieRoutingModule,
+    ReactiveFormsModule,
+    HeaderModule,
+    FooterModule
+  ]
 })
-export class UserViewMovieModule { }
+export class UserViewMovieModule {
+}

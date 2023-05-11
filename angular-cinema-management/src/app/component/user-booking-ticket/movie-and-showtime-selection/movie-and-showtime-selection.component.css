@@ -1,0 +1,150 @@
+
+a.list-group-item.movie {
+  background: white;
+  color: black;
+  border: none;
+  text-align: left;
+  margin-right: 0;
+  padding:0;
+}
+
+li.ng-scope{
+  height: 44px;
+}
+.list-group-item.movie{
+  height: 44px;
+}
+a.list-group-item.movie:hover{
+  background: #F1F1F1;
+}
+h4.panel-title{
+  text-align: center;
+  font-size: 16px;
+  margin:0;
+}
+h1, h2, h3, h4, h5, p {
+  line-height: 1.5;
+}
+.panel-heading {
+  background-color: #F26B38;
+  color: white;
+}
+.list-group-item  img {
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+  height: 35px;
+}
+ul.list-group{
+  list-style-type: none;
+  height: 190px;
+  overflow-y: scroll;
+  border: 2px solid #F5F5F5;
+  padding:0;
+}
+.list-group::-webkit-scrollbar {
+  background-color: #F5F5F5;
+  width: 2px;
+}
+.list-group::-webkit-scrollbar-thumb {
+  background-color: #F26B38;
+}
+.title-movie > p{
+  text-transform: uppercase;
+  margin:0;
+  font-size: 14px;
+}
+.list-group>.ng-scope{
+  border: 1px solid #F5F5F5;
+}
+.row{
+  margin-top: 40px;
+}
+.time-date-movie{
+  border: 1px solid  #F26B38;
+  border-radius: 7px;
+}
+.time-date-movie p{
+  margin: 0;
+  text-align: center;
+}
+.time-date-movie p.time-film{
+  font-size: 16px;
+}
+.time-date-movie p.day-film{
+  font-weight: bold;
+  font-size: 16px;
+}
+.list-group-time-movie .row{
+  margin: 0;
+}
+div.col-3.date-movie-start{
+  width: 100px;
+}
+button.show-time-list{
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  border: 2px solid #F5F5F5;
+  margin: 5px;
+  border-radius: 7px;
+  background-color: white;
+
+}
+/*button.show-time-list:active{*/
+/*  background-color: #F26B38;*/
+/*  color: white;*/
+/*  border: 2px solid  #F5F5F5;*/
+
+/*}*/
+button.show-time-list.selected {
+    background-color: #F26B38;
+    color: white;
+    border: 2px solid  #F5F5F5;
+}
+div.row.show-time-date-movie-start{
+  margin-top:1%;
+}
+button.submit-ticker-moive{
+  background-color:  #F26B38;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+button.submit-ticker-moive:hover{
+  color: white;
+  background-color: #877D7A;
+}
+.submit-ticker {
+  text-align: center;
+}
+.title-movie > p.vn{
+  color: #a0a3a7;
+}
+.list-movie-start .show-time-list{
+  font-size: 14px;
+}
+.time-date-movie .time-film{
+  font-size: 14px;
+}
+hr.hr-show-time-date-movie-start{
+  margin:1% 0;
+}
+a.list-group-item:hover{
+  cursor:pointer;
+}
+.notification-showtime-movie{
+  font-size: 16px;
+  text-align: center;
+  margin:25px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #b0acac;
+}
+a.list-group-item.movie.active{
+  color:  #F26B38;
+  background: #F1F1F1;
+}

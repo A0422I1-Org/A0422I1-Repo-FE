@@ -1,0 +1,89 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+/* css project */
+.background {
+  background: url("src/film-background.jpg");
+  /*opacity: 0.5;*/
+}
+.card-title{
+  font-weight: bolder !important;
+}
+.card-signin {
+  border: 0;
+  box-shadow: 0 2rem 3rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-signin .card-title {
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 1rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  margin-top: 10px;
+  font-size: 80%;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: 50px;
+}
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+
+.error-place{
+  height: 15px;
+}
+
+@media screen and (min-width: 320px) {
+  .map{
+    width: 300px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .map{
+    width: 600px;
+  }
+}
+
+.social-btn-icon{
+  height: 18px;
+  margin-left: 17px;
+  margin-bottom: -3px;
+}
+

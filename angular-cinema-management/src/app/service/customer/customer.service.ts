@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
 import {Customer} from "../../model/customer";
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {TokenStorageService} from "../token/token-storage.service";
+
+const URL = 'http://localhost:8080/api/admin/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
+  httpOptions: any;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) {
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ` + this.tokenStorage.getToken(),
+        'Access-Control-Allow-Origin': 'http://localhost:4200',
+        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
+      })
+    };
+    // console.log(this.httpOptions)
   }
 
   getCustomer(search: string, page: number): Observable<any> {
-    return this.httpClient.get<any>("http://localhost:8080/customer-management?search=" + search + "&page=" + page);
+    return this.httpClient.get<any>(`${URL}customer-management?search=${search}&page=${page}`, this.httpOptions);
+  }
+  getCustomerById(id: string): Observable<any> {
+    return this.httpClient.get<Customer>(URL + "update/" + id);
   }
 
-  getCustomerById(id: string): Observable<Customer> {
-    return this.httpClient.get<Customer>("http://localhost:8080/customer-management/update/" + id);
-  }
-
-  updateCustomer(customerDTO: Customer): Observable<Customer> {
-    return this.httpClient.put<Customer>("http://localhost:8080/customer-management/update", customerDTO);
+  updateCustomer(customerDTO: Customer): Observable<any> {
+    return this.httpClient.put<Customer>(URL + "update", customerDTO);
   }
 }

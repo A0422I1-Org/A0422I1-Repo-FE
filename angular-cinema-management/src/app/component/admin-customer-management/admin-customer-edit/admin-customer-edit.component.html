@@ -110,11 +110,10 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-11">
               <form [formGroup]="formGroup" (ngSubmit)="submit()">
-                <p class="validate text-center" style="font-weight: bold; font-size: 17px" *ngIf="notValid">Các trường chưa hợp lệ. Vui lòng nhập lại</p>
+                <p class="validate text-center" style="font-weight: bold; font-size: 17px" *ngIf="notValid">Các trường
+                  chưa hợp lệ. Vui lòng nhập lại</p>
 
                 <!--                Username input-->
                 <div class="row">
@@ -140,12 +139,12 @@
                            class="form-control" type="text" placeholder="Họ và tên">
                     <span *ngIf="formGroup.controls.fullName.hasError('required')
                     && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được để trống.&nbsp;</span>
-                    <span *ngIf="formGroup.hasError('fullNamePattern')
+                    <span *ngIf="formGroup.hasError('fullNamePattern') && !formGroup.controls.fullName.hasError('required')
                     && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được chứa số và ký tự đặc biệt.&nbsp;</span>
                     <span *ngIf="formGroup.controls.fullName.hasError('minlength')
                     && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá ngắn. Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
                     <span *ngIf="formGroup.controls.fullName.hasError('maxlength')
-                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá dài. Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá dài.   Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
                   </div>
                 </div>
 
@@ -156,10 +155,9 @@
                   </div>
                   <div class="col-md-9 inp">
                     <input id="password" formControlName="password"
-                           aria-describedby="inputGroupPrepend2" required
-                           class="form-control" type="password" placeholder="Mật khẩu">
-                    <span *ngIf="formGroup.controls.password.hasError('required')
-                    && formGroup.controls.password.touched" class="validate">Mật khẩu không được để trống</span>
+                           aria-describedby="inputGroupPrepend2"
+                           class="form-control" type="password"
+                           placeholder="Để bảo mật, mật khẩu không hiển thị. Để trống nếu bạn không muốn đổi mật khẩu">
                     <span *ngIf="formGroup.controls.password.hasError('pattern')
                     && formGroup.controls.password.touched" class="validate">Mật khẩu phải chứa 8-50 ký tự,
                     phải bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt</span>
@@ -181,7 +179,8 @@
                     <span *ngIf="formGroup.controls.birthday.hasError('pattern')
                     && formGroup.controls.birthday.touched" class="validate">Năm sinh phải lớn hơn 1900</span>
                     <span *ngIf="formGroup.hasError('birthdayBteToday')
-                    && formGroup.controls.birthday.touched" class="validate">Ngày sinh không được lớn hơn ngày hiện tại</span>
+                    && formGroup.controls.birthday.touched"
+                          class="validate">Ngày sinh không được lớn hơn ngày hiện tại</span>
                   </div>
                 </div>
 
@@ -191,12 +190,10 @@
                     <span class="tit">&nbsp;*</span><span><label>Giới tính</label></span>
                   </div>
                   <div class="col-md-9 inp">
-                    <div class="col-md-9 inp">
-                      <input id="male" class="form-check-input" type="radio" name="gender"
-                            formControlName="gender" [value]="true"><label for="male">&nbsp;&nbsp;Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                      <input id="female" class="form-check-input" type="radio" name="gender" formControlName="gender"
-                             [value]="false" ><label for="female">&nbsp;&nbsp;Nữ</label>
-                    </div>
+                    <input id="male" class="form-check-input" type="radio" name="gender"
+                           formControlName="gender" [value]="true"><label for="male">&nbsp;&nbsp;Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input id="female" class="form-check-input" type="radio" name="gender" formControlName="gender"
+                           [value]="false"><label for="female">&nbsp;&nbsp;Nữ</label>
                     <span *ngIf="formGroup.controls.gender.hasError('required')
                     && formGroup.controls.gender.touched" class="validate">Vui lòng chọn giới tính</span>
                   </div>
@@ -258,14 +255,14 @@
                   </div>
                   <div class="col-md-9 inp">
                     <input id="address" formControlName="address"
-                           aria-describedby="inputGroupPrepend2" required
+                           aria-describedby="inputGroupPrepend2"
                            class="form-control" type="text" placeholder="Địa chỉ">
-                    <span *ngIf="formGroup.controls.address.hasError('required')
-                    && formGroup.controls.address.touched" class="validate">Địa chỉ không được để trống</span>
                     <span *ngIf="formGroup.controls.address.hasError('minlength')
-                    && formGroup.controls.address.touched" class="validate">Địa chỉ quá ngắn. Yêu cầu nhập từ 3-50 ký tự</span>
+                    && formGroup.controls.address.touched"
+                          class="validate">Địa chỉ quá ngắn. Yêu cầu nhập từ 3-50 ký tự</span>
                     <span *ngIf="formGroup.controls.address.hasError('maxlength')
-                    && formGroup.controls.address.touched" class="validate">Địa chỉ quá dài. Yêu cầu nhập từ 3-50 ký tự</span>
+                    && formGroup.controls.address.touched"
+                          class="validate">Địa chỉ quá dài. Yêu cầu nhập từ 3-50 ký tự</span>
                   </div>
                 </div>
 
@@ -287,8 +284,6 @@
 
               </form>
             </div>
-          </div>
-          <div class="col-md-1">
           </div>
         </div>
       </div>

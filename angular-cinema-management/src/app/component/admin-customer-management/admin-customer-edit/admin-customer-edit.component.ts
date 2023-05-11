@@ -43,12 +43,12 @@ export class AdminCustomerEditComponent implements OnInit {
       this.customer = next;
       this.isDelete = next.isDelete;
       this.today = new Date();
-      console.log(this.today)
+      console.log(this.today);
       this.formGroup = new FormGroup({
         username: new FormControl(next.account.username),
         fullName: new FormControl(next.fullName, [Validators.required, Validators.minLength(5),
           Validators.maxLength(50)]),
-        password: new FormControl(next.account.password, [Validators.required,
+        password: new FormControl('', [
           Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()])[A-Za-z\\d@$!%*?&]{8,50}$')]),
         birthday: new FormControl(next.birthday.substring(0, 10), [Validators.required,
           Validators.pattern('(19|[2-9][0-9])\\d{2}-([0|1])\\d-([0-3])\\d')]),
@@ -58,8 +58,7 @@ export class AdminCustomerEditComponent implements OnInit {
         cardId: new FormControl(next.cardId),
         phoneNumber: new FormControl(next.phoneNumber, [Validators.required,
           Validators.pattern('^(0|\\+84)[0-9]{9}$')]),
-        address: new FormControl(next.address, [Validators.required, Validators.maxLength(50),
-          Validators.minLength(3)])
+        address: new FormControl(next.address, [Validators.maxLength(50), Validators.minLength(3)])
       }, [this.checkBirthdayBteToday, this.checkFullName])
     });
   };

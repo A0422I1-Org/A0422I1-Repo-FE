@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieService} from "../../../service/movie/movie.service";
@@ -9,7 +9,7 @@ import {MovieListDTO} from "../dto/MovieListDTO";
   templateUrl: './user-movie-list.component.html',
   styleUrls: ['./user-movie-list.component.css']
 })
-export class UserMovieListComponent implements OnInit{
+export class UserMovieListComponent implements OnInit, OnDestroy{
 
   movieList: MovieListDTO[];
 

@@ -1,6 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {MovieListDTO} from "../../component/user-view-movie/dto/MovieListDTO";
 
 import {MovieDetailDTO} from "../../dto/movie-detail-dto";
@@ -15,6 +15,13 @@ export class MovieService {
   private API_URL_MOVIE = "http://localhost:8080/api/public/movie";
 
   constructor(private  httpClient: HttpClient) { }
+
+  //Transfer header to movie-list: to display on showing movie or upcoming move
+  private selectionSource = new BehaviorSubject<string>('on-showing');
+  currentSelection = this.selectionSource.asObservable();
+  changeSelection(selection: string) {
+    this.selectionSource.next(selection);
+  }
 
   getOnShowingMovie(): Observable<MovieListDTO[]>{
     return this.httpClient.get<MovieListDTO[]>(this.API_URL_MOVIE + "/list/onShowing");

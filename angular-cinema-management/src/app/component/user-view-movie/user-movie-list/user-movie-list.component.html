@@ -66,8 +66,8 @@
     </div>
   </div>
   <div class="row g-3 me-2 my-4">
-    <div class="col-sm-12 col-md-6 col-lg-3 card" *ngFor="let movie of movieList">
-      <div class="hovereffect">
+    <div class="col-sm-12 col-md-6 col-lg-3 card" *ngFor="let movie of movieList" (mouseover)="bookingPermit(movie.startDay)">
+      <div class="hovereffect" >
           <img src="{{movie.image}}" class="card-img-top w-100" style="height: 90%">
           <div class="card-body">
             <h5 class="card-title text-uppercase">{{movie.name}}</h5>
@@ -81,7 +81,7 @@
               <br>
               <a class="info" (click)="movieDetail(movie.id)" >Chi tiết</a>
               <br>
-              <a class="info" (click)="booking(movie.id)">Đặt vé</a>
+              <a class="info" (click)="booking(movie.id)" *ngIf="showBookingButton">Đặt vé</a>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
+import {MovieService} from "../../service/movie/movie.service";
 
 @Component({
   selector: 'app-header',
@@ -8,20 +9,24 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
+  selection: string;
+
   constructor(
-    private router: Router
+    private movieService: MovieService
   ) { }
 
   ngOnInit(): void {
+    this.movieService.currentSelection.subscribe(selection => {
+      this.selection = selection;
+    });
+
   }
 
   toOnShowingList(){
-    this.router.navigate(['/movie/list'],
-      {queryParams: {message: "onShowing"}})
+    this.movieService.changeSelection("on-showing");
   }
 
   toUpcomingList(){
-    this.router.navigate(['/movie/list'],
-      {queryParams: {message: "upcoming"}})
+    this.movieService.changeSelection("upcoming");
   }
 }

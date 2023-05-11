@@ -19,9 +19,17 @@ export class MovieService {
   //Transfer header to movie-list: to display on showing movie or upcoming move
   private selectionSource = new BehaviorSubject<string>('on-showing');
   currentSelection = this.selectionSource.asObservable();
+  private movieListComponentVisible = new BehaviorSubject<boolean>(false);
+  movieListVisible = this.movieListComponentVisible.asObservable();
+
   changeSelection(selection: string) {
     this.selectionSource.next(selection);
   }
+
+  setMovieListVisible(visible: boolean) {
+    this.movieListComponentVisible.next(visible);
+  }
+
 
   getOnShowingMovie(): Observable<MovieListDTO[]>{
     return this.httpClient.get<MovieListDTO[]>(this.API_URL_MOVIE + "/list/onShowing");

@@ -39,6 +39,11 @@ export class UserMovieListComponent implements OnInit{
         this.findAllUpcoming();
       }
     });
+    this.movieService.setMovieListVisible(true);
+  }
+
+  ngOnDestroy(){
+    this.movieService.setMovieListVisible(false);
   }
 
   findAllOnShowing(){

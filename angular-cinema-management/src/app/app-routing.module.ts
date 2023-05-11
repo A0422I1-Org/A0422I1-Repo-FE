@@ -5,7 +5,6 @@ import {UserMovieListComponent} from "./component/user-view-movie/user-movie-lis
 
 import {UserMovieDetailComponent} from "./component/user-view-movie/user-movie-detail/user-movie-detail.component";
 
-
 const routes: Routes = [
   {
     path: "movie/list",
@@ -22,6 +21,10 @@ const routes: Routes = [
   {
     path: "movie",
     loadChildren: () => import('./component/user-view-movie/user-view-movie.module').then(module => module.UserViewMovieModule)
+  },
+  {
+    path : "promotion" ,
+    loadChildren:() => import('./component/user-view-promotion/user-view-promotion.module').then(module =>module.UserViewPromotionModule)
   }
 ];
 

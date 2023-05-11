@@ -10,23 +10,43 @@ import {MovieService} from "../../service/movie/movie.service";
 export class HeaderComponent implements OnInit {
 
   selection: string;
+  movieListVisible: boolean = false;
+
 
   constructor(
+    private router: Router,
     private movieService: MovieService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.movieService.currentSelection.subscribe(selection => {
       this.selection = selection;
     });
-
+    this.movieService.movieListVisible.subscribe(visible => {
+      this.movieListVisible = visible;
+    });
   }
 
-  toOnShowingList(){
+  toOnShowingList() {
     this.movieService.changeSelection("on-showing");
+    if (!this.movieListVisible) {
+      this.router.navigateByUrl('/movie/list');
+    }
   }
 
-  toUpcomingList(){
+  toUpcomingList() {
     this.movieService.changeSelection("upcoming");
+    if (!this.movieListVisible) {
+      this.router.navigateByUrl('/movie/list');
+    }
+  }
+
+  toPromotion() {
+    this.router.navigateByUrl('/promotion');
+  }
+
+  toBooking() {
+    this.router.navigateByUrl('/booking/select-movie-and-showtime');
   }
 }

@@ -12,7 +12,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SecurityService {
-  isLoggedIn: boolean;
 
   constructor(private httpClient: HttpClient) { }
 

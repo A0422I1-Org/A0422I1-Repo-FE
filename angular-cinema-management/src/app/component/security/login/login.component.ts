@@ -63,9 +63,9 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
 
     if (this.tokenStorageService.getToken()) {
-      this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
+      console.log(this.roles+" and "+this.username);
     }
 
     this.authService.authState.subscribe(
@@ -81,14 +81,13 @@ export class LoginComponent implements OnInit {
       data => {
 
         if (this.formGroup.value.remember_me) {
-          this.tokenStorageService.saveTokenLocal(data.accessToken);
+          this.tokenStorageService.saveTokenLocal(data.token);
           this.tokenStorageService.saveUserLocal(data);
         } else {
-          this.tokenStorageService.saveTokenSession(data.accessToken);
+          this.tokenStorageService.saveTokenSession(data.token);
           this.tokenStorageService.saveUserLocal(data);
         }
 
-        this.securityService.isLoggedIn = true;
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
@@ -97,7 +96,6 @@ export class LoginComponent implements OnInit {
         this.loggedIn=this.tokenStorageService.isLogged();
       },
       err => {
-        this.securityService.isLoggedIn = false;
         this.toastr.error("Sai tên đăng nhập hoặc mật khẩu không chính xác. Hoặc tài khoản chưa được kích hoạt, vui lòng đăng nhập lại", "Đăng nhập thất bại: ",{
           timeOut: 3000,
           extendedTimeOut: 1500
@@ -123,7 +121,6 @@ export class LoginComponent implements OnInit {
           },
           err => {
             console.log(err);
-            // this.logOut();
           }
         );
       }

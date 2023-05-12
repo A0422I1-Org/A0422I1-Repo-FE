@@ -54,14 +54,18 @@ export class HeaderComponent implements OnInit {
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
     }
-    this.hasLoggedIn = this.username != null;
+    this.hasLoggedIn = this.tokenStorageService.isLogged();
     this.getUsernameAccount();
   }
 
   logOut() {
     this.tokenStorageService.signOut();
-    this.loadHeader();
-  }
+    if (!this.tokenStorageService.isLogged()){
+      this.router.navigateByUrl(this.returnUrl);
+      console.log("Đã đăng xuất");
+      this.loadHeader();
+    }
+      }
 
 
   signOut(): void {
@@ -69,6 +73,7 @@ export class HeaderComponent implements OnInit {
       data => {
         this.router.navigateByUrl(this.returnUrl);
         console.log("Đã đăng xuất");
+
       }
     );
   }

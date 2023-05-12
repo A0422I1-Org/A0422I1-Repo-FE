@@ -35,7 +35,7 @@ export class MovieService {
     return this.httpClient.get<MovieListDTO[]>(this.API_URL_MOVIE + "/list/onShowing");
   }
 
-  getUpCommingMovie(): Observable<MovieListDTO[]>{
+  getUpComingMovie(): Observable<MovieListDTO[]>{
     return this.httpClient.get<MovieListDTO[]>(this.API_URL_MOVIE + "/list/upcoming");
   }
 

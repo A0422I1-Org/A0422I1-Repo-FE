@@ -54,7 +54,7 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
   }
 
   findAllUpcoming(){
-    this.movieService.getUpCommingMovie().subscribe(value => {
+    this.movieService.getUpComingMovie().subscribe(value => {
       this.movieList = value;
       console.log(value);
     })

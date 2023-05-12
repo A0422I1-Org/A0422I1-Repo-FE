@@ -82,15 +82,6 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
       .filter((date, index, self) => self.indexOf(date) === index);
     uniqueDates.forEach((date) => {
       const times = showtimes.filter((showtime) => showtime.date === date);
-      times.sort((a, b) => {
-        if (a.startTime < b.startTime) {
-          return -1;
-        } else if (a.startTime > b.startTime) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
       groupedShowtimes.push({ date, times });
     });
     return groupedShowtimes;

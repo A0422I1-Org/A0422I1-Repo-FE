@@ -24,7 +24,6 @@ export class ChairSelectionComponent implements OnInit {
   selectedSeats: Ticket[] = [];
   priceTicket: number = 0;
   timeCount = 0;
-
   constructor(
     private showtimeService: ShowtimeService,
     private activatedRoute: ActivatedRoute,
@@ -62,14 +61,7 @@ export class ChairSelectionComponent implements OnInit {
         this.tickets = next;
       },
       (error) => {
-        Swal.fire({
-          position: "top",
-          icon: "warning",
-          title: "Hiện đang lỗi",
-          showConfirmButton: true,
-          confirmButtonText: "OK",
-          showCloseButton: true,
-        });
+        this.toastrService.error("ERROR: Could not find")
       },
       () => {}
     );
@@ -81,7 +73,7 @@ export class ChairSelectionComponent implements OnInit {
         this.room = next;
         this.getTicketByIdRoomAndIdShowTime(this.room.id, this.id);
       },
-      (error) => {},
+      (error) => { this.toastrService.error("ERROR: Could not find")},
       () => {}
     );
   }

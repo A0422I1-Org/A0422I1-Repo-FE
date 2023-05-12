@@ -28,11 +28,11 @@ export class BookingTicketConfirmationComponent implements OnInit {
               private security: SecurityService) { }
 
   ngOnInit(): void {
-    this.ticketService.findTicketsChoosed().subscribe(next => {
+    this.ticketService.getListSeatChoosing.subscribe(next => {
       this.tickets = next;
       console.log(this.tickets)
       for (let ticket of this.tickets) {
-        this.totalMoney = this.totalMoney + 40000;
+        this.totalMoney = this.totalMoney + ticket.price;
       }
       this.ticketDefault = this.tickets[0];
       console.log(this.ticketDefault)
@@ -48,5 +48,9 @@ export class BookingTicketConfirmationComponent implements OnInit {
   showDetailAndPaymentPage() {
     this.toast.success("Đã xác nhận thông tin. Vui lòng thanh toán để hoàn tất quá trình đặt vé !")
     this.router.navigateByUrl("/user/payment-ticket");
+  }
+
+  goBack() {
+    this.router.navigateByUrl("booking/select-seat?showTimeId=" + this.ticketDefault.showTime.id);
   }
 }

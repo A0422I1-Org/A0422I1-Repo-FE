@@ -12,6 +12,8 @@ import {ToastrModule} from "ngx-toastr";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SecurityModule} from "./component/security/security.module";
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,12 @@ import {SecurityModule} from "./component/security/security.module";
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     SecurityModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 2000,
+        positionClass: 'toast-top-right'
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

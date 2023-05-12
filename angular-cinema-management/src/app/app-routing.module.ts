@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
   {
+    path : "booking" ,
+    loadChildren:() => import('./component/user-booking-ticket/user-booking-ticket.module').then(module =>module.UserBookingTicketModule)
+  },
+  {
     path: '',
     component: UserMoiveListComponent
   }

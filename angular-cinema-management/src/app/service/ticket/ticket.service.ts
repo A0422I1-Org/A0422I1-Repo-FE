@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Ticket} from "../../model/ticket";
 import {TokenStorageService} from "../token/token-storage.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Ticket } from "src/app/model/ticket";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TicketService {
   httpOptions: any;
+  private API_URL =
+    "http://localhost:8080/api/public/ticket/list-ticket-by-rom-showtime/";
+  private listSeatChoosing = new BehaviorSubject<any[]>([]);
+
+  getListSeatChoosing = this.listSeatChoosing.asObservable();
 
   constructor(private  httpClient: HttpClient,
               private token: TokenStorageService) {
@@ -37,5 +42,17 @@ export class TicketService {
 
   confirmTicket(ticket: Ticket): Observable<any> {
     return this.httpClient.post("http://localhost:8080/api/user/confirm-booking-ticket", ticket, this.httpOptions);
+  }
+
+  getTicketByShowTimeAndRoom(
+    idRoom: number,
+    idShowTime: number
+  ): Observable<Ticket[]> {
+    return this.httpClient.get<Ticket[]>(
+      this.API_URL + idRoom + "/" + idShowTime
+    );
+  }
+  changeList(list: any[]) {
+    this.listSeatChoosing.next(list);
   }
 }

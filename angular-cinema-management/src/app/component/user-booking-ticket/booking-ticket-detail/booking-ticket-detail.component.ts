@@ -26,10 +26,10 @@ export class BookingTicketDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ticketService.findTicketsChoosed().subscribe(next => {
+    this.ticketService.getListSeatChoosing.subscribe(next => {
       this.tickets = next;
       for (let ticket of this.tickets) {
-        this.totalMoney = this.totalMoney + 40000;
+        this.totalMoney = this.totalMoney + ticket.price;
       }
       this.ticketDefault = this.tickets[0];
       this.usdMoney = (this.totalMoney / 23000).toFixed();

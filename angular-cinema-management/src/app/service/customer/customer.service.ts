@@ -12,14 +12,16 @@ export class CustomerService {
 
   constructor(private  httpClient: HttpClient,
               private token: TokenStorageService) {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token.getUser().token}`,
-        'Access-Control-Allow-Origin': 'http://localhost:4200',
-        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
-      }),
-    };
+    if (token.getUser() != null) {
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.token.getUser().token}`,
+          'Access-Control-Allow-Origin': 'http://localhost:4200',
+          'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
+        }),
+      };
+    }
   }
 
   findById(id: string): Observable<any> {

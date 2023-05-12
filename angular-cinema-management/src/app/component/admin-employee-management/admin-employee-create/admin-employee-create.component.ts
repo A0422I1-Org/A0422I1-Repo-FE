@@ -50,7 +50,7 @@ export class AdminEmployeeCreateComponent implements OnInit {
         position: new FormControl('',[Validators.required]),
         birthday: new FormControl('',[Validators.pattern("^(19[0-9]{2}|200[0-7])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$")]),
         gender: new FormControl('',[Validators.required]),
-        email: new FormControl('',[Validators.required, Validators.email]),
+        email: new FormControl('',[Validators.required, Validators.email,Validators.maxLength(256)]),
         cardId: new FormControl('', [Validators.required, Validators.pattern("^\\d{12}$")]),
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern("^(0\\d{9,10})$")]),
         address: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(100)])
@@ -106,10 +106,10 @@ export class AdminEmployeeCreateComponent implements OnInit {
             this.employeeService.save(this.employeeFormCreate.value).subscribe(
               (data: EmployeeDTO) => {
                 this.resetFormEmployee();
-                this.toastr.success('Add employee successfully!', 'Success: ');
+                this.toastr.success('Thêm mới nhân viên thành công!', 'Success: ');
               },
               (error: HttpErrorResponse) => {
-                this.toastr.error('Add employee unsuccessfully!', 'Error: ');
+                this.toastr.error('Tài khoản hoặc số chứng minh nhân dân đã tồn tại!', 'Error: ');
               }
             );
           });
@@ -122,10 +122,10 @@ export class AdminEmployeeCreateComponent implements OnInit {
       this.employeeService.save(this.employeeFormCreate.value).subscribe(
         (data: EmployeeDTO) => {
           this.resetFormEmployee();
-          this.toastr.success('Add employee successfully!', 'Success: ');
+          this.toastr.success('Thêm mới nhân viên thành công!', 'Success: ');
         },
         (error: HttpErrorResponse) => {
-          this.toastr.error('Add employee unsuccessfully!', 'Error: ');
+          this.toastr.error('Tài khoản hoặc số chứng minh nhân dân đã tồn tại!', 'Error: ');
         }
       );
     }

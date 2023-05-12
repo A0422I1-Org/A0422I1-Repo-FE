@@ -10,8 +10,8 @@
 <div class="container py-2">
   <div class="row align-items-center">
     <div class="col-3">
-      <img src="logo_movie-removebg-preview.png" alt="" class="img-fluid"
-           style="width: auto ">
+
+      <img src="../../../../assets/image/logo_movie-removebg-preview.png"alt="" class="img-fluid" style="width: auto ">
     </div>
     <div class="col-9">
       <div class="dropdown float-end px-4">
@@ -41,49 +41,52 @@
             <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
               <li class="nav-item">
                 <a href="#" class="nav-link link-dark" aria-current="page">
-                  <img src="ban-ve.jpg" height="20" width="20"/>
+                  <img src="../../../../assets/image/ban-ve.jpg" height="20" width="20"/>
                   Bán vé
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="quan-ly-ban-ve.png" height="20" width="20"/>
+
+                  <img src="../../../../assets/image/quan-ly-ban-ve.png" height="20" width="20"/>
                   Quản lý đặt vé
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark active">
-                  <img src="quan-ly-nhan-vien.png" height="20" width="20"/>
+
+                  <img src="../../../../assets/image/quan-ly-nhan-vien.png" height="20" width="20"/>
                   Quản lý nhân viên
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="quan-ly-thanh-vien.jpg" height="20" width="20"/>
+
+                  <img src="../../../../assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>
                   Quản lý thành viên
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="quan-ly-phim.png" height="20" width="20"/>
+                  <img src="../../../../assets/image/quan-ly-phim.png" height="20" width="20"/>
                   Quản lý phim
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="quan-ly-khuyen-mai.png" height="20" width="20"/>
+                  <img src="../../../../assets/image/quan-ly-khuyen-mai.png" height="20" width="20"/>
                   Quản lý khuyến mãi
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="quan-ly-rap-chieu.png" height="20" width="20"/>
+                  <img src="../../../../assets/image/quan-ly-rap-chieu.png" height="20" width="20"/>
                   Quản lý phòng chiếu
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
-                  <img src="thong-ke.png" height="20" width="20"/>
+                  <img src="../../../../assets/image/thong-ke.png" height="20" width="20"/>
                   Thống kê
                 </a>
               </li>
@@ -98,11 +101,7 @@
       <div class="col">
         <div class="card">
           <!--          add-->
-
           <div class="container-add">
-
-
-
             <div class="row">
               <div class="col-md-1"></div>
               <div class="col-md-10">
@@ -251,6 +250,7 @@
                             <div class="col-md-9 inp">
                               <input formControlName="email" class="form-control" type="text" placeholder="Enter Email">
                               <span class="validate" *ngIf="(employeeFormCreate.controls.email.dirty || employeeFormCreate.controls.email.touched) && employeeFormCreate.controls.email.errors?.required">Email không được để trống, vui lòng nhập email !</span>
+                              <span class="validate" *ngIf="employeeFormCreate.controls.email.touched && employeeFormCreate.controls.email.errors?.minlength">Email không được quá 256 ký tự</span>
                               <span class="validate" *ngIf="(employeeFormCreate.controls.email.dirty || employeeFormCreate.controls.email.touched) &&  employeeFormCreate.controls.email.errors?.email">Email không đúng định dạng, vui lòng nhập lại email !</span>
                             </div>
                           </div>
@@ -264,8 +264,8 @@
                             </div>
                             <div class="col-md-9 inp">
                               <input formControlName="cardId" class="form-control" type="text" placeholder="Enter CMND">
-                              <span class="validate" *ngIf="employeeFormCreate.controls.cardId.touched && employeeFormCreate.controls.cardId.errors?.required">Chứng minh nhân dân không được để trống, vui lòng chọn vị trí</span>
-                              <span class="validate" *ngIf="employeeFormCreate.controls.cardId.touched && employeeFormCreate.controls.cardId.errors?.pattern">Chứng minh nhân dân phải có 12 số , vui lòng nhập lại.</span>
+                              <span class="validate" *ngIf="employeeFormCreate.controls.cardId.touched && employeeFormCreate.controls.cardId.errors?.required">Chứng minh nhân dân không được để trống, vui lòng nhập số chứng minh nhân dân</span>
+                              <span class="validate" *ngIf="employeeFormCreate.controls.cardId.touched && employeeFormCreate.controls.cardId.errors?.pattern">Chứng minh nhân dân không hợp lệ , chứng minh phải có 12 số , vui lòng nhập lại.</span>
                             </div>
                           </div>
                         </div>
@@ -304,11 +304,10 @@
                         <div class="col-md-12">
                           <div class="row">
                             <div class="col-md-6">
-                              <button  style="width: 100px;float: right" type="submit" class="btn addedit" data-bs-dismiss="modal">Thêm</button>
+                              <button [disabled]="employeeFormCreate.invalid" style="width: 100px;float: right" type="button" class="btn addedit" data-bs-toggle="modal" data-bs-target="#myModalAdd"  >Thêm</button>
                             </div>
                             <div class="col-md-6">
-<!--                              [disabled]="employeeFormCreate.invalid"-->
-                              <button style="width: 100px; margin-left: 10px" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalThoat" >Quay lại</button>
+                              <button  style="width: 100px; margin-left: 10px" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalThoat" >Quay lại</button>
                             </div>
                           </div>
                         </div>
@@ -330,174 +329,55 @@
   </div>
 </div>
 
-
 </body>
 </html>
 
 
+<!--modal quay lại-->
+<div class="modal fade" id="myModalThoat">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xác nhận</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Bạn có thực sự muốn thoát khỏi trang này không ?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" routerLink="">Có</button>
+      </div>
 
-<!--<div>-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-1"></div>-->
-<!--    <div class="col-md-10">-->
-<!--      <form [formGroup]="employeeFormCreate" (ngSubmit)="submit()">-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Hình ảnh </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input class="form-control" type="file" id="formFile" formControlName="image">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span for="validationDefaultUsername">Tài khoản </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="account" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required class="form-control" type="text" placeholder="Enter Account">-->
-<!--                <span class="validate">Tài khoản đã tồn tại !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Mật khẩu </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="password" class="form-control" type="password" placeholder="Enter Password">-->
-<!--                <span class="validate">Mật khẩu phải chứa số và ký tự !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Nhập lại Mật khẩu </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="confirmPassword" class="form-control" type="password" placeholder="Entern confirm Password">-->
-<!--                <span class="validate">Mật khẩu không khớp !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Họ tên </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="fullName" class="form-control" type="text" placeholder="Enter name">-->
-<!--                <span class="validate">Tên phải dài hơn 10 ký tự !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Ngày sinh </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="birthday" class="form-control" type="date">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Giới tính </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="gender"  class="form-check-input" type="radio" value="nam">Nam-->
-<!--                <input formControlName="gender" class="form-check-input" type="radio" value="nữ">Nữ-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Email </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="email" class="form-control" type="text" placeholder="Enter Email">-->
-<!--                <span class="validate">Email không hợp lệ !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>CMND </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="cardId" class="form-control" type="text" placeholder="Enter CMND">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Số điện thoại </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="phoneNumber" class="form-control" type="text" placeholder="Enter phone">-->
-<!--                <span class="validate">Số điện thoại không đúng định dạng !</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Địa chỉ </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <input formControlName="address" class="form-control" type="text" placeholder="Enter address">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-12">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-3 txt">-->
-<!--                <span class="tit">*</span><span>Vị trí </span>-->
-<!--              </div>-->
-<!--              <div class="col-md-9 inp">-->
-<!--                <select class="form-select" name="" id="" formControlName="position">-->
-<!--                  <option selected *ngFor="let item of position" [ngValue]="item">{{item.name}}</option>-->
-<!--                </select>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--    <div class="col-md-1">-->
-<!--    </div>-->
-<!--  </div>-->
+    </div>
+  </div>
+</div>
 
-<!--</div>-->
+
+
+<!--modal thêm mới-->
+<div class="modal fade" id="myModalAdd">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xác nhận</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Bạn thực sự muốn thêm mới nhân viên này không ?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="submit()">Có</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

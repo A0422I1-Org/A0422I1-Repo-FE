@@ -11,6 +11,7 @@ import {ToastrService} from "ngx-toastr";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-admin-employee-edit',
@@ -23,7 +24,9 @@ export class AdminEmployeeEditComponent implements OnInit {
   id: string;
   isDelete: boolean;
   uploadedAvatar = null;
-  oldAvatarLink = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
+  oldAvatarLink = null;
+  formattedDate: string;
+  myDate: string;
 
   formGroup: FormGroup = new FormGroup({
     image: new FormControl(),
@@ -56,6 +59,7 @@ export class AdminEmployeeEditComponent implements OnInit {
               private firebase: AngularFireStorage) {
     this.activatedRoute.paramMap.subscribe(next => {
       this.id = next.get('id');
+      console.log("id",this.id)
     });
     this.positionService.getAllPosition().subscribe(
       value => {
@@ -64,7 +68,8 @@ export class AdminEmployeeEditComponent implements OnInit {
       },error => {
         alert("lỗi");
       }
-    )
+    ),
+      this.formattedDate = moment(this.myDate).format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
@@ -72,13 +77,16 @@ export class AdminEmployeeEditComponent implements OnInit {
       this.employee = next;
       console.log("truoc sua",next);
       this.oldAvatarLink=next.image;
+      this.myDate=next.birthday;
       console.log("image",this.oldAvatarLink)
+      console.log("gioi tinh",next.gender)
+      console.log("position",next.position)
       this.formGroup = new FormGroup({
         id: new FormControl(next.id),
         image: new FormControl(next.image,[Validators.required]),
         username: new FormControl(next.account.username),
         password: new FormControl(next.account.password,[Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]),
-        confirmPassword: new FormControl(),
+        confirmPassword: new FormControl(next.account.password,[Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]),
         fullName: new FormControl(next.fullName, [Validators.required, Validators.minLength(7), Validators.maxLength(45), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
         position: new FormControl(next.position,[Validators.required]),
         birthday: new FormControl(next.birthday,[Validators.pattern("^(19[0-9]{2}|200[0-7])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$")]),
@@ -109,10 +117,10 @@ export class AdminEmployeeEditComponent implements OnInit {
             this.employeeService.updateEmployee(this.formGroup.value).subscribe(
               (data: EmployeeDTO) => {
                 this.resetFormEmployee();
-                this.toastr.success('Update employee successfully!', 'Success: ');
+                this.toastr.success('Cập nhật thông tin nhân viên thành công!', 'Success: ');
               },
               (error: HttpErrorResponse) => {
-                this.toastr.error('Update employee unsuccessfully!', 'Error: ');
+                this.toastr.error('Cập nhật thông tin nhân viên thất bại!', 'Error: ');
               }
             );
           });
@@ -121,14 +129,14 @@ export class AdminEmployeeEditComponent implements OnInit {
     } else {
       console.log('OK');
       // tslint:disable-next-line:max-line-length
-      this.formGroup.controls.image.setValue('https://firebasestorage.googleapis.com/v0/b/employee-a44f2.appspot.com/o/User_icon_2.svg.webp?alt=media&token=abf6785f-7548-4697-8775-a949a3081158');
+      this.formGroup.controls.image.setValue(this.oldAvatarLink);
       this.employeeService.updateEmployee(this.formGroup.value).subscribe(
         (data: EmployeeDTO) => {
           this.resetFormEmployee();
-          this.toastr.success('Add employee successfully!', 'Success: ');
+          this.toastr.success('Cập nhật thông tin nhân viên thành công!', 'Success: ');
         },
         (error: HttpErrorResponse) => {
-          this.toastr.error('Add employee unsuccessfully!', 'Error: ');
+          this.toastr.error('Cập nhật thông tin nhân viên thất bại', 'Error: ');
         }
       );
     }

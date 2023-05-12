@@ -20,7 +20,7 @@ export class UserMovieDetailComponent implements OnInit {
   trustedUrl: SafeResourceUrl;
   showBookingButton = false;
 
-  username = 'customer21' ;
+  username = 'username' ;
 
   rfRating: FormGroup;
   messageForRating = '';

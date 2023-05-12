@@ -4,6 +4,7 @@ import {UserViewMovieModule} from "./component/user-view-movie/user-view-movie.m
 import {UserMovieListComponent} from "./component/user-view-movie/user-movie-list/user-movie-list.component";
 
 import {UserMovieDetailComponent} from "./component/user-view-movie/user-movie-detail/user-movie-detail.component";
+import {LoginComponent} from "./component/login/login.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path : "promotion" ,
     loadChildren:() => import('./component/user-view-promotion/user-view-promotion.module').then(module =>module.UserViewPromotionModule)
+  }
+  ,
+  {
+    path: "security/login",
+    component: LoginComponent
   }
 ];
 

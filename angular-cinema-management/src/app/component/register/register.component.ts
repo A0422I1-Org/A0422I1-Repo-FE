@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
 import {Router} from "@angular/router";
@@ -13,10 +13,12 @@ import {ToastrService} from "ngx-toastr";
 })
 export class RegisterComponent implements OnInit {
   signupRequestForm: FormGroup;
+
   constructor(private accountService: AccountService,
               private formBuilder: FormBuilder,
               private toastr: ToastrService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.signupRequestForm = this.formBuilder.group({

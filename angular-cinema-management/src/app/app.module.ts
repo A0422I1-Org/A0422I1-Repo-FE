@@ -11,7 +11,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
-import {UserAccountInformationComponent} from "./component/user-account-management/user-account-information/user-account-information.component";
 
 @NgModule({
   declarations: [
@@ -20,17 +19,17 @@ import {UserAccountInformationComponent} from "./component/user-account-manageme
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    UserAccountInformationComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-      ToastrModule.forRoot(),
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

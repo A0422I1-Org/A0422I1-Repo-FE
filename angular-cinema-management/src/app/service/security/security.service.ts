@@ -1,62 +1,51 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {TokenStorageService} from "../token/token-storage.service";
 
 const AUTH_API = 'http://localhost:8080/api/public/';
 
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
-  isLoggedIn: boolean;
-  httpOptions: any;
 
-  constructor(private httpClient: HttpClient,
-              private tokenStorage:TokenStorageService) {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ` + this.tokenStorage.getToken(),
-        'Access-Control-Allow-Origin': 'http://localhost:4200',
-        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
-      })
-    };
-  }
-
+  constructor(private httpClient: HttpClient) { }
 
   login(obj): Observable<any> {
     return this.httpClient.post(AUTH_API + 'login', {
       username: obj.username,
       password: obj.password
-    }, this.httpOptions);
+    }, httpOptions);
   }
 
   verify(code: string): Observable<any> {
     console.log(code);
     return this.httpClient.post(AUTH_API + 'verify', {
       code: code
-    }, this.httpOptions);
+    }, httpOptions);
   }
 
   verifyPassword(code: string): Observable<any> {
     return this.httpClient.post(AUTH_API + 'verify-password', {
       code: code
-    }, this.httpOptions);
+    }, httpOptions);
   }
 
   resetPassword(username: string): Observable<any> {
     return this.httpClient.post(AUTH_API + 'reset-password', {
       username: username
-    }, this.httpOptions);
+    }, httpOptions);
   }
 
   hasResetPassword(password: string, code: string): Observable<any> {
     return this.httpClient.post(AUTH_API + 'has-reset-password', {
       password: password,
       code: code
-    }, this.httpOptions);
+    }, httpOptions);
   }
 
 }

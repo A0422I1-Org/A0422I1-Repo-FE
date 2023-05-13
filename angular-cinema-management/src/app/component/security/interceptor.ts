@@ -20,8 +20,13 @@ export class Interceptor implements HttpInterceptor {
       authReq = req.clone({
         setHeaders: {
           'Authorization': `Bearer ${tokenValue}`,
+<<<<<<< HEAD
           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           'Access-Control-Allow-Origin': 'http://localhost:4200'
+=======
+          'Access-Control-Allow-Origin': 'http://localhost:4200',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+>>>>>>> 5c39baf6a516ffd0f05fb2ec3855853bda73f36c
         },
       });
     }

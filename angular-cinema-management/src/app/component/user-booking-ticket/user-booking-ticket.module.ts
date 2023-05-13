@@ -9,6 +9,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {UserBookingTicketRoutingModule} from "./user-booking-ticket-routing.module";
 import localeVi from '@angular/common/locales/vi';
+import {HeaderModule} from "../header/header.module";
+import {FooterModule} from "../footer/footer.module";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import localeVi from '@angular/common/locales/vi';
     imports: [
         CommonModule,
         UserBookingTicketRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+      HeaderModule,
+      FooterModule
     ]
 })
 export class UserBookingTicketModule {

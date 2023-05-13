@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserMoiveListComponent } from './user-moive-list.component';
+import { UserMovieDetailComponent } from './user-movie-detail.component';
 
-describe('UserMoiveListComponent', () => {
-  let component: UserMoiveListComponent;
-  let fixture: ComponentFixture<UserMoiveListComponent>;
+describe('UserMoiveDetailComponent', () => {
+  let component: UserMovieDetailComponent;
+  let fixture: ComponentFixture<UserMovieDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserMoiveListComponent ]
+      declarations: [ UserMovieDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserMoiveListComponent);
+    fixture = TestBed.createComponent(UserMovieDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

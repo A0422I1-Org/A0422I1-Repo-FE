@@ -1,0 +1,8 @@
+footer{
+  font-size: 13px;
+}
+
+.footer-index:hover{
+  text-decoration: underline;
+  color: #f26b38;
+}

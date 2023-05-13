@@ -10,7 +10,7 @@ import { Ticket } from "src/app/model/ticket";
 export class TicketService {
   httpOptions: any;
   private API_URL =
-    "http://localhost:8080/api/public/ticket/list-ticket-by-rom-showtime/";
+    "http://localhost:8080/api";
   private listSeatChoosing = new BehaviorSubject<any[]>([]);
 
   getListSeatChoosing = this.listSeatChoosing.asObservable();
@@ -47,9 +47,14 @@ export class TicketService {
   getTicketByShowTimeAndRoom(
     idRoom: number,
     idShowTime: number
-  ): Observable<Ticket[]> {
-    return this.httpClient.get<Ticket[]>(
-      this.API_URL + idRoom + "/" + idShowTime
+  ): Observable<any> {
+    return this.httpClient.get<any>(
+      this.API_URL +
+        "/user/ticket/list-ticket-by-rom-showtime/" +
+        idRoom +
+        "/" +
+        idShowTime,
+      this.httpOptions
     );
   }
   changeList(list: any[]) {

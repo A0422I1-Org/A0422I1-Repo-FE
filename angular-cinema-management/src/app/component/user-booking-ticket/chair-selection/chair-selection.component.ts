@@ -31,7 +31,7 @@ export class ChairSelectionComponent implements OnInit {
     private roomService: RoomService,
     private ticketService: TicketService,
     private toastrService:ToastrService,
-    private router: Router
+    private router: Router,
   ) {
     const interval = setInterval(() => {
       this.timeCount++;

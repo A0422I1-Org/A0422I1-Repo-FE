@@ -44,7 +44,9 @@ h4.title-choose-seat-h4 > p {
 }
 @media (max-width: 534px) {
   div.seat-booking-movie {
-    width: 506px;
+    width: 536px;
+    margin: 0;
+    padding: 0;
   }
   .col-lg-9 {
     padding: 0;
@@ -53,7 +55,9 @@ h4.title-choose-seat-h4 > p {
     padding: 0;
   }
   div.container-document-ticket {
-    width: 506px;
+    width: 536px;
+    margin: 0;
+    padding: 0;
   }
 }
 .seat-cinema {

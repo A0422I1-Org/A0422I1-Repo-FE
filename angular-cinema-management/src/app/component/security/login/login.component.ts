@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
               private shareService: ShareService) { }
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
-
+    this.returnUrl = this.route.snapshot.queryParams['/returnUrl']
     this.formGroup = this.formBuild.group({
       username:[''],
       password:[''],

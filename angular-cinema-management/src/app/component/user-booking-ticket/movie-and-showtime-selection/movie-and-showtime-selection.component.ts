@@ -55,6 +55,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
         this.showTimeByDate = this.groupShowtimesByDate(
           this.showTimesByIdMovie
         );
+        console.log(this.showTimeByDate);
         if (this.showTimeByDate.length > 5) {
           this.showTimeByDate = this.showTimeByDate.slice(0, 5);
         }

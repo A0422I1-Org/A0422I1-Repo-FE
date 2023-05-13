@@ -29,10 +29,10 @@ export class CustomerService {
     return this.httpClient.get<any>(`${URL}customer-management?search=${search}&page=${page}`, this.httpOptions);
   }
   getCustomerById(id: string): Observable<any> {
-    return this.httpClient.get<Customer>(URL + "update/" + id);
+    return this.httpClient.get<Customer>(URL + "update/" + id, this.httpOptions);
   }
 
   updateCustomer(customerDTO: Customer): Observable<any> {
-    return this.httpClient.put<Customer>(URL + "update", customerDTO);
+    return this.httpClient.put<Customer>(URL + "update", customerDTO, this.httpOptions);
   }
 }

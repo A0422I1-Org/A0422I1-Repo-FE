@@ -29,7 +29,6 @@ export class AdminCustomerEditComponent implements OnInit {
     address: new FormControl()
   });
   today: Date;
-  notValid: boolean = false;
 
   constructor(private customerService: CustomerService, private activatedRoute: ActivatedRoute, private router: Router,
               private toastr: ToastrService) {
@@ -49,7 +48,7 @@ export class AdminCustomerEditComponent implements OnInit {
         fullName: new FormControl(next.fullName, [Validators.required, Validators.minLength(5),
           Validators.maxLength(50)]),
         password: new FormControl('', [
-          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()])[A-Za-z\\d@$!%*?&]{8,50}$')]),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()])[A-Za-z\\d!@#$%^&*()]{8,50}$')]),
         birthday: new FormControl(next.birthday.substring(0, 10), [Validators.required,
           Validators.pattern('(19|[2-9][0-9])\\d{2}-([0|1])\\d-([0-3])\\d')]),
         gender: new FormControl(next.gender, Validators.required),
@@ -64,7 +63,11 @@ export class AdminCustomerEditComponent implements OnInit {
   };
 
   submit() {
-    if(this.formGroup.valid) {
+    if (!this.formGroup.valid) {
+      this.toastr.error('Các trường chưa hợp lệ. Vui lòng nhập lại!', 'LỖI');
+      return;
+    }
+    if (this.formGroup.valid) {
       this.customer.id = this.id;
       this.customer.isDelete = this.isDelete;
       this.customer.fullName = this.formGroup.controls.fullName.value;
@@ -78,14 +81,14 @@ export class AdminCustomerEditComponent implements OnInit {
       this.customer.account.password = this.formGroup.controls.password.value;
 
       console.log(this.customer);
-      this.notValid = false;
-        this.customerService.updateCustomer(this.customer).subscribe(() => {
-        }, error => {
-          console.log(error)
-        }, () => {
-          this.toastr.success('Cập nhật thành công!', 'THÔNG BÁO');
-          this.router.navigateByUrl("/customer-management")});
-      } else this.notValid = true;
+      this.customerService.updateCustomer(this.customer).subscribe(() => {
+      }, error => {
+        console.log(error)
+      }, () => {
+        this.toastr.success('Cập nhật thành công!', 'THÔNG BÁO');
+        this.router.navigateByUrl("/customer-management")
+      });
+    }
   }
 
   checkBirthdayBteToday(form: any) {

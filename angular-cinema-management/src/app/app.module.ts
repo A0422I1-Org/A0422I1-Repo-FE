@@ -8,14 +8,15 @@ import {HeaderComponent} from './component/header/header.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ToastrModule} from "ngx-toastr";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SecurityModule} from "./component/security/security.module";
 
+//import-login-google
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
   GoogleLoginProvider,
 } from 'angularx-social-login';
+
 
 
 @NgModule({
@@ -30,10 +31,6 @@ import {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'toast-top-right'
-    }),
     ReactiveFormsModule,
     SecurityModule,
     SocialLoginModule,

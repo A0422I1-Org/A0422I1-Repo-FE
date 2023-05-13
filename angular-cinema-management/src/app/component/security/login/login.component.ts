@@ -41,9 +41,13 @@ export class LoginComponent implements OnInit {
               private oauthService: OauthService,) { }
 
   ngOnInit(): void {
-
+    /** Pham Trung Hieu
+     * Check tinh trang dang nhap, neu da dang nhap thi ve trang truoc do, chua se ve lai login
+     */
     if (this.tokenStorageService.isLogged()) {
       this.router.navigate(['/'])
+    } if (!this.tokenStorageService.isLogged()) {
+      this.router.navigate(['/login'])
     }
 
     this.formGroup = this.formBuild.group({
@@ -59,9 +63,9 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
 
     if (this.tokenStorageService.getToken()) {
-      this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
+      console.log(this.roles+" and "+this.username);
     }
 
     this.authService.authState.subscribe(
@@ -75,7 +79,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.securityService.login(this.formGroup.value).subscribe(
       data => {
-        console.log(data.token)
+
         if (this.formGroup.value.remember_me) {
           this.tokenStorageService.saveTokenLocal(data.token);
           this.tokenStorageService.saveUserLocal(data);
@@ -84,7 +88,6 @@ export class LoginComponent implements OnInit {
           this.tokenStorageService.saveUserLocal(data);
         }
 
-        this.securityService.isLoggedIn = true;
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
@@ -93,7 +96,6 @@ export class LoginComponent implements OnInit {
         this.loggedIn=this.tokenStorageService.isLogged();
       },
       err => {
-        this.securityService.isLoggedIn = false;
         this.toastr.error("Sai tên đăng nhập hoặc mật khẩu không chính xác. Hoặc tài khoản chưa được kích hoạt, vui lòng đăng nhập lại", "Đăng nhập thất bại: ",{
           timeOut: 3000,
           extendedTimeOut: 1500
@@ -119,7 +121,6 @@ export class LoginComponent implements OnInit {
           },
           err => {
             console.log(err);
-            // this.logOut();
           }
         );
       }

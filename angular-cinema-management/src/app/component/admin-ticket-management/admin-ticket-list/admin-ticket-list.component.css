@@ -13,9 +13,15 @@ svg.edit, .page-link {
 .center_number{
   text-align: left;
 }
-.bg-subs{
+.bg-subs,.flg{
   color: #fff;
   background-color: #F26b38;
+}
+.bg-sub{
+  color: #fff;
+  background-color: #F26b38;
+  border: none;
+  border-radius: 5px;
 }
 .fa-solid.fa-square-check {
   color: #F26b38;
@@ -64,9 +70,32 @@ svg.delete{
 th,td,a{
   font-size: 14px;
 }
+.font-weigth{
+  font-weight: 500;
+}
 .page-link{
   height: 35px;
 }
 .page-choice{
   height: 35px;
+}
+.modal-title{
+  color: #F26b38;
+}
+
+.modal-header{
+  text-align: center;
+  display: inline;
+}
+body {
+  min-width: 550px;
+}
+@media only screen and (max-width: 900px) {
+  .d-block-900 {
+    display: block !important;
+  }
+  .form-search {
+    margin: 10px auto;
+    width: 100% !important;
+  }
 }

@@ -87,6 +87,11 @@ export class LoginComponent implements OnInit {
         this.shareService.sendClickEvent();
         this.hasLoggedIn = (this.username != null);
 
+        //ma lam
+        // if (this.tokenStorageService.getUser().roles == "ROLE_ADMIN") {
+        //   this.router.navigate('')
+        // }
+
         console.log("username is "+this.username+" role is "+this.roles);
 
       },

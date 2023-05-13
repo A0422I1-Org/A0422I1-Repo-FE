@@ -14,10 +14,12 @@ export class TicketService {
 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) {
 
+    const tokenValue = this.tokenStorage.getToken();
+
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ` + this.tokenStorage.getUser().token,
+        'Authorization': `Bearer `+this.tokenStorage.getUser().token,
         'Access-Control-Allow-Origin': 'http://localhost:4200',
         'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
       })

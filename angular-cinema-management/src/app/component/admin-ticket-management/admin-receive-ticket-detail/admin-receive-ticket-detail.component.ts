@@ -122,13 +122,14 @@ export class AdminReceiveTicketDetailComponent implements OnInit {
     pdf.text(`${this.ticket.room}`+"       "+`${this.ticket.nameChair}`, 5, 60);
     pdf.setFont("helvetica", "normal");
     pdf.text("=======================================",5,65);
-    pdf.text("-Ticket price            "+`${this.ticket.price}`+"     VND",5,70);
+    const formattedNumber = this.ticket.price.toLocaleString('vi-VN');
+    pdf.text("- Gia ve            "+formattedNumber+"     VND",5,70);
     pdf.text("----------------------------------------------------------------------",4,75);
     pdf.setFont("helvetica", "bold");
-    pdf.text("                                               Total   VND  "+`${this.ticket.price}`,5,82);
+    pdf.text("                                               Tong   VND  "+formattedNumber,5,82);
 
     // lưu tệp PDF
-    pdf.save('Mẫu PDF.pdf');
+    pdf.save(`${this.ticket.fullName}.pdf`);
     this.router.navigate(['ticket_management/confirmTicket',id]);
     this.ticketService.deleteTicketById(id).subscribe(next=>{
     },error => {

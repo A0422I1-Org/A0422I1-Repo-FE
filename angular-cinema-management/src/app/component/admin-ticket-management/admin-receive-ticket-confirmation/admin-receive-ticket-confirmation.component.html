@@ -56,14 +56,14 @@
                 <td>
                   <table>
                     <tr class="mb-2">
-                      <td>{{ticket.price}}</td>
+                      <td>{{ ticket.price| number:'1.0':'en' }}</td>
                     </tr>
                   </table>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Tổng cộng :</th>
-                <td>{{ticket.price}}</td>
+                <td>{{ ticket.price| number:'1.0':'en' }}</td>
               </tr>
               </tbody>
             </table>

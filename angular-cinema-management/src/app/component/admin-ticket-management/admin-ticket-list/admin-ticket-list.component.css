@@ -1,0 +1,71 @@
+/*.css{*/
+/*    float:left;*/
+/*    margin-top: 20px*/
+/*}*/
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #F26b38;
+}
+
+svg.edit, .page-link {
+  color: #F26b38;
+}
+.center_number{
+  text-align: left;
+}
+.bg-subs{
+  color: #fff;
+  background-color: #F26b38;
+}
+.fa-solid.fa-square-check {
+  color: #F26b38;
+}
+.search-button{
+  background-color: #F26b38;
+}
+/*.margin{*/
+/*    margin-top: 10px;*/
+/*}*/
+.img{
+
+  width: 100%;
+  height: 425px;
+  padding: 5px;
+}
+b{
+  font-weight: 600;
+}
+/*.container{*/
+/*    margin-left: 0;*/
+/*}*/
+/*hr{*/
+/*    margin-top: 5px;*/
+/*    height: 10px;*/
+/*    color: black;*/
+/*}*/
+/*h4,h3,h2,b,th{*/
+/*    color: #F26b38;*/
+/*}*/
+/*th,td{*/
+/*    text-align: center;*/
+/*}*/
+.c{
+  margin-left: 10px;
+}
+.d{
+  margin-left: 20px;
+}
+button{
+  height: 40px;
+}
+svg.delete{
+  color: #F26b38;;
+}
+th,td,a{
+  font-size: 14px;
+}
+
+.mg-rg-0{
+  margin: 0px;
+  padding: 0px;
+}

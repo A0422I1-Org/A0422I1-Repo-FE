@@ -13,6 +13,19 @@
   color: #F26b38;
 }
 
+.modal-title{
+  color: #F26b38;
+}
+
+.modal-header{
+  text-align: center;
+  display: inline;
+}
+
+.mg-s-5{
+  margin-top: 5px;
+}
+
 .font-size{
   font-size: 14px;
 }
@@ -25,7 +38,47 @@
   margin-left: 0.5rem;
 }
 
+.pd-lx-0{
+  padding-left: 0px;
+}
+
+.page-link:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.current {
+  color: #fff;
+  background-color: #F26b38;
+}
+
 .image-delete{
   width: 100%;
 }
 
+.input-group--height{
+  height: 35px;
+}
+
+@media only screen and (max-width: 531px) {
+  .input-group-page{
+    width: 160px;
+  }
+  .search-icon{
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 504px) {
+  .search-select{
+    width: 39%;
+  }
+
+  .search-icon{
+    width: 22.1%;
+  }
+}
+
+.mg-rg-0{
+  margin: 0px;
+}

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeViewDTO} from "../../../dto/employee/employee-view-dto";
-import {FormControl, FormGroup} from "@angular/forms";
+import {EmployeeViewDTO} from "../dto/employee/employee-view-dto";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EmployeeService} from "../../../service/employee/employee.service";
 import {ToastrService} from "ngx-toastr";
-import {EmployeeDeleteDTO} from "../../../dto/employee/employee-delete-dto";
-import {PositionViewDTO} from "../../../dto/employee/position-view-dto";
+import {EmployeeDeleteDTO} from "../dto/employee/employee-delete-dto";
+import {PositionViewDTO} from "../dto/employee/position-view-dto";
 import {PositionService} from "../../../service/position/position.service";
 
 @Component({
@@ -21,7 +21,8 @@ export class AdminEmployeeListComponent implements OnInit {
   totalElements = 0;
   formSearch: FormGroup;
 
-  constructor(private employeeService: EmployeeService,private positionService: PositionService,private statusService: ToastrService) { }
+  constructor(private employeeService: EmployeeService,private positionService: PositionService,
+              private statusService: ToastrService) { }
 
   ngOnInit(): void {
     this.createFormSearch();
@@ -31,7 +32,7 @@ export class AdminEmployeeListComponent implements OnInit {
 
   createFormSearch() {
     this.formSearch = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('',[Validators.maxLength(45), Validators.pattern("^[A-Za-z úùụũủịỉìỉĩâăôđêọòóõỏáàảãạèéẹẽẻưửữựừứốồổộỗếềểễệấầẫẩậặắẳẵằạáàảãÚÙỤŨỦỊỈÌỈĨÂĂÔĐÊỌÒÓÕỎÁÀẢÃẠÈÉẸẼẺƯỬỮỰỪỨỐỒỔỘỖẾỀỂỄỆẤẦẪẨẬẶẮẲẴẰẠÁÀẢÃ]+$")]),
       positionId: new FormControl(-1)
     });
   }
@@ -40,7 +41,7 @@ export class AdminEmployeeListComponent implements OnInit {
   {
     this.positionService.findAll().subscribe(value => {
       this.positions=value;
-      })
+    })
   }
 
   findAllWithCondition(name: string, positionId: number, page: number) {
@@ -49,6 +50,11 @@ export class AdminEmployeeListComponent implements OnInit {
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
       this.totalElements = value.totalElements;
+
+      if(this.employees.length == 0)
+      {
+        this.statusService.error('Không tìm thấy nhân viên nào phù hợp!!!', 'Thông báo');
+      }
     });
   }
 

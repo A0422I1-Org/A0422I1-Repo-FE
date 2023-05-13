@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PositionViewDTO} from "../../dto/employee/position-view-dto";
+import {PositionViewDTO} from "../../component/admin-employee-management/dto/employee/position-view-dto";
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,6 @@
 import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {Point} from "../../../model/point";
 import {PointService} from "../../../service/point/point.service";
-import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -31,7 +30,7 @@ export class UserPointHistoryComponent implements OnInit {
   }
 
 
-  constructor(private pointService: PointService, private  router: Router, @Inject(LOCALE_ID) private locale: string) {
+  constructor(private pointService: PointService, @Inject(LOCALE_ID) private locale: string) {
     this.searchForm = new FormGroup({
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -39,21 +38,9 @@ export class UserPointHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPointList(this.indexPagination);
+    // this.getPointList(this.indexPagination);
     this.getSumTotalPointByCustomer();
     this.getPointList(this.indexPagination)
-  }
-
-  getList(page: number) {
-    this.pointService.getAllPointByCustomer(page).subscribe(value => {
-      this.pointList = value.content;
-      this.indexPagination = value.number;
-      this.totalPages = value.totalPages;
-      this.totalElements = value.totalElements;
-    }, error => {
-      this.pointList = [];
-      this.errMessage = "Không có dữ liệu"
-    })
   }
 
   getPointList(page: number) {
@@ -66,6 +53,7 @@ export class UserPointHistoryComponent implements OnInit {
         this.indexPagination = value.number;
         this.totalPages = value.totalPages;
         this.totalElements = value.totalElements;
+
       })
     } else {
       this.pointService.getAllPointByCustomer(page).subscribe(value => {

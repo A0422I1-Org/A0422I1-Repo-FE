@@ -1,6 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {MovieService} from "../../service/movie/movie.service";
+import {TokenStorageService} from "../../service/token/token-storage.service";
+import {Customer} from "../../model/customer";
+import {CustomerService} from "../../service/customer/customer.service";
 
 @Component({
   selector: 'app-header',
@@ -8,14 +11,16 @@ import {MovieService} from "../../service/movie/movie.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  customer: Customer;
   selection: string;
   movieListVisible: boolean = false;
 
 
   constructor(
     private router: Router,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private token: TokenStorageService,
+    private customerService: CustomerService
   ) {
   }
 
@@ -26,6 +31,9 @@ export class HeaderComponent implements OnInit {
     this.movieService.movieListVisible.subscribe(visible => {
       this.movieListVisible = visible;
     });
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
+      this.customer = next;
+    })
   }
 
   toOnShowingList() {
@@ -48,5 +56,10 @@ export class HeaderComponent implements OnInit {
 
   toBooking() {
     this.router.navigateByUrl('/booking/select-movie-and-showtime');
+  }
+
+  logout() {
+    this.token.signOut();
+    this.router.navigateByUrl("/login");
   }
 }

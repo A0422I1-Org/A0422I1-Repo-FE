@@ -9,6 +9,6 @@ export interface Ticket {
   chairRoom: ChairRoom;
   price: number;
   status: boolean;
-  bookDateTime: string;
+  book_datetime: string;
   isDelete: boolean;
 }

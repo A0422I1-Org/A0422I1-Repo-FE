@@ -3,6 +3,8 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieService} from "../../../service/movie/movie.service";
 import {MovieListDTO} from "../dto/MovieListDTO";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {SecurityService} from "../../../service/security/security.service";
 
 @Component({
   selector: 'app-user-movie-list',
@@ -20,11 +22,15 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
   selection: string;
 
   showBookingButton = false;
-
+  username :string;
+  roles: string[] = [];
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private sanitizer: DomSanitizer,
               private movieService: MovieService,
+              private token: TokenStorageService,
+              private tokenStorageService: TokenStorageService,
+              private securityService: SecurityService
               ) {
   }
 
@@ -40,6 +46,12 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
       }
     });
     this.movieService.setMovieListVisible(true);
+    if (this.tokenStorageService.getToken()) {
+      const user = this.tokenStorageService.getUser();
+      this.securityService.isLoggedIn = true;
+      this.roles = this.tokenStorageService.getUser().roles;
+      this.username = this.tokenStorageService.getUser().username;
+    }
   }
 
   ngOnDestroy(){
@@ -72,8 +84,12 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
   }
 
   booking(movieId: number) {
-    this.router.navigate(['/booking/select-movie-and-showtime'],
-      {queryParams: {movieId: movieId}});
+    if (this.username == null) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.router.navigate(['/booking/select-movie-and-showtime'],
+        {queryParams: {movieId: movieId}});
+    }
   }
 
   bookingPermit(startDay: string) {

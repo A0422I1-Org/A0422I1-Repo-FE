@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="background">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-isLoggedIncenter" style="color: #f26b38; padding: inherit"> ĐĂNG NHẬP</h5>
+          <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-label-group">
+              <!--<label for="inputEmail">Tên tài khoản:</label>-->
+              <input autofocus formControlName="username" type="text" id="inputEmail" class="form-control"
+                     placeholder="Tên tài khoản">
+            </div>
+
+            <div class="form-label-group">
+              <!--<label for="inputPassword">Mật khẩu:</label>-->
+              <input formControlName="password" type="password" id="inputPassword" class="form-control"
+                     placeholder="Mật khẩu"
+                     required>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="remember_me">
+              <label class="custom-control-label" for="customCheck1">&ensp;Ghi nhớ đăng nhập lần sau</label>
+            </div>
+
+            <button class="btn btn-lg text-uppercase" style="background: #f26b38; color: white" type="submit">Đăng nhập</button>
+
+            <button class="btn btn-lg text-uppercase" style="background: #ea4335; color: white" type="button">Đăng nhập với google</button>
+
+            <button class="btn btn-lg btn-secondary text-uppercase" style="margin-top: 20px" routerLink="" data-dismiss="modal" type="button">
+              Huỷ
+            </button>
+
+            <div style="margin-top: 20px">
+              <p><a href="" routerLink="/reset-password" data-dismiss="modal">Quên mật khẩu ?</a></p>
+              <span>Bạn chưa có tài khoản? Đăng ký <a  routerLink="/register">tại đây</a></span>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

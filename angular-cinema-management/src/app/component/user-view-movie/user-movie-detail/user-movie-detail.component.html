@@ -7,7 +7,7 @@
         <div CLASS="movie_image">
           <span class="movie_rating" *ngIf="movie.avgRating">{{movie.avgRating | number: '0.1' }}</span>
           <img
-            [src]="movie.image" alt="" class="w-100">
+            [src]="movie.image" alt="loading..." class="w-100">
         </div>
       </div>
       <div class="col-lg-9 table-responsive">

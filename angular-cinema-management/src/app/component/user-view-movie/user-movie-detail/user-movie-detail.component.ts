@@ -7,6 +7,8 @@ import {MovieDetailDTO} from "../../../dto/movie-detail-dto";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RatingMovieService} from "../../../service/rating-movie/rating-movie.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {SecurityService} from "../../../service/security/security.service";
 
 
 @Component({
@@ -20,10 +22,12 @@ export class UserMovieDetailComponent implements OnInit {
   trustedUrl: SafeResourceUrl;
   showBookingButton = false;
 
-  username = 'username' ;
+  username: string;
+  roles: string[] = [];
 
   rfRating: FormGroup;
   messageForRating = '';
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +35,9 @@ export class UserMovieDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private movieService: MovieService,
-    private router: Router
+    private router: Router,
+    private tokenStorageService: TokenStorageService,
+    private securityService: SecurityService
   ) {
   }
 
@@ -53,6 +59,12 @@ export class UserMovieDetailComponent implements OnInit {
         console.log("get movie detail error")
       },
     );
+    if (this.tokenStorageService.getToken()) {
+      const user = this.tokenStorageService.getUser();
+      this.securityService.isLoggedIn = true;
+      this.roles = this.tokenStorageService.getUser().roles;
+      this.username = this.tokenStorageService.getUser().username;
+    }
   }
 
   sendLinkTrailer(trailer: string) {
@@ -68,8 +80,8 @@ export class UserMovieDetailComponent implements OnInit {
   }
 
   booking() {
-    if (this.username == null || this.username == '') {
-      this.router.navigateByUrl('/security/login');
+    if (this.username == null) {
+      this.router.navigateByUrl('/login');
     } else {
       this.router.navigate(['/booking/select-movie-and-showtime'],
         {queryParams: {movieId: this.movie.id}});
@@ -89,13 +101,11 @@ export class UserMovieDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.rfRating.value.rating == null || this.rfRating.value.rating == ''){
-      this.messageForRating = "Bạn cần chọn sao để đánh giá";
-    }
-    else if (this.username == null || this.username == '') {
+    if (this.username == null) {
       this.messageForRating = 'Bạn cần đăng nhập để thực hiện đánh giá phim \"' + this.movie.name + '\"';
-    }
-    else {
+    } else if (this.rfRating.value.rating == null || this.rfRating.value.rating == '') {
+      this.messageForRating = "Bạn cần chọn sao để đánh giá";
+    } else {
       this.ratingMovieService.save(this.rfRating.value).subscribe(
         (data: any) => {
           this.movie.avgRating = parseFloat(data.avgRatingTemp);

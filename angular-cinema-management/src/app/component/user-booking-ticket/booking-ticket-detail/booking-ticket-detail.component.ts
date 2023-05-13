@@ -32,7 +32,7 @@ export class BookingTicketDetailComponent implements OnInit {
         this.totalMoney = this.totalMoney + ticket.price;
       }
       this.ticketDefault = this.tickets[0];
-      this.usdMoney = (this.totalMoney / 23000).toFixed();
+      this.usdMoney = (this.totalMoney / 23460).toFixed(2);
       console.log(this.usdMoney)
       render({
         id: "#myPaypalButtons",

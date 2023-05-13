@@ -1,7 +1,7 @@
 import {Account} from "./account";
 
 export interface Customer {
-  id: number;
+  id: string;
   fullName: string;
   gender: boolean;
   birthday: string;

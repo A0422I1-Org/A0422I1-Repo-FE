@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AdminCustomerManagementRoutingModule } from './admin-customer-management-routing.module';
 import {AdminCustomerEditComponent} from "./admin-customer-edit/admin-customer-edit.component";
 import {AdminCustomerListComponent} from "./admin-customer-list/admin-customer-list.component";
-import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -12,10 +11,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     AdminCustomerEditComponent,
     AdminCustomerListComponent
   ],
-    imports: [
-        CommonModule,
-        AdminCustomerManagementRoutingModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    AdminCustomerManagementRoutingModule
+  ]
 })
 export class AdminCustomerManagementModule { }

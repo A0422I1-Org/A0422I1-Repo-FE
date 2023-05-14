@@ -27,6 +27,10 @@ const routes: Routes = [
     path: "booking",
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
+  {
+    path : "customer" ,
+    loadChildren:() => import('./component/user-account-management/user-account-management.module').then(module =>module.UserAccountManagementModule)
+  }
 ];
 
 @NgModule({

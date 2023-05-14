@@ -5,6 +5,9 @@ import { UserAccountManagementRoutingModule } from './user-account-management-ro
 import {UserAccountInformationComponent} from "./user-account-information/user-account-information.component";
 import {UserTicketManagementComponent} from "./user-ticket-management/user-ticket-management.component";
 import {UserPointHistoryComponent} from "./user-point-history/user-point-history.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HeaderModule} from "../header/header.module";
+import {FooterModule} from "../footer/footer.module";
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import {UserPointHistoryComponent} from "./user-point-history/user-point-history
   ],
   imports: [
     CommonModule,
-    UserAccountManagementRoutingModule
+    UserAccountManagementRoutingModule,
+    ReactiveFormsModule,
+    HeaderModule,
+    FooterModule
   ]
 })
 export class UserAccountManagementModule { }

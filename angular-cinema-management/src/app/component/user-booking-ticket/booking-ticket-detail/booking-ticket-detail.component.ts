@@ -6,6 +6,8 @@ import {CustomerService} from "../../../service/customer/customer.service";
 import {ToastrService} from "ngx-toastr";
 import {render} from "creditcardpayments/creditCardPayments";
 import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {Router} from "@angular/router";
+import {PointService} from "../../../service/point/point.service";
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -21,7 +23,9 @@ export class BookingTicketDetailComponent implements OnInit {
   constructor(private ticketService: TicketService,
               private customerService: CustomerService,
               private toast: ToastrService,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private router: Router,
+              private pointService: PointService) {
 
   }
 
@@ -41,6 +45,7 @@ export class BookingTicketDetailComponent implements OnInit {
         value: this.usdMoney,
         onApprove: (details) => {
           this.confirmTicket();
+          this.router.navigate(["/customer/ticket"])
         }
       });
     })
@@ -56,6 +61,9 @@ export class BookingTicketDetailComponent implements OnInit {
       console.log(ticket);
       this.ticketService.confirmTicket(ticket).subscribe(next => {
         console.log("OK");
+        this.pointService.savePoint(ticket.price, ticket.showTime.movie.name).subscribe(next => {
+          console.log("Save point")
+        })
         this.toast.success("Đặt vé " + ticket.id + " thành công !!!");
       }, error => {
         this.toast.error("Đặt vé thất bại !!!");

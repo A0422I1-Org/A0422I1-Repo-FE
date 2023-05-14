@@ -9,6 +9,7 @@ import {TokenStorageService} from "../token/token-storage.service";
 })
 export class CustomerService {
   httpOptions: any;
+  private API_URL = "http://localhost:8080/api/user/"
 
   constructor(private  httpClient: HttpClient,
               private token: TokenStorageService) {
@@ -30,5 +31,9 @@ export class CustomerService {
 
   findByUsername(username: string): Observable<any> {
     return this.httpClient.get<any>("http://localhost:8080/api/user/findByUsername/" + username, this.httpOptions);
+  }
+
+  getAllTicketByCustomer(page: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL + 'ticket/' + page, this.httpOptions)
   }
 }

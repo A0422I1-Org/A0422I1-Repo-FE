@@ -15,8 +15,11 @@ const routes: Routes = [
   {
     path:"ticket_management",canActivate: [AuthGuardService],
     loadChildren:() => import ('./component/admin-ticket-management/admin-ticket-management.module').then(module => module.AdminTicketManagementModule)
+  },
+  {
+    path:"employee_management",canActivate: [AuthGuardService],
+    loadChildren:() => import ('./component/admin-employee-management/admin-employee-management.module').then(module => module.AdminEmployeeManagementModule)
   }
-
 ];
 
 

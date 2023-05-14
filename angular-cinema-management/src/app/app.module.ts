@@ -22,6 +22,9 @@ import {
 import { AdminStatisticalModule } from "./component/admin-statistical/admin-statistical.module";
 import { AdminStatisticalRoutingModule } from "./component/admin-statistical/admin-statistical-routing.module";
 import { LoginComponent } from "./component/security/login/login.component";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
 
 export function provideConfig() {
   return {
@@ -61,6 +64,8 @@ export function provideConfig() {
     SecurityModule,
     AdminStatisticalModule,
     AdminStatisticalRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     ToastrModule.forRoot(
       {
         timeOut: 2000,

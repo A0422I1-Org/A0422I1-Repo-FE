@@ -60,27 +60,3 @@
   height: 35px;
 }
 
-@media only screen and (max-width: 531px) {
-  .input-group-page{
-    width: 160px;
-  }
-  .search-icon{
-    position: relative;
-  }
-}
-
-@media only screen and (max-width: 504px) {
-  .search-select{
-    width: 39%;
-  }
-
-  .search-icon{
-    width: 22.1%;
-  }
-}
-
-
-
-.mg-rg-0{
-  margin: 0px;
-}

@@ -1,16 +1,16 @@
-<div class="row" style="margin-right: 10px; margin-left: 20px">
+
     <div class="card mb-4" >
       <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">
         <div class="d-block justify-content-center">
           <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link link-dark" aria-current="page">
+              <a href="" class="nav-link link-dark" aria-current="page">
                 <img src="../../../../assets/image/ban-ve.jpg" height="20" width="20"/>
                 Bán vé
               </a>
             </li>
             <li>
-              <a href="ticket_management/select_ticket_user" class="nav-link link-dark">
+              <a  href="ticket_management/select_ticket_user" class="nav-link link-dark">
                 <img src="../../../../assets/image/quan-ly-ban-ve.png" height="20" width="20"/>
                 Quản lý đặt vé
               </a>
@@ -22,13 +22,13 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link link-dark">
+              <a href="customer-management" class="nav-link link-dark">
                 <img src="../../../../assets/image/quan-ly-thanh-vien.jpg" height="20" width="20"/>
                 Quản lý thành viên
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link link-dark">
+              <a href="movie" class="nav-link link-dark">
                 <img src="../../../../assets/image/quan-ly-phim.png" height="20" width="20"/>
                 Quản lý phim
               </a>
@@ -46,13 +46,34 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link link-dark">
-                <img src="../../../../assets/image/thong-ke.png" height="20" width="20"/>
-                Thống kê
+              <a class="nav-link link-primary active" data-bs-toggle="collapse"
+                 href="#collapseExample" role="button"
+                 aria-expanded="false" aria-controls="collapseExample">
+                <img src="assets/images/thong-ke.png" height="20" width="20"/>
+                &ensp;Thống kê
               </a>
             </li>
+            <div class="collapse" id="collapseExample">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="/statistic/movie"
+                       class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                  kê phim</a>
+                </li>
+                <li><a href="/statistic/member"
+                       class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                  kê thành viên</a>
+                </li>
+                <li><a href="/statistic/movie-type-statistic"
+                       class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                  kê thể loại phim </a>
+                </li>
+                <li><a href="/statistic/showtime-statistic"
+                       class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                  kế suất chiếu</a>
+                </li>
+              </ul>
+            </div>
           </ul>
         </div>
       </div>
     </div>
-  </div>

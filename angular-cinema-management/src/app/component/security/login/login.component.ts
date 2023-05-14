@@ -89,7 +89,7 @@ console.log(data);
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
-        this.router.navigateByUrl(data.roles[0] == "ROLE_ADMIN" ? "/movie-statistic":"/ticket_management/select_ticket_user").then(r => console.log(r));
+        this.router.navigateByUrl(data.roles[0] == "ROLE_ADMIN" ? "/ticket_management/select_ticket_user":data.roles[0] == "ROLE_EMPLOYEE"?"/ticket_management/select_ticket_user":"trang chu").then(r => console.log(r));
         this.shareService.sendClickEvent();
         this.loggedIn=this.tokenStorageService.isLogged();
       },

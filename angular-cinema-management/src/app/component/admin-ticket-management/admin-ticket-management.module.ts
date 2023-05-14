@@ -9,6 +9,7 @@ import {ToastrModule} from "ngx-toastr";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "../../app-routing.module";
 import {RouterModule} from "@angular/router";
+import {SlidebarModule} from "../slidebar/slidebar.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AdminTicketManagementRoutingModule
+    AdminTicketManagementRoutingModule,
+    SlidebarModule
   ]
 })
 export class AdminTicketManagementModule { }

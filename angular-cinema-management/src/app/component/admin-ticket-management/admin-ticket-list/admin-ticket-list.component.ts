@@ -179,8 +179,8 @@ export class AdminTicketListComponent implements OnInit {
       },error => {
 
       },()=>{
-        this.ngOnInit();
       })
+      this.ngOnInit();
     }
   }
   onCheckboxChange(index:string) {

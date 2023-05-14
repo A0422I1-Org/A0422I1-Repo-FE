@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Token} from "../../model/token";
 
-const cabecera = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class OauthService {
   constructor(private httpClient: HttpClient) { }
 
   public google(token: Token): Observable<Token> {
-    return this.httpClient.post<Token>(this.oauthURL + '/login-social', token, cabecera);
+    return this.httpClient.post<Token>(this.oauthURL + '/login-social', token, httpOptions);
   }
 
 }

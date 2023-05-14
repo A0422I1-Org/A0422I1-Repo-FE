@@ -55,8 +55,7 @@ export class AdminTicketListComponent implements OnInit {
       "ÚÙỤŨỦỊỈÌỈĨÂĂÔĐÊỌÒÓÕỎÁÀẢÃẠÈÉẸẼẺƯỬỮỰỪỨỐỒỔỘỖẾỀỂỄỆẤẦẪẨẬẶẮẲẴẰẠÁÀẢÃ-]+$")])
 
   });
-    this.isLoggedIn = this.securityService.isLoggedIn;
-    this.hasLoggedIn = this.oauthService.  hasLoggedIn;
+    this.hasLoggedIn = this.oauthService.hasLoggedIn;
     if (this.isLoggedIn === false || this.hasLoggedIn === false) {
       this.router.navigate(['/login']);
     }

@@ -5,6 +5,7 @@ import {AdminStatisticalMovieTypeComponent} from "./admin-statistical-movie-type
 import {AdminStatisticalShowtimeComponent} from "./admin-statistical-showtime/admin-statistical-showtime.component";
 import {AdminStatisticalCustomerComponent} from "./admin-statistical-customer/admin-statistical-customer.component";
 import {AdminStatisticalMovieComponent} from "./admin-statistical-movie/admin-statistical-movie.component";
+import {AuthGuardService} from "../../service/security/auth-guard.service";
 
 
 const routes: Routes = [

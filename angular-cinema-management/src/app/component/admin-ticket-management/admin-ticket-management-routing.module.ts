@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminTicketListComponent} from "./admin-ticket-list/admin-ticket-list.component";
 import {AdminReceiveTicketDetailComponent} from "./admin-receive-ticket-detail/admin-receive-ticket-detail.component";
 import {AdminReceiveTicketConfirmationComponent} from "./admin-receive-ticket-confirmation/admin-receive-ticket-confirmation.component";
+import {AuthGuardService} from "../../service/security/auth-guard.service";
 
 
 const routes: Routes = [

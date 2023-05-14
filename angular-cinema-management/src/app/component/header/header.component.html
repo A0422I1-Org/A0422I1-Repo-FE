@@ -1,2 +1,28 @@
+<<<<<<< HEAD
 
 
+=======
+<ul class="navbar-nav ml-auto" *ngIf="loggedIn">
+
+  <li class="nav-item disabled">
+    <a class="nav-link" >
+      {{userLogged.name}}
+    </a>
+  </li>
+</ul>
+<img *ngIf="loggedIn" src="{{userLogged.photoUrl}}" class="rounded-circle mr-3" style="width: 50px">
+<button *ngIf="loggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="signOut()">
+  <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
+
+
+<ul class="navbar-nav ml-auto" *ngIf="hasLoggedIn">
+
+  <li class="nav-item disabled">
+    <a class="nav-link" >
+      {{username}}
+    </a>
+  </li>
+</ul>
+<button *ngIf="hasLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logOut()">
+  <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>
+>>>>>>> f8f9b3a7b5aad00bcf3641a326b0d98568a4e0f0

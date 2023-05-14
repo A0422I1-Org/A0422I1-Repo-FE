@@ -11,8 +11,8 @@ export class TokenStorageService {
   constructor() { }
 
   signOut() {
-    window.localStorage.clear();
     window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
   public saveTokenLocal(token: string) {
@@ -49,6 +49,10 @@ export class TokenStorageService {
     } else {
       return JSON.parse(sessionStorage.getItem(USER_KEY));
     }
+  }
+
+  public isLogged(): boolean {
+    return !(window.sessionStorage.getItem(TOKEN_KEY) == null && window.localStorage.getItem(TOKEN_KEY) == null);
   }
 
 }

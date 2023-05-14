@@ -7,7 +7,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { NgxPaginationModule } from "ngx-pagination";
 import { AdminMovieManagementModule } from "./component/admin-movie-management/admin-movie-management.module";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,7 +22,6 @@ import {
 import { AdminStatisticalModule } from "./component/admin-statistical/admin-statistical.module";
 import { AdminStatisticalRoutingModule } from "./component/admin-statistical/admin-statistical-routing.module";
 import { LoginComponent } from "./component/security/login/login.component";
-import {NgxPaginationModule} from "ngx-pagination";
 
 export function provideConfig() {
   return {
@@ -53,8 +52,8 @@ export function provideConfig() {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule,
     NgxPaginationModule,
+    FormsModule,
     AdminMovieManagementModule,
     AdminStatisticalModule,
     AdminStatisticalRoutingModule,

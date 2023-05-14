@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {SecurityService} from "../../../service/security/security.service";
@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
   //google-login
   userLogged: SocialUser;
   socialUser: SocialUser;
-  loggedIn: boolean;
-  hasLoggedIn: boolean;
+  loggedIn: boolean = false;
 
   constructor(private formBuild: FormBuilder,
               private tokenStorageService: TokenStorageService,
@@ -42,21 +41,29 @@ export class LoginComponent implements OnInit {
               private oauthService: OauthService,) { }
 
   ngOnInit(): void {
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    /** Pham Trung Hieu
+     * Check tinh trang dang nhap, neu da dang nhap thi ve trang truoc do, chua se ve lai login
+     */
+  if (!this.tokenStorageService.isLogged()) {
+      this.router.navigate(['/login'])
+    }
 
     this.formGroup = this.formBuild.group({
-      username:[''],
-      password:[''],
+      username:['', [Validators.required,
+        Validators.minLength(4), Validators.maxLength(55),
+        Validators.pattern('^[a-zA-Z0-9]+$')]],
+      password:['', [Validators.required,
+        Validators.minLength(8), Validators.maxLength(55),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]+$')]],
       remember_me:['']
     });
 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+
     if (this.tokenStorageService.getToken()) {
-      const user = this.tokenStorageService.getUser();
-      this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
-      this.hasLoggedIn = this.securityService.isLoggedIn;
+      console.log(this.roles+" and "+this.username);
     }
 
     this.authService.authState.subscribe(
@@ -70,34 +77,24 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.securityService.login(this.formGroup.value).subscribe(
       data => {
-
+console.log(data);
         if (this.formGroup.value.remember_me) {
-          this.tokenStorageService.saveTokenLocal(data.accessToken);
+          this.tokenStorageService.saveTokenLocal(data.token);
           this.tokenStorageService.saveUserLocal(data);
         } else {
-          this.tokenStorageService.saveTokenSession(data.accessToken);
+          this.tokenStorageService.saveTokenSession(data.token);
           this.tokenStorageService.saveUserLocal(data);
         }
 
-        this.securityService.isLoggedIn = true;
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
-        this.router.navigateByUrl(this.returnUrl);
+        this.router.navigateByUrl(data.roles[0] == "ROLE_ADMIN" ? "/movie-statistic":"/ticket_management/select_ticket_user").then(r => console.log(r));
         this.shareService.sendClickEvent();
-        this.hasLoggedIn = (this.username != null);
-
-        //ma lam
-        // if (this.tokenStorageService.getUser().roles == "ROLE_ADMIN") {
-        //   this.router.navigate('')
-        // }
-
-        console.log("username is "+this.username+" role is "+this.roles);
-
+        this.loggedIn=this.tokenStorageService.isLogged();
       },
       err => {
-        this.securityService.isLoggedIn = false;
-        this.toastr.error("Sai tên đăng nhập hoặc mật khẩu hoặc tài khoản chưa được kích hoạt", "Đăng nhập thất bại: ",{
+        this.toastr.error("Sai tên đăng nhập hoặc mật khẩu không chính xác. Hoặc tài khoản chưa được kích hoạt, vui lòng đăng nhập lại", "Đăng nhập thất bại: ",{
           timeOut: 3000,
           extendedTimeOut: 1500
         });
@@ -115,42 +112,20 @@ export class LoginComponent implements OnInit {
         const tokenGoogle = new Token(this.socialUser.idToken);
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
+
             this.tokenStorageService.saveUserLocal(res.value);
-            this.loggedIn = true;
-            this.router.navigate(['/login']);
+            this.loggedIn = this.tokenStorageService.isLogged();
+            this.router.navigateByUrl(this.returnUrl).then(r => console.log(r));
           },
           err => {
             console.log(err);
-            // this.logOut();
           }
         );
       }
     ).catch(
       err => {
-        this.oauthService.hasLoggedIn = false;
-        this.toastr.error("Sai tên đăng nhập hoặc mật khẩu hoặc tài khoản chưa được kích hoạt", "Đăng nhập thất bại: ",{
-          timeOut: 3000,
-          extendedTimeOut: 1500
-        })
         console.log(err);
       }
     );
-  }
-
-  signOut(): void {
-    this.authService.signOut().then(
-      data => {
-        this.router.navigate(['/login']);
-        console.log("Đã đăng xuất");
-      }
-    );
-  }
-
-  logOut(): void {
-    this.tokenStorageService.signOut();
-  }
-
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 }

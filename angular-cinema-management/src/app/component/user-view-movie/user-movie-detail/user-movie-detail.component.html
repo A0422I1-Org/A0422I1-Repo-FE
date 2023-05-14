@@ -7,7 +7,9 @@
         <div CLASS="movie_image">
           <span class="movie_rating" *ngIf="movie.avgRating">{{movie.avgRating | number: '0.1' }}</span>
           <img
-            [src]="movie.image" alt="loading..." class="w-100">
+            [src]="movie.image" alt="loading..." class="w-100" (error)="imageError($event)"
+            style="border: 2px solid #F26B38;"
+          >
         </div>
       </div>
       <div class="col-lg-9 table-responsive">
@@ -114,7 +116,7 @@
 <div class="bs-example">
   <!-- Modal HTML -->
   <div id="myModal" class="modal fade" (click)="closeModal()">
-    <div class="modal-dialog modal-dialog-centered" style="left: -10%">
+    <div class="modal-dialog modal-dialog-centered" style="left: -10%" *ngIf="isOpenVideo">
       <div class="modal-content">
         <div class="modal-body" style="padding: 0">
           <div class="embed-responsive embed-responsive-16by9" *ngIf="trustedUrl">
@@ -124,6 +126,13 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-dialog " role="document" *ngIf="!isOpenVideo">
+      <div class="modal-content" style="border-radius: 20px">
+        <div class="modal-body" style="background:#F26B38;  color: white; border-radius: 10px">
+          <span>"Không tải được video"</span>
         </div>
       </div>
     </div>

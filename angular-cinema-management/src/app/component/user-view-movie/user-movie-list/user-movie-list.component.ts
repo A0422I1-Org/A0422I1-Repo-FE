@@ -11,19 +11,19 @@ import {SecurityService} from "../../../service/security/security.service";
   templateUrl: './user-movie-list.component.html',
   styleUrls: ['./user-movie-list.component.css']
 })
-export class UserMovieListComponent implements OnInit, OnDestroy{
+export class UserMovieListComponent implements OnInit, OnDestroy {
 
   movieList: MovieListDTO[];
-
-  name_search: string = '';
 
   trustedUrl: SafeResourceUrl;
 
   selection: string;
 
   showBookingButton = false;
-  username :string;
+  isNotFound = false;
+  username: string;
   roles: string[] = [];
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private sanitizer: DomSanitizer,
@@ -31,50 +31,61 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
               private token: TokenStorageService,
               private tokenStorageService: TokenStorageService,
               private securityService: SecurityService
-              ) {
+  ) {
   }
 
   ngOnInit(): void {
     this.movieService.currentSelection.subscribe(selection => {
       this.selection = selection;
       // get movie list with selection
-      if (selection.includes('on-showing')){
+      if (selection.includes('on-showing')) {
         this.findAllOnShowing()
-      }
-      else {
+      } else {
         this.findAllUpcoming();
       }
     });
     this.movieService.setMovieListVisible(true);
     if (this.tokenStorageService.getToken()) {
       const user = this.tokenStorageService.getUser();
-      this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.movieService.setMovieListVisible(false);
   }
 
-  findAllOnShowing(){
+  findAllOnShowing() {
+    const onShowingTab = document.getElementById("ex3-tab-1");
+    const upComingTab = document.getElementById("ex3-tab-2");
+    onShowingTab.classList.add("nav-link-active");
+    upComingTab.classList.remove("nav-link-active");
     this.movieService.getOnShowingMovie().subscribe(value => {
       this.movieList = value;
       console.log(value);
     })
   }
 
-  findAllUpcoming(){
+  findAllUpcoming() {
+    const onShowingTab = document.getElementById("ex3-tab-1");
+    const upComingTab = document.getElementById("ex3-tab-2");
+    onShowingTab.classList.remove("nav-link-active");
+    upComingTab.classList.add("nav-link-active");
     this.movieService.getUpComingMovie().subscribe(value => {
       this.movieList = value;
       console.log(value);
     })
   }
 
-  findByName(name: string){
+  findByName(name: string) {
     this.movieService.getMovieByName(name).subscribe(value => {
       this.movieList = value;
+      if(value.length){
+        this.isNotFound = false;
+      } else {
+        this.isNotFound = true;
+      }
     })
   }
 
@@ -105,4 +116,10 @@ export class UserMovieListComponent implements OnInit, OnDestroy{
       this.showBookingButton = false;
     }
   }
+
+  refreshPage(){
+    this.isNotFound = false;
+    this.ngOnInit();
+  }
+
 }

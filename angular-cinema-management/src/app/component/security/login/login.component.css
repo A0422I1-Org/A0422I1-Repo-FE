@@ -81,3 +81,8 @@ body {
   }
 }
 
+.social-btn-icon{
+  height: 18px;
+  margin-left: 17px;
+  margin-bottom: -3px;
+}

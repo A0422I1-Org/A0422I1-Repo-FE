@@ -9,8 +9,6 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SecurityRoutingModule} from "./security-routing.module";
-import {HeaderModule} from "../header/header.module";
-import {FooterModule} from "../footer/footer.module";
 
 
 
@@ -26,8 +24,6 @@ import {FooterModule} from "../footer/footer.module";
     BrowserAnimationsModule,
     HttpClientModule,
     SecurityRoutingModule,
-    HeaderModule,
-    FooterModule
   ]
 })
 export class SecurityModule { }

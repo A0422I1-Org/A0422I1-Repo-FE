@@ -8,15 +8,13 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RatingMovieService} from "../../../service/rating-movie/rating-movie.service";
 import {TokenStorageService} from "../../../service/token/token-storage.service";
-import {SecurityService} from "../../../service/security/security.service";
-
 
 @Component({
   selector: 'app-user-movie-detail',
   templateUrl: './user-movie-detail.component.html',
   styleUrls: ['./user-movie-detail.component.css']
 })
-export class UserMovieDetailComponent implements OnInit {
+export class UserMovieDetailComponent implements OnInit{
 
   movie: MovieDetailDTO | undefined;
   trustedUrl: SafeResourceUrl;
@@ -28,7 +26,6 @@ export class UserMovieDetailComponent implements OnInit {
   rfRating: FormGroup;
   messageForRating = '';
 
-
   constructor(
     private formBuilder: FormBuilder,
     private ratingMovieService: RatingMovieService,
@@ -37,11 +34,11 @@ export class UserMovieDetailComponent implements OnInit {
     private movieService: MovieService,
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private securityService: SecurityService
   ) {
   }
 
   private subscription: Subscription | undefined;
+  isOpenVideo: boolean;
 
   ngOnInit(): void {
     const movieId = parseInt(this.activatedRoute.snapshot.params['id']);
@@ -61,15 +58,25 @@ export class UserMovieDetailComponent implements OnInit {
     );
     if (this.tokenStorageService.getToken()) {
       const user = this.tokenStorageService.getUser();
-      this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
   }
 
   sendLinkTrailer(trailer: string) {
-    this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(trailer);
+    this.isOpenVideo = this.isYoutubeLink(trailer);
+    if (this.isOpenVideo){
+      this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(trailer);
+    }
+    else {
+    }
   }
+
+  isYoutubeLink(link: string): boolean {
+    const youtubeLinkRegex = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+    return youtubeLinkRegex.test(link);
+  }
+
 
   closeModal() {
     const videoElement = document.getElementById('trailerVideo') as HTMLIFrameElement;
@@ -116,4 +123,9 @@ export class UserMovieDetailComponent implements OnInit {
       );
     }
   }
+
+  imageError(event: Event) {
+    (event.target as HTMLImageElement).style.border = 'none';
+  }
+
 }

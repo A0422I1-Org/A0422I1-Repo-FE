@@ -43,7 +43,7 @@ export class MovieAndShowtimeSelectionComponent implements OnInit {
     this.getAllMovie();
     if (this.tokenStorageService.getToken()) {
       const user = this.tokenStorageService.getUser();
-      this.securityService.isLoggedIn = true;
+      // this.securityService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }

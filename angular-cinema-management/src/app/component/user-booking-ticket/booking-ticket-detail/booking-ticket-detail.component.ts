@@ -56,7 +56,9 @@ export class BookingTicketDetailComponent implements OnInit {
       console.log(ticket);
       this.ticketService.confirmTicket(ticket).subscribe(next => {
         console.log("OK");
-        this.toast.success("Đặt vé thành công !!!");
+        this.toast.success("Đặt vé " + ticket.id + " thành công !!!");
+      }, error => {
+        this.toast.error("Đặt vé thất bại !!!");
       });
     }
   }

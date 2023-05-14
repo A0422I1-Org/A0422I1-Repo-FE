@@ -30,7 +30,12 @@
               <tr>
                 <th scope="row">Suất chiếu :</th>
                 <td *ngIf="ticketDefault" class="d-block">
-                  <span style="display: inline-block; border-right: 1px solid black; padding-right: 10px; margin-right: 10px;">{{ticketDefault.showTime.startTime}}</span>{{ticketDefault.showTime.date|date}}
+<!--                  <span style="display: inline-block; border-right: 1px solid black; padding-right: 10px; margin-right: 10px;">{{ticketDefault.showTime.startTime}}</span>{{ticketDefault.showTime.date|date}}-->
+                  <span>
+                      {{ ticketDefault.showTime.startTime }} |
+                    {{ ticketDefault.showTime.date | date : "EEEE" : "" : "vi-VN" }}
+                    {{ ticketDefault.showTime.date | date : "dd/MM/yyyy" }}
+                  </span>
                 </td>
               </tr>
               <tr>

@@ -11,10 +11,10 @@ a.list-group-item.movie {
 }
 
 li.ng-scope{
-  height: 44px;
+  height: 60px;
 }
 .list-group-item.movie{
-  height: 44px;
+  height: 60px;
 }
 a.list-group-item.movie:hover{
   background: #F1F1F1;
@@ -36,10 +36,10 @@ h1, h2, h3, h4, h5, p {
   color: white;
 }
 .list-group-item  img {
-  width: 60px;
+  width: 52px;
   float: left;
   margin-right: 10px;
-  height: 35px;
+  height: 60px;
 }
 ul.list-group{
   list-style-type: none;
@@ -115,6 +115,7 @@ button.submit-ticker-movie{
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 button.submit-ticker-movie:hover{
   color: white;
@@ -153,14 +154,17 @@ a.list-group-item.movie.active{
 }
 @media (max-width: 559px){
   div.time-date-movie{
-    margin: 15px 0 10px;
+    margin: 15px 0 10px 0;
   }
   .list-movie-start{
     margin-top: 9px;
   }
+
 }
-@media (max-width: 376px){
+@media (max-width: 534px){
   .container {
-    width: 375px;
+    width: 100%;
+    width: 535px;
   }
+  
 } 

@@ -46,6 +46,7 @@ export class BookingTicketDetailComponent implements OnInit {
         onApprove: (details) => {
           this.confirmTicket();
           this.router.navigate(["/customer/ticket"])
+          this.toast.success("Đặt vé thành công !!!");
         }
       });
     })
@@ -64,7 +65,6 @@ export class BookingTicketDetailComponent implements OnInit {
         this.pointService.savePoint(ticket.price, ticket.showTime.movie.name).subscribe(next => {
           console.log("Save point")
         })
-        this.toast.success("Đặt vé " + ticket.id + " thành công !!!");
       }, error => {
         this.toast.error("Đặt vé thất bại !!!");
       });

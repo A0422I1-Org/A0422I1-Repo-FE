@@ -2,6 +2,9 @@ import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PointService} from "../../../service/point/point.service";
 import {Point} from "../../../model/point";
+import {Customer} from "../../../model/customer";
+import {CustomerService} from "../../../service/customer/customer.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 
 @Component({
   selector: 'app-user-point-history',
@@ -9,7 +12,7 @@ import {Point} from "../../../model/point";
   styleUrls: ['./user-point-history.component.css']
 })
 export class UserPointHistoryComponent implements OnInit {
-
+  customer: Customer;
   pointList: Point[] = [];
   size = 5;
   indexPagination = 0;
@@ -27,7 +30,9 @@ export class UserPointHistoryComponent implements OnInit {
       this.errMessage = "Không có dữ liệu";
     })
   }
-  constructor(private pointService: PointService, @Inject(LOCALE_ID) private locale: string) {
+  constructor(private pointService: PointService, @Inject(LOCALE_ID) private locale: string,
+              private customerService: CustomerService,
+              private token: TokenStorageService) {
     this.searchForm = new FormGroup({
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -37,6 +42,9 @@ export class UserPointHistoryComponent implements OnInit {
     // this.getPointList(this.indexPagination);
     this.getSumTotalPointByCustomer();
     this.getPointList(this.indexPagination)
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
+      this.customer = next;
+    })
   }
   getPointList(page: number) {
     const startDate = (this.searchForm.controls.startDate.value)

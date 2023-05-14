@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CustomerService} from "../../../service/customer/customer.service";
 import {Ticket} from "../../../model/ticket";
 import {PointService} from "../../../service/point/point.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {Customer} from "../../../model/customer";
 
 @Component({
   selector: 'app-user-ticket-management',
@@ -9,7 +11,7 @@ import {PointService} from "../../../service/point/point.service";
   styleUrls: ['./user-ticket-management.component.css']
 })
 export class UserTicketManagementComponent implements OnInit {
-
+  customer: Customer;
   ticketList: Ticket[] = []
   indexPagination = 0;
   totalPages = 0;
@@ -17,7 +19,7 @@ export class UserTicketManagementComponent implements OnInit {
   totalElements = 0;
   errMessage: string;
   validatePage: string;
-  constructor(private customerService: CustomerService, private pointService: PointService) {
+  constructor(private customerService: CustomerService, private pointService: PointService, private token: TokenStorageService) {
   }
   getSumTotalPointByCustomer() {
     this.pointService.getSumPointByCustomer().subscribe(value => {
@@ -29,7 +31,10 @@ export class UserTicketManagementComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllTicketByCustomer(this.indexPagination);
-    this.getSumTotalPointByCustomer()
+    this.getSumTotalPointByCustomer();
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
+      this.customer = next;
+    })
   }
   getAllTicketByCustomer(page: number) {
     this.validatePage = ""

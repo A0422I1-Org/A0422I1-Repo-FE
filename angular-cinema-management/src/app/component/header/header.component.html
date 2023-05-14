@@ -27,7 +27,7 @@
           </li>
         </ul>
 
-        <div class="dropdown user-profile">
+        <div class="dropdown user-profile d-flex align-items-center">
 <!--<<<<<<< HEAD-->
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -36,7 +36,7 @@
 <!--          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
 <!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
 <!--          </a>-->
-          <span *ngIf="customer">{{customer.fullName}}</span>
+          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>
 <!--&gt;>>>>>> book-ticket-->
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">Cài đặt</a></li>

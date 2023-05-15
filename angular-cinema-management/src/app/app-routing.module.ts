@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {UserMovieListComponent} from "./component/user-view-movie/user-movie-list/user-movie-list.component";
-
+import {AdminStatisticalMovieComponent} from "./component/admin-statistical/admin-statistical-movie/admin-statistical-movie.component";
+import {AuthGuardService} from "./service/security/auth-guard.service";
 const routes: Routes = [
   {
     path: "movie/list",
@@ -30,6 +31,19 @@ const routes: Routes = [
   {
     path : "customer" ,
     loadChildren:() => import('./component/user-account-management/user-account-management.module').then(module =>module.UserAccountManagementModule)
+  },
+  {path: "movie-statistic", component: AdminStatisticalMovieComponent,canActivate: [AuthGuardService]},
+  {
+    path: "customer-management",canActivate: [AuthGuardService],
+    loadChildren: () => import('./component/admin-customer-management/admin-customer-management.module').then(module => module.AdminCustomerManagementModule)
+  },
+  {
+    path:"ticket_management",canActivate: [AuthGuardService],
+    loadChildren:() => import ('./component/admin-ticket-management/admin-ticket-management.module').then(module => module.AdminTicketManagementModule)
+  },
+  {
+    path:"employee_management",canActivate: [AuthGuardService],
+    loadChildren:() => import ('./component/admin-employee-management/admin-employee-management.module').then(module => module.AdminEmployeeManagementModule)
   }
 ];
 

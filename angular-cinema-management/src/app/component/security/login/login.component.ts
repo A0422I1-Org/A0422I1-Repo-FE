@@ -44,9 +44,7 @@ export class LoginComponent implements OnInit {
     /** Pham Trung Hieu
      * Check tinh trang dang nhap, neu da dang nhap thi ve trang truoc do, chua se ve lai login
      */
-    if (this.tokenStorageService.isLogged()) {
-      this.router.navigate(['/'])
-    } if (!this.tokenStorageService.isLogged()) {
+  if (!this.tokenStorageService.isLogged()) {
       this.router.navigate(['/login'])
     }
 
@@ -79,7 +77,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.securityService.login(this.formGroup.value).subscribe(
       data => {
-
+console.log(data);
         if (this.formGroup.value.remember_me) {
           this.tokenStorageService.saveTokenLocal(data.token);
           this.tokenStorageService.saveUserLocal(data);
@@ -91,7 +89,7 @@ export class LoginComponent implements OnInit {
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
-        this.router.navigateByUrl(this.returnUrl);
+        this.router.navigateByUrl(data.roles[0] == "ROLE_ADMIN" ? "/ticket_management/select_ticket_user":data.roles[0] == "ROLE_EMPLOYEE"?"/ticket_management/select_ticket_user":"trang chu").then(r => console.log(r));
         this.shareService.sendClickEvent();
         this.loggedIn=this.tokenStorageService.isLogged();
       },
@@ -117,7 +115,7 @@ export class LoginComponent implements OnInit {
 
             this.tokenStorageService.saveUserLocal(res.value);
             this.loggedIn = this.tokenStorageService.isLogged();
-            this.router.navigateByUrl(this.returnUrl);
+            this.router.navigateByUrl(this.returnUrl).then(r => console.log(r));
           },
           err => {
             console.log(err);

@@ -1,1 +1,258 @@
-<p>admin-statistical-movie-type works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thống kê thể loại phim</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body>
+
+<div class="container py-2">
+
+  <!--    Header start     -->
+  <div class="row align-items-center">
+    <div class="col-3">
+      <img src="assets/images/logo_movie-removebg-preview.png" alt="" class="img-fluid"
+           style="width: auto;">
+    </div>
+    <div class="col-9">
+
+      <div class="dropdown float-end px-4">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong style="color: #F26b38">Đặng Chí Nghĩa</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
+          <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--    Header  end    -->
+
+  <div class="row">
+    <!--    Sidebar  start    -->
+    <div class="col-lg-3 noPrint" >
+      <nav class="navbar navbar-expand-lg navbar-light" style="padding: 0px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="card mb-4 " style="width: 100%">
+            <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">
+              <div class="d-block justify-content-center">
+                <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link link-primary" aria-current="page">
+                      <img src="assets/images/ban-ve.jpg" height="20" width="20"/>
+                      Bán vé
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="assets/images/quan-ly-ban-ve.png" height="20" width="20"/>
+                      Quản lý đặt vé
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="assets/images/quan-ly-nhan-vien.png" height="20" width="20"/>
+                      Quản lý nhân viên
+                    </a>
+                  </li>
+                  <li>
+                    <a href="member_list.html" class="nav-link link-primary ">
+                      <img src="assets/images/quan-ly-thanh-vien.png" height="20" width="20"/>
+                      Quản lý thành viên
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary">
+                      <img src="assets/images/quan-ly-phim.png" height="20" width="20"/>
+                      Quản lý phim
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary">
+                      <img src="assets/images/quan-ly-khuyen-mai.png" height="20" width="20"/>
+                      Quản lý khuyến mãi
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link link-primary ">
+                      <img src="assets/images/quan-ly-rap-chieu.png" height="20" width="20"/>
+                      Quản lý phòng chiếu
+                    </a>
+                  </li>
+                  <li>
+                    <!--  <a class="nav-link link-primary disabled" data-bs-toggle="collapse"-->
+                    <!-- href="#collapseExample" role="button"-->
+                    <!--  aria-expanded="false" aria-controls="collapseExample">-->
+                    <!--           solution 2 :  If not admin or use 'disabled' in class -->
+                    <a class="nav-link link-primary active" data-bs-toggle="collapse"
+                       href="#collapseExample" role="button"
+                       aria-expanded="false" aria-controls="collapseExample">
+
+                      <img src="assets/images/thong-ke.png" height="20" width="20"/>
+                      &ensp;Thống kê
+                    </a>
+                  </li>
+                  <div class="collapse" id="collapseExample">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="/statistic/movie"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê phim</a>
+                      </li>
+                      <li><a href="/statistic/member"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê thành viên</a>
+                      </li>
+                      <li><a href="/statistic/movie-type-statistic"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kê thể loại phim </a>
+                      </li>
+                      <li><a href="/statistic/showtime-statistic"
+                             class="link-body-emphasis d-inline-flex text-decoration-none rounded nav-link link-primary">Thống
+                        kế suất chiếu</a>
+                      </li>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--    Sidebar end     -->
+
+    <!--       Main  start      -->
+    <div class="col-lg-9">
+      <div class="col">
+        <div class="card">
+          <div class="bg-light card card-header text-uppercase display fw-bold h5">
+            <div class="row align-items-center">
+              <div class="col-8">Thống kê thể loại phim được xem nhiều nhất</div>
+              <div class="col-4">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="col">
+            <div class="btn-toolbar mb-2 mb-md-0 flex-row-reverse">
+              <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint"
+                        onclick="window.print()">In dữ liệu
+                </button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Xuất dữ liệu
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #F26b38 ;color: white">
+                        <h5 class="modal-title" id="exampleModalLabel">Xuất dữ liệu</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Bạn có chắc chắn muốn xuất dữ liệu này sang Excel?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                        <button type="button" class="btn" style="background-color:#F26b38; color: white" onclick="exportTableToExcel()">Xuất dữ liệu</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <canvas class="my-4 w-100" id="categoryChart" width="500" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <h1 class="h2">
+        <i class="fas fa-star fa-sm" style="color: #f5c105;"></i>
+        Thống kê doanh thu thể loại phim
+        <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr right"
+                [hidden]="isDetailSelected" (click)="showDetailList()">Xem chi tiết
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr"
+                [hidden]="!isDetailSelected" (click)="hideDetailList()">Thu gọn
+        </button>
+      </h1>
+      <!--Table 1-->
+      <table id="categoryTable1" class="table table-hover table-responsive rounded " [hidden]="isDetailSelected">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Thể loại</th>
+          <th scope="col">Số vé đã bán</th>
+          <th scope="col">Doanh thu</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="categoryStatisticListNonGroup">
+        <tr *ngFor="let item of categoryStatisticListNonGroup; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{item.movieType}}</td>
+          <td>{{item.totalTicketsSold}}</td>
+          <td>{{item.totalRevenue | currency :'VND'}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <!--Table 2-->
+      <table id="categoryTable2" class="table table-hover table-responsive rounded " [hidden]="!isDetailSelected">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Thể loại</th>
+          <th scope="col">Số vé đã bán</th>
+          <th scope="col" [hidden]="!isDetailSelected">Ngày bán</th>
+          <th scope="col">Doanh thu</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="categoryStatisticList">
+        <tr
+          *ngFor="let item of categoryStatisticList | paginate: { itemsPerPage: 10, currentPage: currentPage }; index as i">
+          <td>{{(currentPage - 1) * 10 + i + 1}}</td>
+          <td>{{item.movieType}}</td>
+          <td>{{item.totalTicketsSold}}</td>
+          <td>{{item.soldDate}}</td>
+          <td>{{item.totalRevenue | currency :'VND'}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls [hidden]="!isDetailSelected" (pageChange)="currentPage = $event" previousLabel=""
+                           nextLabel=""></pagination-controls>
+
+      <br>
+    </div>
+    <!--       Main end     -->
+
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/category_statistic.js"></script>
+</body>
+</html>

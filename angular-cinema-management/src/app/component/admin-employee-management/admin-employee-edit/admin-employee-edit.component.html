@@ -1,1 +1,376 @@
-<p>admin-employee-edit works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh sách nhân viên</title>
+  <script src="admin-employee-edit.component.ts"></script>
+</head>
+<body class="body">
+
+<div class="container py-2">
+  <div class="row align-items-center">
+    <div class="col-3">
+      <img src="../../../../assets/image/logo_movie-removebg-preview.png"alt="" class="img-fluid" style="width: auto ">
+    </div>
+    <div class="col-9">
+      <div class="dropdown float-end px-4">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="../../../../assets/image/tay.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong style="color: #F26b38">TayPS</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
+          <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card mb-4">
+        <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="d-block justify-content-center">
+            <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link link-dark" aria-current="page">
+                  <img src="../../../../assets/image/ban-ve.jpg" height="20" width="20"/>
+                  Bán vé
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+
+                  <img src="../../../../assets/image/quan-ly-ban-ve.png" height="20" width="20"/>
+                  Quản lý đặt vé
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark active">
+
+                  <img src="../../../../assets/image/quan-ly-nhan-vien.png" height="20" width="20"/>
+                  Quản lý nhân viên
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+
+                  <img src="../../../../assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>
+                  Quản lý thành viên
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="../../../../assets/image/quan-ly-phim.png" height="20" width="20"/>
+                  Quản lý phim
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="../../../../assets/image/quan-ly-khuyen-mai.png" height="20" width="20"/>
+                  Quản lý khuyến mãi
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="../../../../assets/image/quan-ly-rap-chieu.png" height="20" width="20"/>
+                  Quản lý phòng chiếu
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link link-dark">
+                  <img src="../../../../assets/image/thong-ke.png" height="20" width="20"/>
+                  Thống kê
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--       Main        -->
+    <div class="col-lg-9">
+      <div class="col">
+        <div class="card">
+          <!--          add-->
+
+          <div class="container-add">
+
+
+
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-3 txt">
+                        <span class="tit">*</span><span>Hình ảnh </span>
+                      </div>
+
+                      <div class="col-md-9">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="" style="width: 100px">
+                              <img class="w-100"
+                                   [src]="oldAvatarLink"
+                                   alt="avt" style="border-radius: 5px; border:4px solid darkred">
+                            </div>
+                          </div>
+                          <div class="col-md-9 inp">
+                            <input  class="form-control" type="file" id="formFile" (change)="getAvatar($event)">
+<!--                            <span class="validate" *ngIf="formGroup.controls.image.touched && employeeFormCreate.controls.image.errors?.required">Hình ảnh không được để trống, vui lòng chọn ảnh</span>-->
+<!--                            <span class="validate" *ngIf="formGroup.controls.image.touched && employeeFormCreate.controls.image.errors?.required">Hình ảnh không được để trống, vui lòng chọn ảnh</span>-->
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span for="validationDefaultUsername">Tài khoản </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input value="Tên tài khoản không được chỉnh sửa" readonly style="background-color: #bbb9b9" id="username" formControlName="username" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required class="form-control" type="text" placeholder="Enter Account">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Mật khẩu </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="password" class="form-control" type="password" placeholder="Enter Password">
+                              <span class="validate" *ngIf="formGroup.controls.password.touched && formGroup.controls.password.errors?.required">Mật khẩu không được để trống !</span>
+                              <span class="validate" *ngIf="formGroup.controls.password.touched && formGroup.controls.password.errors?.pattern">Mật khẩu phải có ít nhất 8 ký tự ,ít nhật 1 ký tự hoa, ký tự thường , và ký tự đặc biệt!</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Nhập lại Mật khẩu </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="confirmPassword" class="form-control" type="password" placeholder="Entern confirm Password">
+                              <span class="validate" *ngIf="formGroup.controls.confirmPassword.touched && formGroup.controls.confirmPassword.errors?.required">Nhập lại mật khẩu không được để trống !</span>
+                              <span class="validate" *ngIf="formGroup.hasError('not') && formGroup.controls.confirmPassword.touched">Mật khẩu không trùng khớp</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Họ tên </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="fullName" class="form-control" type="text" placeholder="Enter name">
+                              <span class="validate" *ngIf="formGroup.controls.fullName.touched && formGroup.controls.fullName.errors?.required">Tên không được để trống, vui lòng  nhập tên.</span>
+                              <span class="validate" *ngIf="formGroup.controls.fullName.touched && formGroup.controls.fullName.errors?.minlength">Tên phải có ít nhất 7 ký tự, vui lòng nhập lại.</span>
+                              <span class="validate" *ngIf="formGroup.controls.fullName.touched && formGroup.controls.fullName.errors?.maxlength">Tên không được quá 45 ký tự, vui lòng nhập lại.</span>
+                              <span class="validate" *ngIf="formGroup.controls.fullName.touched && formGroup.controls.fullName.errors?.pattern">Tên không đúng định dạng, vui lòng nhập lại.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Vị trí </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <select class="form-select" name="" id="" formControlName="position">
+                                <option selected *ngFor="let item of position" [ngValue]="item">{{item.name}}</option>
+                                <span class="validate" *ngIf="formGroup.controls.position.touched && formGroup.controls.position.errors?.required">Vị trí không được để trống, vui lòng chọn vị trí</span>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Ngày sinh </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="birthday" class="form-control" type="date" value="{{ myDate | date: 'yyyy-MM-dd' }}">
+                              <span class="validate" *ngIf="formGroup.controls.birthday.touched && formGroup.controls.birthday.errors?.pattern">Nhân viên phải từ 16 tuổi !</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Giới tính </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="gender"  class="form-check-input" type="radio" value="true" [value]="true" >Nam
+                              <input formControlName="gender" class="form-check-input" type="radio" value="false"  [value]="false" >Nữ
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Email </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="email" class="form-control" type="text" placeholder="Enter Email">
+                              <!--                          <span class="validate">Email không hợp lệ !</span>-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>CMND </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input style="background-color: #bbb9b9" value="Tên tài khoản không được chỉnh sửa" readonly formControlName="cardId" class="form-control" type="text" placeholder="Enter CMND">
+                              <span class="validate" *ngIf="formGroup.controls.cardId.touched && formGroup.controls.cardId.errors?.required">Chứng minh nhân dân không được để trống, vui lòng nhập lại</span>
+                              <span class="validate" *ngIf="formGroup.controls.cardId.touched && formGroup.controls.cardId.errors?.pattern">Chứng minh nhân dân phải có 12 số , vui lòng nhập lại.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Số điện thoại </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="phoneNumber" class="form-control" type="text" placeholder="Enter phone">
+                              <span class="validate" *ngIf="formGroup.controls.phoneNumber.touched && formGroup.controls.phoneNumber.errors?.required">Số điện thoại không được để trống, vui lòng nhập số điện thoại.</span>
+                              <span class="validate" *ngIf="formGroup.controls.phoneNumber.touched && formGroup.controls.phoneNumber.errors?.pattern">Số điện thoại không đúng định dạng <span style="color: blue">0xxxxxxxxx</span>, vui lòng nhập số điện thoại.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 txt">
+                              <span class="tit">*</span><span>Địa chỉ </span>
+                            </div>
+                            <div class="col-md-9 inp">
+                              <input formControlName="address" class="form-control" type="text" placeholder="Enter address">
+                              <span class="validate" *ngIf="formGroup.controls.address.touched && formGroup.controls.address.errors?.required">Địa chỉ không được để trống, vui lòng nhập địa chỉ.</span>
+                              <span class="validate" *ngIf="formGroup.controls.address.touched && formGroup.controls.address.errors?.minlength">Địa chỉ phải dài hơn 3 ký tự, vui lòng nhập lại địa chỉ.</span>
+                              <span class="validate" *ngIf="formGroup.controls.address.touched && formGroup.controls.address.errors?.maxlength">Địa chỉ không được quá 45 ký tự, vui lòng nhập lại địa chỉ.</span>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <button style="width: 100px;float: right" type="button" class="btn addedit" data-bs-toggle="modal" data-bs-target="#myModalUpdate">Sửa</button>
+
+                            </div>
+                            <div class="col-md-6">
+                              <button style="width: 100px; margin-left: 10px" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalThoat" >Quay lại</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-1">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+<!--modal quay lại-->
+<div class="modal fade" id="myModalThoat">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xác nhận</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Bạn có thực sự muốn thoát khỏi trang này không ?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" routerLink="">Có</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!--modal thêm mới-->
+<div class="modal fade" id="myModalUpdate">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xác nhận</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Bạn thực sự muốn lưu sự thay đổi này không ?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="submit()" routerLink="">Có</button>
+      </div>
+
+    </div>
+  </div>
+</div>

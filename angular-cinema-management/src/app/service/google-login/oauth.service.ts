@@ -12,6 +12,8 @@ const httpOptions = {
 })
 export class OauthService {
 
+  hasLoggedIn: boolean;
+
   oauthURL = 'http://localhost:8080/api/public';
 
   constructor(private httpClient: HttpClient) { }

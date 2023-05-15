@@ -53,7 +53,6 @@ export class TokenStorageService {
 
   public isLogged(): boolean {
     return !(window.sessionStorage.getItem(TOKEN_KEY) == null && window.localStorage.getItem(TOKEN_KEY) == null);
-
   }
 
 }

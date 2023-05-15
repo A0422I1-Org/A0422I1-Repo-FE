@@ -5,6 +5,11 @@ import { AdminTicketManagementRoutingModule } from './admin-ticket-management-ro
 import {AdminTicketListComponent} from "./admin-ticket-list/admin-ticket-list.component";
 import {AdminReceiveTicketConfirmationComponent} from "./admin-receive-ticket-confirmation/admin-receive-ticket-confirmation.component";
 import {AdminReceiveTicketDetailComponent} from "./admin-receive-ticket-detail/admin-receive-ticket-detail.component";
+import {ToastrModule} from "ngx-toastr";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppRoutingModule} from "../../app-routing.module";
+import {RouterModule} from "@angular/router";
+import {SlidebarModule} from "../slidebar/slidebar.module";
 
 
 @NgModule({
@@ -13,9 +18,15 @@ import {AdminReceiveTicketDetailComponent} from "./admin-receive-ticket-detail/a
     AdminReceiveTicketConfirmationComponent,
     AdminReceiveTicketDetailComponent,
   ],
+  exports: [
+    AdminTicketListComponent
+  ],
   imports: [
     CommonModule,
-    AdminTicketManagementRoutingModule
+    ReactiveFormsModule,
+    FormsModule,
+    AdminTicketManagementRoutingModule,
+    SlidebarModule
   ]
 })
 export class AdminTicketManagementModule { }

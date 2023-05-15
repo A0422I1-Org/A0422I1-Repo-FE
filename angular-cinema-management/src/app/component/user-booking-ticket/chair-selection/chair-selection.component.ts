@@ -119,6 +119,7 @@ export class ChairSelectionComponent implements OnInit {
     } else {
       this.ticketService.changeList(this.selectedSeats);
       this.router.navigateByUrl("user/confirm-booking");
+      console.log("Phat test: " + this.selectedSeats)
     }
   }
 }

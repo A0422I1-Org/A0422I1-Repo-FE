@@ -1,0 +1,62 @@
+.nav-pills .nav-link.active, .page-item.active {
+  color: #fff;
+  background-color: #F26b38;
+}
+
+svg.edit, .page-link {
+  color: #F26b38;
+}
+
+td, th, a {
+  font-size: 14px;
+}
+
+.form-control{
+  width: 100%;
+}
+span{
+  float: right;
+}
+.tit{
+  color: red;
+  /* float: right; */
+}
+.inp{
+  height: 60px;
+  line-height: 50px;
+}
+.form-control{
+  margin-top: 6.2px;
+}
+.txt{
+  line-height: 50px;
+}
+.form-check-input{
+  margin-top: 17px;
+}
+.sex{
+  margin-top: 17px;
+}
+.validate{
+  color: red;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.addedit{
+  background-color: #f26b38;
+  color: white;
+}
+
+.addedit:hover{
+  background-color: #f1632f;
+}
+
+.btn__common {
+  background-color: #F26B38;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}

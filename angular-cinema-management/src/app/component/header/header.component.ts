@@ -63,6 +63,7 @@ export class HeaderComponent implements OnInit {
       data => {
         this.userLogged = data;
         this.loggedIn = (this.userLogged != null);
+        console.log(this.loggedIn);
       }
     );
   }

@@ -61,6 +61,8 @@ export class UserMovieDetailComponent implements OnInit{
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
+    console.log(this.roles)
+    console.log(this.username)
   }
 
   sendLinkTrailer(trailer: string) {
@@ -105,6 +107,10 @@ export class UserMovieDetailComponent implements OnInit{
     if (diffDays <= 3) {
       this.showBookingButton = true;
     }
+    if (this.roles.includes('ROLE_EMPLOYEE')){
+      this.showBookingButton = false;
+    }
+
   }
 
   onSubmit() {

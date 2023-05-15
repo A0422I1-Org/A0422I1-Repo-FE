@@ -40,7 +40,7 @@ export class HeaderCommonComponent implements OnInit {
   ) {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadHeader();
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -53,7 +53,11 @@ export class HeaderCommonComponent implements OnInit {
     this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
       this.customer = next;
     });
-
+    if (this.tokenStorageService.getToken()) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = this.tokenStorageService.getUser().roles;
+      this.username = this.tokenStorageService.getUser().username;
+    }
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
 
@@ -105,14 +109,14 @@ export class HeaderCommonComponent implements OnInit {
     this.getUsernameAccount();
   }
 
-  logOut() {
-    this.tokenStorageService.signOut();
-    if (!this.tokenStorageService.isLogged()) {
-      this.router.navigateByUrl(this.returnUrl);
-      console.log("Đã đăng xuất");
-      this.loadHeader();
-    }
-  }
+  // logOut() {
+  //   this.tokenStorageService.signOut();
+  //   if (!this.tokenStorageService.isLogged()) {
+  //     this.router.navigateByUrl(this.returnUrl);
+  //     console.log("Đã đăng xuất");
+  //     this.loadHeader();
+  //   }
+  // }
 
 
   signOut(): void {
@@ -129,5 +133,9 @@ export class HeaderCommonComponent implements OnInit {
     if (this.tokenStorageService.getToken()) {
       this.username = this.tokenStorageService.getUser().username;
     }
+  }
+
+  toLogin() {
+    this.router.navigate(["/login"]);
   }
 }

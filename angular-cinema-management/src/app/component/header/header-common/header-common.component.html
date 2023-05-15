@@ -11,7 +11,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item text-uppercase">
+          <li class="nav-item text-uppercase" *ngIf="!roles.includes('ROLE_EMPLOYEE')">
             <a class="nav-link" (click)="toBooking()" style="cursor: pointer;">Mua vé</a>
           </li>
           <li class="nav-item dropdown text-uppercase">
@@ -40,20 +40,25 @@
           <!--          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
           <!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
           <!--          </a>-->
-<!--          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>-->
+          <!--          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>-->
           <!--&gt;>>>>>> book-ticket-->
           <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
              id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/image/account.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong style="color: #F26b38" *ngIf="customer">{{customer.fullName}}</strong>
+            <strong style="color: #F26b38"
+                    *ngIf="roles.includes('ROLE_CUSTOMER')">{{customer.fullName}}</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_ADMIN')">Admin</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_EMPLOYEE')">Admin</strong>
           </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-<!--            <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1"
+              *ngIf="!roles.includes('ROLE_CUSTOMER') || !roles.includes('ROLE_ADMIN') || !roles.includes('ROLE_EMPLOYEE')">
+            <!--            <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
             <li><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
+            <li *ngIf="!roles.includes('ROLE_CUSTOMER') && !roles.includes('ROLE_ADMIN') && !roles.includes('ROLE_EMPLOYEE')"><a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
             <li><a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
           </ul>
         </div>

@@ -115,6 +115,9 @@ export class UserMovieListComponent implements OnInit, OnDestroy {
     } else {
       this.showBookingButton = false;
     }
+    if (this.roles.includes('ROLE_EMPLOYEE')){
+      this.showBookingButton = false;
+    }
   }
 
   refreshPage(){

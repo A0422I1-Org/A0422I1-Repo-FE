@@ -136,10 +136,8 @@
                       <td>{{t.showTime.movie.name}}</td>
                       <td>{{t.bookDateTime   | date: 'dd/MM/yyyy'}}</td>
                       <td>{{t.price  | currency : 'VND'}}</td>
-                      <td *ngIf="t.status == false else  elseBlock " class="text-danger">ĐỢI NHẬN VÉ</td>
-                      <ng-template #elseBlock>
-                        <td class="text-success">ĐÃ NHẬN VÉ</td>
-                      </ng-template>
+                      <td *ngIf="t.status == 1 " class="text-danger">ĐỢI NHẬN VÉ</td>
+                      <td *ngIf="t.status == 2 " class="text-success">ĐÃ NHẬN VÉ</td>
                     </tr>
                     </tbody>
                   </table>

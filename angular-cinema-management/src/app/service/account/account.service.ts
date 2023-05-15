@@ -19,4 +19,8 @@ export class AccountService {
   recoverPage(accountName: string): Observable<any>{
     return this.http.get(this.baseURL+"recover/" + accountName);
   }
+
+  // doResetPassword(resetPassRequest : ResetPassRequest): Observable<ResetPassRequest>{
+  //   return this.httpClient.post<ResetPassRequest>('http://localhost:8080/api/user/do-reset-password', resetPassRequest);
+  // }
 }

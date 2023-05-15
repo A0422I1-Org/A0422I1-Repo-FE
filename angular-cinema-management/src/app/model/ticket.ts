@@ -8,7 +8,7 @@ export interface Ticket {
   showTime: Showtime;
   chairRoom: ChairRoom;
   price: number;
-  status: boolean;
+  status: number;
   book_datetime: string;
   isDelete: boolean;
 }

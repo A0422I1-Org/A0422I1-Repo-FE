@@ -12,4 +12,8 @@ export class SlidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeColor(x:number)
+  {
+    document.getElementById("id-"+x).style.background = '#F26B38';
+  }
 }

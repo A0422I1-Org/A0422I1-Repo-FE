@@ -60,6 +60,19 @@ export class CustomerService {
     return this.httpClient.put<Customer>(URL + "update", customerDTO, this.httpOptions);
   }
 
+  /*
+  Nghia TĐD
+   */
+  getCustomerByUsername(usermame): Observable<Customer>{
+    return this.httpClient.get<Customer>(this.API_URL+'/'+usermame);
+  }
+  /*
+    Nghia TĐD
+     */
+  updateCustomerUser(id, customer): Observable<any>{
+    return this.httpClient.put('http://localhost:8080/api/user/edit/'+id, customer);
+  }
+
 }
 interface GetReponse {
   content: CustomerStatistic[]

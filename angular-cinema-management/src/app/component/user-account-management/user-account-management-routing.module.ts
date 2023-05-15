@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {UserTicketManagementComponent} from "./user-ticket-management/user-ticket-management.component";
 import {UserPointHistoryComponent} from "./user-point-history/user-point-history.component";
+import {UserAccountInformationComponent} from "./user-account-information/user-account-information.component";
 
 
 const routes: Routes = [
@@ -10,11 +11,15 @@ const routes: Routes = [
   },
   {
     path: "point", component: UserPointHistoryComponent
-  }
+  },
+  // {path: 'register', component: RegisterComponent},
+  {path: 'update-profie/:username', component: UserAccountInformationComponent},
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserAccountManagementRoutingModule { }
+export class UserAccountManagementRoutingModule {
+}

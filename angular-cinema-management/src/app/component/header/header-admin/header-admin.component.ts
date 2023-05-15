@@ -46,8 +46,6 @@ export class HeaderAdminComponent implements OnInit {
     // this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
     //   this.customer = next;
     // });
-
-
     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
 
     this.loadHeader();
@@ -66,6 +64,7 @@ export class HeaderAdminComponent implements OnInit {
   }
 
   loadHeader(): void {
+    this.username = this.tokenStorageService.getUser().username;
     if (this.tokenStorageService.getToken()) {
       // this.currentUser = this.tokenStorageService.getUser().username;
       // this.role = this.tokenStorageService.getUser().roles[0];

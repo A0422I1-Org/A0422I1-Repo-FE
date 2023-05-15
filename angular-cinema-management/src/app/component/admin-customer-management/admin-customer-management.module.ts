@@ -6,6 +6,7 @@ import {AdminCustomerEditComponent} from "./admin-customer-edit/admin-customer-e
 import {AdminCustomerListComponent} from "./admin-customer-list/admin-customer-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SlidebarModule} from "../slidebar/slidebar.module";
+import {HeaderAdminModule} from "../header/header-admin/header-admin.module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {SlidebarModule} from "../slidebar/slidebar.module";
     AdminCustomerManagementRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SlidebarModule
+    SlidebarModule,
+    HeaderAdminModule
   ]
 })
 export class AdminCustomerManagementModule { }

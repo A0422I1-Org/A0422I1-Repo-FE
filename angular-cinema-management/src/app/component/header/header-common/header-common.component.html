@@ -40,10 +40,15 @@
           <!--          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
           <!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
           <!--          </a>-->
-          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>
+<!--          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>-->
           <!--&gt;>>>>>> book-ticket-->
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+             id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/image/account.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong style="color: #F26b38" *ngIf="customer">{{customer.fullName}}</strong>
+          </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+<!--            <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
             <li><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
             <li>
               <hr class="dropdown-divider">

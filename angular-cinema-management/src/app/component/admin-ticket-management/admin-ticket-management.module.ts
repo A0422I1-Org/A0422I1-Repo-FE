@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "../../app-routing.module";
 import {RouterModule} from "@angular/router";
 import {SlidebarModule} from "../slidebar/slidebar.module";
+import {HeaderAdminModule} from "../header/header-admin/header-admin.module";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {SlidebarModule} from "../slidebar/slidebar.module";
     ReactiveFormsModule,
     FormsModule,
     AdminTicketManagementRoutingModule,
-    SlidebarModule
+    SlidebarModule,
+    HeaderAdminModule
   ]
 })
 export class AdminTicketManagementModule { }

@@ -9,7 +9,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {UserBookingTicketRoutingModule} from "./user-booking-ticket-routing.module";
 import localeVi from '@angular/common/locales/vi';
-import {HeaderModule} from "../header/header.module";
+import {HeaderCommonModule} from "../header/header-common/header-common.module";
 import {FooterModule} from "../footer/footer.module";
 
 
@@ -24,7 +24,7 @@ import {FooterModule} from "../footer/footer.module";
         CommonModule,
         UserBookingTicketRoutingModule,
         ReactiveFormsModule,
-      HeaderModule,
+      HeaderCommonModule,
       FooterModule
     ]
 })

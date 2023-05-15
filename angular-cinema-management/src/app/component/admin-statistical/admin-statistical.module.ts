@@ -8,6 +8,8 @@ import {AdminStatisticalMovieTypeComponent} from "./admin-statistical-movie-type
 import {AdminStatisticalShowtimeComponent} from "./admin-statistical-showtime/admin-statistical-showtime.component";
 import {FormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
+import {HeaderAdminModule} from "../header/header-admin/header-admin.module";
+import {SlidebarModule} from "../slidebar/slidebar.module";
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     CommonModule,
     AdminStatisticalRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HeaderAdminModule,
+    SlidebarModule
   ]
 })
 export class AdminStatisticalModule {

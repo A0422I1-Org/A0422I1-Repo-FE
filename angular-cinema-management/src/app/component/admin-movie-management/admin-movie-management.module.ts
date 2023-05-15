@@ -7,6 +7,7 @@ import {AdminMovieCreateComponent} from "./admin-movie-create/admin-movie-create
 import {AdminMovieEditComponent} from "./admin-movie-edit/admin-movie-edit.component";
 import { MovieComponent } from './movie.component';
 import {SlidebarModule} from "../slidebar/slidebar.module";
+import {HeaderAdminModule} from "../header/header-admin/header-admin.module";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {SlidebarModule} from "../slidebar/slidebar.module";
   imports: [
     CommonModule,
     AdminMovieManagementRoutingModule,
-    SlidebarModule
+    SlidebarModule,
+    HeaderAdminModule
   ]
 })
 export class AdminMovieManagementModule { }

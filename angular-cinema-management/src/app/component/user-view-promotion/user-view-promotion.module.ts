@@ -6,7 +6,7 @@ import {AppModule} from "src/app/app.module";
 import { UserViewPromotionRoutingModule } from './user-view-promotion-routing.module';
 import {UserPromotionListComponent} from "./user-promotion-list/user-promotion-list.component";
 import {UserPromotionDetailComponent} from "./user-promotion-detail/user-promotion-detail.component";
-import {HeaderModule} from "../header/header.module";
+import {HeaderCommonModule} from "../header/header-common/header-common.module";
 import {FooterModule} from "../footer/footer.module";
 
 
@@ -22,7 +22,7 @@ import {FooterModule} from "../footer/footer.module";
     CommonModule,
     UserViewPromotionRoutingModule,
     FormsModule,
-    HeaderModule,
+    HeaderCommonModule,
     FooterModule
   ]
 })

@@ -1,19 +1,19 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MovieService} from "../../service/movie/movie.service";
-import {TokenStorageService} from "../../service/token/token-storage.service";
-import {Customer} from "../../model/customer";
-import {CustomerService} from "../../service/customer/customer.service";
-import {ShareService} from "../../service/share/share.service";
+import {MovieService} from "../../../service/movie/movie.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {Customer} from "../../../model/customer";
+import {CustomerService} from "../../../service/customer/customer.service";
+import {ShareService} from "../../../service/share/share.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SocialAuthService, SocialUser} from "angularx-social-login";
-import {SecurityService} from "../../service/security/security.service";
+import {SecurityService} from "../../../service/security/security.service";
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header-common.component.html',
+  styleUrls: ['./header-common.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderCommonComponent implements OnInit {
   customer: Customer;
   selection: string;
   movieListVisible: boolean = false;

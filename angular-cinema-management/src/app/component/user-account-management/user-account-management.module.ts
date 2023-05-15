@@ -6,7 +6,7 @@ import {UserAccountInformationComponent} from "./user-account-information/user-a
 import {UserTicketManagementComponent} from "./user-ticket-management/user-ticket-management.component";
 import {UserPointHistoryComponent} from "./user-point-history/user-point-history.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HeaderModule} from "../header/header.module";
+import {HeaderCommonModule} from "../header/header-common/header-common.module";
 import {FooterModule} from "../footer/footer.module";
 
 
@@ -20,7 +20,7 @@ import {FooterModule} from "../footer/footer.module";
     CommonModule,
     UserAccountManagementRoutingModule,
     ReactiveFormsModule,
-    HeaderModule,
+    HeaderCommonModule,
     FooterModule
   ]
 })

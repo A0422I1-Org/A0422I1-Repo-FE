@@ -8,6 +8,7 @@ import {AdminEmployeeEditComponent} from "./admin-employee-edit/admin-employee-e
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SlidebarModule} from "../slidebar/slidebar.module";
+import {HeaderAdminModule} from "../header/header-admin/header-admin.module";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {SlidebarModule} from "../slidebar/slidebar.module";
       }
     ),
     // AppModule,
-    SlidebarModule
+    SlidebarModule,
+    HeaderAdminModule
   ]
 })
 export class AdminEmployeeManagementModule {

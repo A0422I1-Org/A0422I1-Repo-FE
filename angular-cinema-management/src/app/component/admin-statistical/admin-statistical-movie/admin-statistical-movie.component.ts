@@ -12,26 +12,48 @@ import Chart from "chart.js/auto";
 export class AdminStatisticalMovieComponent implements OnInit {
 
   movieStatisticList: MovieStatisti[] = [];
-  indexPagination = 0;
+  pageNumber = 0;
   totalPages = 0;
   totalElements = 0;
   statusSort = "desc"
 
-  statusChart = true;
   movieChart: Chart;
+  barColors: string[] = [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    "#67d44c",
+    '#4a185e',
+    '#a82aa2',
+    '#d4206b',
+    'rgb(153, 102, 255)',];
+  borderColor: [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)'
+  ]
 
 
   constructor(private movieService: MovieService) {
   }
 
   ngOnInit(): void {
-    this.getMovieStatisticListPaging(this.indexPagination, "", this.statusSort);
+    this.getMovieStatisticListPaging(this.pageNumber, "", this.statusSort);
   }
 
   getMovieStatisticListPaging(page: number, movieName: string, statusSort: string) {
     this.movieService.getMovieStatisticListPaging(page, movieName, statusSort).subscribe(list => {
       this.movieStatisticList = list.content;
-      this.indexPagination = list.number;
+      this.pageNumber = list.number;
       this.totalPages = list.totalPages;
       this.totalElements = list.totalElements;
       this.createChart();
@@ -75,13 +97,6 @@ export class AdminStatisticalMovieComponent implements OnInit {
     return true;
   }
 
-  displayChart() {
-    if (this.statusChart) {
-      this.statusChart = false
-    } else {
-      this.statusChart = true
-    }
-  }
 
   createChart() {
     if (this.movieChart != undefined) {
@@ -91,32 +106,40 @@ export class AdminStatisticalMovieComponent implements OnInit {
       type: "bar",
       data: {
         labels: this.movieStatisticList.map((item) => item.name),
-        datasets: [
-          {
-            backgroundColor: '#F26B38',
-            borderWidth: 1,
-            data: this.movieStatisticList.map((item) => item.totalTicket),
-            label: 'Số lượng vé bán được'
-          }]
+        datasets: [{
+          backgroundColor: this.barColors,
+          borderColor: this.borderColor,
+          borderWidth: 2,
+          data: this.movieStatisticList.map((item) => item.totalTicket),
+          label: ''
+        }]
       },
       options: {
-        indexAxis: 'y',
-        elements: {
-          bar: {
-            borderWidth: 2,
-          }
-        },
-        responsive: true,
         plugins: {
           legend: {
-            position: 'right',
+            display: false
           },
           title: {
             display: true,
-            text: 'Thống Kê Phim'
+          }
+        },
+        scales: { //Title Configuration
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Số vé đã bán',
+              color: '#F26c38',
+              font: {
+                family: 'tahoma',
+                size: 20,
+                style: 'normal',
+                lineHeight: 1.0
+              },
+            }
           }
         }
-      },
+      }
     });
   }
 

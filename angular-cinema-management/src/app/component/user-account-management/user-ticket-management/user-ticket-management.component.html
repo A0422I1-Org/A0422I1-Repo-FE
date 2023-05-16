@@ -125,7 +125,8 @@
                     <tr>
                       <th> #</th>
                       <th>TÊN PHIM</th>
-                      <th>NGÀY ĐẶT</th>
+                      <th class="text-center">SỐ GHẾ</th>
+                      <th class="text-center">NGÀY ĐẶT</th>
                       <th>TỔNG TIỀN</th>
                       <th>TRẠNG THÁI</th>
                     </tr>
@@ -134,8 +135,10 @@
                     <tr *ngFor="let t of ticketList index as i">
                       <td class="text-left">{{i + 1 + indexPagination * 5}}</td>
                       <td>{{t.showTime.movie.name}}</td>
-                      <td>{{t.bookDateTime   | date: 'dd/MM/yyyy'}}</td>
+                      <td class="text-center">{{t.chairRoom.chair.name}}</td>
+                      <td class="text-center">{{t.bookDateTime  | date: 'dd/MM/yyyy  HH:mm'}}</td>
                       <td>{{t.price  | currency : 'VND'}}</td>
+                      <td *ngIf="t.status == 0 " class="text-danger">CHƯA XÁC ĐỊNH</td>
                       <td *ngIf="t.status == 1 " class="text-danger">ĐỢI NHẬN VÉ</td>
                       <td *ngIf="t.status == 2 " class="text-success">ĐÃ NHẬN VÉ</td>
                     </tr>

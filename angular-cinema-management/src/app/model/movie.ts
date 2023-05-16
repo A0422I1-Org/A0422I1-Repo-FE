@@ -7,7 +7,6 @@ export interface Movie {
   description: string;
   status: boolean;
   trailer: string;
-  rating: number;
   language: string;
   isDelete: boolean;
 }

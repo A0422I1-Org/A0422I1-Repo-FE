@@ -162,9 +162,7 @@ a.list-group-item.movie.active{
 
 }
 @media (max-width: 534px){
-  .container {
-    width: 100%;
+  .navbar {
     width: 535px;
   }
-  
 } 

@@ -27,3 +27,8 @@ body{
   margin-right: 150px;
 }
 
+@media (max-width: 534px){
+   .navbar{
+    width: 535px;
+  }
+} 

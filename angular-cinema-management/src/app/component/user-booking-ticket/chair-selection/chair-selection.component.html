@@ -37,6 +37,15 @@
                       <li class="column_title_item text-center">
                         <div class="column_title_item_content">D</div>
                       </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">E</div>
+                      </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">F</div>
+                      </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">G</div>
+                      </li>
                     </ul>
                   </div>
                   <div class="col-11 col-lg-11 col-md-11 col-sm-11 p-0">
@@ -87,7 +96,7 @@
                             active: ticket.status,
                             choosing_seat: isSelected(ticket)
                           }"
-                          (click)="onSeatClick($event, ticket)"
+                        (click)="onSeatClick($event, ticket)"
                         >
                           {{ ticket.chairRoom.chair.name }}
                         </div>

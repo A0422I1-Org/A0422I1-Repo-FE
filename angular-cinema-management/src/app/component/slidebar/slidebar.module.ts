@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SlidebarComponent} from "./slidebar.component";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import {SlidebarComponent} from "./slidebar.component";
     SlidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     SlidebarComponent

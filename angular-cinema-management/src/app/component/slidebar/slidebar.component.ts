@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-slidebar',
@@ -6,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slidebar.component.css']
 })
 export class SlidebarComponent implements OnInit {
+  activePage: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.activePage = "http://localhost:4200" + this.router.url;
   }
 
-  changeColor(x:number)
-  {
-    document.getElementById("id-"+x).style.background = '#F26B38';
+  changeColor(href: string) {
+    this.activePage = href;
   }
 }

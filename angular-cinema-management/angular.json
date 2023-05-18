@@ -33,7 +33,7 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/daterangepicker/daterangepicker.css",
+              "node_modules/daterangepicker/daterangepicker.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

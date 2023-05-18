@@ -1,6 +1,6 @@
 export interface CustomerStatistic {
   id: number
-  name ?: string
+  fullName ?: string
   point ?: number
   ticket ?: number
   money ?:number

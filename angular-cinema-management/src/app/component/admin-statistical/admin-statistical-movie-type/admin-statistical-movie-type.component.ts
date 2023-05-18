@@ -15,8 +15,14 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
 
   xValues: string[] = [];
   yValues: number[] = [];
-  barColors: string[] = ["red", "green", "blue", "orange", "brown", "yellow", "silver", "pink", "purple", "#F26c28"];
-
+  barColors: string[] =  [
+    '#EC5858', '#FD8C04', '#EDF285', '#93ABD3',
+    '#C3F8FF', "#ABD9FF", '#FFF6BF', '#FFEBAD',
+    '#C8FFD4', '#B1AFFF',];
+  borderColor: string[] =  [
+    '#EC5858', '#FD8C04', '#EDF285', '#93ABD3',
+    '#C3F8FF', "#ABD9FF", '#FFF6BF', '#FFEBAD',
+    '#C8FFD4', '#B1AFFF',];
   currentPage = 1;
   isDetailSelected: boolean = false;
   categoryChart: Chart;
@@ -65,6 +71,8 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
         labels: this.xValues = this.categoryStatisticListNonGroup.map((item) => item.movieType),
         datasets: [{
           backgroundColor: this.barColors,
+          borderColor: this.borderColor,
+          borderWidth: 2,
           data: this.yValues = this.categoryStatisticListNonGroup.map((item) => item.totalTicketsSold),
           label: ''
         }]
@@ -111,7 +119,7 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
         return acc;
       }, []);
       this.categoryStatisticListNonGroup = result;
-      this.categoryStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue);
+      this.categoryStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue).slice(0,10);
 
 
       if (this.categoryStatisticListNonGroup.length == 0){

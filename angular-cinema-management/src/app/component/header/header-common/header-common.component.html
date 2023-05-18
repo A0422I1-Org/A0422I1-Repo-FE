@@ -28,20 +28,7 @@
             <a class="nav-link" (click)="toPromotion()" style="cursor: pointer;">Khuyến mãi</a>
           </li>
         </ul>
-
-        <!--        <ul class="navbar-nav ml-auto" *ngIf="loggedIn">-->
-
         <div class="dropdown user-profile d-flex align-items-center">
-          <!--<<<<<<< HEAD-->
-          <!--          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
-          <!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
-          <!--          </a>-->
-          <!--=======-->
-          <!--          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
-          <!--            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
-          <!--          </a>-->
-          <!--          <span class="ms-2" *ngIf="customer">{{customer.fullName}}</span>-->
-          <!--&gt;>>>>>> book-ticket-->
           <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
              id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/image/account.png" alt="" width="32" height="32" class="rounded-circle me-2">
@@ -50,46 +37,18 @@
             <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_ADMIN')">Admin</strong>
             <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_EMPLOYEE')">Admin</strong>
           </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1"
-              *ngIf="!roles.includes('ROLE_CUSTOMER') || !roles.includes('ROLE_ADMIN') || !roles.includes('ROLE_EMPLOYEE')">
-            <!--            <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
-            <li><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
-            <li>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li *ngIf="username"><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
+            <li *ngIf="!username">
               <hr class="dropdown-divider">
             </li>
-
-            <li *ngIf="!roles.includes('ROLE_CUSTOMER') && !roles.includes('ROLE_ADMIN') && !roles.includes('ROLE_EMPLOYEE')"><a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
-            <li><a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
+            <li *ngIf="!username">
+              <a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
+            <li *ngIf="username">
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
           </ul>
         </div>
-        <!--        </ul>-->
       </div>
     </div>
   </nav>
 </header>
-
-<!--=======-->
-<!--<ul class="navbar-nav ml-auto" *ngIf="loggedIn">-->
-
-<!--  <li class="nav-item disabled">-->
-<!--    <a class="nav-link" >-->
-<!--      {{userLogged.name}}-->
-<!--    </a>-->
-<!--  </li>-->
-<!--</ul>-->
-<!--<img *ngIf="loggedIn" src="{{userLogged.photoUrl}}" class="rounded-circle mr-3" style="width: 50px">-->
-<!--<button *ngIf="loggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="signOut()">-->
-<!--  <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>-->
-
-
-<!--<ul class="navbar-nav ml-auto" *ngIf="hasLoggedIn">-->
-
-<!--  <li class="nav-item disabled">-->
-<!--    <a class="nav-link" >-->
-<!--      {{username}}-->
-<!--    </a>-->
-<!--  </li>-->
-<!--</ul>-->
-<!--<button *ngIf="hasLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logOut()">-->
-<!--  <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất</button>-->
-<!--&gt;>>>>>> account-athorization-authentication-->

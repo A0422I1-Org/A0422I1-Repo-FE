@@ -62,4 +62,8 @@
 .input-group--height{
   height: 35px;
 }
+img {
+  background-color: transparent;
+  object-fit: cover;
 
+}

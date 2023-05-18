@@ -46,7 +46,6 @@ export class BookingTicketDetailComponent implements OnInit {
         onApprove: (details) => {
           this.confirmTicket();
           this.router.navigate(["/customer/ticket"])
-          this.toast.success("Đặt vé thành công !!!");
         }
       });
     })
@@ -61,12 +60,12 @@ export class BookingTicketDetailComponent implements OnInit {
     for (let ticket of this.tickets) {
       console.log(ticket);
       this.ticketService.confirmTicket(ticket).subscribe(next => {
-        console.log("OK");
         this.pointService.savePoint(ticket.price, ticket.showTime.movie.name).subscribe(next => {
           console.log("Save point")
         })
+        this.toast.success("Đặt vé thành công !!! - Ghế : " + ticket.chairRoom.chair.name);
       }, error => {
-        this.toast.error("Đặt vé thất bại !!!");
+        this.toast.error("Đặt vé thất bại, vui lòng chọn ghế khác !!!  - Ghế : " + ticket.chairRoom.chair.name);
       });
     }
   }

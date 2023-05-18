@@ -12,8 +12,9 @@ const routes: Routes = [
   {
     path: "point", component: UserPointHistoryComponent
   },
-  // {path: 'register', component: RegisterComponent},
-  {path: 'update-profie/:username', component: UserAccountInformationComponent},
+  {
+    path: "update-profie", component: UserAccountInformationComponent
+  }
 
 ];
 

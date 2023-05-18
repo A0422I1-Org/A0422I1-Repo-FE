@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenStorageService} from "../token/token-storage.service";
 import {Observable} from "rxjs";
+import {SignupRequest} from "../../model/SignupRequest";
+import {ResetPassRequest} from "../../model/ResetPassRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,11 @@ export class AccountService {
     return this.http.get(this.baseURL+"recover/" + accountName);
   }
 
-  // doResetPassword(resetPassRequest : ResetPassRequest): Observable<ResetPassRequest>{
-  //   return this.httpClient.post<ResetPassRequest>('http://localhost:8080/api/user/do-reset-password', resetPassRequest);
-  // }
+  register(signupRequest: SignupRequest): Observable<SignupRequest>{
+    return this.http.post<SignupRequest>('http://localhost:8080/api/public/signup', signupRequest);
+  }
+
+  doResetPassword(resetPassRequest : ResetPassRequest): Observable<ResetPassRequest>{
+    return this.http.put<ResetPassRequest>('http://localhost:8080/api/user/do-reset-password', resetPassRequest);
+  }
 }

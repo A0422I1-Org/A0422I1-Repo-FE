@@ -24,6 +24,7 @@ import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AppComponent} from "./app.component";
 import {RegisterComponent} from "./component/register/register.component";
+import {HeaderCommonModule} from "./component/header/header-common/header-common.module";
 
 export function provideConfig() {
   return {
@@ -47,38 +48,39 @@ export function provideConfig() {
     AppComponent,
     RegisterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    UserViewMovieModule,
-    UserViewPromotionModule,
-    NgxPaginationModule,
-    FormsModule,
-    AdminMovieManagementModule,
-    AdminStatisticalModule,
-    AdminStatisticalRoutingModule,
-    ReactiveFormsModule,
-    SecurityModule,
-    AdminStatisticalModule,
-    AdminStatisticalRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 2000,
-        positionClass: 'toast-top-right'
-      }
-    ),
-    SocialLoginModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 2000,
-        positionClass: 'toast-top-right'
-      }
-    )
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        UserViewMovieModule,
+        UserViewPromotionModule,
+        NgxPaginationModule,
+        FormsModule,
+        AdminMovieManagementModule,
+        AdminStatisticalModule,
+        AdminStatisticalRoutingModule,
+        ReactiveFormsModule,
+        SecurityModule,
+        AdminStatisticalModule,
+        AdminStatisticalRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        ToastrModule.forRoot(
+            {
+                timeOut: 2000,
+                positionClass: 'toast-top-right'
+            }
+        ),
+        SocialLoginModule,
+        ToastrModule.forRoot(
+            {
+                timeOut: 2000,
+                positionClass: 'toast-top-right'
+            }
+        ),
+        HeaderCommonModule
+    ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useFactory: provideConfig,

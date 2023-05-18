@@ -6,10 +6,6 @@ console.log("Version Jquery: " + jQuery.fn.jquery
 
 //Export Table
 function exportTableToExcel() {
-  // Hỏi người dùng xác nhận xuất Excel
-  if (!confirm("Bạn có chắc chắn muốn xuất dữ liệu này sang Excel?")) {
-    return;
-  }
   // Lấy dữ liệu bảng
   var table = document.querySelector("#categoryTable1, #showtimeTable1");
   var rows = table.querySelectorAll("tr");
@@ -35,6 +31,7 @@ function exportTableToExcel() {
   XLSX.writeFile(workbook, filename);
 
 };
+
 
 
 

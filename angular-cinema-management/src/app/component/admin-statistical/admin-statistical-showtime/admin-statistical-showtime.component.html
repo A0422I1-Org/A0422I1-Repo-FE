@@ -124,7 +124,7 @@
         <div class="card">
           <div class="bg-light card card-header text-uppercase display fw-bold h5">
             <div class="row align-items-center">
-              <div class="col-8"> Thống kê số vé đã bán theo suất chiếu</div>
+              <div class="col-8"><h4 class="fw-bold">Thống kê số vé đã bán theo suất chiếu</h4></div>
               <div class="col-4">
               </div>
             </div>
@@ -164,6 +164,7 @@
                     </div>
                   </div>
                 </div>
+                <!--End Modal -->
               </div>
             </div>
           </div>
@@ -174,7 +175,7 @@
       </div>
       <br>
 
-      <h1 class="h2"><i class="fas fa-thumbs-up" style="color: #1f60d1;"></i>
+      <h4 class="fw-bold text-uppercase">
         Thống kê doanh thu theo suất chiếu
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr right rounded-4"
                 [hidden]="isDetailSelected" (click)="showDetailList()">Xem chi tiết  <i class="fa-solid fa-caret-down"></i>
@@ -182,7 +183,7 @@
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr rounded-4"
                 [hidden]="!isDetailSelected" (click)="hideDetailList()">Thu gọn <i class="fa-solid fa-caret-up"></i>
         </button>
-      </h1>
+      </h4>
 
       <!--      Table 1-->
       <table id="showtimeTable1" class="table table-hover" [hidden]="isDetailSelected">
@@ -239,5 +240,6 @@
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 <script src="assets/js/showtime_statistic.js"></script>
+<script src="assets/js/category_statistic.js"></script>
 </body>
 </html>

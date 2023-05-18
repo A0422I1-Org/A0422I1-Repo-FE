@@ -45,7 +45,7 @@
               </div>
 
               <div class="col-3">
-                <button class="bg-sub btn"><i class="bi bi-plus-circle">Them Phim</i></button>
+                <button class="bg-sub btn"><i class="fa-solid fa-film"></i> Thêm phim</button>
               </div>
             </div>
             <div class="card-body">
@@ -55,13 +55,13 @@
                     <input type="search" class="form-control displaySearch rounded" placeholder="Tên phim cần tìm" #name id="nameSearch"
                            (change)="name_search = name.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="search" class="form-control displaySearch rounded" placeholder="nhà sản xuất" #studios id="studioSearch"
+                    <input type="search" class="form-control displaySearch rounded" placeholder="Nhà sản xuất" #studios id="studioSearch"
                            (change)="studios_search = studios.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="date" class="form-control displaySearch rounded" placeholder="ngày cần tìm" #startDay id="dateSearch"
+                    <input type="date" class="form-control displaySearch rounded" placeholder="Ngày cần tìm" #startDay id="dateSearch"
                            (change)="startDay_search=startDay.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="search" class="form-control displaySearch rounded"  placeholder="thời lượng" #time id="timeSearch"
+                    <input type="search" class="form-control displaySearch rounded"  placeholder="Thời lượng" #time id="timeSearch"
                            (change)="timeAmount_search = time.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
                     <button class="btn" (click)="searchWithCondition()">
@@ -147,7 +147,7 @@
                     </li>
                     <li class="page-item">
                       <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="chọn trong {{totalPages}} trang"
+                        <input type="search" class="form-control rounded" placeholder="Chọn trong {{totalPages}} trang"
                                #element
                                id="pageChoice"
                                aria-label="Search" aria-describedby="search-addon"/>

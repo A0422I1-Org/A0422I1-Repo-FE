@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-slidebar',
@@ -7,13 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlidebarComponent implements OnInit {
 
-  constructor() { }
+  idBackground: number;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
-  changeColor(x:number)
-  {
-    document.getElementById("id-"+x).style.background = '#F26B38';
+  ngOnInit(): void {
+    const savedBackground = localStorage.getItem('sidebarBackground');
+    if (savedBackground) {
+      this.idBackground = parseInt(savedBackground);
+      document.getElementById("id-" + this.idBackground).style.background = '#F26B38';
+    }
+  }
+
+  changeColor(x: number) {
+    this.idBackground = x;
+    localStorage.setItem('sidebarBackground', this.idBackground.toString());
   }
 }

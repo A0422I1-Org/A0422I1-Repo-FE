@@ -14,7 +14,7 @@ export class UserPromotionListComponent implements OnInit {
   }
   showAll = false;
   isShowMoreVisible = true;
-  showNumber = 3;
+  showNumber = 4;
 
   getAllPromotion() {
     this.promotionService.getAll().subscribe(next => {

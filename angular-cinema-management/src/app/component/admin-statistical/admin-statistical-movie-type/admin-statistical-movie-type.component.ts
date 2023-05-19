@@ -15,14 +15,29 @@ export class AdminStatisticalMovieTypeComponent implements OnInit {
 
   xValues: string[] = [];
   yValues: number[] = [];
-  barColors: string[] =  [
-    '#EC5858', '#FD8C04', '#EDF285', '#93ABD3',
-    '#C3F8FF', "#ABD9FF", '#FFF6BF', '#FFEBAD',
-    '#C8FFD4', '#B1AFFF',];
-  borderColor: string[] =  [
-    '#EC5858', '#FD8C04', '#EDF285', '#93ABD3',
-    '#C3F8FF', "#ABD9FF", '#FFF6BF', '#FFEBAD',
-    '#C8FFD4', '#B1AFFF',];
+  barColors: string[] = [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    "#67d44c",
+    '#4a185e',
+    '#a82aa2',
+    '#d4206b',
+    'rgb(153, 102, 255)',];
+  borderColor: [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)'
+  ]
   currentPage = 1;
   isDetailSelected: boolean = false;
   categoryChart: Chart;

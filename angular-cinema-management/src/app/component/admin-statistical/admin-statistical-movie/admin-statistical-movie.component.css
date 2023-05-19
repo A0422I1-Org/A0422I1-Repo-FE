@@ -13,13 +13,13 @@
   color: #F26b38;
 }
 
-.modal-title{
-  color: #F26b38;
+.btn-outline-secondary {
+  background-color: #F26b38;
+  color: white;
 }
 
-.modal-header{
-  text-align: center;
-  display: inline;
+.btn-outline-secondary:hover{
+  background-color: #6c757d;
 }
 
 .mg-s-5{

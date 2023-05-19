@@ -60,3 +60,6 @@ span{
   padding: 10px 15px;
   border-radius: 4px;
 }
+.pagination{
+  --bs-pagination-active-border-color: #dee2e6;
+}

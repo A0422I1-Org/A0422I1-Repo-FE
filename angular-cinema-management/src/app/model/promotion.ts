@@ -7,6 +7,6 @@ export interface Promotion {
   time: string;
   content: string;
   location: string;
-  condition: string;
+  conditionPromotion: string;
   isDelete: boolean;
 }

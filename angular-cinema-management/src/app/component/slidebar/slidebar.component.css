@@ -1,6 +1,9 @@
-.nav-pills .nav-link.active, .bg-sub{
+.nav-pills .nav-link.active,.active, .bg-sub{
   color: #fff;
   background-color: #F26b38;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
 }
 
 .bg-close{

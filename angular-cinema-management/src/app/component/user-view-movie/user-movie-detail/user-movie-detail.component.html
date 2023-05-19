@@ -20,24 +20,33 @@
           </div>
           <div>
             <form [formGroup]="rfRating" (ngSubmit)="onSubmit()">
-              <button class="rating_desc btn__common d-flex align-items-center"
-                      data-bs-toggle="modal"
-                      data-bs-target="#myModalForRating">
-                ĐÁNH GIÁ
-              </button>
+              <div *ngIf="ratingMovieExist; else elseBlock">
+                <button class="rating_desc btn__common d-flex align-items-center custom-button-size"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModalForRating">
+                  THAY ĐỔI ĐÁNH GIÁ
+                </button>
+              </div>
+              <ng-template #elseBlock>
+                <button class="rating_desc btn__common d-flex align-items-center custom-button-size"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModalForRating">
+                  ĐÁNH GIÁ
+                </button>
+              </ng-template>
 
               <fieldset>
                 <section>
                   <div class="rate">
-                    <input type="radio" id="star5" name="rating" value="5" formControlName="rating"/>
+                    <input type="radio" id="star5" name="rating" [value]=5 formControlName="rating"/>
                     <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rating" value="4" formControlName="rating"/>
+                    <input type="radio" id="star4" name="rating" [value]=4 formControlName="rating"/>
                     <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rating" value="3" formControlName="rating"/>
+                    <input type="radio" id="star3" name="rating" [value]=3 formControlName="rating"/>
                     <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rating" value="2" formControlName="rating"/>
+                    <input type="radio" id="star2" name="rating" [value]=2 formControlName="rating"/>
                     <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rating" value="1" formControlName="rating"/>
+                    <input type="radio" id="star1" name="rating" [value]=1 formControlName="rating"/>
                     <label for="star1" title="text">1 star</label>
                   </div>
                 </section>

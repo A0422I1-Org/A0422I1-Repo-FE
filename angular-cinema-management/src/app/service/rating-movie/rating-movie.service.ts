@@ -17,5 +17,7 @@ export class RatingMovieService {
   save(rating: RatingMovieDTO): Observable<RatingMovieDTO> {
     return this.httpClient.post<RatingMovieDTO>(this.API_URL_RATING + '/add', rating);
   }
-
+  getRatingMovieByUsernameAndMovieId(username:String, movieId:number): Observable<RatingMovieDTO> {
+    return this.httpClient.get<any>(`${this.API_URL_RATING}/get-rating-movie?username=${username}&movieId=${movieId}`);
+  }
 }

@@ -134,8 +134,9 @@
         </tr>
         </tbody>
       </table>
-      <pagination-controls [hidden]="!isDetailSelected" (pageChange)="currentPage = $event" previousLabel=""
-                            nextLabel="" nextClass="fa-solid fa-forward-fast"></pagination-controls>
+      <pagination-controls class="my-pagination" [hidden]="!isDetailSelected" (pageChange)="currentPage = $event"
+        previousLabel="" nextLabel="" >
+      </pagination-controls>
 
       <br>
     </div>

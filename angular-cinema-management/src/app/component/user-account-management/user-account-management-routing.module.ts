@@ -14,7 +14,7 @@ const routes: Routes = [
   },
 
   {
-    path: "update-profie", component: UserAccountInformationComponent
+    path: "update-profile", component: UserAccountInformationComponent
   }
 
 ];

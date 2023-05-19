@@ -61,16 +61,10 @@ export class CustomerService {
   }
 
   /*
-  Nghia TĐD
-   */
-  getCustomerByUsername(usermame): Observable<Customer>{
-    return this.httpClient.get<Customer>(this.API_URL+'/'+usermame);
-  }
-  /*
     Nghia TĐD
      */
-  updateCustomerUser(id, customer): Observable<any>{
-    return this.httpClient.put('http://localhost:8080/api/user/edit/'+id, customer);
+  updateCustomerUser(customer): Observable<any>{
+    return this.httpClient.put('http://localhost:8080/api/user/edit', customer);
   }
 
 }

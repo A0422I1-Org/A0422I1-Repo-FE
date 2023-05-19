@@ -5,6 +5,9 @@ import {AccountService} from "../../../service/account/account.service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute} from "@angular/router";
 import {CustomerService} from "../../../service/customer/customer.service";
+import {checkDateOfBirth} from "../../register/checkDateOfBirth";
+import {comparePassword} from "../../register/comparePassword";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 // import {checkDateOfBirth} from "../../../validator/checkDateOfBirth";
 
 @Component({
@@ -20,24 +23,25 @@ export class UserAccountInformationComponent implements OnInit {
     private customerService: CustomerService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService ){ }
+    private toastr: ToastrService,
+    private token: TokenStorageService){ }
 
   ngOnInit(): void {
     this.resetPassRequestForm = new FormGroup({
-        username: new FormControl('Trandinhminh',[Validators.required]),
+        username: new FormControl(this.token.getUser().username,[Validators.required]),
         oldPassword: new FormControl('',[Validators.required]),
         password: new FormControl('',[Validators.required, Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
         confirmPassword: new FormControl('',[Validators.required]),
       },
       {
-        // validators: comparePassword
+        validators: comparePassword
       });
 
-    this.customerService.getCustomerByUsername("Trandinhminh").subscribe(customer => {
+    this.customerService.findByUsername(this.token.getUser().username).subscribe(customer => {
       this.updateCustomerForm = new FormGroup({
         id: new FormControl(customer.id, [Validators.required]),
         fullName: new FormControl(customer.fullName, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
-        birthday: new FormControl(customer.birthday.slice(0,10), [Validators.required]),
+        birthday: new FormControl(customer.birthday.slice(0,10), [Validators.required, checkDateOfBirth]),
         gender: new FormControl(customer.gender, [Validators.required,]),
         cardId: new FormControl(customer.cardId, [Validators.required, Validators.pattern("[0-9]{9}")]),
         email: new FormControl(customer.email, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
@@ -47,20 +51,20 @@ export class UserAccountInformationComponent implements OnInit {
     });
   }
 
-  // doResetPassword() {
-  //   const resetPassRequest = this.resetPassRequestForm.value;
-  //   this.accountService.doResetPassword(resetPassRequest).subscribe(data => {
-  //       this.toastr.success("Cập nhật thành công!", "Thông báo");
-  //       this.resetPassRequestForm.reset();
-  //     },
-  //     err =>{
-  //       this.toastr.error("Mật khẩu cũ không đúng!", "Thông báo");
-  //     });
-  // }
+  doResetPassword() {
+    const resetPassRequest = this.resetPassRequestForm.value;
+    this.accountService.doResetPassword(resetPassRequest).subscribe(data => {
+        this.toastr.success("Cập nhật thành công!", "Thông báo");
+        this.resetPassRequestForm.reset();
+      },
+      err =>{
+        this.toastr.error("Mật khẩu cũ không đúng!", "Thông báo");
+      });
+  }
 
   updateCustomer() {
     const customer = this.updateCustomerForm.value;
-    this.customerService.updateCustomerUser(customer.id, customer).subscribe(data => {
+    this.customerService.updateCustomerUser(customer).subscribe(data => {
         this.toastr.success("Cập nhật thành công!", "Thông báo");
       },
       error => {

@@ -39,7 +39,7 @@
 </head>
 
 <body style="background-color: #eee; font-family: Roboto, sans-serif">
-
+<app-header></app-header>
 <section>
   <div class="container py-5">
 
@@ -74,16 +74,18 @@
               <div class="row">
                 <div class="col-2"></div>
                 <div class="col-9 text-start">
-                  <a class="text-decoration-none section-link" href="#"
+                  <a class="text-decoration-none section-link"
+                     routerLink="/customer/update-profie"
                   ><i
                     class="bi bi-person-bounding-box divider mx-3 font-weight-bold"
+
                   ></i
                   >Thông tin tài khoản</a
                   >
                   <hr />
                   <a
                     class="text-decoration-none section-link font-weight-bold"
-                    href="./user_point.html"
+                    routerLink="/customer/point"
                   ><i
                     class="bi bi-clock-history section-link divider mx-3"
                   ></i
@@ -92,7 +94,7 @@
                   <hr />
                   <a
                     class="text-decoration-none section-link font-weight-bold"
-                    href=""
+                    routerLink="/customer/ticket"
                   >
                     <i
                       class="bi bi-ticket-perforated section-link divider mx-3"
@@ -113,69 +115,68 @@
             <div class="bg-light card card-header shadow p-3 mb-4 text-uppercase font-weight: bold">
               <h5>THÔNG TIN ĐĂNG NHẬP</h5>
             </div>
+            <div class="card-body divider my-3">
+              <form [formGroup]="resetPassRequestForm" (ngSubmit)="doResetPassword()">
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Tài Khoản</label>
+                  <div class="col-sm-4">
+                    <input readonly type="text" class="form-control" formControlName="username">
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu cũ<span style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="oldPassword">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('oldPassword').hasError('required') && resetPassRequestForm.get('oldPassword').touched">
+                  Mật khẩu cũ không được để trống</span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu mới<span style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="password">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('password').hasError('required') && resetPassRequestForm.get('password').touched">
+                  Mật khẩu mới không được để trống</span>
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('password').hasError('pattern') && resetPassRequestForm.get('password').touched">
+                  Mật khẩu mới không đúng định dạng</span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Nhập lại mật khẩu<span style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="confirmPassword">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('confirmPassword').hasError('required') && resetPassRequestForm.get('confirmPassword').touched">
+                  Mật khẩu mới không được để trống</span>
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.hasError('passwordnotmatch') && resetPassRequestForm.get('confirmPassword').touched">
+                  Mật khẩu không trùng nhau
+              </span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label"></label>
+                  <div class="col-sm-9" style="text-align: left">
+                    <button type="submit"  class="btn btn-primary border-0" style="background-color: #f26b38;" [disabled]="!resetPassRequestForm.valid">
+                      <i class="bi bi-lock-fill"></i>
+                      Đổi mật khẩu
+                    </button>
+                  </div>
+                </div>
+              </form>
 
-<!--            <div class="card-body divider my-3">-->
-<!--              <form [formGroup]="resetPassRequestForm" (ngSubmit)="doResetPassword()">-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Tài Khoản</label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input readonly type="text" class="form-control" formControlName="username">-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu cũ<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="oldPassword">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('oldPassword').hasError('required') && resetPassRequestForm.get('oldPassword').touched">-->
-<!--                  Mật khẩu cũ không được để trống</span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu mới<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="password">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('password').hasError('required') && resetPassRequestForm.get('password').touched">-->
-<!--                  Mật khẩu mới không được để trống</span>-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('password').hasError('pattern') && resetPassRequestForm.get('password').touched">-->
-<!--                  Mật khẩu mới không đúng định dạng</span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Nhập lại mật khẩu<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="confirmPassword">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('confirmPassword').hasError('required') && resetPassRequestForm.get('confirmPassword').touched">-->
-<!--                  Mật khẩu mới không được để trống</span>-->
-<!--                    <span style="color: red"-->
-<!--                          *ngIf="resetPassRequestForm.hasError('passwordnotmatch') && resetPassRequestForm.get('confirmPassword').touched">-->
-<!--                  Mật khẩu không trùng nhau-->
-<!--              </span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label"></label>-->
-<!--                  <div class="col-sm-9" style="text-align: left">-->
-<!--                    <button type="submit"  class="btn btn-primary border-0" style="background-color: #f26b38;" [disabled]="!resetPassRequestForm.valid">-->
-<!--                      <i class="bi bi-lock-fill"></i>-->
-<!--                      Đổi mật khẩu-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </form>-->
-
-<!--            </div>-->
+            </div>
           </div>
           <br>
           <div class="card">
@@ -341,6 +342,6 @@
 
   </div>
 </section>
+<app-footer></app-footer>
 </body>
 </html>
-

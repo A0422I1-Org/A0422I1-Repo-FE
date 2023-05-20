@@ -122,9 +122,9 @@
     <div class="col-lg-9">
       <div class="col">
         <div class="card">
-          <div class="bg-light card card-header text-uppercase display fw-bold h5">
+          <div class="bg-light card card-header text-uppercase display fw-bold ">
             <div class="row align-items-center">
-              <div class="col-8"> Thống kê số vé đã bán theo suất chiếu</div>
+              <div class="col-8">Thống kê số vé đã bán theo suất chiếu</div>
               <div class="col-4">
               </div>
             </div>
@@ -164,6 +164,7 @@
                     </div>
                   </div>
                 </div>
+                <!--End Modal -->
               </div>
             </div>
           </div>
@@ -174,7 +175,7 @@
       </div>
       <br>
 
-      <h1 class="h2"><i class="fas fa-thumbs-up" style="color: #1f60d1;"></i>
+      <div class="fw-bold text-uppercase">
         Thống kê doanh thu theo suất chiếu
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr right rounded-4"
                 [hidden]="isDetailSelected" (click)="showDetailList()">Xem chi tiết  <i class="fa-solid fa-caret-down"></i>
@@ -182,8 +183,8 @@
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr rounded-4"
                 [hidden]="!isDetailSelected" (click)="hideDetailList()">Thu gọn <i class="fa-solid fa-caret-up"></i>
         </button>
-      </h1>
-
+      </div>
+      <br>
       <!--      Table 1-->
       <table id="showtimeTable1" class="table table-hover" [hidden]="isDetailSelected">
         <thead style="background-color: #F26B38; color: #fff;">
@@ -226,8 +227,8 @@
         </tr>
         </tbody>
       </table>
-      <pagination-controls [hidden]="!isDetailSelected" (pageChange)="currentPage = $event" previousLabel=""
-                           nextLabel=""></pagination-controls>
+      <pagination-controls class="my-pagination" [hidden]="!isDetailSelected" (pageChange)="currentPage = $event"
+                           previousLabel="" nextLabel=""></pagination-controls>
       <br>
     </div>
     <!--       Main end     -->
@@ -239,5 +240,6 @@
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 <script src="assets/js/showtime_statistic.js"></script>
+<script src="assets/js/category_statistic.js"></script>
 </body>
 </html>

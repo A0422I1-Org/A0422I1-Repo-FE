@@ -29,7 +29,7 @@
     <div class="col-lg-9">
       <div class="col">
         <div class="card">
-          <div class="bg-light card card-header text-uppercase display fw-bold h5">
+          <div class="bg-light card card-header text-uppercase display fw-bold">
             <div class="row align-items-center">
               <div class="col-8">Thống kê thể loại phim được xem nhiều nhất</div>
               <div class="col-4">
@@ -71,6 +71,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- End Modal -->
               </div>
             </div>
           </div>
@@ -82,8 +83,7 @@
 
       <br>
 
-      <h1 class="h2">
-        <i class="fas fa-star fa-sm" style="color: #f5c105;"></i>
+      <div class="fw-bold text-uppercase">
         Thống kê doanh thu thể loại phim
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr right rounded-4"
                 [hidden]="isDetailSelected" (click)="showDetailList()">Xem chi tiết  <i class="fa-solid fa-caret-down"></i>
@@ -91,7 +91,8 @@
         <button type="button" class="btn btn-sm btn-outline-secondary shadow noPrint pr rounded-4"
                 [hidden]="!isDetailSelected" (click)="hideDetailList()">Thu gọn <i class="fa-solid fa-caret-up"></i>
         </button>
-      </h1>
+      </div>
+      <br>
       <!--Table 1-->
       <table id="categoryTable1" class="table table-hover table-responsive rounded " [hidden]="isDetailSelected">
         <thead style="background-color: #F26B38; color: #fff;">
@@ -133,8 +134,9 @@
         </tr>
         </tbody>
       </table>
-      <pagination-controls [hidden]="!isDetailSelected" (pageChange)="currentPage = $event" previousLabel=""
-                            nextLabel="" nextClass="fa-solid fa-forward-fast"></pagination-controls>
+      <pagination-controls class="my-pagination" [hidden]="!isDetailSelected" (pageChange)="currentPage = $event"
+        previousLabel="" nextLabel="" >
+      </pagination-controls>
 
       <br>
     </div>
@@ -142,8 +144,10 @@
 
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/category_statistic.js"></script>
+
 </body>
 </html>

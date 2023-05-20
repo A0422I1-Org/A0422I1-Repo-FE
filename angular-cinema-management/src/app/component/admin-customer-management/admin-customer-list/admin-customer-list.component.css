@@ -116,7 +116,10 @@ span{
   padding: 0;
 }
 
-#pageChoice{
+#pageChoice {
   height: 35px;
   margin: 0;
+}
+.pagination{
+  --bs-pagination-active-border-color: #dee2e6;
 }

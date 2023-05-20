@@ -48,6 +48,7 @@ export class UserMovieDetailComponent implements OnInit {
   private subscription: Subscription | undefined;
   isOpenVideo: boolean;
   private ratingTemp: number;
+  isHasRated = false;
 
   ngOnInit(): void {
     const movieId = parseInt(this.activatedRoute.snapshot.params['id']);
@@ -64,6 +65,7 @@ export class UserMovieDetailComponent implements OnInit {
         if(data){
           this.ratingMovieExist = data;
           this.ratingTemp = this.ratingMovieExist.rating;
+          this.isHasRated = true;
         }
         this.subscription = this.movieService.getMovieDetailByMovieId(movieId).subscribe(
           data => {
@@ -84,10 +86,6 @@ export class UserMovieDetailComponent implements OnInit {
         console.log("get movie detail error")
       },
     );
-    // console.log(this.roles)
-    // console.log(this.username)
-    // console.log(this.ratingMovieExist);
-
   }
 
   sendLinkTrailer(trailer: string) {
@@ -151,8 +149,9 @@ export class UserMovieDetailComponent implements OnInit {
           console.log(error)
         },
       );
+      this.isHasRated = true;
     }
-  }
+     }
 
   imageError(event: Event) {
     (event.target as HTMLImageElement).style.border = 'none';

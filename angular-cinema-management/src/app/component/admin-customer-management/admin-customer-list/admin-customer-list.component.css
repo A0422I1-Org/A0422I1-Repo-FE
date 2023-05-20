@@ -1,10 +1,14 @@
-.nav-pills .nav-link.active, .page-item.active {
+.nav-pills .nav-link.active, .page-item.active, .page-link.active {
   color: #fff;
   background-color: #F26b38;
 }
 
 svg.edit, .page-link {
   color: #F26b38;
+}
+
+.page-link.disabled {
+  color: #969b9f;
 }
 
 td, th, a {
@@ -59,4 +63,60 @@ span{
   border: none;
   padding: 10px 15px;
   border-radius: 4px;
+}
+
+.search-button{
+  background-color: #F26b38;
+}
+
+.page-link{
+  height: 35px;
+}
+#pageChoice{
+  width: 250px;
+  height: 35px;
+}
+.btn {
+  height: 35px;
+}
+.input-group-text{
+  padding: 0;
+}
+.displaySearch{
+  padding: 6px 12px;
+  width: 15%;
+  font-size: 1rem;
+  float: left;
+  line-height: 1.5em;
+  box-shadow: none;
+}
+.text{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+@media only screen and (max-width: 633px) {
+  .input-group{
+    width: 153px;
+  }
+  #pageChoice{
+    width: 100px;
+    height: 35px;
+  }
+  .displaySearch{
+    width: 153px;
+    float: left;
+  }
+}
+
+.bg-icon{
+  color: #F26b38;
+}
+
+.input-group-text{
+  padding: 0;
+}
+
+#pageChoice{
+  height: 35px;
+  margin: 0;
 }

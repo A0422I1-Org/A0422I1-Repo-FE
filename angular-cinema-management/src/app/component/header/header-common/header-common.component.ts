@@ -91,11 +91,7 @@ export class HeaderCommonComponent implements OnInit {
   }
 
   toBooking() {
-    if (this.username == null) {
-      this.router.navigateByUrl('/login');
-    } else {
       this.router.navigateByUrl('/booking/select-movie-and-showtime');
-    }
   }
 
   logout() {

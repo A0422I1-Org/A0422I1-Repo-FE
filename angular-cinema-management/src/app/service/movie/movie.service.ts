@@ -27,7 +27,6 @@ export class MovieService {
         'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS'
       })
     };
-
   }
 
   //Transfer header to movie-list: to display on showing movie or upcoming move
@@ -61,10 +60,11 @@ export class MovieService {
     return this.httpClient.get<MovieDetailDTO>(this.API_URL_MOVIE + "/detail/" + idMovie);
   }
 
-  getAllMovie(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(this.API_URL_GET_ALL_MOVIE);
+  getAllMovie(): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_GET_ALL_MOVIE,
+      this.httpOptions);
   }
-
+  
   getMovieStatisticListPaging(page: number, nameMovie: string, statusSort: string): Observable<any> {
     return this.httpClient.get<GetReponse>('http://localhost:8080' + '/api/admin/movie-statistic-list?page=' + page + '&nameMovie=' + nameMovie+ '&statusSort=' + statusSort, this.httpOptions)
   }

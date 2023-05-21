@@ -1,1 +1,336 @@
-<p>admin-customer-edit works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh sách thành viên</title>
+</head>
+<body>
+<div class="container py-2">
+
+  <!--    Header      -->
+<!--  <div class="row align-items-center">-->
+<!--    <div class="col-6 col-lg-3">-->
+<!--      <img src="assets/image/logo_movie-removebg-preview.png" alt="" class="img-fluid"-->
+<!--           style="width: auto;">-->
+<!--    </div>-->
+<!--    <div class="col-6 col-lg-9">-->
+<!--      <div class="dropdown float-end px-4">-->
+<!--        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"-->
+<!--           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--          <img src="assets/image/IMG_0378.jpg" alt="" width="32" height="32" class="rounded-circle me-2">-->
+<!--          <strong style="color: #F26b38">Huỳnh Công Danh</strong>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">-->
+<!--          <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
+<!--          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>-->
+<!--          <li>-->
+<!--            <hr class="dropdown-divider">-->
+<!--          </li>-->
+<!--          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<app-header-admin></app-header-admin>
+  <!--    Sidebar      -->
+  <div class="row">
+    <div class="col-lg-3">
+<!--      <div class="card mb-4">-->
+<!--        <div class="card-header rounded-1" style="background-color: rgba(0, 0, 0, 0)">-->
+<!--          <div class="d-block justify-content-center">-->
+<!--            <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">-->
+<!--              <li class="nav-item">-->
+<!--                <a href="#" class="nav-link link-dark" aria-current="page">-->
+<!--                  <img src="assets/image/ban-ve.jpg" height="20" width="20"/>-->
+<!--                  Bán vé-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark">-->
+<!--                  <img src="assets/image/quan-ly-ban-ve.png" height="20" width="20"/>-->
+<!--                  Quản lý đặt vé-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark">-->
+<!--                  <img src="assets/image/quan-ly-nhan-vien.png" height="20" width="20"/>-->
+<!--                  Quản lý nhân viên-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="/customer-management" class="nav-link link-dark active">-->
+<!--                  <img src="assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>-->
+<!--                  Quản lý thành viên-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark">-->
+<!--                  <img src="assets/image/quan-ly-phim.png" height="20" width="20"/>-->
+<!--                  Quản lý phim-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark">-->
+<!--                  <img src="assets/image/quan-ly-khuyen-mai.png" height="20" width="20"/>-->
+<!--                  Quản lý khuyến mãi-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark">-->
+<!--                  <img src="assets/image/quan-ly-rap-chieu.png" height="20" width="20"/>-->
+<!--                  Quản lý phòng chiếu-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a href="#" class="nav-link link-dark link-dark text-decoration-none dropdown-toggle"-->
+<!--                   id="dropdownStatistic" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  <img src="assets/image/thong-ke.png" height="20" width="20"/>-->
+<!--                  Thống kê-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownStatistic"-->
+<!--                    style="">-->
+<!--                  <li><a class="dropdown-item" href="#">Thống kê phim</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Thống kê thành viên</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Thống kê thể loại phim</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Thống kê suất chiếu</a></li>-->
+<!--                </ul>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <app-slidebar></app-slidebar>
+    </div>
+
+    <!--    Main    -->
+    <div class="col-lg-9">
+      <div class="card">
+        <div class="bg-light card card-header p-3 mb-4 text-uppercase display fw-bold">
+          Sửa tài khoản thành viên
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-11">
+              <form [formGroup]="formGroup" (ngSubmit)="submit()">
+
+                <!--                Username input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span for="username"><label for="username">Tài khoản&nbsp;&nbsp;</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input readonly id="username" formControlName="username"
+                           aria-describedby="inputGroupPrepend2" class="form-control" type="text"
+                           placeholder="Tên đăng nhập">
+                    <span *ngIf="formGroup.controls.username.touched
+                    && formGroup.controls.username.dirty" class="validate">Không được thay đổi Tên đăng nhập</span>
+                  </div>
+                </div>
+
+                <!--                Full name input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label for="fullName">Họ và tên</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="fullName" formControlName="fullName" aria-describedby="inputGroupPrepend2" required
+                           class="form-control" type="text" placeholder="Họ và tên">
+                    <span *ngIf="formGroup.controls.fullName.hasError('required')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được để trống.&nbsp;</span>
+                    <span *ngIf="formGroup.hasError('fullNamePattern') && !formGroup.controls.fullName.hasError('required')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên không được chứa số và ký tự đặc biệt.&nbsp;</span>
+                    <span *ngIf="formGroup.controls.fullName.hasError('minlength')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá ngắn. Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
+                    <span *ngIf="formGroup.controls.fullName.hasError('maxlength')
+                    && formGroup.controls.fullName.touched" class="validate">&nbsp;Họ và tên quá dài.   Yêu cầu nhập từ 5-50 ký tự.&nbsp;</span>
+                  </div>
+                </div>
+
+                <!--                Password input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label for="password">Mật khẩu</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="password" formControlName="password"
+                           aria-describedby="inputGroupPrepend2"
+                           class="form-control" type="password"
+                           placeholder="Để bảo mật, mật khẩu không hiển thị. Để trống nếu bạn không muốn đổi mật khẩu">
+                    <span *ngIf="formGroup.controls.password.hasError('pattern')
+                    && formGroup.controls.password.touched" class="validate">Mật khẩu phải chứa 8-50 ký tự,
+                    phải bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt</span>
+                  </div>
+                </div>
+
+
+                <!--                Birthday input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label for="birthday">Ngày sinh</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="birthday" formControlName="birthday"
+                           aria-describedby="inputGroupPrepend2" required
+                           class="form-control" type="date" placeholder="Ngày sinh">
+                    <span *ngIf="formGroup.controls.birthday.hasError('required')
+                    && formGroup.controls.birthday.touched" class="validate">Ngày sinh không được để trống</span>
+                    <span *ngIf="formGroup.controls.birthday.hasError('pattern')
+                    && formGroup.controls.birthday.touched" class="validate">Năm sinh phải lớn hơn 1900</span>
+                    <span *ngIf="formGroup.hasError('birthdayBteToday')
+                    && formGroup.controls.birthday.touched"
+                          class="validate">Ngày sinh không được lớn hơn ngày hiện tại</span>
+                  </div>
+                </div>
+
+                <!--                Gender input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label>Giới tính</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="male" class="form-check-input" type="radio" name="gender"
+                           formControlName="gender" [value]="true"><label for="male">&nbsp;&nbsp;Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input id="female" class="form-check-input" type="radio" name="gender" formControlName="gender"
+                           [value]="false"><label for="female">&nbsp;&nbsp;Nữ</label>
+                    <span *ngIf="formGroup.controls.gender.hasError('required')
+                    && formGroup.controls.gender.touched" class="validate">Vui lòng chọn giới tính</span>
+                  </div>
+                </div>
+
+                <!--                Email input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label for="email">Email</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="email" formControlName="email"
+                           aria-describedby="inputGroupPrepend2"
+                           class="form-control" type="text" placeholder="Email">
+                    <span *ngIf="formGroup.controls.email.hasError('required')
+                    && formGroup.controls.email.touched" class="validate">Email không được để trống</span>
+                    <span *ngIf="formGroup.controls.email.hasError('pattern')
+                    && formGroup.controls.email.touched" class="validate">Email chưa đúng định dạng</span>
+                  </div>
+                </div>
+
+                <!--                Card id input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label
+                    for="cardId">CMND/CCCD</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="cardId" readonly formControlName="cardId"
+                           aria-describedby="inputGroupPrepend2" required
+                           class="form-control" type="text" placeholder="CMND/CCCD">
+                    <span *ngIf="formGroup.controls.cardId.dirty
+                    && formGroup.controls.cardId.touched" class="validate">Không được thay đổi CMND/CCCD</span>
+                  </div>
+                </div>
+
+                <!--                Phone number input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit">&nbsp;*</span><span><label
+                    for="phone">Số điện thoại</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="phone" formControlName="phoneNumber"
+                           aria-describedby="inputGroupPrepend2" required
+                           class="form-control" type="text" placeholder="Số điện thoại">
+                    <span *ngIf="formGroup.controls.phoneNumber.hasError('required')
+                    && formGroup.controls.phoneNumber.touched" class="validate">Số điện thoại không được để trống</span>
+                    <span *ngIf="formGroup.controls.phoneNumber.hasError('pattern')
+                    && formGroup.controls.phoneNumber.touched" class="validate">Số điện thoại chưa đúng định dạng</span>
+                  </div>
+                </div>
+
+                <!--                Address input-->
+                <div class="row">
+                  <div class="col-md-3 txt">
+                    <span class="tit"></span><span><label
+                    for="address">Địa chỉ&nbsp;&nbsp;</label></span>
+                  </div>
+                  <div class="col-md-9 inp">
+                    <input id="address" formControlName="address"
+                           aria-describedby="inputGroupPrepend2"
+                           class="form-control" type="text" placeholder="Địa chỉ">
+                    <span *ngIf="formGroup.controls.address.hasError('minlength')
+                    && formGroup.controls.address.touched"
+                          class="validate">Địa chỉ quá ngắn. Yêu cầu nhập từ 3-50 ký tự</span>
+                    <span *ngIf="formGroup.controls.address.hasError('maxlength')
+                    && formGroup.controls.address.touched"
+                          class="validate">Địa chỉ quá dài. Yêu cầu nhập từ 3-50 ký tự</span>
+                  </div>
+                </div>
+
+                <br>
+
+                <div class="col-6 m-auto d-flex">
+                  <button type="button" class="btn btn__common bg-danger me-2 d-flex align-items-center mx-3"
+                          data-bs-toggle="modal" data-bs-target="#cancelModal">
+                    <i class="bi bi-box-arrow-left me-2"></i>
+                    <span>QUAY LẠI</span>
+                  </button>
+
+                  <button class="btn" style="background-color: #F26B38; color: #fff" type="button"
+                          data-bs-toggle="modal" data-bs-target="#confirmModal">
+                    <i class="bi bi-check2-square"></i>
+                    <b class="text-uppercase">&nbsp;Lưu thay đổi</b>
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Xác nhận quay lại</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn hủy bỏ thay đổi không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+        <a href="/customer-management">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Có</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Xác nhận thay đổi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn lưu thay đổi không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="submit()">Lưu</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

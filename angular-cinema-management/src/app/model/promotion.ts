@@ -1,8 +1,12 @@
 export interface Promotion {
   id: number;
+  title: string;
+  image: string;
+  description: string;
   name: string;
   time: string;
-  saleOff: number;
-  description: string;
+  content: string;
+  location: string;
+  conditionPromotion: string;
   isDelete: boolean;
 }

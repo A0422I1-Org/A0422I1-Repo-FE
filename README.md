@@ -1,3 +1,1 @@
-# A0422I1-Repo-FE
-Angular-Cinema-App
-version 2
+15/05/2023 fix

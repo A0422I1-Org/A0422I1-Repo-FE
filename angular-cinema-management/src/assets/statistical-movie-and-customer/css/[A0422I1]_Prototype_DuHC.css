@@ -1,0 +1,29 @@
+
+/*mycode*/
+.size-image-rank[_ngcontent-snu-c6] {
+    width: 40px;
+}
+.position-relative {
+    position: relative!important;
+}
+.text-center {
+    text-align: center!important;
+}
+.position-absolute {
+    position: absolute!important;
+}
+.rank-number[_ngcontent-snu-c6] {
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #6a5c5c;
+    font-size: 14px;
+}
+
+.label-chart {
+    background-color: #F26B38;
+    height: 5px;
+    width: 10px;
+}
+
+

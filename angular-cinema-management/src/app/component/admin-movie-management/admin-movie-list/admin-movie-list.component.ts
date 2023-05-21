@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MovieDTOView} from "../dto/movieDTOView";
 import {MovieServiceService} from "../service/movie-service.service";
+ import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-movie-list',
@@ -45,7 +45,7 @@ export class AdminMovieListComponent implements OnInit {
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
       this.countPage  = Math.min(this.countPage,value.totalPages );
-
+      console.log(this.countPage);
     });
   }
 

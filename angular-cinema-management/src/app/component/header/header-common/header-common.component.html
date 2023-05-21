@@ -1,0 +1,54 @@
+<!-- Header -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/images/logo.png" alt="A04Cinema" width="365" height="85">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item text-uppercase" *ngIf="!roles.includes('ROLE_EMPLOYEE')">
+            <a class="nav-link" (click)="toBooking()" style="cursor: pointer;">Mua vé</a>
+          </li>
+          <li class="nav-item dropdown text-uppercase">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              Phim
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" (click)="toOnShowingList()" style="cursor: pointer;">Phim đang chiếu</a></li>
+              <li><a class="dropdown-item" (click)="toUpcomingList()" style="cursor: pointer;">Phim sắp chiếu</a></li>
+            </ul>
+          </li>
+          <li class="nav-item text-uppercase">
+            <a class="nav-link" (click)="toPromotion()" style="cursor: pointer;">Khuyến mãi</a>
+          </li>
+        </ul>
+        <div class="dropdown user-profile d-flex align-items-center">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+             id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/image/account.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong style="color: #F26b38"
+                    *ngIf="roles.includes('ROLE_CUSTOMER')">{{customer.fullName}}</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_ADMIN')">Admin</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_EMPLOYEE')">Admin</strong>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li *ngIf="username"><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
+            <li *ngIf="username">
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngIf="!username">
+              <a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
+            <li *ngIf="username">
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { UserBookingTicketRoutingModule } from './user-booking-ticket-routing.module';
+
 import {MovieAndShowtimeSelectionComponent} from "./movie-and-showtime-selection/movie-and-showtime-selection.component";
 import {ChairSelectionComponent} from "./chair-selection/chair-selection.component";
 import {BookingTicketConfirmationComponent} from "./booking-ticket-confirmation/booking-ticket-confirmation.component";
 import {BookingTicketDetailComponent} from "./booking-ticket-detail/booking-ticket-detail.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {CommonModule, registerLocaleData} from "@angular/common";
+import {UserBookingTicketRoutingModule} from "./user-booking-ticket-routing.module";
+import localeVi from '@angular/common/locales/vi';
+import {HeaderCommonModule} from "../header/header-common/header-common.module";
+import {FooterModule} from "../footer/footer.module";
 
 
 @NgModule({
@@ -15,9 +20,16 @@ import {BookingTicketDetailComponent} from "./booking-ticket-detail/booking-tick
     BookingTicketConfirmationComponent,
     BookingTicketDetailComponent,
   ],
-  imports: [
-    CommonModule,
-    UserBookingTicketRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        UserBookingTicketRoutingModule,
+        ReactiveFormsModule,
+      HeaderCommonModule,
+      FooterModule
+    ]
 })
-export class UserBookingTicketModule { }
+export class UserBookingTicketModule {
+  constructor() {
+    registerLocaleData(localeVi, 'vi');
+  }
+}

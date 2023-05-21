@@ -1,0 +1,159 @@
+.nav-pills .nav-link.active, .page-item.active, .page-link.active {
+  color: #fff;
+  background-color: #F26b38;
+}
+
+svg.edit, .page-link {
+  color: #F26b38;
+}
+
+.page-link.disabled {
+  color: #969b9f;
+}
+
+td, th, a {
+  font-size: 14px;
+}
+
+.form-control{
+  width: 100%;
+}
+span{
+  float: right;
+}
+.tit{
+  color: red;
+  /* float: right; */
+}
+.inp{
+  height: 60px;
+  line-height: 50px;
+}
+.form-control{
+  margin-top: 6.2px;
+}
+.txt{
+  line-height: 50px;
+}
+.form-check-input{
+  margin-top: 17px;
+}
+.sex{
+  margin-top: 17px;
+}
+.validate{
+  color: red;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.addedit{
+  background-color: #f26b38;
+  color: white;
+}
+
+.addedit:hover{
+  background-color: #f1632f;
+}
+
+.btn__common {
+  background-color: #F26B38;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.search-button{
+  background-color: #F26b38;
+}
+
+.page-link{
+  height: 35px;
+}
+#pageChoice{
+  width: 250px;
+  height: 35px;
+}
+.btn {
+  height: 35px;
+}
+.input-group-text{
+  padding: 0;
+}
+.displaySearch{
+  padding: 6px 12px;
+  width: 15%;
+  font-size: 1rem;
+  float: left;
+  line-height: 1.5em;
+  box-shadow: none;
+}
+.text{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+@media only screen and (max-width: 633px) {
+  .input-group{
+    width: 153px;
+  }
+  #pageChoice{
+    width: 100px;
+    height: 35px;
+  }
+  .displaySearch{
+    width: 153px;
+    float: left;
+  }
+}
+
+.bg-icon{
+  color: #F26b38;
+}
+
+.input-group-text{
+  padding: 0;
+}
+
+#pageChoice {
+  height: 35px;
+  margin: 0;
+}
+.pagination{
+  --bs-pagination-active-border-color: #dee2e6;
+}
+
+@media (max-width: 1400px) {
+  /* Ẩn cột thứ 2 */
+  .table td:nth-child(7),
+  .table th:nth-child(7) {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Ẩn cột thứ 5 */
+  .table td:nth-child(5),
+  .table th:nth-child(5) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ẩn cột thứ 4, 6 */
+  .table td:nth-child(4),
+  .table th:nth-child(4),
+  .table td:nth-child(6),
+  .table th:nth-child(6) {
+    display: none;
+  }
+}
+
+@media (max-width: 461px) {
+  /* Ẩn cột thứ 2 */
+  .table td:nth-child(2),
+  .table th:nth-child(2) {
+    display: none;
+  }
+}

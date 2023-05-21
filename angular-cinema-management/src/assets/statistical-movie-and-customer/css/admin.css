@@ -1,0 +1,21 @@
+.nav-pills .nav-link.active{
+    color: #fff;
+    background-color: #F26b38;
+}
+
+svg.edit, .page-link {
+    color: #F26b38;
+}
+
+td, th, a {
+    font-size: 14px;
+}
+.nav-link {
+    color: black;
+}
+
+@media print {
+  .noPrint{
+    display:none;
+  }
+}

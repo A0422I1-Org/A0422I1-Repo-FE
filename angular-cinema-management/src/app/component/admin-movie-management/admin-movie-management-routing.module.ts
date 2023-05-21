@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {MovieComponent} from "./movie.component";
 import {AdminMovieListComponent} from "./admin-movie-list/admin-movie-list.component";
+import {AuthGuardService} from "../../service/security/auth-guard.service";
 
 
 const routes: Routes = [
   {
-    path: 'movie', component: MovieComponent, children: [
+    path: 'admin/movie', component: AdminMovieListComponent,canActivate: [AuthGuardService], children: [
       {path: '', component: AdminMovieListComponent},
-
     ]
   }
 ];

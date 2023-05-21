@@ -123,3 +123,37 @@ span{
 .pagination{
   --bs-pagination-active-border-color: #dee2e6;
 }
+
+@media (max-width: 1400px) {
+  /* Ẩn cột thứ 2 */
+  .table td:nth-child(7),
+  .table th:nth-child(7) {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Ẩn cột thứ 5 */
+  .table td:nth-child(5),
+  .table th:nth-child(5) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ẩn cột thứ 4, 6 */
+  .table td:nth-child(4),
+  .table th:nth-child(4),
+  .table td:nth-child(6),
+  .table th:nth-child(6) {
+    display: none;
+  }
+}
+
+@media (max-width: 461px) {
+  /* Ẩn cột thứ 2 */
+  .table td:nth-child(2),
+  .table th:nth-child(2) {
+    display: none;
+  }
+}

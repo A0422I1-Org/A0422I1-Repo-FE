@@ -70,7 +70,7 @@
               <tr>
                 <th>#</th>
                 <th>Mã thành viên</th>
-                <th>Tên thành viên</th>
+                <th width="auto">Tên thành viên</th>
                 <th>Số CMND</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
@@ -159,9 +159,6 @@
                   <a [ngClass]="{'page-link': true, 'disabled': last}"
                      (click)="getCustomer(search.value,totalPages - 1)">
                     <i class="fa-solid fa-forward-fast"></i> </a>
-                </li>
-                <li class="page-item">
-                  <span class="page-link">{{activePage + 1}} / {{totalPages}}</span>
                 </li>
                 <li class="page-item">
                   <div class="input-group rounded">

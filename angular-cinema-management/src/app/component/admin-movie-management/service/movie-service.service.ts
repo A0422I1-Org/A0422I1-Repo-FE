@@ -7,7 +7,7 @@ import {MovieDTOView} from "../dto/movieDTOView";
   providedIn: 'root'
 })
 export class MovieServiceService {
-  url = "http://localhost:8080/movie";
+  url = "http://localhost:8080/api/admin/movie";
 
   constructor(private http: HttpClient) {
   }

@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li>
-                <a  class="nav-link link-dark active">
+                <a class="nav-link link-dark active">
                   <i class="fa-solid fa-film"></i>
                   Quản lý phim
                 </a>
@@ -93,7 +93,7 @@
         <div class="card">
           <div class="bg-light card card-header p-3 mb-4 display" style="float: left">
             <div class="row">
-              <div class="col 7 text" >
+              <div class="col 7 text">
                 Quản lý danh sách phim
               </div>
 
@@ -102,25 +102,46 @@
               </div>
 
               <div class="col-3">
-                <button class="bg-sub btn"><i class="bi bi-plus-circle">Them Phim</i></button>
+                <button class="bg-sub btn"><i class="bi bi-circle">Them Phim</i></button>
               </div>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-11">
                   <div class="input-group mb-3">
-                    <input type="search" class="form-control displaySearch rounded" placeholder="Tên phim cần tìm" #name id="nameSearch"
+                    <input type="search" class="form-control displaySearch rounded" placeholder="Tên phim cần tìm" #name
+                           id="nameSearch"
                            (change)="name_search = name.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="search" class="form-control displaySearch rounded" placeholder="nhà sản xuất" #studios id="studioSearch"
+                    <input type="search" class="form-control displaySearch rounded" placeholder="nhà sản xuất" #studios
+                           id="studioSearch"
                            (change)="studios_search = studios.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="date" class="form-control displaySearch rounded" placeholder="ngày cần tìm" #startDay id="dateSearch"
-                           (change)="startDay_search=startDay.value.trim()" aria-label="Search"
-                           aria-describedby="search-addon"/>
-                    <input type="search" class="form-control displaySearch rounded"  placeholder="thời lượng" #time id="timeSearch"
-                           (change)="timeAmount_search = time.value.trim()" aria-label="Search"
-                           aria-describedby="search-addon"/>
+                    <!--                    <input type="date" class="form-control displaySearch rounded" placeholder="ngày cần tìm" #startDay id="dateSearch"-->
+                    <!--                           (change)="startDay_search=startDay.value.trim()" aria-label="Search"-->
+                    <!--                           aria-describedby="search-addon"/>-->
+                    <!--                    <input type="search" class="form-control displaySearch rounded"  placeholder="thời lượng" #time id="timeSearch"-->
+                    <!--                           (change)="timeAmount_search = time.value.trim()" aria-label="Search"-->
+                    <!--                           aria-describedby="search-addon"/>-->
+                    <select #startDay (change)="startDay_search = startDay.value" id="dateSearch">
+                      <option value="">Ngày Chiếu Phim</option>
+                      <option value="7">Phim săp chiếu trong tuần này</option>
+                      <option value="14">Phim sắp chiếu trong 2 tuần</option>
+                      <option value="21">Phim sắp chiếu trong 3 tuần</option>
+                      <option value="30">Phim sắp chiếu trong 1 tháng</option>
+                    </select>
+                    <select #time (change)="timeAmount_search = time.value" id="timeSearch">
+                      <option value="">Thời Lượng Phim</option>
+                      <option value="60">
+                        Thời Lượng dưới 60p
+                      </option>
+                      <option value="90">
+                        Thời Lương 60-120p
+                      </option>
+                      <option value="120">
+                        Thời Lượng trên 120p
+                      </option>
+                    </select>
                     <button class="btn" (click)="searchWithCondition()">
                       <i class="fas fa-search bg-icon"></i>
                     </button>
@@ -182,12 +203,40 @@
                            (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,pageNumber - 1)"></i>
                       </a>
                     </li>
-                    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
-                      <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
-                         (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,i)">
-                        {{i + 1}}
-                      </a>
+                    <ng-container
+                      *ngIf="0 === pageNumber  ">
+                      <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                        <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                           (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,i)">
+                          {{i + 1}}
+                        </a>
+                      </li>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="(totalPages - 1) === pageNumber  ">
+                      <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                        <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                           (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,totalPages - countPage + i)">
+                          {{totalPages - countPage + i + 1}}
+                        </a>
+                      </li>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="(totalPages - 1) > pageNumber && 0 < pageNumber">
+                      <li class="page-item" *ngIf="pageNumber != 1">
+                        <a class="page-link">...</a>
+                      </li>
+                      <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                        <a class="page-link" [ngClass]="i == 1 ? 'current': ''"
+                           (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,pageNumber - 1 + i)">
+                          {{pageNumber - 1 + (i + 1) }}
+                        </a>
+                      </li>
+                      <li class="page-item"  *ngIf="pageNumber != totalPages -2">
+                        <a class="page-link">...</a>
                     </li>
+                    </ng-container>
+
                     <li>
                       <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
                         <i class="fa-solid fa-forward"
@@ -235,7 +284,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Xoa Phimsq</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -280,7 +329,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Hủy</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>

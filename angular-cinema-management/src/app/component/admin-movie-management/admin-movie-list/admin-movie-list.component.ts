@@ -14,11 +14,12 @@ export class AdminMovieListComponent implements OnInit {
   movieDetail : MovieDTOView = {};
   totalPages: number = 0;
   pageNumber: number = 0;
+  countPage =  3;
   name_search: string = '';
   startDay_search: string = '';
   timeAmount_search: string = '';
   studios_search: string = '';
-  @ViewChild('deleteClose') deleteClose: ElementRef;
+   @ViewChild('deleteClose') deleteClose: ElementRef;
 
   constructor(private movieService: MovieServiceService,
               private toastr: ToastrService,
@@ -30,6 +31,7 @@ export class AdminMovieListComponent implements OnInit {
   }
 
   findAllWithCondition(name: string, startDay: string, timeAmount: string, studios: string, page: number) {
+    console.log(page);
     this.movieService.getAllList(name, startDay, timeAmount,studios, page).subscribe(value => {
 
       if (value.content.length === 0) {
@@ -42,6 +44,8 @@ export class AdminMovieListComponent implements OnInit {
       this.list = value.content;
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
+      this.countPage  = Math.min(this.countPage,value.totalPages );
+
     });
   }
 

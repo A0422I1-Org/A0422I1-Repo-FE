@@ -30,8 +30,8 @@
   margin-left: 14px;
 }
 
-.mg-l-5{
-  margin-left: 5px;
+.mg-l-17{
+  margin-left: 17px;
 }
 
 .font-size{
@@ -96,17 +96,6 @@
     width: 22.1%;
   }
 }
-
-/*@media screen and (min-width: 2000px) {*/
-/*  .reponsive-sidebar{*/
-/*    width: 100%;*/
-/*  }*/
-
-/*  .reponsive-content{*/
-/*    width: 100%;*/
-/*  }*/
-/*}*/
-
 
 .mg-rg-0{
   margin: 0px;

@@ -4,7 +4,7 @@
       <ul class="nav nav-pills flex-column flex-shrink-0 mb-auto">
 
         <li>
-          <a #a1 href="/ticket_management/select_ticket_user" [ngClass]="{'nav-link link-dark': true, 'active': activePage == a1.href}"
+          <a #a1 href="/ticket_management/select_ticket_user" [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a1.href)}"
              (click)="changeColor(a1.href)">
             <img src="assets/image/quan-ly-ban-ve.png" height="20" width="20"/>
             Quản lý đặt vé
@@ -12,7 +12,7 @@
         </li>
 
         <li>
-          <a #a2 href="/employee_management/employee" [ngClass]="{'nav-link link-dark': true, 'active': activePage == a2.href}"
+          <a #a2 href="/employee_management/employee" [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes('/employee_management')}"
              (click)="changeColor(a2.href)">
             <img src="assets/image/quan-ly-nhan-vien.png" height="20" width="20"/>
             Quản lý nhân viên
@@ -20,7 +20,7 @@
         </li>
 
         <li>
-          <a #a3 href="/customer-management" [ngClass]="{'nav-link link-dark': true, 'active': activePage == a3.href}"
+          <a #a3 href="/customer-management" [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a3.href)}"
           (click)="changeColor(a3.href)">
             <img src="assets/image/quan-ly-thanh-vien.png" height="20" width="20"/>
             Quản lý thành viên
@@ -28,7 +28,7 @@
         </li>
 
         <li>
-          <a #a4 href="/admin/movie" [ngClass]="{'nav-link link-dark': true, 'active': activePage == a4.href}"
+          <a #a4 href="/admin/movie" [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a4.href)}"
              (click)="changeColor(a4.href)">
             <img src="assets/image/quan-ly-phim.png" height="20" width="20"/>
             Quản lý phim
@@ -46,13 +46,13 @@
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownStatistic"
               style="">
             <li><a #a5 class="dropdown-item" href="/statistic/statistic-movie" (click)="changeColor(a5.href)"
-                   [ngClass]="{'nav-link link-dark': true, 'active': activePage == a5.href}">Thống kê phim</a></li>
+                   [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a5.href)}">Thống kê phim</a></li>
             <li><a #a6 class="dropdown-item" href="/statistic/statistic-customer" (click)="changeColor(a6.href)"
-                   [ngClass]="{'nav-link link-dark': true, 'active': activePage == a6.href}">Thống kê thành viên</a></li>
+                   [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a6.href)}">Thống kê thành viên</a></li>
             <li><a #a7 class="dropdown-item" href="/statistic/movie-type-statistic" (click)="changeColor(a7.href)"
-                   [ngClass]="{'nav-link link-dark': true, 'active': activePage == a7.href}">Thống kê thể loại phim</a></li>
+                   [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a7.href)}">Thống kê thể loại phim</a></li>
             <li><a #a8 class="dropdown-item" href="/statistic/showtime-statistic" (click)="changeColor(a8.href)"
-                   [ngClass]="{'nav-link link-dark': true, 'active': activePage == a8.href}">Thống kê suất chiếu</a></li>
+                   [ngClass]="{'nav-link link-dark': true, 'active': activePage.includes(a8.href)}">Thống kê suất chiếu</a></li>
           </ul>
           </div>
         </li>

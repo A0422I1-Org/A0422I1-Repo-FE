@@ -26,6 +26,14 @@
   margin-top: 5px;
 }
 
+.mg-l-14{
+  margin-left: 14px;
+}
+
+.mg-l-5{
+  margin-left: 5px;
+}
+
 .font-size{
   font-size: 14px;
 }
@@ -45,6 +53,16 @@
 .page-link:hover {
   cursor: pointer;
   opacity: 0.9;
+}
+
+.mg-input-search
+{
+  margin-left: 12px;
+}
+
+.full-screen
+{
+  width: 100%;
 }
 
 .current {
@@ -79,8 +97,37 @@
   }
 }
 
+/*@media screen and (min-width: 2000px) {*/
+/*  .reponsive-sidebar{*/
+/*    width: 100%;*/
+/*  }*/
+
+/*  .reponsive-content{*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/
 
 
 .mg-rg-0{
   margin: 0px;
+}
+
+.td-inline{
+  white-space: nowrap;
+}
+
+th, td {
+  white-space: nowrap;
+}
+
+.block-inline{
+  white-space: nowrap;
+}
+
+.mg-b-4{
+  margin-top: 4px;
+}
+
+.mg-l-0{
+  margin-left: 0px;
 }

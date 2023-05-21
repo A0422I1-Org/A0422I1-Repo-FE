@@ -1,35 +1,10 @@
 <div class="container py-2">
-<!--    Header      -->
-<!--<div class="row align-items-center">-->
-<!--  <div class="col-3">-->
-<!--    <img src="assets/image/logo_movie-removebg-preview.png" alt="" class="img-fluid"-->
-<!--         style="width: auto;">-->
-<!--  </div>-->
-<!--  <div class="col-9">-->
-<!--    <div class="dropdown float-end px-4">-->
-<!--      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"-->
-<!--         id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--        <img src="assets/image/123123213123.jpg" alt="" width="32" height="32" class="rounded-circle me-2">-->
-<!--        <strong style="color: #F26b38">Phạm Thế Duyệt</strong>-->
-<!--      </a>-->
-<!--      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">-->
-<!--        <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
-<!--        <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>-->
-<!--        <li>-->
-<!--          <hr class="dropdown-divider">-->
-<!--        </li>-->
-<!--        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</div>-->
 <app-header-admin></app-header-admin>
 <div class="row">
-  <div class="col-3">
+  <div class="col-lg-3 reponsive-sidebar">
     <app-slidebar></app-slidebar>
   </div>
-  <div class="col-9">
+  <div class="col-lg-9 reponsive-content">
     <div class="row mg-0">
       <div class="card">
         <div class="row">
@@ -44,20 +19,21 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="mb-2 pd-lx-0 mg-s-5">
-            <form [formGroup]="formSearch" (ngSubmit)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)" role="search" class="d-flex" >
-              <div class="col-5">
-                <div class="input-group">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Tên nhân viên</span>
+
+        <div class="mb-2 pd-lx-0 mg-s-5">
+          <form [formGroup]="formSearch" (ngSubmit)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)" role="search" class="d-flex mg-l-5" >
+            <div class="row full-screen">
+              <div class="col-lg-4">
+                <div class="input-group mg-b-4">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Họ tên</span>
                   <input  class="form-control bg-light" type="search" placeholder="Nhập tên" aria-label="Search" name="name" formControlName="name">
-                </div>
-                <span style="color:rgb(214, 0, 0);"
-                      *ngIf="formSearch.controls.name.hasError('maxlength') || formSearch.controls.name.hasError('pattern')"> Số ký tự tối đa <=45 và không chứa các ký tự đặc biệt
+                  <span style="color:rgb(214, 0, 0);"
+                        *ngIf="formSearch.controls.name.hasError('maxlength') || formSearch.controls.name.hasError('pattern')"> Số ký tự tối đa <=45 và không chứa các ký tự đặc biệt
                     </span>
+                </div>
               </div>
-              <div class="col-4 search-select">
-                <div class="input-group mb-3">
+              <div class="col-lg-4">
+                <div class="input-group mg-b-4">
                   <span class="input-group-text">Vị trí</span>
                   <select class="form-select" name="positionId" formControlName="positionId">
                     <option value="" [ngValue]="-1" selected>Tất cả</option>
@@ -67,29 +43,31 @@
                   </select>
                 </div>
               </div>
-              <div class="col-3 search-icon">
-                <button type=submit class="btn bg-sub" [disabled]="formSearch.invalid" >
-                  <i class="bi bi-search"></i>
-                </button>
-                <button (click)="refreshPage()" class="btn bg-sub mg-lx-2" >
-                  <i class="bi bi-arrow-clockwise"></i>
-                </button>
+              <div class="col-lg-4">
+                <div class="mg-b-4">
+                  <button type=submit class="btn bg-sub" [disabled]="formSearch.invalid" >
+                    <i class="bi bi-search"></i>
+                  </button>
+                  <button (click)="refreshPage()" class="btn bg-sub mg-lx-2" >
+                    <i class="bi bi-arrow-clockwise"></i>
+                  </button>
+                </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
+
         <div class="row">
           <div class="card-body">
+
             <div class="table-responsive table-bordered rounded shadow">
               <table class="table table-striped table-hover text-l">
                 <thead style="background-color: #F26B38; color: #fff;">
                 <tr>
                   <th scope="col">Mã Nhân viên</th>
-                  <th scope="col">Tên Nhân viên</th>
-                  <th scope="col">Số CCCD</th>
+                  <th scope="col">Họ tên</th>
                   <th scope="col">Email</th>
                   <th scope="col">Số điện thoại</th>
-                  <th scope="col">Địa chỉ</th>
                   <th scope="col" class="text-center">Sửa</th>
                   <th scope="col" class="text-center">Xóa</th>
                 </tr>
@@ -98,10 +76,8 @@
                 <tr *ngFor="let employee of employees">
                   <td>{{employee.id}}</td>
                   <td>{{employee.fullName}}</td>
-                  <td>{{employee.cardId}}</td>
                   <td>{{employee.email}}</td>
                   <td>{{employee.phoneNumber}}</td>
-                  <td>{{employee.address}}</td>
                   <td class="px-4">
                     <button type="button" class="btn" routerLink="/employee_management/update/:{{employee.id}}">
                       <i class="bi bi-pencil-square bg-icon"></i>
@@ -117,7 +93,7 @@
                 </tbody>
               </table>
 
-              <div *ngIf="(totalElements> 0); else isEmpty">
+              <div *ngIf="(totalElements> 0); else isEmpty" class="text-center">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
                     <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
@@ -162,7 +138,7 @@
                       <i class="fa-solid fa-forward-fast"></i> </a>
                   </li>
                   <li class="page-item">
-                    <span class="page-link">{{pageNumber + 1}} / {{totalPages}}</span>
+                    <span class="page-link td-inline">{{pageNumber + 1}} / {{totalPages}}</span>
                   </li>
                   <li class="page-item">
                     <div class="input-group rounded input-group-page">
@@ -199,7 +175,10 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-3">
-            <img class="image-delete" [src]="employeeDeleteDTO.image" >
+            <div class="border">
+              <img class="image-delete" [src]="employeeDeleteDTO.image" *ngIf="employeeDeleteDTO.image">
+              <img class="image-delete" src="../../../../assets/image/default_user.png" *ngIf="!employeeDeleteDTO.image">
+            </div>
           </div>
           <div class="col-9">
             <table class="table table-borderless">

@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MovieDTOView} from "../dto/movieDTOView";
 import {MovieServiceService} from "../service/movie-service.service";
-import {ToastrService} from "ngx-toastr";
 import {FormBuilder} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-admin-movie-list',
@@ -14,6 +14,7 @@ export class AdminMovieListComponent implements OnInit {
   movieDetail : MovieDTOView = {};
   totalPages: number = 0;
   pageNumber: number = 0;
+  countPage =  3;
   name_search: string = '';
   startDay_search: string = '';
   timeAmount_search: string = '';
@@ -30,6 +31,7 @@ export class AdminMovieListComponent implements OnInit {
   }
 
   findAllWithCondition(name: string, startDay: string, timeAmount: string, studios: string, page: number) {
+    console.log(page);
     this.movieService.getAllList(name, startDay, timeAmount,studios, page).subscribe(value => {
 
       if (value.content.length === 0) {
@@ -42,6 +44,8 @@ export class AdminMovieListComponent implements OnInit {
       this.list = value.content;
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
+      this.countPage  = Math.min(this.countPage,value.totalPages );
+      console.log(this.countPage);
     });
   }
 
@@ -103,8 +107,7 @@ export class AdminMovieListComponent implements OnInit {
       },
       error => {
         this.ngOnInit();
-    })
+      })
 
   }
 }
-

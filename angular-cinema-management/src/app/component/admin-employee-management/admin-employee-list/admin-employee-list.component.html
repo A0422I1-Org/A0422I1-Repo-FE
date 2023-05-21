@@ -120,7 +120,6 @@
                       ...
                     </a>
                   </ng-container>
-
                 </li>
                 <li>
                   <a class="page-link"  *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
@@ -252,7 +251,7 @@
                 <td></td>
                 <td>
                   <button type="button" class="btn bg-sub" (click)="deleteById(employeeDeleteDTO.id)">Xóa</button>
-                  <button type="button" class="btn bg-close m-lg-3" data-bs-dismiss="modal">Quay lại</button>
+                  <button type="button" class="btn bg-close m-lg-3" data-bs-dismiss="modal" id="closeModal">Quay lại</button>
                 </td>
               </tr>
             </table>

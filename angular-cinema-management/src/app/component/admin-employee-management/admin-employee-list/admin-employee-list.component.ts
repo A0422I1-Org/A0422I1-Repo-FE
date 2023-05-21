@@ -70,7 +70,7 @@ export class AdminEmployeeListComponent implements OnInit {
   deleteById(id: string)
   {
     this.employeeService.deleteById(id).subscribe(value => {
-      document.getElementById('deleteModal').click();
+      document.getElementById('closeModal').click();
       this.statusService.success('Đã xóa thành công!!!', 'Thông báo');
       this.employeeDeleteDTO={};
       if(this.employees.length===1)

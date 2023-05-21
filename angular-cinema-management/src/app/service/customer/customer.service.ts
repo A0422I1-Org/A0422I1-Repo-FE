@@ -63,8 +63,8 @@ export class CustomerService {
   /*
     Nghia TĐD
      */
-  updateCustomerUser(customer): Observable<any>{
-    return this.httpClient.put('http://localhost:8080/api/user/edit', customer);
+  updateCustomerUser(customer: Customer): Observable<any>{
+    return this.httpClient.put<Customer>('http://localhost:8080/api/user/edit', customer,this.httpOptions);
   }
 
 }

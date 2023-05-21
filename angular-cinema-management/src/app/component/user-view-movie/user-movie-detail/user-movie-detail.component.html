@@ -7,7 +7,7 @@
         <div CLASS="movie_image">
           <span class="movie_rating" *ngIf="movie.avgRating">{{movie.avgRating | number: '0.1' }}</span>
           <img
-            [src]="movie.image" alt="loading..." class="w-100" (error)="imageError($event)"
+            [src]="movie.image" alt="loading..." class="w-100 height-image" (error)="imageError($event)"
             style="border: 2px solid #F26B38;"
           >
         </div>
@@ -20,7 +20,7 @@
           </div>
           <div>
             <form [formGroup]="rfRating" (ngSubmit)="onSubmit()">
-              <div *ngIf="ratingMovieExist; else elseBlock">
+              <div *ngIf="isHasRated; else elseBlock">
                 <button class="rating_desc btn__common d-flex align-items-center custom-button-size"
                         data-bs-toggle="modal"
                         data-bs-target="#myModalForRating">

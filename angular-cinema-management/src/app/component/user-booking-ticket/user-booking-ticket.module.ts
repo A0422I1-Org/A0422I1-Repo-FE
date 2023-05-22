@@ -11,6 +11,7 @@ import {UserBookingTicketRoutingModule} from "./user-booking-ticket-routing.modu
 import localeVi from '@angular/common/locales/vi';
 import {HeaderCommonModule} from "../header/header-common/header-common.module";
 import {FooterModule} from "../footer/footer.module";
+import {UserAccountInformationComponent} from "../user-account-management/user-account-information/user-account-information.component";
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import {FooterModule} from "../footer/footer.module";
         ReactiveFormsModule,
       HeaderCommonModule,
       FooterModule
-    ]
+    ],
+  providers: [
+    UserAccountInformationComponent
+  ]
 })
 export class UserBookingTicketModule {
   constructor() {

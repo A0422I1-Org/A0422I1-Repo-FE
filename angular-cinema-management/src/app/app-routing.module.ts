@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
   {
-    path: "booking", canActivate: [AuthGuardService],
+    path: "booking",
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
   {
@@ -40,7 +40,8 @@ const routes: Routes = [
   },
   {
     path:"ticket_management",canActivate: [AuthGuardService],
-    loadChildren:() => import ('./component/admin-ticket-management/admin-ticket-management.module').then(module => module.AdminTicketManagementModule)
+    loadChildren:() => import ('./component/admin-ticket-management/admin-ticket-management.module').then(
+      module => module.AdminTicketManagementModule)
   },
   {
     path:"employee_management",canActivate: [AuthGuardService],

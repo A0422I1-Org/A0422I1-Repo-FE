@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Customer} from "../../../model/customer";
 import {CustomerService} from "../../../service/customer/customer.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-customer-list',
@@ -19,11 +21,23 @@ export class AdminCustomerListComponent implements OnInit {
   search: string = "";
   pageArray: number[];
 
-  constructor(private customerService: CustomerService) {
+  returnUrl: string;
+
+
+  constructor(private customerService: CustomerService,
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
+
     this.getCustomer(this.search, this.activePage);
+
   }
 
   getCustomer(search: string, page: number) {

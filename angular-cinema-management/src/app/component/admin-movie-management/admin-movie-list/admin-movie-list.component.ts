@@ -3,6 +3,8 @@ import {MovieDTOView} from "../dto/movieDTOView";
 import {MovieServiceService} from "../service/movie-service.service";
 import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-movie-list',
@@ -10,6 +12,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./admin-movie-list.component.css']
 })
 export class AdminMovieListComponent implements OnInit {
+  returnUrl: string;
+
   list: MovieDTOView[] = [];
   movieDetail : MovieDTOView = {};
   totalPages: number = 0;
@@ -23,10 +27,20 @@ export class AdminMovieListComponent implements OnInit {
 
   constructor(private movieService: MovieServiceService,
               private toastr: ToastrService,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder,
+
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
+
     this.findAllWithCondition(this.name_search, this.startDay_search, this.timeAmount_search, this.studios_search, this.pageNumber);
   }
 

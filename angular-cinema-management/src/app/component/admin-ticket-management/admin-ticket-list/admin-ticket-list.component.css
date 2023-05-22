@@ -99,3 +99,6 @@ body {
     width: 100% !important;
   }
 }
+.span_2{
+  white-space: nowrap;
+}

@@ -6,6 +6,8 @@ import {ToastrService} from "ngx-toastr";
 import {EmployeeDeleteDTO} from "../dto/employee/employee-delete-dto";
 import {PositionViewDTO} from "../dto/employee/position-view-dto";
 import {PositionService} from "../../../service/position/position.service";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-employee-list',
@@ -22,13 +24,25 @@ export class AdminEmployeeListComponent implements OnInit {
   countPage =  3;
   formSearch: FormGroup;
 
+  returnUrl: string;
+
+
   constructor(private employeeService: EmployeeService,private positionService: PositionService,
-              private statusService: ToastrService) { }
+              private statusService: ToastrService,
+
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createFormSearch();
     this.findAllPosition();
     this.findAllWithCondition('',-1,0);
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
   }
 
   createFormSearch() {

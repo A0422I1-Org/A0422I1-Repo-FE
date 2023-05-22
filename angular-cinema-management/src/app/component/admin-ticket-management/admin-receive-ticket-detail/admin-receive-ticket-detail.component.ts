@@ -131,7 +131,7 @@ export class AdminReceiveTicketDetailComponent implements OnInit {
     // lưu tệp PDF
     pdf.save(`${this.ticket.fullName}.pdf`);
     this.router.navigate(['ticket_management/confirmTicket',id]);
-    this.ticketService.deleteTicketById(id).subscribe(next=>{
+    this.ticketService.updateTicketById(id).subscribe(next=>{
     },error => {
 
     },()=>{

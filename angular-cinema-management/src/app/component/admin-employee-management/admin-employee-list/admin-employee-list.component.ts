@@ -19,6 +19,7 @@ export class AdminEmployeeListComponent implements OnInit {
   totalPages = 1;
   pageNumber = 0;
   totalElements = 0;
+  countPage =  3;
   formSearch: FormGroup;
 
   constructor(private employeeService: EmployeeService,private positionService: PositionService,
@@ -50,7 +51,7 @@ export class AdminEmployeeListComponent implements OnInit {
       this.pageNumber = value.number;
       this.totalPages = value.totalPages;
       this.totalElements = value.totalElements;
-
+      this.countPage  = Math.min(this.countPage,value.totalPages );
       if(this.employees.length == 0)
       {
         this.statusService.error('Không tìm thấy nhân viên nào phù hợp!!!', 'Thông báo');

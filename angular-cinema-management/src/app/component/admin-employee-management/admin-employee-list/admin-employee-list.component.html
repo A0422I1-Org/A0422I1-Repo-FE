@@ -102,25 +102,63 @@
                        (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber - 1)"></i>
                   </a>
                 </li>
-                <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
-                  <ng-container *ngIf="i < 3 || i >= totalPages - 3">
+
+
+<!--                <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">-->
+<!--                  <ng-container *ngIf="i < 3 || i >= totalPages - 3">-->
+<!--                    <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"-->
+<!--                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">-->
+<!--                      {{i + 1}}-->
+<!--                    </a>-->
+<!--                  </ng-container>-->
+<!--                  <ng-container *ngIf="3 <= i && i < totalPages - 3 &&(i == pageNumber + 1 || i== pageNumber-1 || i ==pageNumber)">-->
+<!--                    <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"-->
+<!--                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">-->
+<!--                      {{i + 1}}-->
+<!--                    </a>-->
+<!--                  </ng-container>-->
+<!--                  <ng-container *ngIf="(3 < i && i < totalPages - 3 && i != pageNumber && i != pageNumber + 1 && i!=pageNumber-1)">-->
+<!--                    <a class="page-link">-->
+<!--                      ...-->
+<!--                    </a>-->
+<!--                  </ng-container>-->
+<!--                </li>-->
+
+                <ng-container
+                  *ngIf="0 === pageNumber  ">
+                  <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
                     <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
                        (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
                       {{i + 1}}
                     </a>
-                  </ng-container>
-                  <ng-container *ngIf="3 <= i && i < totalPages - 3 &&(i == pageNumber + 1 || i== pageNumber-1 || i ==pageNumber)">
+                  </li>
+                </ng-container>
+                <ng-container
+                  *ngIf="(totalPages - 1) === pageNumber && pageNumber !== 0">
+                  <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
                     <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
-                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
-                      {{i + 1}}
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,totalPages - countPage + i)">
+                      {{totalPages - countPage + i + 1}}
                     </a>
-                  </ng-container>
-                  <ng-container *ngIf="(3 < i && i < totalPages - 3 && i != pageNumber && i != pageNumber + 1 && i!=pageNumber-1)">
-                    <a class="page-link">
-                      ...
+                  </li>
+                </ng-container>
+                <ng-container
+                  *ngIf="(totalPages - 1) > pageNumber && 0 < pageNumber">
+                  <li class="page-item" *ngIf="pageNumber != 1">
+                    <a class="page-link">...</a>
+                  </li>
+                  <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                    <a class="page-link" [ngClass]="i == 1 ? 'current': ''"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber - 1 + i)">
+                      {{pageNumber - 1 + (i + 1) }}
                     </a>
-                  </ng-container>
-                </li>
+                  </li>
+                  <li class="page-item"  *ngIf="pageNumber != totalPages -2">
+                    <a class="page-link">...</a>
+                  </li>
+                </ng-container>
+
+
                 <li>
                   <a class="page-link"  *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
                     <i class="fa-solid fa-forward"

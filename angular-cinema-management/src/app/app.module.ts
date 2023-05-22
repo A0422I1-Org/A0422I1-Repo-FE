@@ -55,7 +55,6 @@ export function provideConfig() {
     BrowserAnimationsModule,
     UserViewMovieModule,
     UserViewPromotionModule,
-    UserAccountManagementModule,
     NgxPaginationModule,
     FormsModule,
     AdminMovieManagementModule,

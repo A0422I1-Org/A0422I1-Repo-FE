@@ -12,6 +12,7 @@ import localeVi from '@angular/common/locales/vi';
 import {HeaderCommonModule} from "../header/header-common/header-common.module";
 import {FooterModule} from "../footer/footer.module";
 import {UserAccountInformationComponent} from "../user-account-management/user-account-information/user-account-information.component";
+import {UserTicketManagementComponent} from "../user-account-management/user-ticket-management/user-ticket-management.component";
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {UserAccountInformationComponent} from "../user-account-management/user-a
       FooterModule
     ],
   providers: [
-    UserAccountInformationComponent
+    UserTicketManagementComponent
   ]
 })
 export class UserBookingTicketModule {

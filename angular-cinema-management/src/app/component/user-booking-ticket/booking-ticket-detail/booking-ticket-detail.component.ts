@@ -9,6 +9,7 @@ import {TokenStorageService} from "../../../service/token/token-storage.service"
 import {Router} from "@angular/router";
 import {PointService} from "../../../service/point/point.service";
 import {UserAccountInformationComponent} from "../../user-account-management/user-account-information/user-account-information.component";
+import {UserTicketManagementComponent} from "../../user-account-management/user-ticket-management/user-ticket-management.component";
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -27,7 +28,7 @@ export class BookingTicketDetailComponent implements OnInit {
               private token: TokenStorageService,
               private router: Router,
               private pointService: PointService,
-              private userAccountInformationComponent: UserAccountInformationComponent
+              private userTicketManagementComponent: UserTicketManagementComponent
               ) {
 
   }
@@ -67,7 +68,7 @@ export class BookingTicketDetailComponent implements OnInit {
           console.log("Save point")
         })
         this.toast.success("Đặt vé thành công !!! - Ghế : " + ticket.chairRoom.chair.name);
-        this.userAccountInformationComponent.ngOnInit()
+        this.userTicketManagementComponent.ngOnInit()
       }, error => {
         this.toast.error("Đặt vé thất bại, vui lòng chọn ghế khác !!!  - Ghế : " + ticket.chairRoom.chair.name);
       });

@@ -20,7 +20,6 @@ import {PointService} from "../../../service/point/point.service";
 })
 export class UserAccountInformationComponent implements OnInit {
   resetPassRequestForm: FormGroup;
-  updateCustomerForm: FormGroup;
   totalPoint: number;
   customer: Customer;
   errMessage: string;
@@ -35,9 +34,22 @@ export class UserAccountInformationComponent implements OnInit {
     private pointService: PointService) {
   }
 
+  updateCustomerForm = new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
+    birthday: new FormControl('', [Validators.required, checkDateOfBirth]),
+    gender: new FormControl('', [Validators.required,]),
+    cardId: new FormControl('', [Validators.required, Validators.pattern("[0-9]{9}")]),
+    email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
+    address: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern("^(0\\d{9,10})$")]),
+  });
+
+
   ngOnInit(): void {
     this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
       this.customer = next;
+      console.log(next)
     });
 
     this.pointService.getSumPointByCustomer().subscribe(value => {
@@ -57,18 +69,6 @@ export class UserAccountInformationComponent implements OnInit {
         validators: comparePassword
       });
 
-    this.customerService.findByUsername(this.token.getUser().username).subscribe(customer => {
-      this.updateCustomerForm = new FormGroup({
-        id: new FormControl(customer.id, [Validators.required]),
-        fullName: new FormControl(customer.fullName, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
-        birthday: new FormControl(customer.birthday.slice(0, 10), [Validators.required, checkDateOfBirth]),
-        gender: new FormControl(customer.gender, [Validators.required,]),
-        cardId: new FormControl(customer.cardId, [Validators.required, Validators.pattern("[0-9]{9}")]),
-        email: new FormControl(customer.email, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
-        address: new FormControl(customer.address, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-        phoneNumber: new FormControl(customer.phoneNumber, [Validators.required, Validators.pattern("^(0\\d{9,10})$")]),
-      });
-    });
   }
 
   doResetPassword() {

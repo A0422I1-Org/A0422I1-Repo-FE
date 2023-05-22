@@ -1,39 +1,36 @@
 <div class="container py-2">
-<!--    Header      -->
-<app-header-admin></app-header-admin>
-<div class="row">
-  <div class="col-3">
-    <app-slidebar></app-slidebar>
-  </div>
-  <div class="col-9">
-    <div class="row mg-0">
+  <app-header-admin></app-header-admin>
+  <div class="row">
+    <div class="col-lg-3 ">
+      <app-slidebar></app-slidebar>
+    </div>
+    <div class="col-lg-9 ">
       <div class="card">
-        <div class="row">
-          <div class="bg-light card card-header p-3 text-uppercase display fw-bold">
-            <div class="row align-items-center">
-              <div class="col-10">Danh sách thông tin nhân viên</div>
-              <div class="col-2">
-                <button class="bg-sub btn" routerLink="/employee_management/addEmployee">
-                  <i class="bi bi-person-plus-fill"></i>
-                </button>
-              </div>
+        <div class="bg-light card card-header p-3 text-uppercase display fw-bold">
+          <div class="row align-items-center">
+            <div class="col-10">Danh sách thông tin nhân viên</div>
+            <div class="col-2">
+              <button class="bg-sub btn" routerLink="/employee_management/addEmployee">
+                <i class="bi bi-person-plus-fill"></i>
+              </button>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="mb-2 pd-lx-0 mg-s-5">
-            <form [formGroup]="formSearch" (ngSubmit)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)" role="search" class="d-flex" >
-              <div class="col-5">
-                <div class="input-group">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Tên nhân viên</span>
+
+        <div class="mb-2 pd-lx-0 mg-s-5">
+          <form [formGroup]="formSearch" (ngSubmit)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)" role="search" class="d-flex mg-l-17" >
+            <div class="row full-screen">
+              <div class="col-lg-4">
+                <div class="input-group mg-b-4">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Họ tên</span>
                   <input  class="form-control bg-light" type="search" placeholder="Nhập tên" aria-label="Search" name="name" formControlName="name">
-                </div>
-                <span style="color:rgb(214, 0, 0);"
-                      *ngIf="formSearch.controls.name.hasError('maxlength') || formSearch.controls.name.hasError('pattern')"> Số ký tự tối đa <=45 và không chứa các ký tự đặc biệt
+                  <span style="color:rgb(214, 0, 0);"
+                        *ngIf="formSearch.controls.name.hasError('maxlength') || formSearch.controls.name.hasError('pattern')"> Số ký tự tối đa <=45 và không chứa các ký tự đặc biệt
                     </span>
+                </div>
               </div>
-              <div class="col-4 search-select">
-                <div class="input-group mb-3">
+              <div class="col-lg-4">
+                <div class="input-group mg-b-4">
                   <span class="input-group-text">Vị trí</span>
                   <select class="form-select" name="positionId" formControlName="positionId">
                     <option value="" [ngValue]="-1" selected>Tất cả</option>
@@ -43,124 +40,120 @@
                   </select>
                 </div>
               </div>
-              <div class="col-3 search-icon">
-                <button type=submit class="btn bg-sub" [disabled]="formSearch.invalid" >
-                  <i class="bi bi-search"></i>
-                </button>
-                <button (click)="refreshPage()" class="btn bg-sub mg-lx-2" >
-                  <i class="bi bi-arrow-clockwise"></i>
-                </button>
+              <div class="col-lg-4">
+                <div class="mg-b-4">
+                  <button type=submit class="btn bg-sub" [disabled]="formSearch.invalid" >
+                    <i class="bi bi-search"></i>
+                  </button>
+                  <button (click)="refreshPage()" class="btn bg-sub mg-lx-2" >
+                    <i class="bi bi-arrow-clockwise"></i>
+                  </button>
+                </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div class="card-body">
-            <div class="table-responsive table-bordered rounded shadow">
-              <table class="table table-striped table-hover text-l">
-                <thead style="background-color: #F26B38; color: #fff;">
-                <tr>
-                  <th scope="col">Mã Nhân viên</th>
-                  <th scope="col">Tên Nhân viên</th>
-                  <th scope="col">Số CCCD</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Số điện thoại</th>
-                  <th scope="col">Địa chỉ</th>
-                  <th scope="col" class="text-center">Sửa</th>
-                  <th scope="col" class="text-center">Xóa</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let employee of employees">
-                  <td>{{employee.id}}</td>
-                  <td>{{employee.fullName}}</td>
-                  <td>{{employee.cardId}}</td>
-                  <td>{{employee.email}}</td>
-                  <td>{{employee.phoneNumber}}</td>
-                  <td>{{employee.address}}</td>
-                  <td class="px-4">
-                    <button type="button" class="btn" routerLink="/employee_management/update/{{employee.id}}">
-                      <i class="bi bi-pencil-square bg-icon"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            (click)="findById(employee.id)">
-                      <i class="bi bi-trash3 bg-icon"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-
-              <div *ngIf="(totalElements> 0); else isEmpty">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
-                      <i class="fa-solid fa-backward-fast"
-                         (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
-                      <i class="fa-solid fa-backward"
-                         (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber - 1)"></i>
-                    </a>
-                  </li>
-                  <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
-                    <ng-container *ngIf="i < 3 || i >= totalPages - 3">
-                      <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
-                         (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
-                        {{i + 1}}
-                      </a>
-                    </ng-container>
-                    <ng-container *ngIf="3 <= i && i < totalPages - 3 &&(i == pageNumber + 1 || i== pageNumber-1 || i ==pageNumber)">
-                      <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
-                         (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
-                        {{i + 1}}
-                      </a>
-                    </ng-container>
-                    <ng-container *ngIf="(3 < i && i < totalPages - 3 && i != pageNumber && i != pageNumber + 1 && i!=pageNumber-1)">
-                      <a class="page-link">
-                        ...
-                      </a>
-                    </ng-container>
-                  </li>
-                  <li>
-                    <a class="page-link"  *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
-                      <i class="fa-solid fa-forward"
-                         (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber+1)"></i>
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''"
-                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,totalPages-1)">
-                      <i class="fa-solid fa-forward-fast"></i> </a>
-                  </li>
-                  <li class="page-item">
-                    <span class="page-link">{{pageNumber + 1}} / {{totalPages}}</span>
-                  </li>
-                  <li class="page-item">
-                    <div class="input-group rounded input-group-page">
-                      <input id="input-page-choice" type="number" class="form-control rounded input-group--height" placeholder="chọn trong {{totalPages}} trang" #element
-                             aria-label="Search" aria-describedby="search-addon"/>
-                      <button class="btn bg-sub input-group--height" (click)="getPageChoice(element.value-1)" >
-                        <i class="bi bi-search"></i>
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <ng-template #isEmpty class="clearfix">
-                <div style="font-size: 18px; margin-left: 73px" class="hint-text">Không tìm thấy nhân viên phù hợp với từ khoá...</div>
-              </ng-template>
             </div>
+          </form>
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive table-bordered rounded shadow">
+            <table class="table table-striped table-hover text-l">
+              <thead style="background-color: #F26B38; color: #fff;">
+              <tr>
+                <th scope="col">Mã Nhân viên</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col" class="text-center">Sửa</th>
+                <th scope="col" class="text-center">Xóa</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let employee of employees">
+                <td>{{employee.id}}</td>
+                <td>{{employee.fullName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.phoneNumber}}</td>
+                <td class="text-center">
+                  <button type="button" class="btn" routerLink="/employee_management/update/:{{employee.id}}">
+                    <i class="bi bi-pencil-square bg-icon"></i>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                          (click)="findById(employee.id)">
+                    <i class="bi bi-trash3 bg-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div *ngIf="(totalElements> 0); else isEmpty" class="text-center">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
+                    <i class="fa-solid fa-backward-fast"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,0)"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
+                    <i class="fa-solid fa-backward"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber - 1)"></i>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
+                  <ng-container *ngIf="i < 3 || i >= totalPages - 3">
+                    <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
+                      {{i + 1}}
+                    </a>
+                  </ng-container>
+                  <ng-container *ngIf="3 <= i && i < totalPages - 3 &&(i == pageNumber + 1 || i== pageNumber-1 || i ==pageNumber)">
+                    <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,i)">
+                      {{i + 1}}
+                    </a>
+                  </ng-container>
+                  <ng-container *ngIf="(3 < i && i < totalPages - 3 && i != pageNumber && i != pageNumber + 1 && i!=pageNumber-1)">
+                    <a class="page-link">
+                      ...
+                    </a>
+                  </ng-container>
+                </li>
+                <li>
+                  <a class="page-link"  *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
+                    <i class="fa-solid fa-forward"
+                       (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,pageNumber+1)"></i>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''"
+                     (click)="findAllWithCondition(formSearch.value.name,formSearch.value.positionId,totalPages-1)">
+                    <i class="fa-solid fa-forward-fast"></i> </a>
+                </li>
+                <li class="page-item">
+                  <span class="page-link td-inline">{{pageNumber + 1}} / {{totalPages}}</span>
+                </li>
+                <li class="page-item">
+                  <div class="input-group rounded input-group-page">
+                    <input id="input-page-choice" type="number" class="form-control rounded input-group--height" placeholder="chọn trong {{totalPages}} trang" #element
+                           aria-label="Search" aria-describedby="search-addon"/>
+                    <button class="btn bg-sub input-group--height" (click)="getPageChoice(element.value-1)" >
+                      <i class="bi bi-search"></i>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <ng-template #isEmpty class="clearfix">
+              <div style="font-size: 18px; margin-left: 73px" class="hint-text">Không tìm thấy nhân viên phù hợp với từ khoá...</div>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 
@@ -175,7 +168,10 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-3">
-            <img class="image-delete" [src]="employeeDeleteDTO.image" >
+            <div class="border">
+              <img class="image-delete" [src]="employeeDeleteDTO.image" *ngIf="employeeDeleteDTO.image">
+              <img class="image-delete" src="../../../../assets/image/default_user.png" *ngIf="!employeeDeleteDTO.image">
+            </div>
           </div>
           <div class="col-9">
             <table class="table table-borderless">
@@ -255,7 +251,7 @@
                 <td></td>
                 <td>
                   <button type="button" class="btn bg-sub" (click)="deleteById(employeeDeleteDTO.id)">Xóa</button>
-                  <button type="button" class="btn bg-close m-lg-3" data-bs-dismiss="modal">Quay lại</button>
+                  <button type="button" class="btn bg-close m-lg-3" data-bs-dismiss="modal" id="closeModal">Quay lại</button>
                 </td>
               </tr>
             </table>

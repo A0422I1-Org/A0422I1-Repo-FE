@@ -1,14 +1,13 @@
 //Show version to check library is active
 console.log("Version Jquery: " + jQuery.fn.jquery
-          + "\nVersion Chart.js: " + Chart.version
-          + "\nVersion xlsx: " + XLSX.version);
+  + "Version Chart.js: " + Chart.version
+  + "Version xlsx: " + XLSX.version);
 
 
 //Export Table
-function exportTableToExcel() {
-  console.log("aaaaaaa")
+function exportTableToExcels() {
   // Lấy dữ liệu bảng
-  var table = document.querySelector("#categoryTable1, #showtimeTable1");
+  var table = document.querySelector("#movieTable, #customerTable");
   var rows = table.querySelectorAll("tr");
   var data = [];
   for (var i = 0; i < rows.length; i++) {
@@ -25,14 +24,10 @@ function exportTableToExcel() {
   var worksheet = XLSX.utils.aoa_to_sheet(data);
 
   // Thêm worksheet vào workbook
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Doanh thu thể loại phim");
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Thống kê");
 
   // Xuất file excel
-  var filename = "ThongKeTheLoaiPhim.xlsx";
+  var filename = "ThongKe.xlsx";
   XLSX.writeFile(workbook, filename);
 
 };
-
-
-
-

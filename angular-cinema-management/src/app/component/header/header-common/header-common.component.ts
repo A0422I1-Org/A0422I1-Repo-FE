@@ -104,7 +104,7 @@ export class HeaderCommonComponent implements OnInit {
   }
 
   toBooking() {
-    this.router.navigateByUrl('/booking/select-movie-and-showtime');
+      this.router.navigateByUrl('/booking/select-movie-and-showtime');
   }
 
   logout() {

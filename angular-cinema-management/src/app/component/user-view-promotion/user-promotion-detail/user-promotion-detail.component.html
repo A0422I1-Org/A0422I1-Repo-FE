@@ -12,10 +12,10 @@
                style="width: 100%">
         </div>
         <div class="btn-active py-3 d-flex align-items-center">
-          <button class="btn__common d-flex align-items-center me-2 text-uppercase" routerLink="/booking/select-movie-and-showtime">
-            đặt vé
-          </button>
-          <button class="btn__trailer d-flex align-items-center text-uppercase" routerLink="/promotion">khuyến mãi</button>
+<!--          <button class="btn__common d-flex align-items-center me-2 text-uppercase" routerLink="/booking/select-movie-and-showtime">-->
+<!--            đặt vé-->
+<!--          </button>-->
+<!--          <button class="btn__trailer d-flex align-items-center text-uppercase" routerLink="/promotion">khuyến mãi</button>-->
         </div>
       </div>
       <div class="col-lg-8 table-responsive">
@@ -24,7 +24,7 @@
           <p class="movie_option"><strong>Thời gian áp dụng: </strong><span>{{promotion.time}}</span></p>
           <p class="movie_option"><strong>Địa điểm áp dụng: </strong> {{promotion.location}}</p>
           <p class="movie_option"><strong>Điều kiện áp dụng: </strong>
-            <span [innerHTML]="promotion.condition"></span>
+            <span [innerHTML]="promotion.conditionPromotion"></span>
           </p>
         </div>
       </div>

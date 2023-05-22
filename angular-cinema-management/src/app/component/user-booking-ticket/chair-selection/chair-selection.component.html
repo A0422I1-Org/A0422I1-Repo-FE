@@ -5,7 +5,7 @@
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
   crossorigin="anonymous"
 />
-<div class="container">
+<div class="container shadow-sm p-3 mb-5 bg-body rounded">
   <div class="row">
     <div class="col-lg-9">
       <div class="seat-booking-movie">
@@ -36,6 +36,15 @@
                       </li>
                       <li class="column_title_item text-center">
                         <div class="column_title_item_content">D</div>
+                      </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">E</div>
+                      </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">F</div>
+                      </li>
+                      <li class="column_title_item text-center">
+                        <div class="column_title_item_content">G</div>
                       </li>
                     </ul>
                   </div>
@@ -84,7 +93,7 @@
                         <div
                           class="seat_icon economy_seat d-flex justify-content-center align-items-center"
                           [ngClass]="{
-                            active: ticket.status,
+                            active: ticket.status == 1 || ticket.status == 2,
                             choosing_seat: isSelected(ticket)
                           }"
                           (click)="onSeatClick($event, ticket)"

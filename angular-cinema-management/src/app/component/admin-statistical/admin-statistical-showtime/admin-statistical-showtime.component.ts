@@ -110,7 +110,7 @@ export class AdminStatisticalShowtimeComponent implements OnInit {
         return acc;
       }, []);
       this.showtimeStatisticListNonGroup = result;
-      this.showtimeStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue).slice(0,12);
+      this.showtimeStatisticListNonGroup = result.sort((a, b) => b.totalRevenue - a.totalRevenue).slice(0,10);
 
 
 

@@ -11,31 +11,6 @@
 </head>
 <body>
 <div class="container py-2">
-  <!--    Header      -->
-<!--  <div class="row align-items-center">-->
-<!--    <div class="col-3">-->
-<!--      <img src="assets/image/logo_movie-removebg-preview.png" alt="" class="img-fluid"-->
-<!--           style="width: auto;">-->
-<!--    </div>-->
-<!--    <div class="col-9">-->
-<!--      <div class="dropdown float-end px-4">-->
-<!--        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"-->
-<!--           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--          <img src="assets/image/123123213123.jpg" alt="" width="32" height="32" class="rounded-circle me-2">-->
-<!--          <strong style="color: #F26b38">Phạm Thế Duyệt</strong>-->
-<!--        </a>-->
-<!--        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">-->
-<!--          <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
-<!--          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>-->
-<!--          <li>-->
-<!--            <hr class="dropdown-divider">-->
-<!--          </li>-->
-<!--          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>-->
-<!--        </ul>-->
-<!--      </div>-->
-
-<!--    </div>-->
-<!--  </div>-->
 <app-header-admin></app-header-admin>
   <!--    Sidebar      -->
   <div class="row">
@@ -46,7 +21,7 @@
     <div class="col-lg-9">
       <div class="col">
         <div class="card">
-          <div class="bg-light card card-header p-3 mb-4 text-uppercase display fw-bold" >
+          <div class="bg-light card card-header p-3 mb-4 text-uppercase display fw-normal" >
             <div class="row d-block-900">
               <div class="col 7">
                 Quản lý danh sách đặt vé
@@ -67,8 +42,8 @@
 
             <div class="card-body">
 
-              <div class="table-responsive table-bordered rounded shadow">
-                <button *ngIf="showButton" class="bg-sub" (click)="movieTheater()">BAO RẠP</button>
+              <div class="table-responsive table-bordered rounded shadow fw-normal">
+                <button  *ngIf="showButton" class="bg-sub fw-normal" data-bs-toggle="modal" data-bs-target="#confirmModal">ĐẶT NHIỀU VÉ</button>
                 <table class="table table-striped table-hover text-center">
                   <thead class="bg-subs">
                   <tr>
@@ -111,78 +86,85 @@
 
                 <!--page-->
                 <div *ngIf="(totalElements> 0); else isEmpty">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                      <a class="page-link" *ngIf="indexPagination != 0 ? 'disable': ''">
-                        <i class="fa-solid fa-backward-fast"
-                           (click)="getAllTicket(0)"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="page-link" *ngIf="indexPagination != 0 ? 'disable': ''">
-                        <i class="fa-solid fa-backward"
-                           (click)="getAllTicket(indexPagination - 1)"></i>
-                      </a>
-                    </li>
-                    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
+                 <ul class="pagination justify-content-center mb-3">
+                  <li class="page-item">
+                    <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
+                      <i class="fa-solid fa-backward-fast"
+                         (click)="getAllTicket( 0)"></i>
+                    </a>
 
-                      <ng-container *ngIf="i < 3 || i >= totalPages - 3">
-                        <a class="page-link" [ngClass]="indexPagination == i ? 'current': ''"
-                           (click)="getAllTicket(i)">
-                          {{i + 1}}
-                        </a>
-                      </ng-container>
-                      <ng-container *ngIf="3 <= i && i < totalPages - 3 &&(i == indexPagination + 1 || i== indexPagination-1 || i ==indexPagination)">
-                        <a class="page-link" [ngClass]="indexPagination == i ? 'current': ''"
-                           (click)="getAllTicket(i)">
-                          {{i + 1}}
-                        </a>
-                      </ng-container>
-                      <ng-container *ngIf="(3 < i && i < totalPages - 3 && i != indexPagination && i != indexPagination + 1 && i!=indexPagination-1)">
-                        <a class="page-link">
-                          ...
-                        </a>
-                      </ng-container>
-                    </li>
-                    <li>
-                      <a class="page-link"  *ngIf="indexPagination < totalPages - 1 ? 'disable': ''">
-                        <i class="fa-solid fa-forward"
-                           (click)="getAllTicket(indexPagination + 1)"></i>
+                  </li>
+                  <li>
+                    <a class="page-link" *ngIf="pageNumber != 0 ? 'disable': ''">
+                      <i class="fa-solid fa-backward"
+                         (click)="getAllTicket( pageNumber - 1)"></i>
+                    </a>
+                  </li>
+                  <ng-container
+                    *ngIf="0 === pageNumber  ">
+                    <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                      <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                         (click)="getAllTicket(i)">
+                        {{i + 1}}
                       </a>
                     </li>
-                    <li class="page-item">
-                      <a class="page-link" *ngIf="indexPagination < totalPages - 1 ? 'disable': ''"
-                         (click)="getAllTicket(totalPages - 1)">
-                        <i class="fa-solid fa-forward-fast"></i> </a>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="(totalPages - 1) === pageNumber && pageNumber !== 0">
+                    <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                      <a class="page-link" [ngClass]="pageNumber == i ? 'current': ''"
+                         (click)="getAllTicket( totalPages - countPage + i)">
+                        {{totalPages - countPage + i + 1}}
+                      </a>
                     </li>
-                    <li class="page-item">
-                      <span class="page-link">
-                        <div class="d-flex">
-                          <span class="flex-grow-1 text-right">{{indexPagination + 1}}</span>
-                          <span class="flex-shrink-1">/</span>
-                          <span class="flex-grow-1">{{totalPages}}</span>
-                        </div>
-                      </span>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="(totalPages - 1) > pageNumber && 0 < pageNumber">
+                    <li class="page-item" *ngIf="pageNumber != 1">
+                      <a class="page-link">...</a>
                     </li>
-                    <li class="page-item">
-                      <div class="input-group rounded">
-                        <div class="d-flex">
-                        <input id="input-page-choice" type="number"  class="form-control rounded page-choice" placeholder="chọn trong {{totalPages}} trang" #element
-                               aria-label="Search" aria-describedby="search-addon"/>
+                    <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
+                      <a class="page-link" [ngClass]="i == 1 ? 'current': ''"
+                         (click)="getAllTicket( pageNumber - 1 + i)">
+                        {{pageNumber - 1 + (i + 1) }}
+                      </a>
+                    </li>
+                    <li class="page-item"  *ngIf="pageNumber != totalPages -2">
+                      <a class="page-link">...</a>
+                    </li>
+                  </ng-container>
+
+                  <li>
+                    <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">
+                      <i class="fa-solid fa-forward"
+                         (click)="getAllTicket( pageNumber + 1)"></i>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''"
+                       (click)="getAllTicket( totalPages - 1)">
+                      <i class="fa-solid fa-forward-fast"></i> </a>
+                  </li>
+                  <li class="page-item">
+                    <span class="page-link">{{pageNumber + 1}} / {{totalPages}}</span>
+                  </li>
+                  <li class="page-item">
+                    <div class="input-group rounded">
+                      <div class="d-flex">
+                      <input id="input-page-choice" type="number" class="form-control rounded page-choice"
+                             placeholder="chọn trong {{totalPages}} trang" #element aria-label="Search"
+                             aria-describedby="search-addon">
                         <span class="input-group-text border-0 bg-subs" id="search-addon">
-     <i class="fas fa-search "
-        (click)="getPageChoice(element.value-1)"></i>
-  </span>
-<!--                        Hết phân trang-->
+            <i class="fas fa-search" (click)="getPageChoice(+element.value-1)"></i>
+          </span>
                       </div>
-                      </div>
-                    </li>
-                  </ul>
+                    </div>
+                  </li>
+                </ul>
                 </div>
                 <ng-template #isEmpty class="clearfix">
                   <div style="font-size: 18px; margin-left: 73px" class="hint-text">Không tìm thấy vé phù hợp với từ khoá<b>"" </b></div>
                 </ng-template>
-
               </div>
             </div>
           </div>
@@ -190,7 +172,8 @@
       </div>
     </div>
   </div>
-  <!-- Button trigger modal -->
+
+    <!-- Button trigger modal -->
 
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -198,7 +181,7 @@
         <div class="modal-header nav-pills">
           <h5 class="modal-title" id="exampleModalLabel">Xoá vé</h5>
         </div>
-<!--        <p style="color: red">(Vé bị xoá sẽ không thể sử dụng )</p>-->
+        <!--        <p style="color: red">(Vé bị xoá sẽ không thể sử dụng )</p>-->
         <div class="modal-body">
           <div class="row">
             <div class="col-3">
@@ -268,8 +251,8 @@
                 <tr>
                   <td></td>
                   <td>
-                    <button type="button" class="btn btn-secondary ml-2 bg-sub flg" (click)="delete(ticket.id)">Xóa</button>
-                    <button type="button" class="btn btn-secondary ml-2" data-bs-dismiss="modal">Quay lại</button>
+                    <button type="button" class="btn btn-secondary ml-2 bg-sub flg" (click)="delete(ticket.id)">XOÁ</button>
+                    <button type="button" class="btn btn-secondary ml-2" id="XoaModal1" data-bs-dismiss="modal">QUAY LẠI</button>
                   </td>
                 </tr>
               </table>
@@ -279,6 +262,59 @@
         <div class="modal-footer">
           <p style="color: red; margin-right: 100px" >*Lưu ý: Hành động này không thể hoàn tác, bạn có chắc chắn muốn xóa?</p>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal Xac nhan ve -->
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content container ">
+      <div class="modal-header nav-pills">
+        <h5 class="modal-title" >THÔNG TIN VÉ</h5>
+      </div>
+      <!--        <p style="color: red">(Vé bị xoá sẽ không thể sử dụng )</p>-->
+      <div class="modal-body">
+        <div class="row">
+          <table class="table table-striped table-hover text-center">
+            <thead class="bg-subs">
+            <tr>
+              <th>#</th>
+              <th>Mã đặt vé</th>
+              <th>Mã thành viên</th>
+              <th class="center_number">Họ tên</th>
+              <th>Số điện thoại</th>
+              <th>Phim</th>
+              <th>Room</th>
+              <th>Chair</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of ticketDto;index as i">
+              <th>{{i+1}}</th>
+              <td>{{ticket.id}}</td>
+              <td>{{ticket.customerId}}</td>
+              <td class="center_number">{{ticket.fullName}}</td>
+              <td>{{ticket.phoneNumber}}</td>
+              <td>{{ticket.nameMovie}}</td>
+              <td>{{ticket.room}}</td>
+              <td>{{ticket.nameChair}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="col-4"></div>
+          <div class="col-2">
+            <button type="button" class="btn btn-secondary ml-2 bg-sub flg " (click)="movieTheater()">XÁC NHẬN</button>
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-secondary ml-2 " id="XoaModal2" data-bs-dismiss="modal">QUAY LẠI</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+      <div class="modal-footer ">
+        <p style="color: red; margin: auto" >*Kiểm tra kỹ thông tin trước khi in vé</p>
       </div>
     </div>
   </div>

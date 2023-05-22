@@ -11,6 +11,9 @@ body{
 
 .dropdown:hover>.dropdown-menu {
   display: block;
+  top: 100%;  /* Hiển thị dropdown-menu bên dưới */
+  left: 0;    /* Giữ dropdown-menu bên trái */
+  right: auto; /* Không căn giữa dropdown-menu */
 }
 
 .dropdown>.dropdown-toggle:active {

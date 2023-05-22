@@ -67,7 +67,7 @@ export function provideConfig() {
     AngularFireStorageModule,
     ToastrModule.forRoot(
       {
-        timeOut: 2000,
+        timeOut: 5000,
         positionClass: 'toast-top-right'
       }
     ),

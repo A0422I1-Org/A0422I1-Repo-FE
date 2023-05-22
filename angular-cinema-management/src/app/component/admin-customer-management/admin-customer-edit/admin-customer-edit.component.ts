@@ -14,6 +14,7 @@ export class AdminCustomerEditComponent implements OnInit {
   customer: Customer;
   id: string;
   isDelete: boolean;
+  errorMessage: string;
 
   formGroup: FormGroup = new FormGroup({
     username: new FormControl(),
@@ -33,6 +34,7 @@ export class AdminCustomerEditComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(next => {
       this.id = next.get('id');
     });
+
   }
 
   ngOnInit(): void {
@@ -81,7 +83,8 @@ export class AdminCustomerEditComponent implements OnInit {
       console.log(this.customer);
       this.customerService.updateCustomer(this.customer).subscribe(() => {
       }, error => {
-        console.log(error)
+        this.errorMessage = error.error;
+        this.toastr.error(this.errorMessage, 'LỖI!');
       }, () => {
         this.toastr.success('Cập nhật thành công!', 'THÔNG BÁO');
         this.router.navigateByUrl("/customer-management")

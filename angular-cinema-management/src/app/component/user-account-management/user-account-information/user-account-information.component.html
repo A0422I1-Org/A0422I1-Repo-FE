@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <title>Quản lý tài khoản</title>
   <!--    <script src="https://kit.fontawesome.com/8a37ea36e8.js" crossorigin="anonymous"></script>-->
   <!-- Font Awesome -->
@@ -9,7 +9,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     rel="stylesheet"
   /> -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -39,7 +39,7 @@
 </head>
 
 <body style="background-color: #eee; font-family: Roboto, sans-serif">
-
+<app-header></app-header>
 <section>
   <div class="container py-5">
 
@@ -58,41 +58,43 @@
                 class="rounded-circle img-fluid"
                 style="width: 150px"
               />
-              <h5 class="my-3 text-dark">John Smith</h5>
+              <h5 class="my-3 text-dark">{{customer.fullName}}</h5>
               <p class="mb-3 text-dark">
-                <i class="fab fa-empire"></i>Điểm tích lũy: 120
+                <i class="fab fa-empire"></i>Tổng điểm tích lũy : +{{totalPoint}}
               </p>
               <div
                 class="d-flex align-items-center justify-content-center mb-2 font-weight-bold"
               >
 
               </div>
-              <hr />
+              <hr/>
             </div>
 
             <div class="container">
               <div class="row">
                 <div class="col-2"></div>
                 <div class="col-9 text-start">
-                  <a class="text-decoration-none section-link" href="#"
+                  <a class="text-decoration-none section-link"
+                     href="/customer/update-profile"
                   ><i
                     class="bi bi-person-bounding-box divider mx-3 font-weight-bold"
+
                   ></i
                   >Thông tin tài khoản</a
                   >
-                  <hr />
+                  <hr/>
                   <a
                     class="text-decoration-none section-link font-weight-bold"
-                    href="./user_point.html"
+                    routerLink="/customer/point"
                   ><i
                     class="bi bi-clock-history section-link divider mx-3"
                   ></i
                   >Lịch sử điểm</a
                   >
-                  <hr />
+                  <hr/>
                   <a
                     class="text-decoration-none section-link font-weight-bold"
-                    href=""
+                    routerLink="/customer/ticket"
                   >
                     <i
                       class="bi bi-ticket-perforated section-link divider mx-3"
@@ -113,69 +115,70 @@
             <div class="bg-light card card-header shadow p-3 mb-4 text-uppercase font-weight: bold">
               <h5>THÔNG TIN ĐĂNG NHẬP</h5>
             </div>
+            <div class="card-body divider my-3">
+              <form [formGroup]="resetPassRequestForm" (ngSubmit)="doResetPassword()">
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Tài Khoản</label>
+                  <div class="col-sm-4">
+                    <input readonly type="text" class="form-control" formControlName="username">
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu cũ<span style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="oldPassword">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('oldPassword').hasError('required') && resetPassRequestForm.get('oldPassword').touched">
+                  Mật khẩu cũ không được để trống</span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu mới<span style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="password">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('password').hasError('required') && resetPassRequestForm.get('password').touched">
+                  Mật khẩu mới không được để trống</span>
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('password').hasError('pattern') && resetPassRequestForm.get('password').touched">
+                  Mật khẩu mới không đúng định dạng</span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Nhập lại mật khẩu<span
+                    style="color: red"> *</span></label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" formControlName="confirmPassword">
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.get('confirmPassword').hasError('required') && resetPassRequestForm.get('confirmPassword').touched">
+                  Mật khẩu mới không được để trống</span>
+                    <span style="color: red; font-size: 15px"
+                          *ngIf="resetPassRequestForm.hasError('passwordnotmatch') && resetPassRequestForm.get('confirmPassword').touched">
+                  Mật khẩu không trùng nhau
+              </span>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label"></label>
+                  <div class="col-sm-9" style="text-align: left">
+                    <button type="submit" class="btn btn-primary border-0" style="background-color: #f26b38;"
+                            [disabled]="!resetPassRequestForm.valid">
+                      <i class="bi bi-lock-fill"></i>
+                      Đổi mật khẩu
+                    </button>
+                  </div>
+                </div>
+              </form>
 
-<!--            <div class="card-body divider my-3">-->
-<!--              <form [formGroup]="resetPassRequestForm" (ngSubmit)="doResetPassword()">-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Tài Khoản</label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input readonly type="text" class="form-control" formControlName="username">-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu cũ<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="oldPassword">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('oldPassword').hasError('required') && resetPassRequestForm.get('oldPassword').touched">-->
-<!--                  Mật khẩu cũ không được để trống</span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Mật khẩu mới<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="password">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('password').hasError('required') && resetPassRequestForm.get('password').touched">-->
-<!--                  Mật khẩu mới không được để trống</span>-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('password').hasError('pattern') && resetPassRequestForm.get('password').touched">-->
-<!--                  Mật khẩu mới không đúng định dạng</span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label" style="text-align: right">Nhập lại mật khẩu<span style="color: red"> *</span></label>-->
-<!--                  <div class="col-sm-4">-->
-<!--                    <input type="password" class="form-control" formControlName="confirmPassword">-->
-<!--                    <span style="color: red; font-size: 15px"-->
-<!--                          *ngIf="resetPassRequestForm.get('confirmPassword').hasError('required') && resetPassRequestForm.get('confirmPassword').touched">-->
-<!--                  Mật khẩu mới không được để trống</span>-->
-<!--                    <span style="color: red"-->
-<!--                          *ngIf="resetPassRequestForm.hasError('passwordnotmatch') && resetPassRequestForm.get('confirmPassword').touched">-->
-<!--                  Mật khẩu không trùng nhau-->
-<!--              </span>-->
-<!--                  </div>-->
-<!--                  <div class="col-sm-5">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="row mb-3">-->
-<!--                  <label class="col-sm-3 col-form-label"></label>-->
-<!--                  <div class="col-sm-9" style="text-align: left">-->
-<!--                    <button type="submit"  class="btn btn-primary border-0" style="background-color: #f26b38;" [disabled]="!resetPassRequestForm.valid">-->
-<!--                      <i class="bi bi-lock-fill"></i>-->
-<!--                      Đổi mật khẩu-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </form>-->
-
-<!--            </div>-->
+            </div>
           </div>
           <br>
           <div class="card">
@@ -187,15 +190,16 @@
                 <div class="row mb-3">
                   <label class="col-sm-3 col-form-label" style="text-align: right">Mã thành viên</label>
                   <div class="col-sm-4">
-                    <input readonly type="text" class="form-control" formControlName="id">
+                    <input readonly type="text" class="form-control" formControlName="id" ngModel="{{customer.id}}">
                   </div>
                   <div class="col-sm-5">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">Họ Tên<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Họ Tên<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="fullName">
+                    <input type="text" class="form-control" formControlName="fullName" ngModel="{{customer.fullName}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('fullName').hasError('required') && updateCustomerForm.get('fullName').touched">
             Họ tên không được để trống
@@ -214,9 +218,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">Ngày Sinh<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Ngày Sinh<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" formControlName="birthday">
+                    <input type="date" class="form-control" formControlName="birthday" ngModel="{{customer.birthday.slice(0,10)}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('birthday').hasError('required') && updateCustomerForm.get('birthday').touched">
             Ngày sinh không được để trống
@@ -230,16 +235,11 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <legend class="col-form-label col-sm-3 pt-0" style="text-align: right">Giới Tính<span style="color: red"> *</span></legend>
+                  <legend class="col-form-label col-sm-3 pt-0" style="text-align: right">Giới Tính<span
+                    style="color: red"> *</span></legend>
                   <div class="col-sm-4" style="text-align: left">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" value type="radio" name="gender" id="inlineRadio1" [value]="true" formControlName="gender">
-                      <label class="form-check-label" for="inlineRadio1">Nam</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" [value]="false" formControlName="gender">
-                      <label class="form-check-label" for="inlineRadio2">Nữ</label>
-                    </div>
+                      <input type="radio" value=true name="gender" formControlName="gender" ngModel="{{customer.gender}}">Nam
+                      <input type="radio" value=false name="gender" formControlName="gender" ngModel="{{customer.gender}}">Nữ
                     <br>
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('gender').hasError('required') && updateCustomerForm.get('gender').touched">
@@ -250,9 +250,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">CMND<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">CMND<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="cardId">
+                    <input type="text" class="form-control" formControlName="cardId" ngModel="{{customer.cardId}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('cardId').hasError('required') && updateCustomerForm.get('cardId').touched">
             CMND không được để trống
@@ -265,9 +266,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">Email<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Email<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="email">
+                    <input type="text" class="form-control" formControlName="email" ngModel="{{customer.email}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('email').hasError('required') && updateCustomerForm.get('email').touched">
             Email không được để trống
@@ -286,9 +288,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">Địa Chỉ<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Địa Chỉ<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="address">
+                    <input type="text" class="form-control" formControlName="address" ngModel="{{customer.address}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('address').hasError('required') && updateCustomerForm.get('address').touched">
             Địa chỉ không được để trống
@@ -304,9 +307,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label" style="text-align: right">Số Điện Thoại<span style="color: red"> *</span></label>
+                  <label class="col-sm-3 col-form-label" style="text-align: right">Số Điện Thoại<span
+                    style="color: red"> *</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="phoneNumber">
+                    <input type="text" class="form-control" formControlName="phoneNumber" ngModel="{{customer.phoneNumber}}">
                     <span style="color: red; font-size: 15px"
                           *ngIf="updateCustomerForm.get('phoneNumber').hasError('required') && updateCustomerForm.get('phoneNumber').touched">
             Số điện thoại không được để trống
@@ -321,11 +325,12 @@
                 <div class="row mb-3">
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9" style="text-align: left">
-                    <button type="submit"  class="btn btn-primary border-0" style="background-color: #f26b38;"
+                    <button type="submit" class="btn btn-primary border-0" style="background-color: #f26b38;"
                             [disabled]="!updateCustomerForm.valid">
                       Cập nhật
                     </button>
-                    <button type="button"  class="btn btn-primary border-0" style="background-color: #f26b38; margin-left: 5px">
+                    <button type="button" class="btn btn-primary border-0"
+                            style="background-color: #f26b38; margin-left: 5px">
                       <a href="" style="color: #eeeeee; text-decoration: none">Quay lại</a>
                     </button>
                   </div>
@@ -341,6 +346,6 @@
 
   </div>
 </section>
+<app-footer></app-footer>
 </body>
 </html>
-

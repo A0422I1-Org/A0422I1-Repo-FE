@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../../service/movie/movie.service";
-import {Subscription} from "rxjs";
+import {of, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {MovieDetailDTO} from "../../../dto/movie-detail-dto";
@@ -8,17 +8,20 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RatingMovieService} from "../../../service/rating-movie/rating-movie.service";
 import {TokenStorageService} from "../../../service/token/token-storage.service";
+import {RatingMovieDTO} from "../../../dto/rating-movie-dto";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-user-movie-detail',
   templateUrl: './user-movie-detail.component.html',
   styleUrls: ['./user-movie-detail.component.css']
 })
-export class UserMovieDetailComponent implements OnInit{
+export class UserMovieDetailComponent implements OnInit {
 
   movie: MovieDetailDTO | undefined;
   trustedUrl: SafeResourceUrl;
   showBookingButton = false;
+  ratingMovieExist: RatingMovieDTO;
 
   username: string;
   roles: string[] = [];
@@ -35,42 +38,61 @@ export class UserMovieDetailComponent implements OnInit{
     private router: Router,
     private tokenStorageService: TokenStorageService,
   ) {
-  }
-
-  private subscription: Subscription | undefined;
-  isOpenVideo: boolean;
-
-  ngOnInit(): void {
-    const movieId = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.subscription = this.movieService.getMovieDetailByMovieId(movieId).subscribe(
-      data => {
-        this.movie = data;
-        this.bookingPermit();
-        this.rfRating = this.formBuilder.group({
-          username: [this.username],
-          rating: [''],
-          movieId: [this.movie.id]
-        })
-      },
-      error => {
-        console.log("get movie detail error")
-      },
-    );
     if (this.tokenStorageService.getToken()) {
       const user = this.tokenStorageService.getUser();
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
-    console.log(this.roles)
-    console.log(this.username)
+  }
+
+  private subscription: Subscription | undefined;
+  isOpenVideo: boolean;
+  private ratingTemp: number;
+  isHasRated = false;
+
+  ngOnInit(): void {
+    const movieId = parseInt(this.activatedRoute.snapshot.params['id']);
+    this.subscription = this.ratingMovieService.getRatingMovieByUsernameAndMovieId(this.username, movieId).pipe(
+      catchError(error => {
+        console.log('Error: ', error);
+        this.ratingMovieExist = null;
+        return of(null);
+        this.ratingTemp = 0;
+
+      })
+    ).subscribe(
+      data => {
+        if(data){
+          this.ratingMovieExist = data;
+          this.ratingTemp = this.ratingMovieExist.rating;
+          this.isHasRated = true;
+        }
+        this.subscription = this.movieService.getMovieDetailByMovieId(movieId).subscribe(
+          data => {
+            this.movie = data;
+            console.log(this.movie);
+            this.bookingPermit();
+            this.rfRating = this.formBuilder.group({
+              username: [this.username],
+              rating: [this.ratingTemp],
+              movieId: [this.movie.id]
+            });
+            console.log(this.ratingMovieExist);
+            console.log(this.movie);
+          }
+        )
+      },
+      error => {
+        console.log("get movie detail error")
+      },
+    );
   }
 
   sendLinkTrailer(trailer: string) {
     this.isOpenVideo = this.isYoutubeLink(trailer);
-    if (this.isOpenVideo){
+    if (this.isOpenVideo) {
       this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(trailer);
-    }
-    else {
+    } else {
     }
   }
 
@@ -107,7 +129,7 @@ export class UserMovieDetailComponent implements OnInit{
     if (diffDays <= 3) {
       this.showBookingButton = true;
     }
-    if (this.roles.includes('ROLE_EMPLOYEE')){
+    if (this.roles.includes('ROLE_EMPLOYEE')) {
       this.showBookingButton = false;
     }
 
@@ -127,8 +149,9 @@ export class UserMovieDetailComponent implements OnInit{
           console.log(error)
         },
       );
+      this.isHasRated = true;
     }
-  }
+     }
 
   imageError(event: Event) {
     (event.target as HTMLImageElement).style.border = 'none';

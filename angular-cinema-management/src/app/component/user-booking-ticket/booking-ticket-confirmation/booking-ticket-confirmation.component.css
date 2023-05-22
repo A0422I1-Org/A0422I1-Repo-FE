@@ -3,3 +3,23 @@
     font-size: 15px;
   }
 }
+th {
+  width: 150px;
+}
+.btn__common {
+  background-color: #F26B38;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+.height-image{
+  height: 400px;
+}
+
+@media (max-width: 1100px) {
+  .height-image {
+    height: auto;
+  }
+}

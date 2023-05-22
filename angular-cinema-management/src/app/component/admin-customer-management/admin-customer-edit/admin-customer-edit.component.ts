@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../../model/customer";
-import {HttpClient} from "@angular/common/http";
 import {CustomerService} from "../../../service/customer/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Account} from "../../../model/account";
 import {ToastrService} from "ngx-toastr";
 
 @Component({

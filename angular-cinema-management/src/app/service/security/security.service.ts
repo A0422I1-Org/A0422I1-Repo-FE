@@ -22,8 +22,15 @@ export class SecurityService {
     }, httpOptions);
   }
 
+  findEmployeeByUsername(username: string): Observable<any> {
+    return this.httpClient.get<any>(AUTH_API + 'findEmployeeByUsername/' + username, httpOptions);
+  }
+
+  findCustomerByUsername(username: string): Observable<any> {
+    return this.httpClient.get<any>(AUTH_API + 'findCustomerByUsername/' + username, httpOptions);
+  }
+
   verify(code: string): Observable<any> {
-    console.log(code);
     return this.httpClient.post(AUTH_API + 'verify', {
       code: code
     }, httpOptions);

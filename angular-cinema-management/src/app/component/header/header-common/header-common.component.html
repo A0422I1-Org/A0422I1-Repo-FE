@@ -45,21 +45,33 @@
           <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
              id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/image/account.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong style="color: #F26b38"
-                    *ngIf="roles.includes('ROLE_CUSTOMER')">{{customer.fullName}}</strong>
-            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_ADMIN')">Admin</strong>
-            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_EMPLOYEE')">Admin</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_CUSTOMER')">{{nameOfUser}}</strong>
+            <strong style="color: #F26b38" *ngIf="roles.includes('ROLE_ADMIN')">ADMIN</strong>
+            <strong *ngIf="roles.includes('ROLE_EMPLOYEE')">NHÂN VIÊN: <span style="color: #F26b38" >{{nameOfUser}}</span></strong>
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1"
               *ngIf="!roles.includes('ROLE_CUSTOMER') || !roles.includes('ROLE_ADMIN') || !roles.includes('ROLE_EMPLOYEE')">
             <!--            <li><a class="dropdown-item" href="#">Cài đặt</a></li>-->
-            <li><a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
-            <li>
+            <li *ngIf="roles.includes('ROLE_CUSTOMER') || roles.includes('ROLE_ADMIN') || roles.includes('ROLE_EMPLOYEE')">
+              <a href="/customer/ticket" class="dropdown-item">Quản lý tài khoản</a></li>
+
+            <li *ngIf="roles.includes('ROLE_CUSTOMER') || roles.includes('ROLE_ADMIN') || roles.includes('ROLE_EMPLOYEE')">
               <hr class="dropdown-divider">
             </li>
 
-            <li *ngIf="!roles.includes('ROLE_CUSTOMER') && !roles.includes('ROLE_ADMIN') && !roles.includes('ROLE_EMPLOYEE')"><a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
-            <li><a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
+            <li *ngIf="roles.includes('ROLE_ADMIN')"><a href="/ticket_management/select_ticket_user" class="dropdown-item">Bảng Quản Lý</a></li>
+            <li *ngIf="roles.includes('ROLE_ADMIN')">
+              <hr class="dropdown-divider">
+            </li>
+
+            <li *ngIf="!roles.includes('ROLE_CUSTOMER') && !roles.includes('ROLE_ADMIN') && !roles.includes('ROLE_EMPLOYEE')">
+              <a class="dropdown-item" (click)="toLogin()">Đăng nhập</a></li>
+
+            <li  *ngIf="!loggedIn && roles.includes('ROLE_CUSTOMER') || roles.includes('ROLE_ADMIN') || roles.includes('ROLE_EMPLOYEE')">
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a></li>
+
+            <li  *ngIf="loggedIn">
+              <a class="dropdown-item" (click)="signOut()">Đăng xuất</a></li>
           </ul>
         </div>
         <!--        </ul>-->

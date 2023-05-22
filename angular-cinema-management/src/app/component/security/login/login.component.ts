@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {SecurityService} from "../../../service/security/security.service";
@@ -20,6 +20,7 @@ import {OauthService} from "../../../service/google-login/oauth.service";
 })
 export class LoginComponent implements OnInit {
 
+  token: Token;
   formGroup: FormGroup;
   username: string;
   roles: string[] = [];
@@ -41,12 +42,7 @@ export class LoginComponent implements OnInit {
               private oauthService: OauthService,) { }
 
   ngOnInit(): void {
-    /** Pham Trung Hieu
-     * Check tinh trang dang nhap, neu da dang nhap thi ve trang truoc do, chua se ve lai login
-     */
-  if (!this.tokenStorageService.isLogged()) {
-      this.router.navigate(['/login'])
-    }
+    this.tokenStorageService.signOut();
 
     this.formGroup = this.formBuild.group({
       username:['', [Validators.required,
@@ -60,12 +56,6 @@ export class LoginComponent implements OnInit {
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
 
-    if (this.tokenStorageService.getToken()) {
-      this.roles = this.tokenStorageService.getUser().roles;
-      this.username = this.tokenStorageService.getUser().username;
-      console.log(this.roles+" and "+this.username);
-    }
-
     this.authService.authState.subscribe(
       data => {
         this.userLogged = data;
@@ -77,7 +67,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.securityService.login(this.formGroup.value).subscribe(
       data => {
-console.log(data);
         if (this.formGroup.value.remember_me) {
           this.tokenStorageService.saveTokenLocal(data.token);
           this.tokenStorageService.saveUserLocal(data);
@@ -89,9 +78,9 @@ console.log(data);
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
-        this.router.navigateByUrl(data.roles[0] == "ROLE_ADMIN" ? "/ticket_management/select_ticket_user":data.roles[0] == "ROLE_EMPLOYEE"?"/ticket_management/select_ticket_user":"trang chu").then(r => console.log(r));
         this.shareService.sendClickEvent();
-        this.loggedIn=this.tokenStorageService.isLogged();
+        this.loggedIn = this.tokenStorageService.isLogged();
+        this.router.navigateByUrl(this.returnUrl);
       },
       err => {
         this.toastr.error("Sai tên đăng nhập hoặc mật khẩu không chính xác. Hoặc tài khoản chưa được kích hoạt, vui lòng đăng nhập lại", "Đăng nhập thất bại: ",{
@@ -108,12 +97,12 @@ console.log(data);
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       data => {
         this.socialUser = data;
-        console.log(this.socialUser.idToken);
         const tokenGoogle = new Token(this.socialUser.idToken);
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
-
-            this.tokenStorageService.saveUserLocal(res.value);
+            this.tokenStorageService.saveTokenLocal(JSON.parse(JSON.stringify(res)).token);
+            this.tokenStorageService.saveTokenSession(JSON.parse(JSON.stringify(res)).token);
+            this.tokenStorageService.saveUserLocal(res);
             this.loggedIn = this.tokenStorageService.isLogged();
             this.router.navigateByUrl(this.returnUrl).then(r => console.log(r));
           },
@@ -125,6 +114,16 @@ console.log(data);
     ).catch(
       err => {
         console.log(err);
+        this.signOut();
+      }
+    );
+  }
+
+  signOut(): void {
+    this.authService.signOut().then(
+      data => {
+        window.location.reload();
+        console.log("Đã đăng xuất");
       }
     );
   }

@@ -1,4 +1,5 @@
 export class Token {
+
   value: string;
 
   constructor(value: string) {

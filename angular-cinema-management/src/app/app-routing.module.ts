@@ -22,15 +22,15 @@ const routes: Routes = [
     loadChildren: () => import('./component/user-view-promotion/user-view-promotion.module').then(module => module.UserViewPromotionModule)
   },
   {
-    path: 'user',
+    path: 'user', canActivate: [AuthGuardService],
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
   {
-    path: "booking",
+    path: "booking", canActivate: [AuthGuardService],
     loadChildren: () => import('./component/user-booking-ticket/user-booking-ticket.module').then(module => module.UserBookingTicketModule)
   },
   {
-    path : "customer" ,
+    path : "customer", canActivate: [AuthGuardService],
     loadChildren:() => import('./component/user-account-management/user-account-management.module').then(module =>module.UserAccountManagementModule)
   },
   {path: "movie-statistic", component: AdminStatisticalMovieComponent,canActivate: [AuthGuardService]},

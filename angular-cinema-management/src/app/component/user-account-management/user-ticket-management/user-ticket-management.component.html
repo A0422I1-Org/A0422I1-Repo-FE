@@ -131,7 +131,7 @@
                       <th>TRẠNG THÁI</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngIf = "ticketList">
                     <tr *ngFor="let t of ticketList index as i">
                       <td class="text-left">{{i + 1 + indexPagination * 5}}</td>
                       <td>{{t.showTime.movie.name}}</td>

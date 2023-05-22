@@ -25,6 +25,7 @@ export class AdminEmployeeEditComponent implements OnInit {
   oldAvatarLink = null;
   formattedDate: string;
   myDate: string;
+  errorMessage: string
 
   formGroup: FormGroup = new FormGroup({
     image: new FormControl(),
@@ -90,7 +91,7 @@ export class AdminEmployeeEditComponent implements OnInit {
         birthday: new FormControl(next.birthday,[Validators.pattern("^(19[0-9]{2}|200[0-7])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$")]),
         gender: new FormControl(next.gender,[Validators.required]),
         email: new FormControl(next.email,[Validators.required, Validators.email]),
-        cardId: new FormControl(next.cardId, [Validators.required, Validators.pattern("^\\d{12}$")]),
+        cardId: new FormControl(next.cardId, [Validators.required, Validators.pattern("^\\d{9}$")]),
         phoneNumber: new FormControl(next.phoneNumber, [Validators.required, Validators.pattern("^(0\\d{9,10})$")]),
         address: new FormControl(next.address,[Validators.required, Validators.minLength(3), Validators.maxLength(100)])
       },[this.comparePassword])
@@ -116,10 +117,11 @@ export class AdminEmployeeEditComponent implements OnInit {
               (data: EmployeeDTO) => {
                 this.resetFormEmployee();
                 this.toastr.success('Cập nhật thông tin nhân viên thành công!', 'Success: ');
+                this.router.navigateByUrl("/employee_management/employee")
               },
-              (error: HttpErrorResponse) => {
-                this.toastr.error('Cập nhật thông tin nhân viên thất bại!', 'Error: ');
-              }
+              error => {
+                this.errorMessage = error.error;
+                this.toastr.error(this.errorMessage, 'LỖI!');}
             );
           });
         })
@@ -132,10 +134,11 @@ export class AdminEmployeeEditComponent implements OnInit {
         (data: EmployeeDTO) => {
           this.resetFormEmployee();
           this.toastr.success('Cập nhật thông tin nhân viên thành công!', 'Success: ');
+          this.router.navigateByUrl("/employee_management/employee")
         },
-        (error: HttpErrorResponse) => {
-          this.toastr.error('Cập nhật thông tin nhân viên thất bại', 'Error: ');
-        }
+        error => {
+          this.errorMessage = error.error;
+          this.toastr.error(this.errorMessage, 'LỖI!');}
       );
     }
 

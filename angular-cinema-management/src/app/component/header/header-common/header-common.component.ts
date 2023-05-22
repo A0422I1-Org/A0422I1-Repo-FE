@@ -7,6 +7,7 @@ import {ShareService} from "../../../service/share/share.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SocialAuthService, SocialUser} from "angularx-social-login";
 import {SecurityService} from "../../../service/security/security.service";
+import {Employee} from "../../../model/employee";
 
 @Component({
   selector: 'app-header',
@@ -14,9 +15,12 @@ import {SecurityService} from "../../../service/security/security.service";
   styleUrls: ['./header-common.component.css']
 })
 export class HeaderCommonComponent implements OnInit {
+
+  nameOfUser: string;
   customer: Customer;
   selection: string;
   movieListVisible: boolean = false;
+  employee: Employee;
 
   userLogged: SocialUser;
   returnUrl: string;
@@ -30,7 +34,6 @@ export class HeaderCommonComponent implements OnInit {
   constructor(
     private router: Router,
     private movieService: MovieService,
-    private token: TokenStorageService,
     private customerService: CustomerService,
     private tokenStorageService: TokenStorageService,
     private shareService: ShareService,
@@ -50,11 +53,22 @@ export class HeaderCommonComponent implements OnInit {
     this.movieService.movieListVisible.subscribe(visible => {
       this.movieListVisible = visible;
     });
-    this.customerService.findByUsername(this.token.getUser().username).subscribe(next => {
-      this.customer = next;
-    });
+
+    if (this.tokenStorageService.isLogged()) {
+      if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER") {
+        this.securityService.findCustomerByUsername(this.tokenStorageService.getUser().username).subscribe(next => {
+          this.customer = next;
+          this.nameOfUser = this.customer.fullName;
+        });
+      } else if (this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE"){
+        this.securityService.findEmployeeByUsername(this.tokenStorageService.getUser().username).subscribe(next => {
+          this.employee = next;
+          this.nameOfUser = this.employee.fullName;
+        });
+      }
+    } else { }
+
     if (this.tokenStorageService.getToken()) {
-      const user = this.tokenStorageService.getUser();
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
@@ -67,7 +81,6 @@ export class HeaderCommonComponent implements OnInit {
       data => {
         this.userLogged = data;
         this.loggedIn = (this.userLogged != null);
-        console.log(this.loggedIn);
       }
     );
   }
@@ -95,8 +108,17 @@ export class HeaderCommonComponent implements OnInit {
   }
 
   logout() {
-    this.token.signOut();
-    this.router.navigate(["/login"]);
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
+
+  signOut(): void {
+    this.authService.signOut().then(
+      data => {
+        // window.location.reload();
+        console.log("Đã đăng xuất")
+      }
+    );
   }
 
   loadHeader(): void {
@@ -107,26 +129,6 @@ export class HeaderCommonComponent implements OnInit {
     }
     this.hasLoggedIn = this.tokenStorageService.isLogged();
     this.getUsernameAccount();
-  }
-
-  // logOut() {
-  //   this.tokenStorageService.signOut();
-  //   if (!this.tokenStorageService.isLogged()) {
-  //     this.router.navigateByUrl(this.returnUrl);
-  //     console.log("Đã đăng xuất");
-  //     this.loadHeader();
-  //   }
-  // }
-
-
-  signOut(): void {
-    this.authService.signOut().then(
-      data => {
-        this.router.navigateByUrl(this.returnUrl);
-        console.log("Đã đăng xuất");
-
-      }
-    );
   }
 
   getUsernameAccount() {

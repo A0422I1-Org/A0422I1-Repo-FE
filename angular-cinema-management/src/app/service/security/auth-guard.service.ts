@@ -14,6 +14,7 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
      // if (this.tokenStorageService.isLogged() && this.tokenStorageService.getUser().roles[0] == "ROLE_ADMIN") {
     //   return true;
     // }
@@ -26,6 +27,7 @@ export class AuthGuardService implements CanActivate {
     //   this.router.navigate(['/login']);
     //   return false;
     // }
+
     if(this.tokenStorageService.getToken() == null) {
       this.router.navigate(['/login']).then(r => console.log(r));
       return;
@@ -33,7 +35,6 @@ export class AuthGuardService implements CanActivate {
     if(this.tokenStorageService.isLogged()){
       switch (this.tokenStorageService.getUser().roles[0]) {
         case "ROLE_ADMIN":
-
 
         case "ROLE_EMPLOYEE":
 

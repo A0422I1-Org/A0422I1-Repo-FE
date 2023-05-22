@@ -117,6 +117,8 @@
                            (click)="findAllWithCondition(name_search,startDay_search,timeAmount_search,studios_search,pageNumber - 1)"></i>
                       </a>
                     </li>
+
+
                     <ng-container
                       *ngIf="0 === pageNumber  ">
                       <li class="page-item" *ngFor="let item of [].constructor(countPage); let i = index">
@@ -150,6 +152,7 @@
                         <a class="page-link">...</a>
                       </li>
                     </ng-container>
+
 
                     <li>
                       <a class="page-link" *ngIf="pageNumber < totalPages - 1 ? 'disable': ''">

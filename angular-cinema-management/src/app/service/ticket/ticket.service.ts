@@ -75,7 +75,9 @@ export class TicketService {
   getTicket(id: string): Observable<any> {
     return this.httpClient.get<TicketDTO>(`${this.API_URL_GET_ALL_TICKET}/detail/` + id, this.httpOptions)
   }
-
+  updateTicketById(id:string):Observable<any>{
+    return this.httpClient.delete<Boolean>(`${this.API_URL_GET_ALL_TICKET}/bookingConfirmation/` + id, this.httpOptions)
+  }
   deleteTicketById(id: string): Observable<any> {
     return this.httpClient.delete<Boolean>(`${this.API_URL_GET_ALL_TICKET}/deleteTicket/` + id, this.httpOptions);
   }

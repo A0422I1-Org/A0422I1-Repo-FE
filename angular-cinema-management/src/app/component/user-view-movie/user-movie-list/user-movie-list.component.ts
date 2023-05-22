@@ -28,9 +28,7 @@ export class UserMovieListComponent implements OnInit, OnDestroy {
               private router: Router,
               private sanitizer: DomSanitizer,
               private movieService: MovieService,
-              private token: TokenStorageService,
               private tokenStorageService: TokenStorageService,
-              private securityService: SecurityService
   ) {
   }
 

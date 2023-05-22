@@ -24,6 +24,7 @@ import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AppComponent} from "./app.component";
 import {RegisterComponent} from "./component/register/register.component";
+import {UserAccountManagementModule} from "./component/user-account-management/user-account-management.module";
 
 export function provideConfig() {
   return {

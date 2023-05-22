@@ -8,8 +8,8 @@ import {ToastrService} from "ngx-toastr";
 import {SecurityService} from "../../../service/security/security.service";
 import {OauthService} from "../../../service/google-login/oauth.service";
 import jsPDF from "jspdf";
-
-
+import { saveAs } from 'file-saver';
+import * as JSZip from "jszip";
 @Component({
   selector: 'app-admin-ticket-list',
   templateUrl: './admin-ticket-list.component.html',
@@ -40,7 +40,8 @@ export class AdminTicketListComponent implements OnInit {
     image:'',
     bookDateTime:''
   };
-  indexPagination = 0;
+  pageNumber = 0;
+  countPage=3;
   totalPages = 0;
   totalElements = 0;
   formSearch: FormGroup;
@@ -63,19 +64,27 @@ export class AdminTicketListComponent implements OnInit {
 
   ngOnInit(): void {
     this.showButton=false;
-    this.getAllTicket(this.indexPagination)
+    this.ticketDto=[];
+    this.getAllTicket(this.pageNumber)
   }
   getAllTicket(page){
     this.ticketService.getAllTicket(this.formSearch.value.name,page).subscribe( next =>{
       if(next===null){
+        this.tickets=[];
+        this.totalElements=0;
         this.toastrService.error("Từ khoá tìm kiếm không chính xác hoặc không tìm đúng trường.");
       }
       else {
         this.tickets = next.content;
-        console.log(next);
-        this.indexPagination = next.number;
+        this.pageNumber = next.number;
         this.totalPages = next.totalPages;
         this.totalElements = next.totalElements;
+        if( this.totalElements > 3){
+          this.countPage = 3;
+        } else {
+          this.countPage = Math.min(this.countPage, this.totalElements);
+        }
+        console.log("test",this.countPage)
       }
     },error=>{
 
@@ -112,13 +121,14 @@ export class AdminTicketListComponent implements OnInit {
   delete(id: string) {
     this.ticketService.deleteTicketById(id).subscribe(next=>{
       document.getElementById("deleteModal").click();
+      document.getElementById("XoaModal1").click();
       this.toastrService.success('Xóa ticket thành công.', 'Thông báo');
       if (this.tickets.length === 1) {
-       this.getAllTicket(this.indexPagination-1)
+       this.getAllTicket(this.pageNumber-1)
 
       }
       else {
-        this.getAllTicket(this.indexPagination)
+        this.getAllTicket(this.pageNumber)
       }
     },error => {
 
@@ -147,6 +157,8 @@ export class AdminTicketListComponent implements OnInit {
     return newDate;
   }
   movieTheater() {
+    const zip = new JSZip();
+    const name=this.ticketDto[0].fullName;
     for (let i = 0; i <this.ticketDto.length ; i++) {
       const pdf = new jsPDF('p', 'mm', 'a7');
       pdf.setFontSize(10);
@@ -174,21 +186,46 @@ export class AdminTicketListComponent implements OnInit {
       pdf.text("                                               Tong   VND  "+formattedNumber,5,82);
 
       // lưu tệp PDF
-      pdf.save(`${this.ticketDto[i].fullName}.pdf`);
-      this.ticketService.deleteTicketById(this.ticketDto[i].id).subscribe(next=>{
+      // pdf.save(`${this.ticketDto[i].fullName}.pdf`);
+      const pdfBlob=pdf.output('blob')
+      zip.file(`file ${i}.pdf`,pdfBlob);
+      this.ticketService.updateTicketById(this.ticketDto[i].id).subscribe(next=>{
+        this.ticketDto[i]=null;
+        this.ngOnInit();
       },error => {
 
       },()=>{
       })
-      this.ngOnInit();
     }
+    zip.generateAsync({type:'blob'}).then((zipBlob)=> {
+      // lưu file zip
+      saveAs(zipBlob,`${name}.zip`);
+    })
+    for (let i = 0; i <this.isChecked.length ; i++) {
+      this.isChecked[i]=false;
+    }
+    document.getElementById("confirmModal").click();
+    document.getElementById("XoaModal2").click();
   }
   onCheckboxChange(index:string) {
+    let check = false;
+    let char="";
     if(index!=null) {
       this.ticketService.getTicket(index).subscribe(next => {
-        this.ticketDto.push(next);
+        if(this.ticketDto.some(obj=>obj.id===next.id)){
+          check = true;
+          char = next.id;
+        }
+        if(check){
+          this.ticketDto = this.ticketDto.filter(item=>item.id !==next.id);
+          console.log(this.ticketDto  )
+        }
+        else {
+          this.ticketDto.push(next);
+        }
       })
     }
+
     this.isChecked[index] = !this.isChecked[index];
 
     // Kiểm tra giá trị của isChecked để xác định xem có bật nút button hay không

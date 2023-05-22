@@ -9,10 +9,10 @@ import {AuthGuardService} from "../../service/security/auth-guard.service";
 
 
 const routes: Routes = [
-  {component : AdminStatisticalMovieTypeComponent, path : "statistic/movie-type-statistic"},
-  {component : AdminStatisticalShowtimeComponent, path : "statistic/showtime-statistic"},
-  {path: 'statistic/statistic-movie', component: AdminStatisticalMovieComponent},
-  {path: 'statistic/statistic-customer', component: AdminStatisticalCustomerComponent},
+  {component : AdminStatisticalMovieTypeComponent, path : "statistic/movie-type-statistic", canActivate: [AuthGuardService]},
+  {component : AdminStatisticalShowtimeComponent, path : "statistic/showtime-statistic", canActivate: [AuthGuardService]},
+  {path: 'statistic/statistic-movie', component: AdminStatisticalMovieComponent, canActivate: [AuthGuardService]},
+  {path: 'statistic/statistic-customer', component: AdminStatisticalCustomerComponent, canActivate: [AuthGuardService]},
 
 ];
 

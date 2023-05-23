@@ -4,6 +4,7 @@ import {CustomerService} from "../../../service/customer/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 
 @Component({
   selector: 'app-admin-customer-edit',
@@ -15,6 +16,8 @@ export class AdminCustomerEditComponent implements OnInit {
   id: string;
   isDelete: boolean;
   errorMessage: string;
+
+  returnUrl: string;
 
   formGroup: FormGroup = new FormGroup({
     username: new FormControl(),
@@ -30,7 +33,10 @@ export class AdminCustomerEditComponent implements OnInit {
   today: Date;
 
   constructor(private customerService: CustomerService, private activatedRoute: ActivatedRoute, private router: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+
+              private tokenStorageService: TokenStorageService,
+              private route: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe(next => {
       this.id = next.get('id');
     });
@@ -38,6 +44,12 @@ export class AdminCustomerEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
+
     this.customerService.getCustomerById(this.id).subscribe(next => {
       this.customer = next;
       this.isDelete = next.isDelete;

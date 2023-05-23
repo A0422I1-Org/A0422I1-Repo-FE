@@ -10,6 +10,7 @@ import {finalize} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 import * as moment from 'moment';
 import {EmployeeDTO} from "../dto/employee/employeeDTO";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 
 @Component({
   selector: 'app-admin-employee-edit',
@@ -26,6 +27,9 @@ export class AdminEmployeeEditComponent implements OnInit {
   formattedDate: string;
   myDate: string;
   errorMessage: string
+
+  returnUrl: string;
+
 
   formGroup: FormGroup = new FormGroup({
     image: new FormControl(),
@@ -55,7 +59,10 @@ export class AdminEmployeeEditComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private toastr: ToastrService,
-              private firebase: AngularFireStorage) {
+              private firebase: AngularFireStorage,
+
+              private tokenStorageService: TokenStorageService,
+              private route: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe(next => {
       this.id = next.get('id');
       console.log("id",this.id)
@@ -72,6 +79,12 @@ export class AdminEmployeeEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
+
     this.employeeService.getEmployeeById(this.id).subscribe(next => {
       this.employee = next;
       console.log("truoc sua",next);

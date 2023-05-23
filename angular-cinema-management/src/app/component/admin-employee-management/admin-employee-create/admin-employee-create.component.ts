@@ -10,7 +10,8 @@ import {finalize} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 import {EmployeeDTO} from "../dto/employee/employeeDTO";
 import {AngularFireStorage} from "@angular/fire/storage";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TokenStorageService} from "../../../service/token/token-storage.service";
 
 @Component({
   selector: 'app-admin-employee-create',
@@ -26,13 +27,18 @@ export class AdminEmployeeCreateComponent implements OnInit {
   downloadURL: string;
   errorMessage: string;
 
+  returnUrl: string;
+
   oldAvatarLink = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
 
   constructor(private positionService: PositionService,
               private employeeService: EmployeeService,
               private fireStorage: AngularFireStorage,
               private toastr: ToastrService,
-              private router: Router) {
+              private router: Router,
+
+              private tokenStorageService: TokenStorageService,
+              private route: ActivatedRoute) {
     this.positionService.getAllPosition().subscribe(
       value => {
         this.position = value;
@@ -45,6 +51,12 @@ export class AdminEmployeeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    if (this.tokenStorageService.getUser().roles[0] == "ROLE_CUSTOMER" || this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
+      this.router.navigateByUrl(this.returnUrl);
+    }
+
     this.employeeFormCreate = new FormGroup(
       {
         image: new FormControl(''),

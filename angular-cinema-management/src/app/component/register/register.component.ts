@@ -21,8 +21,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupRequestForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-      password: new FormControl('', [Validators.required, Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
+      username:['', [Validators.required,
+        Validators.minLength(4), Validators.maxLength(55),
+        Validators.pattern('^[a-zA-Z0-9]+$')]],
+      password:['', [Validators.required,
+        Validators.minLength(8), Validators.maxLength(55),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]+$')]],
       confirmPassword: new FormControl('', [Validators.required]),
       fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
       birthday: new FormControl('', [Validators.required, checkDateOfBirth]),

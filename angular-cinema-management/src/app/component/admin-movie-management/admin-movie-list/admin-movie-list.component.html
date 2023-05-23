@@ -32,18 +32,18 @@
                            id="nameSearch"
                            (change)="name_search = name.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <input type="search" class="form-control displaySearch rounded" placeholder="nhà sản xuất" #studios
+                    <input type="search" class="form-control displaySearch rounded w-25" placeholder="Nhà sản xuất" #studios
                            id="studioSearch"
                            (change)="studios_search = studios.value.trim()" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <select #startDay (change)="startDay_search = startDay.value" id="dateSearch">
+                    <select #startDay (change)="startDay_search = startDay.value" id="dateSearch" class="form-select rounded w-25">
                       <option value="">Ngày Chiếu Phim</option>
                       <option value="7">Phim săp chiếu trong tuần này</option>
                       <option value="14">Phim sắp chiếu trong 2 tuần</option>
                       <option value="21">Phim sắp chiếu trong 3 tuần</option>
                       <option value="30">Phim sắp chiếu trong 1 tháng</option>
                     </select>
-                    <select #time (change)="timeAmount_search = time.value" id="timeSearch">
+                    <select #time (change)="timeAmount_search = time.value" id="timeSearch" class="form-select rounded w-25">
                       <option value="">Thời Lượng Phim</option>
                       <option value="60">
                         Thời Lượng dưới 60p

@@ -4,5 +4,4 @@ export interface ShowtimeStatistic {
   soldTickets: number;
   totalRevenue: number;
   ticketsSoldInRange?: number;
-
 }

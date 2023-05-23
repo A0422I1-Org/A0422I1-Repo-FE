@@ -20,6 +20,7 @@ export class BookingTicketConfirmationComponent implements OnInit {
   customer: Customer;
   totalMoney = 0;
   ticketDefault: Ticket;
+  checkTickets: boolean = true;
 
   constructor(private ticketService: TicketService,
               private customerService: CustomerService,
@@ -60,6 +61,7 @@ export class BookingTicketConfirmationComponent implements OnInit {
       this.customer = next;
       console.log(next)
     })
+    this.addTicketCheckList();
   }
 
   showDetailAndPaymentPage() {
@@ -67,7 +69,29 @@ export class BookingTicketConfirmationComponent implements OnInit {
     this.router.navigateByUrl("/user/payment-ticket");
   }
 
+  addTicketCheckList() {
+    for (let ticket of this.tickets) {
+      this.ticketService.addTicketCheckList(ticket.id).subscribe(next => {
+
+      }, error => {
+        this.checkTickets = false;
+      });
+    }
+  }
+
+  checkTicket() {
+    if (this.checkTickets == true) {
+      this.showDetailAndPaymentPage();
+    }
+    else {
+      this.toast.error("Đã có người đặt, vui lòng chọn vé khác !!!")
+    }
+  }
+
+
   goBack() {
+    this.ticketService.clearTicketCheckList().subscribe(next => {
+    })
     this.router.navigateByUrl("booking/select-seat?showTimeId=" + this.ticketDefault.showTime.id);
   }
 }

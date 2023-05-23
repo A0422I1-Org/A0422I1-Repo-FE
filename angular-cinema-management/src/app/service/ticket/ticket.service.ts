@@ -81,6 +81,12 @@ export class TicketService {
   deleteTicketById(id: string): Observable<any> {
     return this.httpClient.delete<Boolean>(`${this.API_URL_GET_ALL_TICKET}/deleteTicket/` + id, this.httpOptions);
   }
+  addTicketCheckList(ticketId: string) {
+    return this.httpClient.get("http://localhost:8080/api/ticket/addTicketCheckList/"+ticketId, this.httpOptions);
+  }
+  clearTicketCheckList() {
+    return this.httpClient.get("http://localhost:8080/api/ticket/clearTicketCheckList/", this.httpOptions);
+  }
 }
 
 interface GetResponse {

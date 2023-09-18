@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../../service/movie/movie.service";
 import {TokenStorageService} from "../../../service/token/token-storage.service";
 import {Customer} from "../../../model/customer";
@@ -60,13 +60,14 @@ export class HeaderCommonComponent implements OnInit {
           this.customer = next;
           this.nameOfUser = this.customer.fullName;
         });
-      } else if (this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE"){
+      } else if (this.tokenStorageService.getUser().roles[0] == "ROLE_EMPLOYEE") {
         this.securityService.findEmployeeByUsername(this.tokenStorageService.getUser().username).subscribe(next => {
           this.employee = next;
           this.nameOfUser = this.employee.fullName;
         });
       }
-    } else { }
+    } else {
+    }
 
     if (this.tokenStorageService.getToken()) {
       this.roles = this.tokenStorageService.getUser().roles;
@@ -104,7 +105,7 @@ export class HeaderCommonComponent implements OnInit {
   }
 
   toBooking() {
-      this.router.navigateByUrl('/booking/select-movie-and-showtime');
+    this.router.navigateByUrl('/booking/select-movie-and-showtime');
   }
 
   logout() {
